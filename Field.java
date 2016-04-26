@@ -1,0 +1,234 @@
+package egal;
+
+import java.util.Stack;
+
+public class Field {
+	Field nachbar[] = null;
+	int nachbarCtr;
+	int x, y;
+	int fieldNumber;
+	int numberOfDices;
+
+	public Field() {
+		x = 0;
+		y = 0;
+		numberOfDices = 0;
+		nachbarCtr = 0;
+		fieldNumber = 0;
+	}
+
+	public static Field[][] globalList;
+	public static int time = 0;
+	static Stack<int[]> fieldStack = new Stack<int[]>();
+
+	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
+	/* reserve space for Field */
+	public static Field initSingleField(Field node, int x, int y) {
+		if (TUI.globalField[x][y] > 0)
+			System.out.println("ERROR:");
+		int[] index = new int[2];
+		index[0] = x;
+		index[1] = y;
+		node = new Field();
+		node.y = y;
+		node.x = x;
+		mallocNodes(node, x, y);
+		TUI.globalField[x][y] += 1;
+		FieldInList(node);
+		fieldStack.push(index);
+		return node;
+
+	}
+
+	/*
+	 * If a new Node is created, existing neighbours dont know they exist so we
+	 * need to let them know
+	 */
+	public static Field connectNewNeighbours(Field node) {
+		// TODO Alle nachbarn von Node sagen, dass "Ich" existiere
+
+		return node;
+	}
+
+	/* returns a random number in range of value */
+	public static int randomNumber(int value) {
+		return (int) (Math.random() * value);
+	}
+
+	/* converts field in x/y size e.g. 49 = 7, 48 = 7, 37 = 6 */
+	public static int converteFieldSize(int numberOfFields) {
+		return (int) Math.ceil(Math.sqrt(numberOfFields));
+	}
+
+	/* mallocs neighbors array */
+	public static Field mallocNodes(Field node, int x, int y) {
+		Field tmp[] = new Field[6];
+		node.nachbar = tmp;
+		setNeighborsNull(node);
+		return node;
+	}
+
+	public static void setNeighborsNull(Field node) {
+
+		for (int i = 0; i < node.nachbar.length; i++) {
+			node.nachbar[i] = null;
+		}
+	}
+
+	public static boolean checkx(Field node, int x, int fieldSize) {
+		if (node.x + x > fieldSize - 1 || node.x + x < 0)
+			return false;
+		return true;
+	}
+
+	public static boolean checky(Field node, int y, int fieldSize) {
+		if (node.y + y > fieldSize - 1 || node.y + y < 0)
+			return false;
+		return true;
+	}
+
+	public static boolean checkNeighborIndex(Field node, int nextx, int nexty, int fieldSize) {
+
+		 if (nextx == nexty&& nextx<1)
+		 return false;
+		if (!checkx(node, nextx, fieldSize))
+			return false;
+		if (!checky(node, nexty, fieldSize))
+			return false;
+
+		return true;
+	}
+
+	public static boolean checkNeighborExist(Field node, int nextx, int nexty, int ctr) {
+		if (node.nachbar[ctr] == null)
+			return false;
+		if (node.nachbar[ctr].x == nextx && node.nachbar[ctr].y == nexty)
+			return true;
+
+		return false;
+	}
+
+	/* jede Index operation hat ihren festen platz im nachbarfeld */
+	public static int getNeighborfromIndex(Field node, int x, int y) {
+		switch (x + y) {
+		case -1:
+			if (x == -1)
+				return 3;
+			else {
+				return 2;
+			}
+		case 0:
+			return 4;
+
+		case 1:
+			if (x == 1)
+				return 1;
+			else {
+				return 0;
+			}
+		case 2:
+			return 5;
+
+		default:
+			// System.err.println("INDEX ERROR: FIELD.JAVA 114");
+			return -1;
+		}
+
+	}
+
+	public static Field connectNodes(Field node, int numberOfFields, int fieldSize) {
+		if (numberOfFields == 1)
+			return node;
+		int nextx, nexty, vorzeichenx, vorzeicheny, index;
+		System.out.println("time : " + time);
+		time++;
+		do {
+			nextx = randomNumber(2);
+			nexty = randomNumber(2);
+			vorzeichenx = randomNumber(2);
+			vorzeicheny = randomNumber(2);
+			if (vorzeicheny == 1)
+				nexty = nexty * (-1);
+			if (vorzeichenx == 1)
+				nextx = nextx * (-1);
+
+		} while (!checkNeighborIndex(node, nextx, nexty, fieldSize));
+
+		index = getNeighborfromIndex(node, nextx, nexty);
+
+		if (TUI.globalField[node.x + nextx][node.y + nexty] > 0) {
+			node.nachbar[index] = globalList[node.x + nextx][node.y + nexty];
+			return connectNodes(node.nachbar[index], numberOfFields, fieldSize);
+		}
+
+		if (node.nachbar[index] == null) {
+			node.nachbar[index] = initSingleField(node.nachbar[index], node.x + nextx, node.y + nexty);
+			return connectNodes(node.nachbar[index], numberOfFields - 1, fieldSize);
+		}
+
+		return connectNodes(node.nachbar[index], numberOfFields, fieldSize);
+	}
+
+	public static Field createField(int numberOfFields) {
+		Field node = null;
+		int matrixSize = converteFieldSize(numberOfFields);
+		System.out.println("matrixSize " + matrixSize);
+		globalList = new Field[matrixSize][matrixSize];
+		TUI.globalField = new int[matrixSize][matrixSize];
+		node = initSingleField(node, randomNumber(matrixSize), randomNumber(matrixSize));
+		node = mallocNodes(node, node.x, node.y);
+		/* 24 = 24 verbundene Felder erstellen */
+		connectNodes(node, 66, matrixSize);
+		connectFields();
+		return node;
+	}
+
+	public static Field nodeControl(Field node) {
+		System.out.println("x " + node.x + " | y " + node.y);
+		System.out.println("MEINE NACHBARN SIND: ");
+		for (int i = 0; i < node.nachbar.length; i++) {
+			if (node.nachbar[i] == null)
+				continue;
+			System.out.print(" | x: " + node.nachbar[i].x + " / y: " + node.nachbar[i].y);
+		}
+		for (int i = 0; i < 2; i++) {
+			if (node.nachbar[i] == null)
+				continue;
+			nodeControl(node.nachbar[i]);
+		}
+		return node;
+	}
+
+	public static void setNeigbors(int a, int b) {
+		int value, x, y;
+		for (int j = -1; j < 1; j++) {
+			for (int i = -1; i < 1; i++) {
+				value = getNeighborfromIndex(globalList[a][b], j, i);
+				if (value == -1)
+					continue;
+				if (checkNeighborIndex(globalList[a][b], j, i, globalList.length)) {
+					globalList[a][b].nachbar[value] = null;
+					continue;
+				}
+				System.out.println("J : "+j+" I: "+i);
+				globalList[a][b].nachbar[value] = globalList[a + j][b + i];
+			}
+		}
+	}
+
+	public static void connectFields() {
+		for (int i = 0; i < globalList.length; i++) {
+			for (int j = 0; j < globalList.length; j++) {
+				if(globalList[j][i]==null)
+					continue;
+				setNeigbors(j, i);
+			}
+
+		}
+
+	}
+
+	public static void FieldInList(Field p) {
+		globalList[p.x][p.y] = p;
+	}
+}
