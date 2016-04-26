@@ -206,12 +206,15 @@ public class Field {
 				value = getNeighborfromIndex(globalList[a][b], j, i);
 				if (value == -1)
 					continue;
-				if (checkNeighborIndex(globalList[a][b], j, i, globalList.length)) {
+				if (!checkNeighborIndex(globalList[a][b], j, i, globalList.length)) {
 					globalList[a][b].nachbar[value] = null;
 					continue;
 				}
-				System.out.println("J : "+j+" I: "+i);
+				else {
+					
+				System.out.println(a+" "+b+" J : "+j+" I: "+i);
 				globalList[a][b].nachbar[value] = globalList[a + j][b + i];
+				}
 			}
 		}
 	}
