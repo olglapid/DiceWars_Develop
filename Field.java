@@ -1,4 +1,4 @@
-package egal;
+package Develop;
 
 import java.util.Stack;
 
@@ -178,18 +178,18 @@ public class Field {
 		node = initSingleField(node, randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node, node.x, node.y);
 		/* 24 = 24 verbundene Felder erstellen */
-		connectNodes(node, 66, matrixSize);
+		connectNodes(node, 9, matrixSize);
 		connectFields();
 		return node;
 	}
 
 	public static Field nodeControl(Field node) {
-		System.out.println("x " + node.x + " | y " + node.y);
-		System.out.println("MEINE NACHBARN SIND: ");
+//		System.out.println("x " + node.x + " | y " + node.y);
+//		System.out.println("MEINE NACHBARN SIND: ");
 		for (int i = 0; i < node.nachbar.length; i++) {
 			if (node.nachbar[i] == null)
 				continue;
-			System.out.print(" | x: " + node.nachbar[i].x + " / y: " + node.nachbar[i].y);
+//			System.out.print(" | x: " + node.nachbar[i].x + " / y: " + node.nachbar[i].y);
 		}
 		for (int i = 0; i < 2; i++) {
 			if (node.nachbar[i] == null)
@@ -212,11 +212,14 @@ public class Field {
 				}
 				else {
 					
-				System.out.println(a+" "+b+" J : "+j+" I: "+i);
+//				System.out.println(a+" "+b+" J : "+j+" I: "+i);
 				globalList[a][b].nachbar[value] = globalList[a + j][b + i];
 				}
 			}
 		}
+	}
+	public static void setFieldNumber(int x, int y){
+		globalList[x][y].fieldNumber=((x*globalList.length)+y);
 	}
 
 	public static void connectFields() {
@@ -225,6 +228,7 @@ public class Field {
 				if(globalList[j][i]==null)
 					continue;
 				setNeigbors(j, i);
+				setFieldNumber(j, i);
 			}
 
 		}

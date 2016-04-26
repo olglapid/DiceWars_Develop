@@ -1,4 +1,4 @@
-package egal;
+package Develop;
 public class Player {
 	String name;
 	int number_of_Fields;

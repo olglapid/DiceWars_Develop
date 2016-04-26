@@ -1,4 +1,4 @@
-package egal;
+package Develop;
 public class Dice {
 
 	public int roll_the_Dice(int number_of_Dices) {
