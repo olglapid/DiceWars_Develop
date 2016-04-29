@@ -5,7 +5,8 @@ import java.util.Stack;
 public class Field {
 	Field nachbar[] = null;
 	int nachbarCtr;
-	int x, y;
+	public int x;
+	public int y;
 	int fieldNumber;
 	int numberOfDices;
 
@@ -18,7 +19,6 @@ public class Field {
 	}
 
 	public static Field[][] globalList;
-	public static int time = 0;
 	static Stack<int[]> fieldStack = new Stack<int[]>();
 
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
@@ -89,8 +89,25 @@ public class Field {
 
 	public static boolean checkNeighborIndex(Field node, int nextx, int nexty, int fieldSize) {
 
-		 if (nextx == nexty&& nextx<1)
-		 return false;
+		if (node.x % 2 == 0) {
+			if (nextx == nexty && nextx >= 0)
+				return false;
+			if(nextx + nexty == 0)
+			{
+				if(nextx == -1)
+					return false;
+			}
+			
+		}
+		if(node.x % 2 != 0){
+			if (nextx == nexty && nextx <= 0)
+				return false;
+			if(nextx + nexty == 0)
+			{
+				if(nexty == -1)
+					return false;
+			}
+		}
 		if (!checkx(node, nextx, fieldSize))
 			return false;
 		if (!checky(node, nexty, fieldSize))
@@ -99,17 +116,8 @@ public class Field {
 		return true;
 	}
 
-	public static boolean checkNeighborExist(Field node, int nextx, int nexty, int ctr) {
-		if (node.nachbar[ctr] == null)
-			return false;
-		if (node.nachbar[ctr].x == nextx && node.nachbar[ctr].y == nexty)
-			return true;
-
-		return false;
-	}
-
 	/* jede Index operation hat ihren festen platz im nachbarfeld */
-	public static int getNeighborfromIndex(Field node, int x, int y) {
+	public static int getNeighborfromIndex(int x, int y) {
 		switch (x + y) {
 		case -1:
 			if (x == -1)
@@ -128,9 +136,11 @@ public class Field {
 			}
 		case 2:
 			return 5;
+		case -2:
+			return 5;
 
 		default:
-			// System.err.println("INDEX ERROR: FIELD.JAVA 114");
+			 System.out.println("INDEX ERROR: FIELD.JAVA 114");
 			return -1;
 		}
 
@@ -140,8 +150,7 @@ public class Field {
 		if (numberOfFields == 1)
 			return node;
 		int nextx, nexty, vorzeichenx, vorzeicheny, index;
-		System.out.println("time : " + time);
-		time++;
+
 		do {
 			nextx = randomNumber(2);
 			nexty = randomNumber(2);
@@ -154,7 +163,7 @@ public class Field {
 
 		} while (!checkNeighborIndex(node, nextx, nexty, fieldSize));
 
-		index = getNeighborfromIndex(node, nextx, nexty);
+		index = getNeighborfromIndex(nextx, nexty);
 
 		if (TUI.globalField[node.x + nextx][node.y + nexty] > 0) {
 			node.nachbar[index] = globalList[node.x + nextx][node.y + nexty];
@@ -184,12 +193,13 @@ public class Field {
 	}
 
 	public static Field nodeControl(Field node) {
-//		System.out.println("x " + node.x + " | y " + node.y);
-//		System.out.println("MEINE NACHBARN SIND: ");
+		// System.out.println("x " + node.x + " | y " + node.y);
+		// System.out.println("MEINE NACHBARN SIND: ");
 		for (int i = 0; i < node.nachbar.length; i++) {
 			if (node.nachbar[i] == null)
 				continue;
-//			System.out.print(" | x: " + node.nachbar[i].x + " / y: " + node.nachbar[i].y);
+			// System.out.print(" | x: " + node.nachbar[i].x + " / y: " +
+			// node.nachbar[i].y);
 		}
 		for (int i = 0; i < 2; i++) {
 			if (node.nachbar[i] == null)
@@ -203,29 +213,30 @@ public class Field {
 		int value, x, y;
 		for (int j = -1; j < 1; j++) {
 			for (int i = -1; i < 1; i++) {
-				value = getNeighborfromIndex(globalList[a][b], j, i);
+				value = getNeighborfromIndex( j, i);
+
 				if (value == -1)
 					continue;
 				if (!checkNeighborIndex(globalList[a][b], j, i, globalList.length)) {
 					globalList[a][b].nachbar[value] = null;
 					continue;
-				}
-				else {
-					
-//				System.out.println(a+" "+b+" J : "+j+" I: "+i);
-				globalList[a][b].nachbar[value] = globalList[a + j][b + i];
+				} else {
+
+					// System.out.println(a+" "+b+" J : "+j+" I: "+i);
+					globalList[a][b].nachbar[value] = globalList[a + j][b + i];
 				}
 			}
 		}
 	}
-	public static void setFieldNumber(int x, int y){
-		globalList[x][y].fieldNumber=((x*globalList.length)+y);
+
+	public static void setFieldNumber(int x, int y) {
+		globalList[x][y].fieldNumber = ((x * globalList.length) + y + 1);
 	}
 
 	public static void connectFields() {
 		for (int i = 0; i < globalList.length; i++) {
 			for (int j = 0; j < globalList.length; j++) {
-				if(globalList[j][i]==null)
+				if (globalList[j][i] == null)
 					continue;
 				setNeigbors(j, i);
 				setFieldNumber(j, i);
