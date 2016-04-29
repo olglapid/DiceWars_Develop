@@ -4,11 +4,11 @@ import java.util.Stack;
 
 public class Field {
 	public Field nachbar[] = null;
-	int nachbarCtr;
+	public int nachbarCtr;
 	public int x;
 	public int y;
-	int fieldNumber;
-	int numberOfDices;
+	public int fieldNumber;
+	public int numberOfDices;
 
 	public Field() {
 		x = 0;
@@ -18,7 +18,7 @@ public class Field {
 		fieldNumber = 0;
 	}
 
-	public static Field[][] field;
+	public static Field[][] globalList;
 	static Stack<int[]> fieldStack = new Stack<int[]>();
 
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
@@ -39,6 +39,7 @@ public class Field {
 		return node;
 
 	}
+
 	/*
 	 * If a new Node is created, existing neighbours dont know they exist so we
 	 * need to let them know
@@ -165,7 +166,7 @@ public class Field {
 		index = getNeighborfromIndex(nextx, nexty);
 
 		if (TUI.globalField[node.x + nextx][node.y + nexty] > 0) {
-			node.nachbar[index] = field[node.x + nextx][node.y + nexty];
+			node.nachbar[index] = globalList[node.x + nextx][node.y + nexty];
 			return connectNodes(node.nachbar[index], numberOfFields, fieldSize);
 		}
 
@@ -181,7 +182,7 @@ public class Field {
 		Field node = null;
 		int matrixSize = converteFieldSize(numberOfFields);
 		System.out.println("matrixSize " + matrixSize);
-		field = new Field[matrixSize][matrixSize];
+		globalList = new Field[matrixSize][matrixSize];
 		TUI.globalField = new int[matrixSize][matrixSize];
 		node = initSingleField(node, randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node, node.x, node.y);
@@ -208,39 +209,36 @@ public class Field {
 		return node;
 	}
 
-	public static Field setNeigbors(Field fieldTmp[][],int a, int b) {
+	public static void setNeigbors(int a, int b) {
 		int value, x, y;
-		for (int j = -1; j <= 1; j++) {
-			for (int i = -1; i <= 1; i++) {
+		for (int j = -1; j < 1; j++) {
+			for (int i = -1; i < 1; i++) {
 				value = getNeighborfromIndex( j, i);
-//				System.out.println("Value: "+value+" i : "+i);
+
 				if (value == -1)
 					continue;
-				if (!checkNeighborIndex(fieldTmp[a][b], j, i, fieldTmp.length)) {
-//					System.out.println("value: "+value + " NULL");
-					fieldTmp[a][b].nachbar[value] = null;
-				} 
-				else {
+				if (!checkNeighborIndex(globalList[a][b], j, i, globalList.length)) {
+					globalList[a][b].nachbar[value] = null;
+					continue;
+				} else {
 
 					// System.out.println(a+" "+b+" J : "+j+" I: "+i);
-//					System.out.println("value: "+value + " Nicht NULL");
-					fieldTmp[a][b].nachbar[value] = fieldTmp[a + j][b + i];
+					globalList[a][b].nachbar[value] = globalList[a + j][b + i];
 				}
 			}
 		}
-		return fieldTmp[a][b];
 	}
 
 	public static void setFieldNumber(int x, int y) {
-		field[x][y].fieldNumber = ((x * field.length) + y + 1);
+		globalList[x][y].fieldNumber = ((x * globalList.length) + y + 1);
 	}
 
 	public static void connectFields() {
-		for (int i = 0; i < field.length; i++) {
-			for (int j = 0; j < field.length; j++) {
-				if (field[j][i] == null)
+		for (int i = 0; i < globalList.length; i++) {
+			for (int j = 0; j < globalList.length; j++) {
+				if (globalList[j][i] == null)
 					continue;
-				field[j][i]=setNeigbors(field,j, i);
+				setNeigbors(j, i);
 				setFieldNumber(j, i);
 			}
 
@@ -249,6 +247,6 @@ public class Field {
 	}
 
 	public static void FieldInList(Field p) {
-		field[p.x][p.y] = p;
+		globalList[p.x][p.y] = p;
 	}
 }

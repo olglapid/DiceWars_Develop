@@ -92,46 +92,46 @@ public class TUI {
 		}
 	}
 	public static String printBox(String value,int x, int y){
-		if(y>=Field.globalList.length){
+		if(y>=Field.field.length){
 			return value;
 		}
-		if(Field.globalList[x][y]==null){
+		if(Field.field[x][y]==null){
 			value+="|   |";
 			return printBox(value, x, y+1);
 		}
 			
-		if(Field.globalList[x][y].fieldNumber>=100){
-			value+="|"+Field.globalList[x][y].fieldNumber+"|";
+		if(Field.field[x][y].fieldNumber>=100){
+			value+="|"+Field.field[x][y].fieldNumber+"|";
 		}
-		else if (Field.globalList[x][y].fieldNumber>=10) {
-			value+="|"+Field.globalList[x][y].fieldNumber+" |";
+		else if (Field.field[x][y].fieldNumber>=10) {
+			value+="|"+Field.field[x][y].fieldNumber+" |";
 		}
 		else {
-			value+="|"+Field.globalList[x][y].fieldNumber+"  |";
+			value+="|"+Field.field[x][y].fieldNumber+"  |";
 		}
 		return printBox(value, x, y+1);
 	}
 	public static String printBoxNeighbors(String value,int x,int y,int ctr){
 		if(ctr>=6)
 			return value;
-		if(y>=Field.globalList.length)
+		if(y>=Field.field.length)
 			return printBoxNeighbors((value+="\n"), x, 0,ctr+1);
-		if(Field.globalList[x][y]==null){
+		if(Field.field[x][y]==null){
 			value+="|   |";
 			return printBoxNeighbors(value, x, y+1, ctr);
 		}
-		if(Field.globalList[x][y].nachbar[ctr]==null){
+		if(Field.field[x][y].nachbar[ctr]==null){
 			value+="|   |";
 			return printBoxNeighbors(value, x, y+1, ctr);
 		}
-		if(Field.globalList[x][y].nachbar[ctr].fieldNumber>=100){
-			value+="|"+Field.globalList[x][y].nachbar[ctr].fieldNumber+"|";
+		if(Field.field[x][y].nachbar[ctr].fieldNumber>=100){
+			value+="|"+Field.field[x][y].nachbar[ctr].fieldNumber+"|";
 		}
-		else if(Field.globalList[x][y].nachbar[ctr].fieldNumber>=10){
-			value+="|"+Field.globalList[x][y].nachbar[ctr].fieldNumber+" |";
+		else if(Field.field[x][y].nachbar[ctr].fieldNumber>=10){
+			value+="|"+Field.field[x][y].nachbar[ctr].fieldNumber+" |";
 		}
 		else {
-			value+="|"+Field.globalList[x][y].nachbar[ctr].fieldNumber+"  |";
+			value+="|"+Field.field[x][y].nachbar[ctr].fieldNumber+"  |";
 		}
 		return printBoxNeighbors(value, x, y+1, ctr);
 		
@@ -139,7 +139,7 @@ public class TUI {
 	public static void globalPrint() {
 		System.out.println();
 		String value="";
-		for (int j = 0; j < Field.globalList.length; j++) {
+		for (int j = 0; j < Field.field.length; j++) {
 			System.out.println(printBox(value, j, 0));
 			value="";
 			System.out.println(printBoxNeighbors(value, j, 0, 0));
