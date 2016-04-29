@@ -1,7 +1,7 @@
 package Develop;
 
 public class TUI {
-
+//nanana
 	public static int[][] globalField = new int[7][7];
 
 	public static String field(int[] row, int ctr) {
