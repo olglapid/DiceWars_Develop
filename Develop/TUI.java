@@ -112,7 +112,7 @@ public class TUI {
 		return printBox(value, x, y+1);
 	}
 	public static String printBoxNeighbors(String value,int x,int y,int ctr){
-		if(ctr>=6)
+		if(ctr>=8)
 			return value;
 		if(y>=Field.field.length)
 			return printBoxNeighbors((value+="\n"), x, 0,ctr+1);
