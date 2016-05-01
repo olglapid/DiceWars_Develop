@@ -30,7 +30,7 @@ public class Dice_start {
 			list_of_Player[i] = Dice.init_Dice_to_Field(list_of_Player[i], list_of_Player[i].number_of_Fields);
 		}
 
-		Field node = new Field();
+		Field node ;
 		node = Field.createField(49);
 		TUI.tui(Field.converteFieldSize(49), 0);
 		int index[] = new int[2];

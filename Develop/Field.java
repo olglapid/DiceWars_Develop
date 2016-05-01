@@ -196,7 +196,7 @@ public class Field {
 
 
 	public static Field setNeigbors(Field fieldTmp[][], int a, int b) {
-		int value, x, y;
+		int value;
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
 				value = getNeighborfromIndex(j, i);
