@@ -22,6 +22,7 @@ public class setNeigborsTest {
 			}
 		}
 
+		
 		assertSame(Field.setNeigbors(testField, 0, 0).nachbar[0], testField[0][1]);
 		assertSame(Field.setNeigbors(testField, 0, 0).nachbar[1], testField[1][0]);
 		assertSame(Field.setNeigbors(testField, 0, 0).nachbar[2], null);

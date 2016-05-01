@@ -4,11 +4,11 @@ import java.util.Stack;
 
 public class Field {
 	public Field nachbar[] = null;
-	int nachbarCtr;
+	public int nachbarCtr;
 	public int x;
 	public int y;
-	int fieldNumber;
-	int numberOfDices;
+	public int fieldNumber;
+	public int numberOfDices;
 
 	public Field() {
 		x = 0;
@@ -38,16 +38,6 @@ public class Field {
 		fieldStack.push(index);
 		return node;
 
-	}
-
-	/*
-	 * If a new Node is created, existing neighbours dont know they exist so we
-	 * need to let them know
-	 */
-	public static Field connectNewNeighbours(Field node) {
-		// TODO Alle nachbarn von Node sagen, dass "Ich" existiere
-
-		return node;
 	}
 
 	/* returns a random number in range of value */
@@ -188,12 +178,10 @@ public class Field {
 		TUI.globalField = new int[matrixSize][matrixSize];
 		node = initSingleField(node, randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node, node.x, node.y);
-		/* 24 = 24 verbundene Felder erstellen */
-		connectNodes(node, 44, matrixSize);
+		connectNodes(node, 49, matrixSize);
 		connectFields();
 		return node;
 	}
-
 
 	public static Field setNeigbors(Field fieldTmp[][], int a, int b) {
 		int value;
@@ -214,7 +202,8 @@ public class Field {
 	}
 
 	public static void setFieldNumber(int x, int y) {
-		field[x][y].fieldNumber = ((x * field.length) + y + 1);
+		if (field[x][y] != null)
+			field[x][y].fieldNumber = ((x * field.length) + y + 1);
 	}
 
 	public static void connectFields() {
@@ -225,9 +214,7 @@ public class Field {
 				field[j][i] = setNeigbors(field, j, i);
 				setFieldNumber(j, i);
 			}
-
 		}
-
 	}
 
 	public static void FieldInList(Field p) {

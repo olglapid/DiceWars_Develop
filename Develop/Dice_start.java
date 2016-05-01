@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Dice_start {
 	static Field[][] field = null;
-	static int number_of_Fields = 49; // Muss quadratzahl sein
+	static int number_of_Fields = 64;
 	static int field_size;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		field_size = (int) Math.sqrt((double) number_of_Fields);
-		// TUI.tui();
+
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("Anzahl an spielern: ");
@@ -31,8 +31,8 @@ public class Dice_start {
 		}
 
 		Field node ;
-		node = Field.createField(49);
-		TUI.tui(Field.converteFieldSize(49), 0);
+		node = Field.createField(number_of_Fields);
+		TUI.tui(Field.converteFieldSize(number_of_Fields), 0);
 		int index[] = new int[2];
 		sc.close();
 
