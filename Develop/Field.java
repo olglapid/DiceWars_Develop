@@ -39,6 +39,7 @@ public class Field {
 		return node;
 
 	}
+
 	/*
 	 * If a new Node is created, existing neighbours dont know they exist so we
 	 * need to let them know
@@ -61,7 +62,7 @@ public class Field {
 
 	/* mallocs neighbors array */
 	public static Field mallocNodes(Field node, int x, int y) {
-		Field tmp[] = new Field[6];
+		Field tmp[] = new Field[8];
 		node.nachbar = tmp;
 		setNeighborsNull(node);
 		return node;
@@ -91,19 +92,17 @@ public class Field {
 		if (node.x % 2 == 0) {
 			if (nextx == nexty && nextx >= 0)
 				return false;
-			if(nextx + nexty == 0)
-			{
-				if(nextx == -1)
+			if (nextx + nexty == 0) {
+				if (nextx == -1)
 					return false;
 			}
-			
+
 		}
-		if(node.x % 2 != 0){
+		if (node.x % 2 != 0) {
 			if (nextx == nexty && nextx <= 0)
 				return false;
-			if(nextx + nexty == 0)
-			{
-				if(nexty == -1)
+			if (nextx + nexty == 0) {
+				if (nexty == -1)
 					return false;
 			}
 		}
@@ -116,6 +115,7 @@ public class Field {
 	}
 
 	/* jede Index operation hat ihren festen platz im nachbarfeld */
+	//msdf
 	public static int getNeighborfromIndex(int x, int y) {
 		switch (x + y) {
 		case -1:
@@ -125,8 +125,11 @@ public class Field {
 				return 2;
 			}
 		case 0:
-			return 4;
-
+			if (x == -1) {
+				return 4;
+			} else {
+				return 6;
+			}
 		case 1:
 			if (x == 1)
 				return 1;
@@ -136,10 +139,10 @@ public class Field {
 		case 2:
 			return 5;
 		case -2:
-			return 5;
+			return 7;
 
 		default:
-			 System.out.println("INDEX ERROR: FIELD.JAVA 114");
+			System.out.println("INDEX ERROR: FIELD.JAVA 114");
 			return -1;
 		}
 
@@ -208,22 +211,25 @@ public class Field {
 		return node;
 	}
 
-	public static Field setNeigbors(Field fieldTmp[][],int a, int b) {
+	public static Field setNeigbors(Field fieldTmp[][], int a, int b) {
 		int value, x, y;
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
-				value = getNeighborfromIndex( j, i);
-//				System.out.println("Value: "+value+" i : "+i);
+				value = getNeighborfromIndex(j, i);
+				// System.out.println("Value: "+value+" i : "+i);
 				if (value == -1)
 					continue;
 				if (!checkNeighborIndex(fieldTmp[a][b], j, i, fieldTmp.length)) {
-//					System.out.println("value: "+value + " NULL");
-					fieldTmp[a][b].nachbar[value] = null;
-				} 
-				else {
+					// System.out.println("value: "+value + " NULL");
 
+					fieldTmp[a][b].nachbar[value] = null;
+				} else {
+					if (j == -1 && i == 1 && value == 4 && a == 1 && b == 0) {
+						System.out.println("FUCK");
+
+					}
 					// System.out.println(a+" "+b+" J : "+j+" I: "+i);
-//					System.out.println("value: "+value + " Nicht NULL");
+					// System.out.println("value: "+value + " Nicht NULL");
 					fieldTmp[a][b].nachbar[value] = fieldTmp[a + j][b + i];
 				}
 			}
@@ -240,7 +246,7 @@ public class Field {
 			for (int j = 0; j < field.length; j++) {
 				if (field[j][i] == null)
 					continue;
-				field[j][i]=setNeigbors(field,j, i);
+				field[j][i] = setNeigbors(field, j, i);
 				setFieldNumber(j, i);
 			}
 

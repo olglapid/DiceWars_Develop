@@ -34,10 +34,6 @@ public class Dice_start {
 		node = Field.createField(9);
 		TUI.tui(Field.converteFieldSize(9), 0);
 		int index[] = new int[2];
-		// while(!Field.fieldStack.empty()){
-		// index=Field.fieldStack.pop();
-		// System.out.println("ROW : "+index[0]+" | COL: "+index[1]);
-		// }
 		sc.close();
 		/* TEST NEIGHBORS */
 		Field.nodeControl(node);
