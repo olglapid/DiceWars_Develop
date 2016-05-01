@@ -31,13 +31,11 @@ public class Dice_start {
 		}
 
 		Field node = new Field();
-		node = Field.createField(9);
-		TUI.tui(Field.converteFieldSize(9), 0);
+		node = Field.createField(49);
+		TUI.tui(Field.converteFieldSize(49), 0);
 		int index[] = new int[2];
 		sc.close();
-		/* TEST NEIGHBORS */
-		Field.nodeControl(node);
-		/////
+
 		TUI.globalPrint();
 	}
 

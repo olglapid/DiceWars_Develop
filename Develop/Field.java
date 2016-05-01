@@ -189,27 +189,11 @@ public class Field {
 		node = initSingleField(node, randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node, node.x, node.y);
 		/* 24 = 24 verbundene Felder erstellen */
-		connectNodes(node, 9, matrixSize);
+		connectNodes(node, 44, matrixSize);
 		connectFields();
 		return node;
 	}
 
-	public static Field nodeControl(Field node) {
-		// System.out.println("x " + node.x + " | y " + node.y);
-		// System.out.println("MEINE NACHBARN SIND: ");
-		for (int i = 0; i < node.nachbar.length; i++) {
-			if (node.nachbar[i] == null)
-				continue;
-			// System.out.print(" | x: " + node.nachbar[i].x + " / y: " +
-			// node.nachbar[i].y);
-		}
-		for (int i = 0; i < 2; i++) {
-			if (node.nachbar[i] == null)
-				continue;
-			nodeControl(node.nachbar[i]);
-		}
-		return node;
-	}
 
 	public static Field setNeigbors(Field fieldTmp[][], int a, int b) {
 		int value, x, y;
