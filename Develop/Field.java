@@ -115,7 +115,7 @@ public class Field {
 	}
 
 	/* jede Index operation hat ihren festen platz im nachbarfeld */
-	//msdf
+	// msdf
 	public static int getNeighborfromIndex(int x, int y) {
 		switch (x + y) {
 		case -1:
@@ -216,20 +216,12 @@ public class Field {
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
 				value = getNeighborfromIndex(j, i);
-				// System.out.println("Value: "+value+" i : "+i);
 				if (value == -1)
 					continue;
 				if (!checkNeighborIndex(fieldTmp[a][b], j, i, fieldTmp.length)) {
-					// System.out.println("value: "+value + " NULL");
-
 					fieldTmp[a][b].nachbar[value] = null;
 				} else {
-					if (j == -1 && i == 1 && value == 4 && a == 1 && b == 0) {
-						System.out.println("FUCK");
 
-					}
-					// System.out.println(a+" "+b+" J : "+j+" I: "+i);
-					// System.out.println("value: "+value + " Nicht NULL");
 					fieldTmp[a][b].nachbar[value] = fieldTmp[a + j][b + i];
 				}
 			}
