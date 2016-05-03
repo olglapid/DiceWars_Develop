@@ -15,7 +15,7 @@ public class setNeigborsTest {
 		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < 3; i++) {
 				testField[j][i] = new Field();
-				Field.mallocNodes(testField[j][i], j, i);
+				testField[j][i]= Field.mallocNodes(testField[j][i]);
 				testField[j][i].x = j;
 				testField[j][i].y = i;
 

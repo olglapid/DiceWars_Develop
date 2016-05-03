@@ -1,12 +1,20 @@
 package develop;
+
+import java.util.Random;
+
 public class Dice {
 
-	public int roll_the_Dice(int number_of_Dices) {
-		return (int) (Math.random() * 6 * number_of_Dices) + 1;
+	public int rollTheDice(int numberOfDices) {
+		Random r = new Random();
+		int gamble=0;
+		for(int i = 0; i<numberOfDices;i++){
+			gamble+=r.nextInt(6)  + 1;
+		}
+		return gamble;
 	}
 
-	public static Player init_Dice_to_Field(Player player, int number_of_Fields) {
-		player.number_of_Dices = number_of_Fields; // Muss noch angepasst werde,
+	public static Player initDiceToField(Player player, int numberOfFields) {
+		player.numberOfDices = numberOfFields; // Muss noch angepasst werde,
 													// da unfair
 		return player;
 	}

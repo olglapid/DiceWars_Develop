@@ -1,15 +1,15 @@
 package develop;
 public class Player {
 	String name;
-	int number_of_Fields;
-	int player_nbr;
-	int number_of_Dices;
+	int numberOfFields;
+	int playerNr;
+	int numberOfDices;
 
 	public Player() {
 		this.name = null;
-		this.player_nbr = 0;
-		this.number_of_Fields = 0;
-		this.number_of_Dices = 0;
+		this.playerNr = 0;
+		this.numberOfFields = 0;
+		this.numberOfDices = 0;
 	}
 
 }
