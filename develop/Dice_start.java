@@ -1,4 +1,4 @@
-package Develop;
+package develop;
 
 import java.util.Scanner;
 

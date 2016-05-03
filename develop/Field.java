@@ -1,5 +1,6 @@
-package Develop;
+package develop;
 
+import java.util.Random;
 import java.util.Stack;
 
 public class Field {
@@ -23,18 +24,17 @@ public class Field {
 
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
-	public static Field initSingleField(Field node, int x, int y) {
-		if (TUI.globalField[x][y] > 0)
-			System.out.println("ERROR:");
+	public static Field initSingleField(int x, int y) {
+
 		int[] index = new int[2];
 		index[0] = x;
 		index[1] = y;
-		node = new Field();
+		Field node = new Field();
 		node.y = y;
 		node.x = x;
-		mallocNodes(node, x, y);
+		mallocNodes(node);
 		TUI.globalField[x][y] += 1;
-		FieldInList(node);
+		fieldInList(node);
 		fieldStack.push(index);
 		return node;
 
@@ -42,7 +42,8 @@ public class Field {
 
 	/* returns a random number in range of value */
 	public static int randomNumber(int value) {
-		return (int) (Math.random() * value);
+		Random r = new Random();
+		return r.nextInt(value);
 	}
 
 	/* converts field in x/y size e.g. 49 = 7, 48 = 7, 37 = 6 */
@@ -51,8 +52,8 @@ public class Field {
 	}
 
 	/* mallocs neighbors array */
-	public static Field mallocNodes(Field node, int x, int y) {
-		Field tmp[] = new Field[8];
+	public static Field mallocNodes(Field node) {
+		Field[] tmp = new Field[8];
 		node.nachbar = tmp;
 		setNeighborsNull(node);
 		return node;
@@ -77,25 +78,35 @@ public class Field {
 		return true;
 	}
 
+	public static boolean checkIndent(Field node, int x, int y) {
+		if (node.x % 2 != 0) {
+			if (x == y && x <= 0)
+				return false;
+			if (x + y == 0 && y == -1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean checkNoIndent(Field node, int x, int y) {
+		if (node.x % 2 == 0) {
+			if (x == y && x >= 0)
+				return false;
+			if (x + y == 0 && x == -1) {
+				return false;
+			}
+
+		}
+		return true;
+	}
+
 	public static boolean checkNeighborIndex(Field node, int nextx, int nexty, int fieldSize) {
 
-		if (node.x % 2 == 0) {
-			if (nextx == nexty && nextx >= 0)
-				return false;
-			if (nextx + nexty == 0) {
-				if (nextx == -1)
-					return false;
-			}
-
-		}
-		if (node.x % 2 != 0) {
-			if (nextx == nexty && nextx <= 0)
-				return false;
-			if (nextx + nexty == 0) {
-				if (nexty == -1)
-					return false;
-			}
-		}
+		if (!checkNoIndent(node, nextx, nexty))
+			return false;
+		if (!checkIndent(node, nextx, nexty))
+			return false;
 		if (!checkx(node, nextx, fieldSize))
 			return false;
 		if (!checky(node, nexty, fieldSize))
@@ -105,43 +116,65 @@ public class Field {
 	}
 
 	/* jede Index operation hat ihren festen platz im nachbarfeld */
-	// msdf
-	public static int getNeighborfromIndex(int x, int y) {
-		switch (x + y) {
-		case -1:
-			if (x == -1)
-				return 3;
-			else {
-				return 2;
-			}
-		case 0:
-			if (x == -1) {
-				return 4;
-			} else {
-				return 6;
-			}
-		case 1:
-			if (x == 1)
-				return 1;
-			else {
-				return 0;
-			}
-		case 2:
-			return 5;
-		case -2:
-			return 7;
+	public static int xPlusyNegativeOne(int x) {
+		if (x == -1)
+			return 3;
+		return 2;
 
-		default:
-			System.out.println("INDEX ERROR: FIELD.JAVA 114");
-			return -1;
+	}
+
+	public static int xPlusyZero(int x) {
+		if (x == -1) 
+			return 4;
+		return 6;
+
+	}
+
+	public static int xPlusyOne(int x) {
+		if (x == 1)
+			return 1;
+		return 0;
+
+	}
+	public static int xPlusyLowerOne(int x, int y){
+		if(x+y==-1){
+			return xPlusyNegativeOne(x);
 		}
+		else if (x+y==0) {
+			return xPlusyZero(x);
+		} 
+		else if (x+y == -2){
+			return 7;
+		}
+		return -1;
+	}
+	public static int xPlusyHigherZero(int x, int y){
+		if (x+y==1) {
+			return xPlusyOne(x);
+		} 
+		else if(x + y== 2){
+			return 5;
+		}
+		return -1;
+	}
+
+	public static int getNeighborfromIndex(int x, int y) {
+		if(x+y<1)
+			return xPlusyLowerOne(x, y);
+
+		return xPlusyHigherZero(x, y);
+		
 
 	}
 
 	public static Field connectNodes(Field node, int numberOfFields, int fieldSize) {
 		if (numberOfFields == 1)
 			return node;
-		int nextx, nexty, vorzeichenx, vorzeicheny, index;
+		int nextx; 
+		int nexty; 
+		int vorzeichenx; 
+		int vorzeicheny;
+		int index;
 
 		do {
 			nextx = randomNumber(2);
@@ -163,7 +196,7 @@ public class Field {
 		}
 
 		if (node.nachbar[index] == null) {
-			node.nachbar[index] = initSingleField(node.nachbar[index], node.x + nextx, node.y + nexty);
+			node.nachbar[index] = initSingleField(node.x + nextx, node.y + nexty);
 			return connectNodes(node.nachbar[index], numberOfFields - 1, fieldSize);
 		}
 
@@ -171,15 +204,17 @@ public class Field {
 	}
 
 	public static Field createField(int numberOfFields) {
-		Field node = null;
+		Field node;
 		int matrixSize = converteFieldSize(numberOfFields);
-		System.out.println("matrixSize " + matrixSize);
 		field = new Field[matrixSize][matrixSize];
 		TUI.globalField = new int[matrixSize][matrixSize];
-		node = initSingleField(node, randomNumber(matrixSize), randomNumber(matrixSize));
-		node = mallocNodes(node, node.x, node.y);
+		
+		node = initSingleField(randomNumber(matrixSize), randomNumber(matrixSize));
+		node = mallocNodes(node);
+		
 		connectNodes(node, 49, matrixSize);
 		connectFields();
+		
 		return node;
 	}
 
@@ -203,7 +238,7 @@ public class Field {
 
 	public static void setFieldNumber(int x, int y) {
 		if (field[x][y] != null)
-			field[x][y].fieldNumber = ((x * field.length) + y + 1);
+			field[x][y].fieldNumber = (x * field.length) + y + 1;
 	}
 
 	public static void connectFields() {
@@ -217,7 +252,7 @@ public class Field {
 		}
 	}
 
-	public static void FieldInList(Field p) {
+	public static void fieldInList(Field p) {
 		field[p.x][p.y] = p;
 	}
 }

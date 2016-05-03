@@ -1,4 +1,4 @@
-package Develop;
+package develop;
 
 public class TUI {
 

@@ -1,10 +1,10 @@
-package Tests;
+package tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Develop.Field;
+import develop.Field;
 
 public class setNeigborsTest {
 
