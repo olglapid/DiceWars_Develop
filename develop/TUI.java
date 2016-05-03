@@ -5,33 +5,20 @@ public class TUI {
 
 	}
 
-	public static int[][] globalField = null;
-
-	public static String field(int[] row, int ctr) {
+	public static String field(Field[][] globalField, Field[] row, int ctr) {
 		int tmpCtr = ctr;
-		String tmp = " ";
+		String tmp = "";
 		String value;
 		if (tmpCtr > 0) {
 			tmpCtr--;
 
-			value = String.valueOf(row[row.length - tmpCtr - 1]);
-			if (row[row.length - tmpCtr - 1] == 0)
+			if (row[row.length - tmpCtr - 1] == null)
 				value = "";
-			switch (value.length()) {
-			case 1:
-				tmp = "| " + value + " |" + field(row, tmpCtr);
-				break;
-			case 2:
-				tmp = "|" + value + " |" + field(row, tmpCtr);
-				break;
-			case 3:
-				tmp = "|" + value + "|" + field(row, tmpCtr);
-				break;
-
-			default:
-				tmp = "|   |" + field(row, tmpCtr);
-				break;
+			else {
+				value = String.valueOf(row[row.length - tmpCtr - 1].fieldNumber);
 			}
+
+			tmp = format(tmp, value) + field(globalField, row, tmpCtr);
 
 		} else {
 			tmp = tmp + "\n";
@@ -64,111 +51,95 @@ public class TUI {
 		return tmp;
 	}
 
-	public static void tui(int fieldSize) {
+	public static String tui(int fieldSize, Field[][] globalField) {
 
 		String tmp = "";
 
 		for (int i = 0; i < fieldSize; i++) {
 
 			if (i % 2 != 0) {
-				tmp += "  " + field(globalField[i], fieldSize);
-				tmp += "  " + field(globalField[i], fieldSize);
+				tmp += "  " + field(globalField, globalField[i], fieldSize);
+				tmp += "  " + field(globalField, globalField[i], fieldSize);
 				continue;
 			}
 			tmp += top(fieldSize);
-			tmp += field(globalField[i], fieldSize);
-			tmp += field(globalField[i], fieldSize);
+			tmp += field(globalField, globalField[i], fieldSize);
+			tmp += field(globalField, globalField[i], fieldSize);
 			tmp += bot(fieldSize);
 		}
 
-		System.out.println(tmp);
-		System.out.println("----------------------------------------------------------------");
-
+		
+		tmp+="\n";
+		tmp+="----------------------------------------------------------------";
+		return tmp;
 	}
 
-	public static void printNeighbors(Field[][] field, int fieldSize) {
-		for (int i = 0; i < fieldSize; i++) {
-			for (int j = 0; j < fieldSize; j++) {
-				System.out.print("Field : [" + i + "][" + j + "] : ");
-				for (int a = 0; a < field[i][j].nachbarCtr; a++) {
-					System.out.print(field[i][j].nachbar[a].fieldNumber + " | ");
-				}
-				System.out.println();
-			}
-		}
-	}
-
-	public static String printBox(String value, int x, int y) {
-		if (y >= Field.field.length) {
+	public static String printBox(Field[][] field, String value, int x, int y) {
+		String value1 = "";
+		if (y >= field.length) {
 			return value;
 		}
-		if (Field.field[x][y] == null) {
-			value += "|   |";
-			return printBox(value, x, y + 1);
+		if (field[x][y] == null) {
+			value1 = "";
+		} else {
+			value1 += field[x][y].fieldNumber;
 		}
 
-		if (Field.field[x][y].fieldNumber >= 100) {
-			value += "|" + Field.field[x][y].fieldNumber + "|";
-		} else if (Field.field[x][y].fieldNumber >= 10) {
-			value += "|" + Field.field[x][y].fieldNumber + " |";
-		} else {
-			value += "|" + Field.field[x][y].fieldNumber + "  |";
-		}
-		return printBox(value, x, y + 1);
+		return printBox(field, format(value, value1), x, y + 1);
 	}
-	
-public static String format(String value, int x, int y, int ctr){
-	int tmpCtr = ctr;
-	String tmpValue=value;
-	String I = "|";
-	int number;
-	if(Field.field[x][y].nachbar[tmpCtr] == null){
-		tmpValue+=I+"   "+I;
+
+	public static String format(String value, String value1) {
+
+		String tmpValue = value;
+		String border = "|";
+		int number;
+
+		number = value1.length();
+		tmpValue += border;
+		for (int i = number; i < 3; i++) {
+
+			tmpValue += " ";
+		}
+
+		tmpValue += value1 + border;
+
 		return tmpValue;
 	}
-		
-	
-	
-	number = Field.field[x][y].nachbar[tmpCtr].fieldNumber;
-	tmpValue+=I;
-	for(int i=100;i>1;i=i/10){
-		if(number/i>0)
-			break;
-		tmpValue+=" ";
-	}
 
-	tmpValue+=number+I;
-	
-	return tmpValue;
-}
-
-	public static String printBoxNeighbors(String value, int x, int y, int ctr) {
+	public static String printBoxNeighbors(Field[][] field, String value, int x, int y, int ctr) {
 		int tmpCtr = ctr;
 		if (tmpCtr >= 8)
 			return value;
-		if (y >= Field.field.length){
+		if (y >= field.length) {
 			value += "\n";
-			return printBoxNeighbors(value, x, 0, tmpCtr + 1);
-		}
-			
-		if (Field.field[x][y] == null) {
-			value += "|   |";
-			return printBoxNeighbors(value, x, y + 1, tmpCtr);
+			return printBoxNeighbors(field, value, x, 0, tmpCtr + 1);
 		}
 
-		return printBoxNeighbors(format(value, x, y, tmpCtr), x, y + 1, tmpCtr);
+		if (field[x][y] == null) {
+			value += "|   |";
+			return printBoxNeighbors(field, value, x, y + 1, tmpCtr);
+		}
+		String value1 = "";
+		if (field[x][y].nachbar[ctr] == null) {
+			return printBoxNeighbors(field, format(value, value1), x, y + 1, tmpCtr);
+		}
+		value1 += field[x][y].nachbar[ctr].fieldNumber;
+		return printBoxNeighbors(field, format(value, value1), x, y + 1, tmpCtr);
 
 	}
 
-	public static void globalPrint() {
+	public static String globalPrint(Field[][] field) {
 		System.out.println();
 		String value = "";
-		for (int j = 0; j < Field.field.length; j++) {
-			System.out.println(printBox(value, j, 0));
-			value = "";
-			System.out.println(printBoxNeighbors(value, j, 0, 0));
-
+		String endValue = "";
+		for (int j = 0; j < field.length; j++) {
+			endValue += printBox(field, value, j, 0);
+			value += "";
+			endValue += "\n";
+			endValue += printBoxNeighbors(field, value, j, 0, 0);
+			endValue += "\n";
 		}
-
+		return endValue;
 	}
+
 }

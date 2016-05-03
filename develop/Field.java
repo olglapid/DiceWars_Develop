@@ -1,7 +1,7 @@
 package develop;
 
 import java.util.Random;
-import java.util.Stack;
+
 
 public class Field {
 	public Field nachbar[] = null;
@@ -19,12 +19,11 @@ public class Field {
 		fieldNumber = 0;
 	}
 
-	public static Field[][] field;
-	static Stack<int[]> fieldStack = new Stack<int[]>();
+
 
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
-	public static Field initSingleField(int x, int y) {
+	public static Field initSingleField(Field[][] field,int x, int y) {
 
 		int[] index = new int[2];
 		index[0] = x;
@@ -32,10 +31,9 @@ public class Field {
 		Field node = new Field();
 		node.y = y;
 		node.x = x;
+		field[x][y]=node;
 		mallocNodes(node);
-		TUI.globalField[x][y] += 1;
-		fieldInList(node);
-		fieldStack.push(index);
+		fieldInList(field,node);
 		return node;
 
 	}
@@ -167,7 +165,7 @@ public class Field {
 
 	}
 
-	public static Field connectNodes(Field node, int numberOfFields, int fieldSize) {
+	public static Field connectNodes(Field[][] field,Field node, int numberOfFields, int fieldSize) {
 		if (numberOfFields == 1)
 			return node;
 		int nextx; 
@@ -190,35 +188,36 @@ public class Field {
 
 		index = getNeighborfromIndex(nextx, nexty);
 
-		if (TUI.globalField[node.x + nextx][node.y + nexty] > 0) {
+		if (field[node.x + nextx][node.y + nexty] != null ) {
 			node.nachbar[index] = field[node.x + nextx][node.y + nexty];
-			return connectNodes(node.nachbar[index], numberOfFields, fieldSize);
+			return connectNodes(field,node.nachbar[index], numberOfFields, fieldSize);
 		}
 
 		if (node.nachbar[index] == null) {
-			node.nachbar[index] = initSingleField(node.x + nextx, node.y + nexty);
-			return connectNodes(node.nachbar[index], numberOfFields - 1, fieldSize);
+			node.nachbar[index] = initSingleField(field,node.x + nextx, node.y + nexty);
+			return connectNodes(field,node.nachbar[index], numberOfFields - 1, fieldSize);
 		}
 
-		return connectNodes(node.nachbar[index], numberOfFields, fieldSize);
+		return connectNodes(field,node.nachbar[index], numberOfFields, fieldSize);
 	}
 
-	public static Field createField(int numberOfFields) {
+	public static Field[][] createField(int numberOfFields) {
+		
 		Field node;
 		int matrixSize = converteFieldSize(numberOfFields);
-		field = new Field[matrixSize][matrixSize];
-		TUI.globalField = new int[matrixSize][matrixSize];
+		Field[][] field = new Field[matrixSize][matrixSize];
+	
 		
-		node = initSingleField(randomNumber(matrixSize), randomNumber(matrixSize));
+		node = initSingleField(field,randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node);
 		
-		connectNodes(node, 49, matrixSize);
-		connectFields();
+		connectNodes(field, node, 49, matrixSize);
+		connectFields(field);
 		
-		return node;
+		return field;
 	}
 
-	public static Field setNeigbors(Field fieldTmp[][], int a, int b) {
+	public static Field setNeigbors(Field[][] fieldTmp, int a, int b) {
 		int value;
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
@@ -236,23 +235,25 @@ public class Field {
 		return fieldTmp[a][b];
 	}
 
-	public static void setFieldNumber(int x, int y) {
+	public static void setFieldNumber(Field[][] field,int x, int y) {
 		if (field[x][y] != null)
 			field[x][y].fieldNumber = (x * field.length) + y + 1;
 	}
 
-	public static void connectFields() {
+	public static Field[][] connectFields(Field[][] field) {
 		for (int i = 0; i < field.length; i++) {
 			for (int j = 0; j < field.length; j++) {
 				if (field[j][i] == null)
 					continue;
 				field[j][i] = setNeigbors(field, j, i);
-				setFieldNumber(j, i);
+				setFieldNumber(field,j, i);
 			}
 		}
+		return field;
 	}
 
-	public static void fieldInList(Field p) {
+	public static Field[][] fieldInList(Field[][] field,Field p) {
 		field[p.x][p.y] = p;
+		return field;
 	}
 }

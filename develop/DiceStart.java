@@ -8,9 +8,9 @@ public class DiceStart {
 		
 	}
 	public static void main(String[] args) {
-
-		int numberOfFields = 64;
-
+	
+		int numberOfFields = 49;
+		String console = "";
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("Anzahl an spielern: ");
@@ -30,11 +30,12 @@ public class DiceStart {
 			listOfPlayer[i] = Dice.initDiceToField(listOfPlayer[i], listOfPlayer[i].numberOfFields);
 		}
 
-		Field.createField(numberOfFields);
-		TUI.tui(Field.converteFieldSize(numberOfFields));
+		Field[][] field=Field.createField(numberOfFields);
+		console+=TUI.tui(Field.converteFieldSize(numberOfFields),field);
 		sc.close();
-
-		TUI.globalPrint();
+		console+="\n";
+		console+=TUI.globalPrint(field);
+		System.out.println(console);
 	}
 
 }
