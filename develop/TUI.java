@@ -15,7 +15,7 @@ public class TUI {
 			if (row[row.length - tmpCtr - 1] == null)
 				value = "";
 			else {
-				value = String.valueOf(row[row.length - tmpCtr - 1].fieldNumber);
+				value = String.valueOf(row[row.length - tmpCtr - 1].getFieldNumber());
 			}
 
 			tmp = format(tmp, value) + field(globalField, row, tmpCtr);
@@ -82,7 +82,7 @@ public class TUI {
 		if (field[x][y] == null) {
 			value1 = "";
 		} else {
-			value1 += field[x][y].fieldNumber;
+			value1 += field[x][y].getFieldNumber();
 		}
 
 		return printBox(field, format(value, value1), x, y + 1);
@@ -120,16 +120,15 @@ public class TUI {
 			return printBoxNeighbors(field, value, x, y + 1, tmpCtr);
 		}
 		String value1 = "";
-		if (field[x][y].nachbar[ctr] == null) {
+		if (field[x][y].getNachbar()[ctr] == null) {
 			return printBoxNeighbors(field, format(value, value1), x, y + 1, tmpCtr);
 		}
-		value1 += field[x][y].nachbar[ctr].fieldNumber;
+		value1 += field[x][y].getNachbar()[ctr].getFieldNumber();
 		return printBoxNeighbors(field, format(value, value1), x, y + 1, tmpCtr);
 
 	}
 
 	public static String globalPrint(Field[][] field) {
-		System.out.println();
 		String value = "";
 		String endValue = "";
 		for (int j = 0; j < field.length; j++) {

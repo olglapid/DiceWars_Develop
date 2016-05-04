@@ -15,11 +15,11 @@ public class checky {
 		node[1] = new Field();
 		node[2] = new Field();
 
-		node[0].y = 0;
+		node[0].setY(0);
 
-		node[1].y = 1;
+		node[1].setY(1);
 
-		node[2].y = 2;
+		node[2].setY(2);
 
 
 			assertFalse(Field.checky(node[0], -1, 3));

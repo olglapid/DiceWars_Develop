@@ -21,7 +21,7 @@ public class setFieldNumberTest {
 				}
 
 				else {
-					assertEquals(ctr, field[j][i].fieldNumber);
+					assertEquals(ctr, field[j][i].getFieldNumber());
 				}
 				ctr = ctr + 1;
 			}

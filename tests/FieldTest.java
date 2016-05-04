@@ -22,7 +22,7 @@ public class FieldTest {
 		
 		for(int i=0;i<field.length;i++){
 			if(field[0][i]!=null)
-				tmp += field[0][i].fieldNumber;
+				tmp += field[0][i].getFieldNumber();
 			value2=TUI.format(value2, tmp);
 			tmp="";
 		}

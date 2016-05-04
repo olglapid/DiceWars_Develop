@@ -11,3 +11,9 @@
 /PrintBoxNeighbors.class
 /FieldTest.class
 /TuiTest.class
+/SetNachbarTest.class
+/GetNachbarTest.class
+/SetGetYTest.class
+/TestSetGetFieldNumber.class
+/TestSetGetNumberOfDices.class
+/TestSetGetX.class

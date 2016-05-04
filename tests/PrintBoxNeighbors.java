@@ -23,11 +23,11 @@ public class PrintBoxNeighbors {
 				if (field[0][j] == null) {
 					value2 = TUI.format(value2, tmp);
 					continue;
-				} else if (field[0][j].nachbar[ctr] == null) {
+				} else if (field[0][j].getNachbar()[ctr] == null) {
 					value2 = TUI.format(value2, tmp);
 					continue;
 				} else {
-					tmp += field[0][j].nachbar[ctr].fieldNumber;
+					tmp += field[0][j].getNachbar()[ctr].getFieldNumber();
 					value2 = TUI.format(value2, tmp);
 
 				}

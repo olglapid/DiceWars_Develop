@@ -2,28 +2,63 @@ package develop;
 
 import java.util.Random;
 
-
 public class Field {
-	public Field nachbar[] = null;
-	public int nachbarCtr;
-	public int x;
-	public int y;
-	public int fieldNumber;
-	public int numberOfDices;
+	private Field[] nachbar = null;
+	private int x;
+	private int y;
+	private int fieldNumber;
+	private int numberOfDices;
 
 	public Field() {
 		x = 0;
 		y = 0;
 		numberOfDices = 0;
-		nachbarCtr = 0;
 		fieldNumber = 0;
 	}
 
+	public void setNachbar(Field[] nachbar) {
+		this.nachbar = nachbar;
+	}
 
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public void setFieldNumber(int fieldNumber) {
+		this.fieldNumber = fieldNumber;
+	}
+
+	public void setNumberOfDices(int dices) {
+		this.numberOfDices = dices;
+	}
+
+	public Field[] getNachbar() {
+		return this.nachbar;
+	}
+
+	public int getX() {
+		return this.x;
+	}
+
+	public int getY() {
+		return this.y;
+	}
+
+	public int getFieldNumber() {
+		return this.fieldNumber;
+	}
+	
+	public int getNumberOfDices(){
+		return this.numberOfDices;
+	}
 
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
-	public static Field initSingleField(Field[][] field,int x, int y) {
+	public static Field initSingleField(Field[][] field, int x, int y) {
 
 		int[] index = new int[2];
 		index[0] = x;
@@ -31,9 +66,9 @@ public class Field {
 		Field node = new Field();
 		node.y = y;
 		node.x = x;
-		field[x][y]=node;
+		field[x][y] = node;
 		mallocNodes(node);
-		fieldInList(field,node);
+		fieldInList(field, node);
 		return node;
 
 	}
@@ -122,7 +157,7 @@ public class Field {
 	}
 
 	public static int xPlusyZero(int x) {
-		if (x == -1) 
+		if (x == -1)
 			return 4;
 		return 6;
 
@@ -134,46 +169,43 @@ public class Field {
 		return 0;
 
 	}
-	public static int xPlusyLowerOne(int x, int y){
-		if(x+y==-1){
+
+	public static int xPlusyLowerOne(int x, int y) {
+		if (x + y == -1) {
 			return xPlusyNegativeOne(x);
-		}
-		else if (x+y==0) {
+		} else if (x + y == 0) {
 			return xPlusyZero(x);
-		} 
-		else if (x+y == -2){
+		} else if (x + y == -2) {
 			return 7;
 		}
-		
-			return -1;
-		
-		
+
+		return -1;
+
 	}
-	public static int xPlusyHigherZero(int x, int y){
-		if (x+y==1) {
+
+	public static int xPlusyHigherZero(int x, int y) {
+		if (x + y == 1) {
 			return xPlusyOne(x);
-		} 
-		else if(x + y== 2){
+		} else if (x + y == 2) {
 			return 5;
 		}
 		return -1;
 	}
 
 	public static int getNeighborfromIndex(int x, int y) {
-		if(x+y<1)
+		if (x + y < 1)
 			return xPlusyLowerOne(x, y);
 
 		return xPlusyHigherZero(x, y);
-		
 
 	}
 
-	public static Field connectNodes(Field[][] field,Field node, int numberOfFields, int fieldSize) {
+	public static Field connectNodes(Field[][] field, Field node, int numberOfFields, int fieldSize) {
 		if (numberOfFields == 1)
 			return node;
-		int nextx; 
-		int nexty; 
-		int vorzeichenx; 
+		int nextx;
+		int nexty;
+		int vorzeichenx;
 		int vorzeicheny;
 		int index;
 
@@ -191,32 +223,28 @@ public class Field {
 
 		index = getNeighborfromIndex(nextx, nexty);
 
-		if (field[node.x + nextx][node.y + nexty] != null ) {
+		if (field[node.x + nextx][node.y + nexty] != null) {
 			node.nachbar[index] = field[node.x + nextx][node.y + nexty];
-			return connectNodes(field,node.nachbar[index], numberOfFields, fieldSize);
+			return connectNodes(field, node.nachbar[index], numberOfFields, fieldSize);
 		}
 
-
-			node.nachbar[index] = initSingleField(field,node.x + nextx, node.y + nexty);
-			return connectNodes(field,node.nachbar[index], numberOfFields - 1, fieldSize);
-		
-
+		node.nachbar[index] = initSingleField(field, node.x + nextx, node.y + nexty);
+		return connectNodes(field, node.nachbar[index], numberOfFields - 1, fieldSize);
 
 	}
 
-	public static Field[][] createField(int fieldSize,int numberOfFields) {
-		
+	public static Field[][] createField(int fieldSize, int numberOfFields) {
+
 		Field node;
 		int matrixSize = converteFieldSize(fieldSize);
 		Field[][] field = new Field[matrixSize][matrixSize];
-	
-		
-		node = initSingleField(field,randomNumber(matrixSize), randomNumber(matrixSize));
+
+		node = initSingleField(field, randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node);
-		
+
 		connectNodes(field, node, numberOfFields, matrixSize);
 		connectFields(field);
-		
+
 		return field;
 	}
 
@@ -237,7 +265,7 @@ public class Field {
 		return fieldTmp[a][b];
 	}
 
-	public static void setFieldNumber(Field[][] field,int x, int y) {
+	public static void setFieldNumber(Field[][] field, int x, int y) {
 		if (field[x][y] != null)
 			field[x][y].fieldNumber = (x * field.length) + y + 1;
 	}
@@ -248,13 +276,13 @@ public class Field {
 				if (field[j][i] == null)
 					continue;
 				field[j][i] = setNeigbors(field, j, i);
-				setFieldNumber(field,j, i);
+				setFieldNumber(field, j, i);
 			}
 		}
 		return field;
 	}
 
-	public static Field[][] fieldInList(Field[][] field,Field p) {
+	public static Field[][] fieldInList(Field[][] field, Field p) {
 		field[p.x][p.y] = p;
 		return field;
 	}

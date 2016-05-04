@@ -15,11 +15,11 @@ public class checkx {
 		node[1] = new Field();
 		node[2] = new Field();
 
-		node[0].x = 0;
+		node[0].setX(0);
 
-		node[1].x = 1;
+		node[1].setX(1);
 
-		node[2].x = 2;
+		node[2].setX(2);
 
 
 			assertFalse(Field.checkx(node[0], -1, 3));
