@@ -17,3 +17,9 @@
 /TestSetGetFieldNumber.class
 /TestSetGetNumberOfDices.class
 /TestSetGetX.class
+/TestGlobalPrint.class
+/TestSetName.class
+/TestSetGetNumberOfFields.class
+/TestSetGetNumberOfDicesPlayer.class
+/TestSetGetNumberOfFieldsPlayer.class
+/TestSetGetPlayerNr.class

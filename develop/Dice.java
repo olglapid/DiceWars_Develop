@@ -6,7 +6,7 @@ public class Dice {
 	}
 
 	public static Player initDiceToField(Player player, int numberOfFields) {
-		player.numberOfDices = numberOfFields; // Muss noch angepasst werde,
+		player.setNumberOfFields(numberOfFields); // Muss noch angepasst werde,
 												// da unfair
 		return player;
 	}

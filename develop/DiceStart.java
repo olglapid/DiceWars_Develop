@@ -22,13 +22,13 @@ public class DiceStart {
 			System.out.print("Name: ");
 			String eingabe = sc.next();
 			listOfPlayer[i] = new Player();
-			listOfPlayer[i].name = eingabe;
-			listOfPlayer[i].playerNr = i;
+			listOfPlayer[i].setName(eingabe);
+			listOfPlayer[i].setPlayerNr(i);
 
 		}
 
 		for (int i = 0; i < listOfPlayer.length; i++) {
-			listOfPlayer[i] = Dice.initDiceToField(listOfPlayer[i], listOfPlayer[i].numberOfFields);
+			listOfPlayer[i] = Dice.initDiceToField(listOfPlayer[i], listOfPlayer[i].getNumberOfFields());
 		}
 
 		Field[][] field=Field.createField(fieldSize,numberOfFields);
