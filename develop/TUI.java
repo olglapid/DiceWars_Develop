@@ -107,24 +107,25 @@ public class TUI {
 	}
 
 	public static String printBoxNeighbors(Field[][] field, String value, int x, int y, int ctr) {
+		String tmp=value;
 		int tmpCtr = ctr;
 		if (tmpCtr >= 8)
-			return value;
+			return tmp;
 		if (y >= field.length) {
-			value += "\n";
-			return printBoxNeighbors(field, value, x, 0, tmpCtr + 1);
+			tmp += "\n";
+			return printBoxNeighbors(field, tmp, x, 0, tmpCtr + 1);
 		}
 
 		if (field[x][y] == null) {
-			value += "|   |";
-			return printBoxNeighbors(field, value, x, y + 1, tmpCtr);
+			tmp += "|   |";
+			return printBoxNeighbors(field, tmp, x, y + 1, tmpCtr);
 		}
 		String value1 = "";
 		if (field[x][y].getNachbar()[ctr] == null) {
-			return printBoxNeighbors(field, format(value, value1), x, y + 1, tmpCtr);
+			return printBoxNeighbors(field, format(tmp, value1), x, y + 1, tmpCtr);
 		}
 		value1 += field[x][y].getNachbar()[ctr].getFieldNumber();
-		return printBoxNeighbors(field, format(value, value1), x, y + 1, tmpCtr);
+		return printBoxNeighbors(field, format(tmp, value1), x, y + 1, tmpCtr);
 
 	}
 
