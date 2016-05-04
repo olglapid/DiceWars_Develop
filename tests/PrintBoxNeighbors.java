@@ -29,15 +29,13 @@ public class PrintBoxNeighbors {
 				} else {
 					tmp += field[0][j].nachbar[ctr].fieldNumber;
 					value2 = TUI.format(value2, tmp);
-					
+
 				}
 			}
 
 			value2 += "\n";
 
 		}
-		System.out.println(value2);
-		System.out.println(value1);
 		assertEquals(value1, value2);
 	}
 
