@@ -11,7 +11,7 @@ public class setFieldNumberTest {
 	@Test
 	public void Test() {
 		int ctr = 1;
-		Field[][] field = Field.createField(64);
+		Field[][] field = Field.createField(64,49);
 		
 		for (int j = 0; j < field.length; j++) {
 			for (int i = 0; i < field.length; i++) {

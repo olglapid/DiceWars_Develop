@@ -204,17 +204,17 @@ public class Field {
 
 	}
 
-	public static Field[][] createField(int numberOfFields) {
+	public static Field[][] createField(int fieldSize,int numberOfFields) {
 		
 		Field node;
-		int matrixSize = converteFieldSize(numberOfFields);
+		int matrixSize = converteFieldSize(fieldSize);
 		Field[][] field = new Field[matrixSize][matrixSize];
 	
 		
 		node = initSingleField(field,randomNumber(matrixSize), randomNumber(matrixSize));
 		node = mallocNodes(node);
 		
-		connectNodes(field, node, 49, matrixSize);
+		connectNodes(field, node, numberOfFields, matrixSize);
 		connectFields(field);
 		
 		return field;
