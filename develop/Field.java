@@ -144,7 +144,10 @@ public class Field {
 		else if (x+y == -2){
 			return 7;
 		}
-		return -1;
+		
+			return -1;
+		
+		
 	}
 	public static int xPlusyHigherZero(int x, int y){
 		if (x+y==1) {
@@ -193,12 +196,12 @@ public class Field {
 			return connectNodes(field,node.nachbar[index], numberOfFields, fieldSize);
 		}
 
-		if (node.nachbar[index] == null) {
+
 			node.nachbar[index] = initSingleField(field,node.x + nextx, node.y + nexty);
 			return connectNodes(field,node.nachbar[index], numberOfFields - 1, fieldSize);
-		}
+		
 
-		return connectNodes(field,node.nachbar[index], numberOfFields, fieldSize);
+
 	}
 
 	public static Field[][] createField(int numberOfFields) {
@@ -222,8 +225,7 @@ public class Field {
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
 				value = getNeighborfromIndex(j, i);
-				if (value == -1)
-					continue;
+
 				if (!checkNeighborIndex(fieldTmp[a][b], j, i, fieldTmp.length)) {
 					fieldTmp[a][b].nachbar[value] = null;
 				} else {

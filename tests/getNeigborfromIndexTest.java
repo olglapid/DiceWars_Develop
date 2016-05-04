@@ -19,6 +19,8 @@ public class getNeigborfromIndexTest {
 		assertEquals(4,Field.getNeighborfromIndex(-1,1));
 		assertEquals(6,Field.getNeighborfromIndex(0,0));
 		assertEquals(5,Field.getNeighborfromIndex(1,1));
+		assertEquals(-1,Field.getNeighborfromIndex(-3,-1));
+		assertEquals(-1,Field.getNeighborfromIndex(3,1));
 	}
 
 }
