@@ -3,16 +3,17 @@ package develop;
 import java.util.Random;
 
 public class BoardSetup {
-	private BoardSetup(){
-		
+	private BoardSetup() {
+
 	}
-	
+
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
 	public static Field initSingleField(Field[][] field, int x, int y) {
 		Field node = new Field();
 		node.setY(y);
-		node.setX(x);;
+		node.setX(x);
+		;
 		field[x][y] = node;
 		mallocNodes(node);
 		fieldInList(field, node);
@@ -40,10 +41,10 @@ public class BoardSetup {
 	}
 
 	public static void setNeighborsNull(Field node) {
-		Field[] tmp=new Field[8];
+		Field[] tmp = new Field[8];
 
 		for (int i = 0; i < node.getNachbar().length; i++) {
-			tmp[i]=null;
+			tmp[i] = null;
 		}
 		node.setNachbar(tmp);
 	}
@@ -218,12 +219,14 @@ public class BoardSetup {
 		if (field[x][y] != null)
 			field[x][y].setFieldNumber((x * field.length) + y + 1);
 	}
+
 	public static int[] fieldNumberToIndex(int fieldSize, int fieldNumber) {
-		int [] index= new int [2];
-		fieldNumber -=1;
-		index[1]= fieldNumber % fieldSize;
-		index[0]= fieldNumber / fieldSize;
-		
+		int tmpFieldNumber = fieldNumber - 1;
+		int[] index = new int[2];
+
+		index[1] = tmpFieldNumber % fieldSize;
+		index[0] = tmpFieldNumber / fieldSize;
+
 		return index;
 	}
 
