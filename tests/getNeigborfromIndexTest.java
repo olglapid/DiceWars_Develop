@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import develop.BoardSetup;
-import develop.Field;
+
 
 public class getNeigborfromIndexTest {
 

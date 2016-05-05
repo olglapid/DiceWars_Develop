@@ -53,4 +53,5 @@ public class Field {
 	public int getNumberOfDices() {
 		return this.numberOfDices;
 	}
+
 }

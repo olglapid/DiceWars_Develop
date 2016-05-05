@@ -6,13 +6,10 @@ public class BoardSetup {
 	private BoardSetup(){
 		
 	}
+	
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
 	public static Field initSingleField(Field[][] field, int x, int y) {
-
-		int[] index = new int[2];
-		index[0] = x;
-		index[1] = y;
 		Field node = new Field();
 		node.setY(y);
 		node.setX(x);;
@@ -220,6 +217,14 @@ public class BoardSetup {
 	public static void setFieldNumber(Field[][] field, int x, int y) {
 		if (field[x][y] != null)
 			field[x][y].setFieldNumber((x * field.length) + y + 1);
+	}
+	public static int[] fieldNumberToIndex(int fieldSize, int fieldNumber) {
+		int [] index= new int [2];
+		fieldNumber -=1;
+		index[1]= fieldNumber % fieldSize;
+		index[0]= fieldNumber / fieldSize;
+		
+		return index;
 	}
 
 	public static Field[][] connectFields(Field[][] field) {
