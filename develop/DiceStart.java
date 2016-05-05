@@ -24,7 +24,7 @@ public class DiceStart {
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
 
 		for (int i = 0; i < listOfPlayer.length; i++) {
-			log4j.trace(newline + " Name: ");
+			log4j.info(newline + " Name: ");
 			String eingabe = sc.next();
 			listOfPlayer[i] = new Player();
 			listOfPlayer[i].setName(eingabe);
@@ -41,7 +41,7 @@ public class DiceStart {
 		sc.close();
 		console+="\n";
 		console+=TUI.globalPrint(field);
-		log4j.trace(newline+console);
+		log4j.info(newline+console);
 		
 	}
 
