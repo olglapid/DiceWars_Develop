@@ -2,8 +2,12 @@ package develop;
 
 import java.util.Scanner;
 
-public class DiceStart {
+import org.apache.logging.log4j.Logger; 
+import org.apache.logging.log4j.LogManager;
 
+public class DiceStart {
+	private static final Logger log4j = LogManager.getLogger(DiceStart.class 
+	        .getName());
 	private DiceStart(){
 		
 	}
@@ -14,12 +18,12 @@ public class DiceStart {
 		String console = "";
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("Anzahl an spielern: ");
+		log4j.trace("\n Anzahl an spielern: ");
 		int tmpNbrOfPlayer = sc.nextInt();
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
 
 		for (int i = 0; i < listOfPlayer.length; i++) {
-			System.out.print("Name: ");
+			log4j.trace("\n Name: ");
 			String eingabe = sc.next();
 			listOfPlayer[i] = new Player();
 			listOfPlayer[i].setName(eingabe);
@@ -36,7 +40,8 @@ public class DiceStart {
 		sc.close();
 		console+="\n";
 		console+=TUI.globalPrint(field);
-		System.out.println(console);
+		log4j.trace("\n"+console);
+		
 	}
 
 }
