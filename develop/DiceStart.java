@@ -16,14 +16,15 @@ public class DiceStart {
 		int fieldSize = 94;
 		int numberOfFields = 15;
 		String console = "";
+		final String newline = System.getProperty("line.separator");
 		Scanner sc = new Scanner(System.in);
 
-		log4j.trace("\n Anzahl an spielern: ");
+		log4j.info(newline+" Anzahl an spielern: ");
 		int tmpNbrOfPlayer = sc.nextInt();
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
 
 		for (int i = 0; i < listOfPlayer.length; i++) {
-			log4j.trace("\n Name: ");
+			log4j.trace(newline + " Name: ");
 			String eingabe = sc.next();
 			listOfPlayer[i] = new Player();
 			listOfPlayer[i].setName(eingabe);
@@ -40,7 +41,7 @@ public class DiceStart {
 		sc.close();
 		console+="\n";
 		console+=TUI.globalPrint(field);
-		log4j.trace("\n"+console);
+		log4j.trace(newline+console);
 		
 	}
 
