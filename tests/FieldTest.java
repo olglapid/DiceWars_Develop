@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import develop.BoardSetup;
 import develop.Field;
 import develop.TUI;
 
@@ -13,7 +14,7 @@ public class FieldTest {
 
 	@Test
 	public final void testField() {
-		Field[][] field = Field.createField(64, 49);
+		Field[][] field = BoardSetup.createField(64, 49);
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";

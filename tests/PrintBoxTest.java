@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import develop.BoardSetup;
 import develop.Field;
 import develop.TUI;
 
@@ -11,7 +12,7 @@ public class PrintBoxTest {
 
 	@Test
 	public final void testPrintBox() {
-		Field[][] field = Field.createField(64, 49);
+		Field[][] field = BoardSetup.createField(64, 49);
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";

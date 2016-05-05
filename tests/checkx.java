@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import develop.BoardSetup;
 import develop.Field;
 
 public class checkx {
@@ -22,17 +23,17 @@ public class checkx {
 		node[2].setX(2);
 
 
-			assertFalse(Field.checkx(node[0], -1, 3));
-			assertTrue(Field.checkx(node[0], 0, 3));
-			assertTrue(Field.checkx(node[0], 1, 3));
+			assertFalse(BoardSetup.checkx(node[0], -1, 3));
+			assertTrue(BoardSetup.checkx(node[0], 0, 3));
+			assertTrue(BoardSetup.checkx(node[0], 1, 3));
 			
-			assertTrue(Field.checkx(node[1], -1, 3));
-			assertTrue(Field.checkx(node[1], 0, 3));
-			assertTrue(Field.checkx(node[1], 1, 3));
+			assertTrue(BoardSetup.checkx(node[1], -1, 3));
+			assertTrue(BoardSetup.checkx(node[1], 0, 3));
+			assertTrue(BoardSetup.checkx(node[1], 1, 3));
 			
-			assertTrue(Field.checkx(node[2], -1, 3));
-			assertTrue(Field.checkx(node[2], 0, 3));
-			assertFalse(Field.checkx(node[2], 1, 3));
+			assertTrue(BoardSetup.checkx(node[2], -1, 3));
+			assertTrue(BoardSetup.checkx(node[2], 0, 3));
+			assertFalse(BoardSetup.checkx(node[2], 1, 3));
 
 	}
 

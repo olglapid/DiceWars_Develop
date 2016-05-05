@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import develop.BoardSetup;
 import develop.Field;
 
 public class checky {
@@ -22,17 +23,17 @@ public class checky {
 		node[2].setY(2);
 
 
-			assertFalse(Field.checky(node[0], -1, 3));
-			assertTrue(Field.checky(node[0], 0, 3));
-			assertTrue(Field.checky(node[0], 1, 3));
+			assertFalse(BoardSetup.checky(node[0], -1, 3));
+			assertTrue(BoardSetup.checky(node[0], 0, 3));
+			assertTrue(BoardSetup.checky(node[0], 1, 3));
 			
-			assertTrue(Field.checky(node[1], -1, 3));
-			assertTrue(Field.checky(node[1], 0, 3));
-			assertTrue(Field.checky(node[1], 1, 3));
+			assertTrue(BoardSetup.checky(node[1], -1, 3));
+			assertTrue(BoardSetup.checky(node[1], 0, 3));
+			assertTrue(BoardSetup.checky(node[1], 1, 3));
 			
-			assertTrue(Field.checky(node[2], -1, 3));
-			assertTrue(Field.checky(node[2], 0, 3));
-			assertFalse(Field.checky(node[2], 1, 3));
+			assertTrue(BoardSetup.checky(node[2], -1, 3));
+			assertTrue(BoardSetup.checky(node[2], 0, 3));
+			assertFalse(BoardSetup.checky(node[2], 1, 3));
 	}
 
 }
