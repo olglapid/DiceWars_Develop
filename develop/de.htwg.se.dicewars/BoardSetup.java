@@ -1,4 +1,4 @@
-package develop;
+package de.htwg.se.dicewars;
 
 import java.util.Random;
 
