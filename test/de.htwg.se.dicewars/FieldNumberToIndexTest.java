@@ -1,16 +1,16 @@
-package tests;
+package de.htwg.se.dicewars;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import develop.BoardSetup;
+import de.htwg.se.dicewars.BoardSetup;
 
 public class FieldNumberToIndexTest {
 
 	@Test
 	public final void testFieldNumberToIndex() {
-		develop.Field[][] testField = BoardSetup.createField(64, 64);
+		de.htwg.se.dicewars.Field[][] testField = BoardSetup.createField(64, 64);
 		int[] index = new int[2];
 
 		for (int j = 0; j < testField.length; j++) {

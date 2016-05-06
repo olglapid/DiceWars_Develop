@@ -1,10 +1,10 @@
-package tests;
+package de.htwg.se.dicewars;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import develop.TUI;
+import de.htwg.se.dicewars.TUI;
 
 public class Top {
 

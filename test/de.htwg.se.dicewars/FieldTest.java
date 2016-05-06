@@ -1,4 +1,4 @@
-package tests;
+package de.htwg.se.dicewars;
 
 import static org.junit.Assert.*;
 
@@ -6,9 +6,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import develop.BoardSetup;
-import develop.Field;
-import develop.TUI;
+import de.htwg.se.dicewars.Field;
+import de.htwg.se.dicewars.TUI;
 
 public class FieldTest {
 

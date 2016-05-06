@@ -1,10 +1,10 @@
-package tests;
+package de.htwg.se.dicewars;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import develop.Player;
+import de.htwg.se.dicewars.Player;
 
 public class TestSetGetNumberOfFieldsPlayer {
 

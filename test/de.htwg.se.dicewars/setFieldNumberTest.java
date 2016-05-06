@@ -1,11 +1,11 @@
-package tests;
+package de.htwg.se.dicewars;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import develop.BoardSetup;
-import develop.Field;
+import de.htwg.se.dicewars.BoardSetup;
+import de.htwg.se.dicewars.Field;
 
 public class setFieldNumberTest {
 
