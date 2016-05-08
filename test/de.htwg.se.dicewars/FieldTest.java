@@ -13,7 +13,7 @@ public class FieldTest {
 
 	@Test
 	public final void testField() {
-		Field[][] field = BoardSetup.createField(64, 49);
+		Field[][] field = Board.createField(64, 49);
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";

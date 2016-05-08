@@ -22,17 +22,17 @@ public class checkx {
 		node[2].setX(2);
 
 
-			assertFalse(BoardSetup.checkx(node[0], -1, 3));
-			assertTrue(BoardSetup.checkx(node[0], 0, 3));
-			assertTrue(BoardSetup.checkx(node[0], 1, 3));
+			assertFalse(Board.checkx(node[0], -1, 3));
+			assertTrue(Board.checkx(node[0], 0, 3));
+			assertTrue(Board.checkx(node[0], 1, 3));
 			
-			assertTrue(BoardSetup.checkx(node[1], -1, 3));
-			assertTrue(BoardSetup.checkx(node[1], 0, 3));
-			assertTrue(BoardSetup.checkx(node[1], 1, 3));
+			assertTrue(Board.checkx(node[1], -1, 3));
+			assertTrue(Board.checkx(node[1], 0, 3));
+			assertTrue(Board.checkx(node[1], 1, 3));
 			
-			assertTrue(BoardSetup.checkx(node[2], -1, 3));
-			assertTrue(BoardSetup.checkx(node[2], 0, 3));
-			assertFalse(BoardSetup.checkx(node[2], 1, 3));
+			assertTrue(Board.checkx(node[2], -1, 3));
+			assertTrue(Board.checkx(node[2], 0, 3));
+			assertFalse(Board.checkx(node[2], 1, 3));
 
 	}
 

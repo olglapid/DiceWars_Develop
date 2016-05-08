@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.se.dicewars.BoardSetup;
+import de.htwg.se.dicewars.Board;
 import de.htwg.se.dicewars.Field;
 import de.htwg.se.dicewars.TUI;
 
@@ -12,7 +12,7 @@ public class PrintBoxNeighbors {
 
 	@Test
 	public final void testPrintBoxNeighbors() {
-		Field[][] field = BoardSetup.createField(64, 49);
+		Field[][] field = Board.createField(64, 49);
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";

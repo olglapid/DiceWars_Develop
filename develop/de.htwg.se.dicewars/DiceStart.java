@@ -13,9 +13,9 @@ public class DiceStart {
 	}
 	public static void main(String[] args) {
 	
-		int fieldSize = 94;
-		int numberOfFields = 15;
-		String console = "";
+		int fieldSize = 0;
+		int numberOfFields = 0;
+		TUI console = new TUI();
 		final String newline = System.getProperty("line.separator");
 		Scanner sc = new Scanner(System.in);
 
@@ -31,17 +31,24 @@ public class DiceStart {
 			listOfPlayer[i].setPlayerNr(i);
 
 		}
-
+		do{
+		log4j.info(newline+" Spielfeldgröße: ");
+		fieldSize = sc.nextInt();
+		log4j.info(newline+" Anzahl Felder: ");
+		numberOfFields = sc.nextInt();
+		}while(numberOfFields>fieldSize);
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			listOfPlayer[i] = Dice.initDiceToField(listOfPlayer[i], listOfPlayer[i].getNumberOfFields());
 		}
 
-		Field[][] field=BoardSetup.createField(fieldSize,numberOfFields);
-		console+=TUI.tui(BoardSetup.converteFieldSize(fieldSize),field);
+		Board field =  new Board(fieldSize);
+		field=field.createField(fieldSize,numberOfFields);
+		console.tui(field.getLength(),field);
+		log4j.info(newline+console.getConsole());
 		sc.close();
-		console+="\n";
-		console+=TUI.globalPrint(field);
-		log4j.info(newline+console);
+
+		console.globalPrint(field);
+		log4j.info(newline+console.getConsole());
 		
 	}
 

@@ -2,18 +2,27 @@ package de.htwg.se.dicewars;
 
 import java.util.Random;
 
-public class BoardSetup {
-	private BoardSetup() {
-
+public class Board {
+	Field[][] brd;
+	private int length;
+	public Board(int fieldSize) {
+		brd = new Field[converteFieldSize(fieldSize)][converteFieldSize(fieldSize)];
+		length=brd.length;
 	}
 
+	public void setLength(int length){
+		this.length=length;
+	}
+	
+	public int getLength(){
+		return this.length;
+	}
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
-	public static Field initSingleField(Field[][] field, int x, int y) {
+	public Field initSingleField(Field[][] field, int x, int y) {
 		Field node = new Field();
 		node.setY(y);
 		node.setX(x);
-		;
 		field[x][y] = node;
 		mallocNodes(node);
 		fieldInList(field, node);
@@ -22,25 +31,25 @@ public class BoardSetup {
 	}
 
 	/* returns a random number in range of value */
-	public static int randomNumber(int value) {
+	public int randomNumber(int value) {
 		Random r = new Random();
 		return r.nextInt(value);
 	}
 
 	/* converts field in x/y size e.g. 49 = 7, 48 = 7, 37 = 6 */
-	public static int converteFieldSize(int numberOfFields) {
+	public int converteFieldSize(int numberOfFields) {
 		return (int) Math.ceil(Math.sqrt(numberOfFields));
 	}
 
 	/* mallocs neighbors array */
-	public static Field mallocNodes(Field node) {
+	public Field mallocNodes(Field node) {
 		Field[] tmp = new Field[8];
 		node.setNachbar(tmp);
 		setNeighborsNull(node);
 		return node;
 	}
 
-	public static void setNeighborsNull(Field node) {
+	public void setNeighborsNull(Field node) {
 		Field[] tmp = new Field[8];
 
 		for (int i = 0; i < node.getNachbar().length; i++) {
@@ -49,13 +58,13 @@ public class BoardSetup {
 		node.setNachbar(tmp);
 	}
 
-	public static boolean checkx(Field node, int x, int fieldSize) {
+	public boolean checkx(Field node, int x, int fieldSize) {
 		if (node.getX() + x > fieldSize - 1 || node.getX() + x < 0)
 			return false;
 		return true;
 	}
 
-	public static boolean checky(Field node, int y, int fieldSize) {
+	public boolean checky(Field node, int y, int fieldSize) {
 		if (node.getY() + y > fieldSize - 1 || node.getY() + y < 0)
 			return false;
 		return true;
@@ -72,7 +81,7 @@ public class BoardSetup {
 		return true;
 	}
 
-	public static boolean checkNoIndent(Field node, int x, int y) {
+	public boolean checkNoIndent(Field node, int x, int y) {
 		if (node.getX() % 2 == 0) {
 			if (x == y && x >= 0)
 				return false;
@@ -84,7 +93,7 @@ public class BoardSetup {
 		return true;
 	}
 
-	public static boolean checkNeighborIndex(Field node, int nextx, int nexty, int fieldSize) {
+	public boolean checkNeighborIndex(Field node, int nextx, int nexty, int fieldSize) {
 
 		if (!checkNoIndent(node, nextx, nexty))
 			return false;
@@ -99,28 +108,28 @@ public class BoardSetup {
 	}
 
 	/* jede Index operation hat ihren festen platz im nachbarfeld */
-	public static int xPlusyNegativeOne(int x) {
+	public int xPlusyNegativeOne(int x) {
 		if (x == -1)
 			return 3;
 		return 2;
 
 	}
 
-	public static int xPlusyZero(int x) {
+	public int xPlusyZero(int x) {
 		if (x == -1)
 			return 4;
 		return 6;
 
 	}
 
-	public static int xPlusyOne(int x) {
+	public int xPlusyOne(int x) {
 		if (x == 1)
 			return 1;
 		return 0;
 
 	}
 
-	public static int xPlusyLowerOne(int x, int y) {
+	public int xPlusyLowerOne(int x, int y) {
 		if (x + y == -1) {
 			return xPlusyNegativeOne(x);
 		} else if (x + y == 0) {
@@ -133,7 +142,7 @@ public class BoardSetup {
 
 	}
 
-	public static int xPlusyHigherZero(int x, int y) {
+	public int xPlusyHigherZero(int x, int y) {
 		if (x + y == 1) {
 			return xPlusyOne(x);
 		} else if (x + y == 2) {
@@ -142,7 +151,7 @@ public class BoardSetup {
 		return -1;
 	}
 
-	public static int getNeighborfromIndex(int x, int y) {
+	public int getNeighborfromIndex(int x, int y) {
 		if (x + y < 1)
 			return xPlusyLowerOne(x, y);
 
@@ -150,7 +159,7 @@ public class BoardSetup {
 
 	}
 
-	public static Field connectNodes(Field[][] field, Field node, int numberOfFields, int fieldSize) {
+	public Field connectNodes(Field[][] field, Field node, int numberOfFields, int fieldSize) {
 		if (numberOfFields == 1)
 			return node;
 		int nextx;
@@ -183,9 +192,9 @@ public class BoardSetup {
 
 	}
 
-	public static Field[][] createField(int fieldSize, int numberOfFields) {
+	public Board createField(int fieldSize, int numberOfFields) {
 
-		Field node;
+		Field node = new Field();
 		int matrixSize = converteFieldSize(fieldSize);
 		Field[][] field = new Field[matrixSize][matrixSize];
 
@@ -194,11 +203,12 @@ public class BoardSetup {
 
 		connectNodes(field, node, numberOfFields, matrixSize);
 		connectFields(field);
-
-		return field;
+		Board board= new Board(fieldSize);
+		board.brd=field;
+		return board;
 	}
 
-	public static Field setNeigbors(Field[][] fieldTmp, int a, int b) {
+	public Field setNeigbors(Field[][] fieldTmp, int a, int b) {
 		int value;
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
@@ -215,12 +225,12 @@ public class BoardSetup {
 		return fieldTmp[a][b];
 	}
 
-	public static void setFieldNumber(Field[][] field, int x, int y) {
+	public void setFieldNumber(Field[][] field, int x, int y) {
 		if (field[x][y] != null)
 			field[x][y].setFieldNumber((x * field.length) + y + 1);
 	}
 
-	public static int[] fieldNumberToIndex(int fieldSize, int fieldNumber) {
+	public int[] fieldNumberToIndex(int fieldSize, int fieldNumber) {
 		int tmpFieldNumber = fieldNumber - 1;
 		int[] index = new int[2];
 
@@ -230,7 +240,7 @@ public class BoardSetup {
 		return index;
 	}
 
-	public static Field[][] connectFields(Field[][] field) {
+	public Field[][] connectFields(Field[][] field) {
 		for (int i = 0; i < field.length; i++) {
 			for (int j = 0; j < field.length; j++) {
 				if (field[j][i] == null)
@@ -242,7 +252,7 @@ public class BoardSetup {
 		return field;
 	}
 
-	public static Field[][] fieldInList(Field[][] field, Field p) {
+	public Field[][] fieldInList(Field[][] field, Field p) {
 		field[p.getX()][p.getY()] = p;
 		return field;
 	}
