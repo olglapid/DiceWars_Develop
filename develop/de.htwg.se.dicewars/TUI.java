@@ -151,6 +151,7 @@ public class TUI {
 			endValue += printBoxNeighbors(field, value, j, 0, 0);
 			endValue += "\n";
 		}
+		System.out.println(endValue);
 		this.setConsole(endValue); 
 	}
 

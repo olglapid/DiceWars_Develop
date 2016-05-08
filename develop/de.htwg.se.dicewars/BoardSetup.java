@@ -5,18 +5,44 @@ import java.util.Random;
 public class Board {
 	Field[][] brd;
 	private int length;
+	private int[] owner;
+	private boolean[] fieldsExists;
+
 	public Board(int fieldSize) {
 		brd = new Field[converteFieldSize(fieldSize)][converteFieldSize(fieldSize)];
-		length=brd.length;
+		length = brd.length;
+		owner = new int[fieldSize];
+		fieldsExists = new boolean[fieldSize];
+		for (int i = 0; i < fieldSize; i++) {
+			owner[i] = -1;
+			fieldsExists[i] = false;
+		}
 	}
 
-	public void setLength(int length){
-		this.length=length;
+	public void setOwner(int nbr, int index) {
+		this.owner[index] = nbr;
 	}
-	
-	public int getLength(){
+
+	public int getOwner(int index) {
+		return this.owner[index];
+	}
+
+	public void setExField(int index) {
+		this.fieldsExists[index] = true;
+	}
+
+	public boolean getExField(int index) {
+		return this.fieldsExists[index];
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public int getLength() {
 		return this.length;
 	}
+
 	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
 	public Field initSingleField(Field[][] field, int x, int y) {
@@ -203,8 +229,8 @@ public class Board {
 
 		connectNodes(field, node, numberOfFields, matrixSize);
 		connectFields(field);
-		Board board= new Board(fieldSize);
-		board.brd=field;
+		Board board = new Board(fieldSize);
+		board.brd = field;
 		return board;
 	}
 

@@ -10,17 +10,17 @@ public class BotTest {
 
 	@Test
 	public final void testBot() {
-		String value="";
 		String value1="";
+		TUI console = new TUI();;
 		
 		int ctr = 10;
-		value=TUI.bot(ctr);
+		console.setConsole(console.bot(ctr));
 		
 		for(int i=0;i<ctr;i++){
 			value1+=" \\ / ";
 		}
 		value1+="\\\n";
-		assertEquals(value1, value);
+		assertEquals(value1, console.getConsole());
 	}
 
 }

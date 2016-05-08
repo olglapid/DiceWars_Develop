@@ -12,22 +12,25 @@ public class TuiTest {
 
 	@Test
 	public final void testTui() {
-		Field[][] field = Board.createField(64, 49);
+		TUI console = new TUI();
+		Board field = new Board(64);
+		field = field.createField(64, 49);
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";
 		
-		value1=TUI.tui(field.length, field);
-		for (int i = 0; i < field.length; i++) {
+		console.tui(field.getLength(), field);
+		value1 = console.getConsole();
+		for (int i = 0; i < field.getLength(); i++) {
 			if(i%2!=0){
-				tmp += "  " + TUI.field(field, field[i], field.length);
-				tmp += "  " + TUI.field(field, field[i], field.length);
+				tmp += "  " + console.field(field, field.brd[i], field.getLength());
+				tmp += "  " + console.field(field, field.brd[i], field.getLength());
 				continue;
 			}
-			tmp += TUI.top(field.length);
-			tmp += TUI.field(field, field[i], field.length);
-			tmp += TUI.field(field, field[i], field.length);
-			tmp += TUI.bot(field.length);
+			tmp += console.top(field.getLength());
+			tmp += console.field(field, field.brd[i], field.getLength());
+			tmp += console.field(field, field.brd[i], field.getLength());
+			tmp += console.bot(field.getLength());
 			
 		}
 		tmp+="\n";

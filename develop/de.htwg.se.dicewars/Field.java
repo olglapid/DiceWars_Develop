@@ -6,12 +6,22 @@ public class Field {
 	private int y;
 	private int fieldNumber;
 	private int numberOfDices;
+	private int owner;
 
 	public Field() {
 		x = 0;
 		y = 0;
 		numberOfDices = 0;
 		fieldNumber = 0;
+		owner = -1;
+	}
+
+	public void setOwner(int owner) {
+		this.owner = owner;
+	}
+
+	public int getOwner() {
+		return this.owner;
 	}
 
 	public void setNachbar(Field[] nachbar) {
