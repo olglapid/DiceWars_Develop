@@ -1,5 +1,6 @@
 package de.htwg.se.dicewars;
 
+
 import java.util.Scanner;
 
 import org.apache.logging.log4j.Logger; 
@@ -42,13 +43,18 @@ public class DiceStart {
 		}
 
 		Board field =  new Board(fieldSize);
+		
 		field=field.createField(fieldSize,numberOfFields);
+		field = field.playerToField(field, listOfPlayer, numberOfFields);
 		console.tui(field.getLength(),field);
 		log4j.info(newline+console.getConsole());
 		sc.close();
+		
+		
 
 		console.globalPrint(field);
 		log4j.info(newline+console.getConsole());
+		
 		
 	}
 

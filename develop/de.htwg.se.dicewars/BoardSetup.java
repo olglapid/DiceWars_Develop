@@ -43,7 +43,6 @@ public class Board {
 		return this.length;
 	}
 
-	/*----------------------------------------------------------- Neuer Ansatz ----------------------------------*/
 	/* reserve space for Field */
 	public Field initSingleField(Field[][] field, int x, int y) {
 		Field node = new Field();
@@ -280,6 +279,140 @@ public class Board {
 
 	public Field[][] fieldInList(Field[][] field, Field p) {
 		field[p.getX()][p.getY()] = p;
+		return field;
+	}
+	public Board addDice(Board field, int x, int y, int amount) {
+		int tmp = field.brd[x][y].getNumberOfDices();
+		tmp += amount;
+		field.brd[x][y].setNumberOfDices(tmp);
+		return field;
+	}
+
+	public int[] playerSpreadDices(Board field, Player[] listOfPlayer, int numberOfFields) {
+		int nbrPlayer = listOfPlayer.length;
+		int rest, verteilen;
+		int[] playerGet = new int[nbrPlayer];
+		rest = numberOfFields % nbrPlayer;
+		verteilen = (numberOfFields - rest) / nbrPlayer;
+		field.randomNumber(listOfPlayer.length);
+		for (int i = 0; i < playerGet.length; i++) {
+			playerGet[i] = verteilen;
+		}
+
+		int tmp = rest;
+		for (int i = 0; i < tmp; i++) {
+			int index = field.randomNumber(listOfPlayer.length);
+			playerGet[index] += 1;
+			rest--;
+		}
+		return playerGet;
+	}
+
+	public int getPlayerIndex(int[] playerGet) {
+		Board tmp = new Board(5);
+		int index = 0;
+		do {
+			index = tmp.randomNumber(playerGet.length);
+		} while (playerGet[index] == 0);
+		return index;
+	}
+
+	public int getDicesRandom(int dices) {
+		Board tmp = new Board(5);
+		int random = 0;
+		if (dices == 0)
+			return 0;
+		do {
+			random = tmp.randomNumber(5);
+		} while (dices - random < 0);
+		return random;
+	}
+
+	public Board spreadPlayerToField(Board field, Player[] listOfPlayer, int numberOfFields, int[] playerGet,
+			int numberOFDices) {
+		int index = 0;
+		int[] tmp = new int[playerGet.length];
+		int[] tmpDices = new int[playerGet.length];
+		for (int i = 0; i < tmp.length; i++) {
+			tmp[i] = 0;
+			tmpDices[i] = numberOFDices;
+		}
+
+		for (int j = 0; j < field.brd.length; j++) {
+			for (int i = 0; i < field.brd.length; i++) {
+				if (field.brd[j][i] == null)
+					continue;
+				index = getPlayerIndex(playerGet);
+				playerGet[index] -= 1;
+				tmp[index] += 1;
+				field.brd[j][i].setOwner(listOfPlayer[index]);
+				field = field.addDice(field, j, i, 1);
+
+			}
+		}
+		field = handOutDicesRandom(field, tmpDices);
+		return field;
+	}
+
+	public int getMax(int[] playerFields) {
+		int tmp = 0;
+		for (int i = 0; i < playerFields.length; i++) {
+			if (playerFields[i] > tmp) {
+				tmp = playerFields[i];
+			}
+		}
+		return tmp;
+	}
+
+	public boolean checkEmptyDiceList(int[] playerGet) {
+		for (int i = 0; i < playerGet.length; i++) {
+			if (playerGet[i] > 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean checkDicesAdd(Board field, int x, int y) {
+		if (field.brd[x][y].getNumberOfDices() > 5) {
+			return true;
+		}
+		return false;
+	}
+
+	public Board handOutDicesRandom(Board field, int[] playerGet) {
+		int fieldSize = (field.getLength()) * (field.getLength());
+		int randomField;
+		int tmpDicesAdd;
+		int playerIndex;
+		int[] index = new int[2];
+		int[] tmpDices = new int[playerGet.length];
+		tmpDices = playerGet;
+
+		while (checkEmptyDiceList(playerGet) == false) {
+			randomField = field.randomNumber(fieldSize) + 1;
+			index = field.fieldNumberToIndex(field.getLength(), randomField);
+			if (field.brd[index[0]][index[1]] == null)
+				continue;
+			if (checkDicesAdd(field, index[0], index[1])) {
+				continue;
+			}
+			playerIndex = field.brd[index[0]][index[1]].getOwner().getPlayerNr();
+			tmpDicesAdd = field.getDicesRandom(tmpDices[playerIndex]);
+			tmpDices[playerIndex] -= tmpDicesAdd;
+			field = field.addDice(field, index[0], index[1], 1 + tmpDicesAdd);
+		}
+
+		return field;
+	}
+
+	public Board playerToField(Board field, Player[] listOfPlayer, int numberOfFields) {
+		int nbrPlayer = listOfPlayer.length;
+		int maxDices = 0;
+		int[] playerGet = new int[nbrPlayer];
+		playerGet = field.playerSpreadDices(field, listOfPlayer, numberOfFields);
+		maxDices = field.getMax(playerGet);
+		field = field.spreadPlayerToField(field, listOfPlayer, numberOfFields, playerGet, maxDices);
 		return field;
 	}
 }

@@ -15,17 +15,17 @@ public class TUITestClass {
 		String value2 = "";
 		String tmp = "";
 
-		console.tui(field.getLength(), field);
+		console.tui(field.brd.length, field);
 		value1 = console.getConsole();
-		for (int i = 0; i < field.getLength(); i++) {
+		for (int i = 0; i < field.brd.length; i++) {
 			if (i % 2 != 0) {
-				tmp += "  " + console.field(field, field.brd[i], field.getLength());
-				tmp += "  " + console.field(field, field.brd[i], field.getLength());
+				tmp += "  " + console.field(field, field.brd[i], field.getLength(),0);
+				tmp += "  " + console.field(field, field.brd[i], field.getLength(),0);
 				continue;
 			}
 			tmp += console.top(field.getLength());
-			tmp += console.field(field, field.brd[i], field.getLength());
-			tmp += console.field(field, field.brd[i], field.getLength());
+			tmp += console.field(field, field.brd[i], field.getLength(),0);
+			tmp += console.field(field, field.brd[i], field.getLength(),0);
 			tmp += console.bot(field.getLength());
 
 		}
@@ -124,7 +124,6 @@ public class TUITestClass {
 				tmp += field.brd[0][i].getFieldNumber();
 			value2 = console.format(value2, tmp);
 		}
-		System.out.println(value1);
 		assertEquals(value2, value1);
 	}
 

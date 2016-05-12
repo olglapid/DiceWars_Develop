@@ -18,7 +18,7 @@ public class TUI {
 		return this.console;
 	}
 
-	public String field(Board globalField, Field[] row, int ctr) {
+	public String field(Board globalField, Field[] row, int ctr,int trigger) {
 		int tmpCtr = ctr;
 		String tmp = "";
 		String value;
@@ -28,10 +28,18 @@ public class TUI {
 			if (row[row.length - tmpCtr - 1] == null)
 				value = "";
 			else {
-				value = String.valueOf(row[row.length - tmpCtr - 1].getFieldNumber());
+				if(trigger == 0){
+					value = String.valueOf(row[row.length - tmpCtr - 1].getFieldNumber());
+				}
+				else if (trigger == 1) {
+					value = String.valueOf(row[row.length - tmpCtr - 1].getOwner().getPlayerNr());
+				}
+				else {
+					value = String.valueOf(row[row.length - tmpCtr - 1].getNumberOfDices());
+				}
 			}
 
-			tmp = format(tmp, value) + field(globalField, row, tmpCtr);
+			tmp = format(tmp, value) + field(globalField, row, tmpCtr,trigger);
 
 		} else {
 			tmp = tmp + "\n";
@@ -71,13 +79,13 @@ public class TUI {
 		for (int i = 0; i < fieldSize; i++) {
 
 			if (i % 2 != 0) {
-				tmp += "  " + field(globalField, globalField.brd[i], fieldSize);
-				tmp += "  " + field(globalField, globalField.brd[i], fieldSize);
+				tmp += "  " + field(globalField, globalField.brd[i], fieldSize,1);
+				tmp += "  " + field(globalField, globalField.brd[i], fieldSize,2);
 				continue;
 			}
 			tmp += top(fieldSize);
-			tmp += field(globalField, globalField.brd[i], fieldSize);
-			tmp += field(globalField, globalField.brd[i], fieldSize);
+			tmp += field(globalField, globalField.brd[i], fieldSize,1);
+			tmp += field(globalField, globalField.brd[i], fieldSize,2);
 			tmp += bot(fieldSize);
 		}
 
@@ -151,7 +159,6 @@ public class TUI {
 			endValue += printBoxNeighbors(field, value, j, 0, 0);
 			endValue += "\n";
 		}
-		System.out.println(endValue);
 		this.setConsole(endValue); 
 	}
 
