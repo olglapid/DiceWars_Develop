@@ -281,6 +281,7 @@ public class Board {
 		field[p.getX()][p.getY()] = p;
 		return field;
 	}
+
 	public Board addDice(Board field, int x, int y, int amount) {
 		int tmp = field.brd[x][y].getNumberOfDices();
 		tmp += amount;
