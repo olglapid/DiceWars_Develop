@@ -333,4 +333,86 @@ public class BoardTestClass {
 		}
 	}
 
+	@Test
+	public final void testwuerfelnOhneZurueckLegen() {
+		Board field = new Board(5);
+		int[] list = new int[5];
+		int[] listAdd = new int[5];
+		int index = 0;
+		;
+		for (int i = 0; i < list.length; i++) {
+			list[i] = 5;
+			listAdd[i] = 0;
+		}
+		while (index > -1) {
+			index = field.wuerfelnOhneZurueckLegen(list);
+			if (index > -1) {
+				listAdd[index] += 1;
+			}
+		}
+		for (int i = 0; i < list.length; i++) {
+			assertEquals(0, list[i]);
+			assertEquals(5, listAdd[i]);
+		}
+
+	}
+
+	@Test
+	public final void testhandOutFields() {
+		int numberOfFields = 49;
+		Board field = new Board(numberOfFields);
+		int[] list = new int[6];
+		int tmp = 0;
+		field.handOutFields(list, numberOfFields);
+		for (int i = 0; i < list.length; i++) {
+			tmp += list[i];
+		}
+		assertEquals(numberOfFields, tmp);
+	}
+
+	@Test
+	public final void testhandleRest() {
+		Board field = new Board(5);
+		int[] list = new int[5];
+		int rest = 5;
+		int tmp = 0;
+		for (int i = 0; i < list.length; i++) {
+			list[i] = 0;
+		}
+		field.handleRest(list, rest);
+		for (int i = 0; i < list.length; i++) {
+			tmp += list[i];
+		}
+		assertEquals(rest, tmp);
+	}
+
+	@Test
+	public final void testplayerToField() {
+		Board field = new Board(64);
+		Player[] listOfPlayer = new Player[5];
+		int fieldSize = 64;
+		int numberOfFields = 43;
+		field = field.createField(fieldSize, numberOfFields);
+		int tmp = 0;
+
+		for (int i = 0; i < listOfPlayer.length; i++) {
+			listOfPlayer[i] = new Player();
+			listOfPlayer[i].setPlayerNr(i);
+		}
+
+		field.playerToField(field, listOfPlayer, numberOfFields);
+
+		for (int x = 0; x < field.getLength(); x++) {
+			for (int y = 0; y < field.getLength(); y++) {
+				if (field.brd[x][y] == null)
+					continue;
+				if (field.brd[x][y].getOwner() == null) {
+					continue;
+				}
+				tmp += 1;
+
+			}
+		}
+		assertEquals(tmp, numberOfFields);
+	}
 }

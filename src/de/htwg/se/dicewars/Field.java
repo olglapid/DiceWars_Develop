@@ -40,8 +40,15 @@ public class Field {
 		this.fieldNumber = fieldNumber;
 	}
 
-	public void setNumberOfDices(int dices) {
+	public int setNumberOfDices(int dices) {
+		int returnDices = 0;
+		if (this.numberOfDices + dices > 8) {
+			returnDices=dices-(8-this.numberOfDices);
+			dices = 8;
+			
+		}
 		this.numberOfDices = dices;
+		return returnDices;
 	}
 
 	public Field[] getNachbar() {

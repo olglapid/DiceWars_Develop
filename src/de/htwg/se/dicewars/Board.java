@@ -282,31 +282,17 @@ public class Board {
 		return field;
 	}
 
-	public Board addDice(Board field, int x, int y, int amount) {
+	public int addDice(Board field, int x, int y, int amount) {
+		int returnDices = 0;
 		int tmp = field.brd[x][y].getNumberOfDices();
 		tmp += amount;
-		field.brd[x][y].setNumberOfDices(tmp);
-		return field;
+		returnDices = field.brd[x][y].setNumberOfDices(tmp);
+		return returnDices;
 	}
 
 	public int[] playerSpreadDices(Board field, Player[] listOfPlayer, int numberOfFields) {
-		int nbrPlayer = listOfPlayer.length;
-		int rest, verteilen;
-		int[] playerGet = new int[nbrPlayer];
-		rest = numberOfFields % nbrPlayer;
-		verteilen = (numberOfFields - rest) / nbrPlayer;
-		field.randomNumber(listOfPlayer.length);
-		for (int i = 0; i < playerGet.length; i++) {
-			playerGet[i] = verteilen;
-		}
-
-		int tmp = rest;
-		for (int i = 0; i < tmp; i++) {
-			int index = field.randomNumber(listOfPlayer.length);
-			playerGet[index] += 1;
-			rest--;
-		}
-		return playerGet;
+		int[] fickdich = new int[0];
+		return fickdich;
 	}
 
 	public int getPlayerIndex(int[] playerGet) {
@@ -324,50 +310,28 @@ public class Board {
 		if (dices == 0)
 			return 0;
 		do {
-			random = tmp.randomNumber(5);
+			random = tmp.randomNumber(7);
 		} while (dices - random < 0);
 		return random;
 	}
 
-	public Board spreadPlayerToField(Board field, Player[] listOfPlayer, int numberOfFields, int[] playerGet,
-			int numberOFDices) {
-		int index = 0;
-		int[] tmp = new int[playerGet.length];
-		int[] tmpDices = new int[playerGet.length];
-		for (int i = 0; i < tmp.length; i++) {
-			tmp[i] = 0;
-			tmpDices[i] = numberOFDices;
-		}
-
-		for (int j = 0; j < field.brd.length; j++) {
-			for (int i = 0; i < field.brd.length; i++) {
-				if (field.brd[j][i] == null)
-					continue;
-				index = getPlayerIndex(playerGet);
-				playerGet[index] -= 1;
-				tmp[index] += 1;
-				field.brd[j][i].setOwner(listOfPlayer[index]);
-				field = field.addDice(field, j, i, 1);
-
-			}
-		}
-		field = handOutDicesRandom(field, tmpDices);
+	public Board spreadPlayerToField(Board field, Player[] listOfPlayer, int numberOfFields, int[] playerGet) {
 		return field;
 	}
 
-	public int getMax(int[] playerFields) {
+	public int getMax(int[] list) {
 		int tmp = 0;
-		for (int i = 0; i < playerFields.length; i++) {
-			if (playerFields[i] > tmp) {
-				tmp = playerFields[i];
+		for (int i = 0; i < list.length; i++) {
+			if (list[i] > tmp) {
+				tmp = list[i];
 			}
 		}
 		return tmp;
 	}
 
-	public boolean checkEmptyDiceList(int[] playerGet) {
-		for (int i = 0; i < playerGet.length; i++) {
-			if (playerGet[i] > 0) {
+	public boolean checkEmptyList(int[] list) {
+		for (int i = 0; i < list.length; i++) {
+			if (list[i] > 0) {
 				return false;
 			}
 		}
@@ -375,45 +339,89 @@ public class Board {
 	}
 
 	public boolean checkDicesAdd(Board field, int x, int y) {
-		if (field.brd[x][y].getNumberOfDices() > 5) {
+		if (field.brd[x][y].getNumberOfDices() > 7) {
 			return true;
 		}
 		return false;
 	}
 
-	public Board handOutDicesRandom(Board field, int[] playerGet) {
-		int fieldSize = (field.getLength()) * (field.getLength());
-		int randomField;
-		int tmpDicesAdd;
-		int playerIndex;
-		int[] index = new int[2];
-		int[] tmpDices = new int[playerGet.length];
-		tmpDices = playerGet;
+	public int lowerIndex(int[] list, int index, int ctr) {
+		int tmpIndex = index - ctr;
+		if (tmpIndex < 0) {
+			return -2;
+		} else if (list[tmpIndex] > 0) {
+			return tmpIndex;
+		} else {
+			return -1;
+		}
+	}
 
-		while (checkEmptyDiceList(playerGet) == false) {
-			randomField = field.randomNumber(fieldSize) + 1;
-			index = field.fieldNumberToIndex(field.getLength(), randomField);
-			if (field.brd[index[0]][index[1]] == null)
-				continue;
-			if (checkDicesAdd(field, index[0], index[1])) {
-				continue;
+	public int higherIndex(int[] list, int index, int ctr) {
+		int tmpIndex = index + ctr;
+		if (tmpIndex >= list.length) {
+			return -3;
+		} else if (list[tmpIndex] > 0) {
+			return tmpIndex;
+		} else {
+			return -1;
+		}
+	}
+
+	public int wuerfelnOhneZurueckLegen(int[] list) {
+		int index = randomNumber(list.length);
+		if (list[index] > 0) {
+			list[index] -= 1;
+			return index;
+		}
+		int tmpP;
+		int tmpN;
+		for (int i = 1; i < list.length; i++) {
+			tmpP = higherIndex(list, index, i);
+			tmpN = lowerIndex(list, index, i);
+			if (tmpP >= 0) {
+				list[tmpP] -= 1;
+				return tmpP;
 			}
-			playerIndex = field.brd[index[0]][index[1]].getOwner().getPlayerNr();
-			tmpDicesAdd = field.getDicesRandom(tmpDices[playerIndex]);
-			tmpDices[playerIndex] -= tmpDicesAdd;
-			field = field.addDice(field, index[0], index[1], 1 + tmpDicesAdd);
+			if (tmpN >= 0) {
+				list[tmpN] -= 1;
+				return tmpN;
+			}
 		}
 
-		return field;
+		return -1;
+	}
+
+	public void handleRest(int[] list, int rest) {
+		int index = 0;
+		for (int i = 0; i < rest; i++) {
+			index = randomNumber(list.length);
+			list[index] += 1;
+		}
+	}
+
+	public void handOutFields(int[] list, int numberOfFields) {
+		int length = list.length;
+		int rest = numberOfFields % length;
+		int fields = numberOfFields / length;
+		for (int i = 0; i < list.length; i++) {
+			list[i] = fields;
+		}
+		handleRest(list, rest);
 	}
 
 	public Board playerToField(Board field, Player[] listOfPlayer, int numberOfFields) {
-		int nbrPlayer = listOfPlayer.length;
-		int maxDices = 0;
-		int[] playerGet = new int[nbrPlayer];
-		playerGet = field.playerSpreadDices(field, listOfPlayer, numberOfFields);
-		maxDices = field.getMax(playerGet);
-		field = field.spreadPlayerToField(field, listOfPlayer, numberOfFields, playerGet, maxDices);
+		int[] listOfFields = new int[listOfPlayer.length];
+		int index = 0;
+		handOutFields(listOfFields, numberOfFields);
+
+		for (int x = 0; x < field.getLength(); x++) {
+			for (int y = 0; y < field.getLength(); y++) {
+				if (field.brd[x][y] == null)
+					continue;
+				index = wuerfelnOhneZurueckLegen(listOfFields);
+				field.brd[x][y].setOwner(listOfPlayer[index]);
+			}
+		}
 		return field;
 	}
 }
