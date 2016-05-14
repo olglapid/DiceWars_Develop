@@ -7,66 +7,6 @@ import org.junit.Test;
 public class BoardTestClass {
 
 	@Test
-	public final void testBoard() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetOwner() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetOwner() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetExField() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetExField() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetLength() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetLength() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testInitSingleField() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testRandomNumber() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testConverteFieldSize() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testMallocNodes() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetNeighborsNull() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
 	public final void testCheckx() {
 		Board field = new Board(3);
 		Field node[] = new Field[3];
@@ -121,18 +61,8 @@ public class BoardTestClass {
 	}
 
 	@Test
-	public final void testCheckIndent() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testCheckNoIndent() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
 	public final void testCheckNeighborIndex() {
-		Board field =  new Board(9);
+		Board field = new Board(9);
 		Field node[] = new Field[9];
 		node[0] = new Field();
 		node[1] = new Field();
@@ -255,54 +185,19 @@ public class BoardTestClass {
 	}
 
 	@Test
-	public final void testXPlusyNegativeOne() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testXPlusyZero() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testXPlusyOne() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testXPlusyLowerOne() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testXPlusyHigherZero() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
 	public final void testGetNeighborfromIndex() {
 		Board testField = new Board(3);
-		assertEquals(7,testField.getNeighborfromIndex(-1,-1));
-		assertEquals(3,testField.getNeighborfromIndex(-1,0));
-		assertEquals(2,testField.getNeighborfromIndex(0,-1));
-		assertEquals(1,testField.getNeighborfromIndex(1,0));
-		assertEquals(0,testField.getNeighborfromIndex(0,1));
-		assertEquals(6,testField.getNeighborfromIndex(1,-1));
-		assertEquals(4,testField.getNeighborfromIndex(-1,1));
-		assertEquals(6,testField.getNeighborfromIndex(0,0));
-		assertEquals(5,testField.getNeighborfromIndex(1,1));
-		assertEquals(-1,testField.getNeighborfromIndex(-3,-1));
-		assertEquals(-1,testField.getNeighborfromIndex(3,1));
-	}
-
-	@Test
-	public final void testConnectNodes() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testCreateField() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(7, testField.getNeighborfromIndex(-1, -1));
+		assertEquals(3, testField.getNeighborfromIndex(-1, 0));
+		assertEquals(2, testField.getNeighborfromIndex(0, -1));
+		assertEquals(1, testField.getNeighborfromIndex(1, 0));
+		assertEquals(0, testField.getNeighborfromIndex(0, 1));
+		assertEquals(6, testField.getNeighborfromIndex(1, -1));
+		assertEquals(4, testField.getNeighborfromIndex(-1, 1));
+		assertEquals(6, testField.getNeighborfromIndex(0, 0));
+		assertEquals(5, testField.getNeighborfromIndex(1, 1));
+		assertEquals(-1, testField.getNeighborfromIndex(-3, -1));
+		assertEquals(-1, testField.getNeighborfromIndex(3, 1));
 	}
 
 	@Test
@@ -406,7 +301,7 @@ public class BoardTestClass {
 	public final void testSetFieldNumber() {
 		int ctr = 1;
 		Board field = new Board(9);
-		field=field.createField(16, 9);
+		field = field.createField(16, 9);
 
 		for (int j = 0; j < field.getLength(); j++) {
 			for (int i = 0; i < field.getLength(); i++) {
@@ -431,21 +326,11 @@ public class BoardTestClass {
 
 		for (int j = 0; j < field.getLength(); j++) {
 			for (int i = 0; i < field.getLength(); i++) {
-				index = field.fieldNumberToIndex(field.getLength(),field.brd[j][i].getFieldNumber());
+				index = field.fieldNumberToIndex(field.getLength(), field.brd[j][i].getFieldNumber());
 				assertEquals(field.brd[j][i].getX(), index[0]);
 				assertEquals(field.brd[j][i].getY(), index[1]);
 			}
 		}
-	}
-
-	@Test
-	public final void testConnectFields() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testFieldInList() {
-		fail("Not yet implemented"); // TODO
 	}
 
 }
