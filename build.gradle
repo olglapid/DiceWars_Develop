@@ -43,7 +43,7 @@ sonarqube {
     properties {
     property "sonar.projectName", "SE2016SS-03-DiceWars"
     property "sonar.projectKey", "de.htwg.se.dicewars"
-    property "sonar.projectVersion", "0.01.Beta.0.0.0.Alpha"
+    property "sonar.projectVersion", "0.01.Beta.0.0.0.Alpha.0.0.0.1.2.3.4.0.0.0.0.Omega.1.2.3.MEGA"
     property "sonar.binaries", "build/classes"
     property "sonar.java.coveragePlugin", "jacoco"
   }
