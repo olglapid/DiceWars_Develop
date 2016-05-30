@@ -394,6 +394,7 @@ public class BoardTestClass {
 		int numberOfFields = 43;
 		field = field.createField(fieldSize, numberOfFields);
 		int tmp = 0;
+		int dices=0;
 
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			listOfPlayer[i] = new Player();
@@ -409,10 +410,14 @@ public class BoardTestClass {
 				if (field.brd[x][y].getOwner() == null) {
 					continue;
 				}
+				if (field.brd[x][y].getNumberOfDices()==1) {
+					dices+=1;
+				}
 				tmp += 1;
 
 			}
 		}
 		assertEquals(tmp, numberOfFields);
+		assertEquals(dices, numberOfFields);
 	}
 }

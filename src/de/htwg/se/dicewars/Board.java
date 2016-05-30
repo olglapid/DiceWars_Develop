@@ -19,6 +19,10 @@ public class Board {
 		}
 	}
 
+	public void setField(Field[][] field) {
+		this.brd = field;
+	}
+
 	public void setOwner(int nbr, int index) {
 		this.owner[index] = nbr;
 	}
@@ -304,13 +308,13 @@ public class Board {
 		return index;
 	}
 
-	public int getDicesRandom(int dices) {
+	public int getDicesRandom(int dices, int value) {
 		Board tmp = new Board(5);
 		int random = 0;
 		if (dices == 0)
 			return 0;
 		do {
-			random = tmp.randomNumber(7);
+			random = tmp.randomNumber(value);
 		} while (dices - random < 0);
 		return random;
 	}
@@ -409,6 +413,13 @@ public class Board {
 		handleRest(list, rest);
 	}
 
+	public void addDicesToPlayer(Player[] listOfPlayer, int index, int amount) {
+		int tmp = 0;
+		tmp = listOfPlayer[index].getNumberOfDices();
+		tmp += amount;
+		listOfPlayer[index].setNumberOfDices(tmp);
+	}
+
 	public Board playerToField(Board field, Player[] listOfPlayer, int numberOfFields) {
 		int[] listOfFields = new int[listOfPlayer.length];
 		int index = 0;
@@ -420,8 +431,41 @@ public class Board {
 					continue;
 				index = wuerfelnOhneZurueckLegen(listOfFields);
 				field.brd[x][y].setOwner(listOfPlayer[index]);
+				addDice(field, x, y, 1);
+				addDicesToPlayer(listOfPlayer, index, 1);
+				listOfPlayer[index].setFieldFromIndex(field.brd[x][y]);
+				System.out.println(listOfPlayer[index].getNumberOfDices());
 			}
 		}
 		return field;
+	}
+
+	public void handOutDices(Player player) {
+		int numberOfDices = player.getNumberOfDices();
+		int dices = 0;
+		int ctr=1;
+		int[] index;
+		while (numberOfDices > 0) {
+			if(ctr>length){
+				ctr=1;
+			}
+			if(randomNumber(1)==0){
+				ctr++;
+				continue;
+			}
+			index=fieldNumberToIndex(this.length, ctr);
+			
+			if(player.getFieldFromIndex(index[0], index[1])==null){
+				ctr++;
+				continue;
+			}
+			if (numberOfDices > 7) {
+				dices = getDicesRandom(numberOfDices, 7);
+			} else {
+				dices = getDicesRandom(numberOfDices, numberOfDices);
+			}
+			
+
+		}
 	}
 }

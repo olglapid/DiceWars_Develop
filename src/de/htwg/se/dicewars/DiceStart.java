@@ -1,26 +1,33 @@
 package de.htwg.se.dicewars;
 
-
 import java.util.Scanner;
 
-import org.apache.logging.log4j.Logger; 
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class DiceStart {
-	private static final Logger log4j = LogManager.getLogger(DiceStart.class 
-	        .getName());
-	private DiceStart(){
-		
+	private static final Logger log4j = LogManager.getLogger(DiceStart.class.getName());
+
+	private DiceStart() {
+
 	}
+
 	public static void main(String[] args) {
-	
+
 		int fieldSize = 0;
 		int numberOfFields = 0;
 		TUI console = new TUI();
 		final String newline = System.getProperty("line.separator");
 		Scanner sc = new Scanner(System.in);
 
-		log4j.info(newline+" Anzahl an spielern: ");
+		do {
+			log4j.info(newline + " Spielfeldgröße: ");
+			fieldSize = sc.nextInt();
+			log4j.info(newline + " Anzahl Felder: ");
+			numberOfFields = sc.nextInt();
+		} while (numberOfFields > fieldSize);
+		
+		log4j.info(newline + " Anzahl an spielern: ");
 		int tmpNbrOfPlayer = sc.nextInt();
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
 
@@ -30,32 +37,32 @@ public class DiceStart {
 			listOfPlayer[i] = new Player();
 			listOfPlayer[i].setName(eingabe);
 			listOfPlayer[i].setPlayerNr(i);
+			listOfPlayer[i].createField(8);
 
 		}
-		do{
-		log4j.info(newline+" Spielfeldgröße: ");
-		fieldSize = sc.nextInt();
-		log4j.info(newline+" Anzahl Felder: ");
-		numberOfFields = sc.nextInt();
-		}while(numberOfFields>fieldSize);
+		Board field = new Board(fieldSize);
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			listOfPlayer[i] = Dice.initDiceToField(listOfPlayer[i], listOfPlayer[i].getNumberOfFields());
+			listOfPlayer[i].createField(field.converteFieldSize(fieldSize));
 		}
 
-		Board field =  new Board(fieldSize);
 		
-		field=field.createField(fieldSize,numberOfFields);
+		
+		field = field.createField(fieldSize, numberOfFields);
 		field = field.playerToField(field, listOfPlayer, numberOfFields);
-		console.tui(field.getLength(),field);
-		log4j.info(newline+console.getConsole());
+		console.tui(field.getLength(), field);
+		log4j.info(newline + console.getConsole());
 		sc.close();
-		
-		
 
 		console.globalPrint(field);
-		log4j.info(newline+console.getConsole());
-		
-		
+		log4j.info(newline + console.getConsole());
+		Board tmp = new Board(2);
+		for (int i = 0; i < listOfPlayer.length; i++) {
+			tmp.setField(listOfPlayer[i].getField());
+			console.tui(field.getLength(),tmp);
+		log4j.info(newline + console.getConsole());
+		}
+
 	}
 
 }
