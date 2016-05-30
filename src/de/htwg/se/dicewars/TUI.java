@@ -1,6 +1,8 @@
 package de.htwg.se.dicewars;
 
-public class TUI {
+import interfaces.TuiInterface;
+
+public class TUI implements TuiInterface{
 	String console;
 
 	public TUI() {
