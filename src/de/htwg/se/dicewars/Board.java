@@ -2,7 +2,9 @@ package de.htwg.se.dicewars;
 
 import java.util.Random;
 
-public class Board {
+import interfaces.BoardInterface;
+
+public class Board implements BoardInterface{
 	Field[][] brd;
 	private int length;
 	private int[] owner;
