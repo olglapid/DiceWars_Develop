@@ -1,5 +1,8 @@
 package de.htwg.se.dicewars;
 
+import de.htwg.se.dicewars.model.Board;
+import de.htwg.se.dicewars.model.Field;
+
 public class TUI {
 	String console;
 
@@ -79,13 +82,13 @@ public class TUI {
 		for (int i = 0; i < fieldSize; i++) {
 
 			if (i % 2 != 0) {
-				tmp += "  " + field(globalField, globalField.brd[i], fieldSize,1);
-				tmp += "  " + field(globalField, globalField.brd[i], fieldSize,2);
+				tmp += "  " + field(globalField, globalField.getField()[i], fieldSize,1);
+				tmp += "  " + field(globalField, globalField.getField()[i], fieldSize,2);
 				continue;
 			}
 			tmp += top(fieldSize);
-			tmp += field(globalField, globalField.brd[i], fieldSize,1);
-			tmp += field(globalField, globalField.brd[i], fieldSize,2);
+			tmp += field(globalField, globalField.getField()[i], fieldSize,1);
+			tmp += field(globalField, globalField.getField()[i], fieldSize,2);
 			tmp += bot(fieldSize);
 		}
 
@@ -96,13 +99,15 @@ public class TUI {
 
 	public String printBox(Board field, String value, int x, int y) {
 		String value1 = "";
-		if (y >= field.getLength()) {
+		Field[][] tmpField = field.getField();
+		
+		if (y >= tmpField.length) {
 			return value;
 		}
-		if (field.brd[x][y] == null) {
+		if (tmpField[x][y] == null) {
 			value1 = "";
 		} else {
-			value1 += field.brd[x][y].getFieldNumber();
+			value1 += tmpField[x][y].getFieldNumber();
 		}
 
 		return printBox(field, format(value, value1), x, y + 1);
@@ -128,6 +133,7 @@ public class TUI {
 
 	public String printBoxNeighbors(Board field, String value, int x, int y, int ctr) {
 		String tmp = value;
+		Field[][] tmpField = field.getField();
 		int tmpCtr = ctr;
 		if (tmpCtr >= 8)
 			return tmp;
@@ -136,15 +142,15 @@ public class TUI {
 			return printBoxNeighbors(field, tmp, x, 0, tmpCtr + 1);
 		}
 
-		if (field.brd[x][y] == null) {
+		if (tmpField[x][y] == null) {
 			tmp += "|   |";
 			return printBoxNeighbors(field, tmp, x, y + 1, tmpCtr);
 		}
 		String value1 = "";
-		if (field.brd[x][y].getNachbar()[ctr] == null) {
+		if (tmpField[x][y].getNachbar()[ctr] == null) {
 			return printBoxNeighbors(field, format(tmp, value1), x, y + 1, tmpCtr);
 		}
-		value1 += field.brd[x][y].getNachbar()[ctr].getFieldNumber();
+		value1 += tmpField[x][y].getNachbar()[ctr].getFieldNumber();
 		return printBoxNeighbors(field, format(tmp, value1), x, y + 1, tmpCtr);
 
 	}

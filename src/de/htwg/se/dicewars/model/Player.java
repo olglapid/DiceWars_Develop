@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.model;
 
 public class Player {
 	private String name;

@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.model;
 
 public class Field {
 	private Field[] nachbar = null;

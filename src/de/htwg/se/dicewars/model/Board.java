@@ -1,11 +1,11 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.model;
 
 import java.util.Random;
 
 import interfaces.BoardInterface;
 
-public class Board implements BoardInterface{
-	Field[][] brd;
+public class Board implements BoardInterface {
+	private Field[][] brd;
 	private int length;
 	private int[] owner;
 	private boolean[] fieldsExists;
@@ -47,6 +47,10 @@ public class Board implements BoardInterface{
 
 	public int getLength() {
 		return this.length;
+	}
+
+	public Field[][] getField() {
+		return this.brd;
 	}
 
 	/* reserve space for Field */
@@ -236,6 +240,7 @@ public class Board implements BoardInterface{
 		connectFields(field);
 		Board board = new Board(fieldSize);
 		board.brd = field;
+
 		return board;
 	}
 
@@ -445,19 +450,19 @@ public class Board implements BoardInterface{
 	public void handOutDices(Player player) {
 		int numberOfDices = player.getNumberOfDices();
 		int dices = 0;
-		int ctr=1;
+		int ctr = 1;
 		int[] index;
 		while (numberOfDices > 0) {
-			if(ctr>length){
-				ctr=1;
+			if (ctr > length) {
+				ctr = 1;
 			}
-			if(randomNumber(1)==0){
+			if (randomNumber(1) == 0) {
 				ctr++;
 				continue;
 			}
-			index=fieldNumberToIndex(this.length, ctr);
-			
-			if(player.getFieldFromIndex(index[0], index[1])==null){
+			index = fieldNumberToIndex(this.length, ctr);
+
+			if (player.getFieldFromIndex(index[0], index[1]) == null) {
 				ctr++;
 				continue;
 			}
@@ -466,8 +471,12 @@ public class Board implements BoardInterface{
 			} else {
 				dices = getDicesRandom(numberOfDices, numberOfDices);
 			}
-			
 
 		}
 	}
+
+
+
+
+
 }

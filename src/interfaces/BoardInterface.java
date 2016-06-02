@@ -1,8 +1,8 @@
 package interfaces;
 
-import de.htwg.se.dicewars.Board;
-import de.htwg.se.dicewars.Field;
-import de.htwg.se.dicewars.Player;
+import de.htwg.se.dicewars.model.Board;
+import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.Player;
 
 public interface BoardInterface {
 
@@ -188,10 +188,10 @@ public interface BoardInterface {
 	
 	
 	/**
-     * ???
-     * @param x
-     * @param y
-     * @return ???
+     * Returns the index of a identified neighbor which is stored in nachbar
+     * @param int x
+     * @param int y
+     * @return int 
      */
 	public int getNeighborfromIndex(int x, int y);
 	
@@ -295,17 +295,17 @@ public interface BoardInterface {
      * @param dices
      * @return index
      */
-	public int getDicesRandom(int dices);
-	
-	
-	/**
-     * ???
-     * @param field
-     * @param listOfPlayer
-     * @param numberOfFields
-     * @param playerGet
-     * @return ???
-     */
+//	public int getDicesRandom(int dices);
+//	
+//	
+//	/**
+//     * ???
+//     * @param field
+//     * @param listOfPlayer
+//     * @param numberOfFields
+//     * @param playerGet
+//     * @return ???
+//     */
 	public Board spreadPlayerToField(Board field, Player[] listOfPlayer, int numberOfFields, int[] playerGet);
 	
 	

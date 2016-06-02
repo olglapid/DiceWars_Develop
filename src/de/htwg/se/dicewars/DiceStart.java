@@ -3,6 +3,13 @@ package de.htwg.se.dicewars;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.Logger;
+
+import de.htwg.se.dicewars.controller.impl.FieldHandler;
+import de.htwg.se.dicewars.controller.impl.Walktrough;
+import de.htwg.se.dicewars.model.Board;
+import de.htwg.se.dicewars.model.Dice;
+import de.htwg.se.dicewars.model.Player;
+
 import org.apache.logging.log4j.LogManager;
 
 public class DiceStart {
@@ -49,6 +56,7 @@ public class DiceStart {
 		
 		
 		field = field.createField(fieldSize, numberOfFields);
+		
 		field = field.playerToField(field, listOfPlayer, numberOfFields);
 		console.tui(field.getLength(), field);
 		log4j.info(newline + console.getConsole());
