@@ -4,12 +4,11 @@ import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
 public abstract class DiceSetup {
-	public static int addDice(Board board, int x, int y, int amount) {
-		Field[][] field = board.getField();
+	public static int addDice(Field field, int amount) {
 		int returnDices = 0;
-		int tmp = field[x][y].getNumberOfDices();
+		int tmp = field.getNumberOfDices();
 		tmp += amount;
-		returnDices = field[x][y].setNumberOfDices(tmp);
+		returnDices = field.setNumberOfDices(tmp);
 		return returnDices;
 	}
 

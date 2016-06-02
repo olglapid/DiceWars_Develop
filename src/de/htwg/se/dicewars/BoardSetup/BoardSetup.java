@@ -36,11 +36,10 @@ public abstract class BoardSetup {
 					continue;
 				index = ConvertMethods.wuerfelnOhneZurueckLegen(listOfFields);
 				field[x][y].setOwner(listOfPlayer[index]);
-				DiceSetup.addDice(board, x, y, 1);
+				DiceSetup.addDice(field[x][y], 1);
 				PlayerSetup.addDicesToPlayer(listOfPlayer, index, 1);
 				
 				listOfPlayer[index].setFieldFromIndex(field[x][y]);
-				System.out.println(listOfPlayer[index].getNumberOfDices());
 			}
 		}
 		board.setField(field);

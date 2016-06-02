@@ -1,5 +1,9 @@
 package de.htwg.se.dicewars.controller.impl;
 
+import de.htwg.se.command.AddDices;
+import de.htwg.se.command.CountFields;
+import de.htwg.se.command.Invoker;
+import de.htwg.se.command.Method;
 import de.htwg.se.dicewars.model.Field;
 
 public abstract class Walktrough {
@@ -19,8 +23,7 @@ public abstract class Walktrough {
 		return false;
 	}
 
-
-	public static Field walkTroughFields(Field node, boolean[] visit) {
+	public static Field walkTroughFields(Field node, boolean[] visit, Invoker invoker) {
 
 		if (node == null)
 			return node;
@@ -29,12 +32,15 @@ public abstract class Walktrough {
 			return node;
 
 		Field[] neighborsList = node.getNachbar();
-		
+
 		visit = visitField(node, visit);
+		invoker.executeMethod();
 		for (int i = 0; i < neighborsList.length; i++) {
 			if (neighborsList[i] == null)
 				continue;
-			walkTroughFields(neighborsList[i], visit);
+			System.out.println("EXECUTE");
+
+			walkTroughFields(neighborsList[i], visit, invoker);
 		}
 
 		return node;

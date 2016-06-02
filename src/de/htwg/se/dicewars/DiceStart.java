@@ -62,9 +62,11 @@ public class DiceStart {
 		field = BoardSetup.createField(fieldSize, numberOfFields);
 		
 		field = BoardSetup.playerToField(field, listOfPlayer, numberOfFields);
+		FieldHandler.countConnectedFields(field);
 		console.tui(field.getLength(), field);
 		log4j.info(newline + console.getConsole());
 		sc.close();
+	
 
 		console.globalPrint(field);
 		log4j.info(newline + console.getConsole());
@@ -74,6 +76,8 @@ public class DiceStart {
 			console.tui(field.getLength(),tmp);
 		log4j.info(newline + console.getConsole());
 		}
+		
+		
 
 	}
 
