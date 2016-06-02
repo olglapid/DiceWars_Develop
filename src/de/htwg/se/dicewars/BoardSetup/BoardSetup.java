@@ -1,6 +1,5 @@
 package de.htwg.se.dicewars.BoardSetup;
 
-import de.htwg.se.dicewars.DiceStart;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
@@ -39,6 +38,7 @@ public abstract class BoardSetup {
 				field[x][y].setOwner(listOfPlayer[index]);
 				DiceSetup.addDice(board, x, y, 1);
 				PlayerSetup.addDicesToPlayer(listOfPlayer, index, 1);
+				
 				listOfPlayer[index].setFieldFromIndex(field[x][y]);
 				System.out.println(listOfPlayer[index].getNumberOfDices());
 			}

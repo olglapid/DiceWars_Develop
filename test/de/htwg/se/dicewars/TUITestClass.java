@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.htwg.se.dicewars.BoardSetup.BoardSetup;
 import de.htwg.se.dicewars.model.Board;
+import de.htwg.se.dicewars.model.Field;
 
 public class TUITestClass {
 
@@ -113,17 +115,18 @@ public class TUITestClass {
 	@Test
 	public final void testPrintBox() {
 		TUI console = new TUI();
-		Board field = new Board(64);
+		Board board = new Board(64);
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";
 
-		field = field.createField(64, 32);
-		value1 = console.printBox(field, value1, 0, 0);
-		for (int i = 0; i < field.getLength(); i++) {
+		board = BoardSetup.createField(64, 32);
+		Field[][] field = board.getField();
+		value1 = console.printBox(board, value1, 0, 0);
+		for (int i = 0; i < board.getLength(); i++) {
 			tmp = "";
-			if (field.brd[0][i] != null)
-				tmp += field.brd[0][i].getFieldNumber();
+			if (field[0][i] != null)
+				tmp += field[0][i].getFieldNumber();
 			value2 = console.format(value2, tmp);
 		}
 		assertEquals(value2, value1);
@@ -169,17 +172,17 @@ public class TUITestClass {
 	@Test
 	public final void testGlobalPrint() {
 		TUI console = new TUI();
-		Board field = new Board(64);
-		field = field.createField(64, 49);
+		Board board = new Board(64);
+		board = BoardSetup.createField(64, 49);
 		String value2 = "";
 		String tmp = "";
-		console.globalPrint(field);
+		console.globalPrint(board);
 
-		for (int j = 0; j < field.getLength(); j++) {
-			value2 += console.printBox(field, tmp, j, 0);
+		for (int j = 0; j < board.getLength(); j++) {
+			value2 += console.printBox(board, tmp, j, 0);
 			tmp += "";
 			value2 += "\n";
-			value2 += console.printBoxNeighbors(field, tmp, j, 0, 0);
+			value2 += console.printBoxNeighbors(board, tmp, j, 0, 0);
 			value2 += "\n";
 		}
 		assertEquals(value2, console.getConsole());

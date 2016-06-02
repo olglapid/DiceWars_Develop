@@ -7,7 +7,6 @@ import de.htwg.se.dicewars.model.Player;
 public abstract class PlayerSetup {
 	/*Returns a random Player form list*/
 	public int getPlayerIndex(int[] playerGet) {
-		Board tmp = new Board(5);
 		int index = 0;
 		do {
 			index = ConvertMethods.randomNumber(playerGet.length);

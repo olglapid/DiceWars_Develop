@@ -14,7 +14,6 @@ public abstract class DiceSetup {
 	}
 
 	public static int getDicesRandom(int dices, int value) {
-		Board tmp = new Board(5);
 		int random = 0;
 		if (dices == 0)
 			return 0;
