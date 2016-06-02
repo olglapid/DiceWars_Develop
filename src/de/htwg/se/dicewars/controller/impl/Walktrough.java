@@ -23,7 +23,7 @@ public abstract class Walktrough {
 
 	public static Field walkTroughFields(Field node, boolean[] visit, Invoker invoker, Method method) {
 
-		if (node == null)
+		if (node == null || node.getNachbar() == null)
 			return node;
 
 		if (checkVisit(node, visit))
