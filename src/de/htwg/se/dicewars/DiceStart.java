@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 import org.apache.logging.log4j.Logger;
 
+import de.htwg.se.dicewars.BoardSetup.BoardSetup;
+import de.htwg.se.dicewars.BoardSetup.ConvertMethods;
+import de.htwg.se.dicewars.BoardSetup.FieldSetup;
+import de.htwg.se.dicewars.BoardSetup.PlayerSetup;
 import de.htwg.se.dicewars.controller.impl.FieldHandler;
 import de.htwg.se.dicewars.controller.impl.Walktrough;
 import de.htwg.se.dicewars.model.Board;
@@ -50,14 +54,14 @@ public class DiceStart {
 		Board field = new Board(fieldSize);
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			listOfPlayer[i] = Dice.initDiceToField(listOfPlayer[i], listOfPlayer[i].getNumberOfFields());
-			listOfPlayer[i].createField(field.converteFieldSize(fieldSize));
+			listOfPlayer[i].createField(ConvertMethods.converteFieldSize(fieldSize));
 		}
 
 		
 		
-		field = field.createField(fieldSize, numberOfFields);
+		field = BoardSetup.createField(fieldSize, numberOfFields);
 		
-		field = field.playerToField(field, listOfPlayer, numberOfFields);
+		field = BoardSetup.playerToField(field, listOfPlayer, numberOfFields);
 		console.tui(field.getLength(), field);
 		log4j.info(newline + console.getConsole());
 		sc.close();
