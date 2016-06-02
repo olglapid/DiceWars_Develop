@@ -6,6 +6,9 @@ public class CountFields implements Command {
 	public CountFields(Method tmp) {
 		this.method = tmp;
 	}
+	public Method getMethod(){
+		return this.method;
+	}
 	public void execute(){
 		method.countFields();
 	}

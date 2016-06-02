@@ -6,10 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.dicewars.BoardSetup.BoardSetup;
 import de.htwg.se.dicewars.BoardSetup.ConvertMethods;
-import de.htwg.se.dicewars.BoardSetup.FieldSetup;
-import de.htwg.se.dicewars.BoardSetup.PlayerSetup;
 import de.htwg.se.dicewars.controller.impl.FieldHandler;
-import de.htwg.se.dicewars.controller.impl.Walktrough;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Dice;
 import de.htwg.se.dicewars.model.Player;
@@ -37,7 +34,7 @@ public class DiceStart {
 			log4j.info(newline + " Anzahl Felder: ");
 			numberOfFields = sc.nextInt();
 		} while (numberOfFields > fieldSize);
-		
+
 		log4j.info(newline + " Anzahl an spielern: ");
 		int tmpNbrOfPlayer = sc.nextInt();
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
@@ -57,27 +54,22 @@ public class DiceStart {
 			listOfPlayer[i].createField(ConvertMethods.converteFieldSize(fieldSize));
 		}
 
-		
-		
 		field = BoardSetup.createField(fieldSize, numberOfFields);
-		
+
 		field = BoardSetup.playerToField(field, listOfPlayer, numberOfFields);
 		FieldHandler.countConnectedFields(field);
 		console.tui(field.getLength(), field);
 		log4j.info(newline + console.getConsole());
 		sc.close();
-	
 
 		console.globalPrint(field);
 		log4j.info(newline + console.getConsole());
 		Board tmp = new Board(2);
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			tmp.setField(listOfPlayer[i].getField());
-			console.tui(field.getLength(),tmp);
-		log4j.info(newline + console.getConsole());
+			console.tui(field.getLength(), tmp);
+			log4j.info(newline + console.getConsole());
 		}
-		
-		
 
 	}
 

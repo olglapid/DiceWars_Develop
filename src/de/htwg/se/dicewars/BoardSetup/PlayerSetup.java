@@ -1,7 +1,6 @@
 package de.htwg.se.dicewars.BoardSetup;
 
-import de.htwg.se.dicewars.controller.impl.DiceHandler;
-import de.htwg.se.dicewars.model.Board;
+
 import de.htwg.se.dicewars.model.Player;
 
 public abstract class PlayerSetup {
@@ -23,7 +22,7 @@ public abstract class PlayerSetup {
 	
 	public void handOutDices(Player player, int length) {
 		int numberOfDices = player.getNumberOfDices();
-		int dices = 0;
+		int dices;
 		int ctr = 1;
 		int[] index;
 		while (numberOfDices > 0) {

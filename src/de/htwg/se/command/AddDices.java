@@ -8,6 +8,9 @@ public class AddDices implements Command {
 	public AddDices(Method tmp) {
 		this.method = tmp;
 	}
+	public Method getMethod(){
+		return this.method;
+	}
 	public void execute(){
 		method.addDices();
 	}

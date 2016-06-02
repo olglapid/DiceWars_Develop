@@ -1,7 +1,6 @@
 package de.htwg.se.command;
 
 import de.htwg.se.dicewars.BoardSetup.DiceSetup;
-import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
 public class Method {

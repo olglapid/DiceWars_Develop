@@ -1,9 +1,6 @@
 package de.htwg.se.dicewars.model;
 
-import java.util.Random;
-
 import de.htwg.se.dicewars.BoardSetup.ConvertMethods;
-import interfaces.BoardInterface;
 
 public class Board {
 	private Field[][] brd;

@@ -8,19 +8,21 @@ import de.htwg.se.dicewars.model.Field;
 
 public abstract class FieldHandler {
 
+	/* returns the largest connected Field */
 	public static int countConnectedFields(Board board) {
-		int amountOfconnectedFields = 0;
 		int numberOfFields = 0;
+		int connectedFields = 0;
+		int tmp = 0;
 		Field[][] field = board.getField();
-		
+
 		Method method = new Method();
 		method.setDices(5);
 		method.setField(field[0][0]);
+		connectedFields = method.getNbrFields();
 		CountFields countfields = new CountFields(method);
 		Invoker invoker = new Invoker();
-		invoker.addCommand(countfields);
-		
-		
+		invoker.setCommand(countfields);
+
 		numberOfFields = board.getLength() * board.getLength();
 		boolean[] visit = new boolean[numberOfFields];
 		for (int x = 0; x < board.getLength(); x++) {
@@ -29,26 +31,16 @@ public abstract class FieldHandler {
 					continue;
 				if (Walktrough.checkVisit(field[x][y], visit))
 					continue;
-				Walktrough.walkTroughFields(field[x][y], visit,invoker);
-				amountOfconnectedFields++;
-				System.out.println(method.getNbrFields());
+				Walktrough.walkTroughFields(field[x][y], visit, invoker, method);
+				tmp = method.getNbrFields();
+				if (connectedFields < tmp)
+					connectedFields = tmp;
 				method.resetNbrFields();
 
 			}
-			
 
 		}
-		return amountOfconnectedFields;
+		return connectedFields;
 	}
 
-	
 }
-//Method method = new Method();
-//AddDices adddices = new AddDices(method);
-//CountFields countfields = new CountFields(method);
-//
-//Invoker invoker = new Invoker();
-//invoker.addCommand(adddices);
-//invoker.executeAdd();
-//invoker.addCommand(countfields);
-//invoker.executeAdd();
