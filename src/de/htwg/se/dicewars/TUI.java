@@ -1,9 +1,13 @@
 package de.htwg.se.dicewars;
 
+
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
-public class TUI {
+import interfaces.TuiInterface;
+
+public class TUI implements TuiInterface{
+
 	String console;
 
 	public TUI() {
@@ -167,5 +171,7 @@ public class TUI {
 		}
 		this.setConsole(endValue); 
 	}
+
+	
 
 }
