@@ -40,7 +40,7 @@ public class Field {
 		this.fieldNumber = fieldNumber;
 	}
 
-	public int setNumberOfDices(int dices) {
+	public int addNumberOfDices(int dices) {
 		int returnDices = 0;
 		if (this.numberOfDices + dices > 8) {
 			returnDices=dices-(8-this.numberOfDices);
@@ -49,6 +49,10 @@ public class Field {
 		}
 		this.numberOfDices = dices;
 		return returnDices;
+	}
+	public void setNumberOfDices(int dices) {
+		this.numberOfDices = dices;
+		
 	}
 
 	public Field[] getNachbar() {

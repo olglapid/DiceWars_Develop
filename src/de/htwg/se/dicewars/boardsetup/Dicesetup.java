@@ -7,7 +7,7 @@ public abstract class Dicesetup {
 		int returnDices = 0;
 		int tmp = field.getNumberOfDices();
 		tmp += amount;
-		returnDices = field.setNumberOfDices(tmp);
+		returnDices = field.addNumberOfDices(tmp);
 		return returnDices;
 	}
 

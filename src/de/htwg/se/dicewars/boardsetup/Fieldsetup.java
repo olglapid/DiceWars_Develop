@@ -1,5 +1,6 @@
 package de.htwg.se.dicewars.boardsetup;
 
+import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
 
 public abstract class Fieldsetup {
@@ -60,9 +61,9 @@ public abstract class Fieldsetup {
 		int value;
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
-				value = getNeighborfromIndex(j, i);
+				value = Fieldhandler.getNeighborfromIndex(j, i);
 
-				if (!checkNeighborIndex(fieldTmp[a][b], j, i, fieldTmp.length)) {
+				if (!Fieldhandler.checkNeighborIndex(fieldTmp[a][b], j, i, fieldTmp.length)) {
 					fieldTmp[a][b].getNachbar()[value] = null;
 				} else {
 
@@ -73,110 +74,7 @@ public abstract class Fieldsetup {
 		return fieldTmp[a][b];
 	}
 
-	public static boolean checkNeighborIndex(Field node, int nextx, int nexty, int fieldSize) {
 
-		if (!checkNoIndent(node, nextx, nexty))
-			return false;
-		if (!checkIndent(node, nextx, nexty))
-			return false;
-		if (!checkx(node, nextx, fieldSize))
-			return false;
-		if (!checky(node, nexty, fieldSize))
-			return false;
-
-		return true;
-	}
-
-	public static boolean checkNoIndent(Field node, int x, int y) {
-		if (node.getX() % 2 == 0) {
-			if (x == y && x >= 0)
-				return false;
-			if (x + y == 0 && x == -1) {
-				return false;
-			}
-
-		}
-		return true;
-	}
-
-	public static boolean checkIndent(Field node, int x, int y) {
-		if (node.getX() % 2 != 0) {
-			if (x == y && x <= 0)
-				return false;
-			if (x + y == 0 && y == -1) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-
-	public static boolean checkx(Field node, int x, int fieldSize) {
-		if (node.getX() + x > fieldSize - 1 || node.getX() + x < 0)
-			return false;
-		return true;
-	}
-
-	public static boolean checky(Field node, int y, int fieldSize) {
-		if (node.getY() + y > fieldSize - 1 || node.getY() + y < 0)
-			return false;
-		return true;
-	}
-
-	/* -------------------------------------------------- */
-	/* jede Index operation hat ihren festen platz im nachbarfeld */
-	public static int getNeighborfromIndex(int x, int y) {
-		if (x + y < 1)
-			return xPlusyLowerOne(x, y);
-
-		return xPlusyHigherZero(x, y);
-
-	}
-
-	public static int xPlusyLowerOne(int x, int y) {
-		if (x + y == -1) {
-			return xPlusyNegativeOne(x);
-		} else if (x + y == 0) {
-			return xPlusyZero(x);
-		} else if (x + y == -2) {
-			return 7;
-		}
-
-		return -1;
-
-	}
-
-	public static int xPlusyHigherZero(int x, int y) {
-		if (x + y == 1) {
-			return xPlusyOne(x);
-		} else if (x + y == 2) {
-			return 5;
-		}
-		return -1;
-	}
-
-	public static int xPlusyZero(int x) {
-		if (x == -1)
-			return 4;
-		return 6;
-
-	}
-
-	public static int xPlusyOne(int x) {
-		if (x == 1)
-			return 1;
-		return 0;
-
-	}
-
-	public static int xPlusyNegativeOne(int x) {
-		if (x == -1)
-			return 3;
-		return 2;
-
-	}
-
-	/* -------------------------------------------------- */
 	
 	public static Field connectNodes(Field[][] field, Field node, int numberOfFields, int fieldSize) {
 		if (numberOfFields == 1)
@@ -197,9 +95,9 @@ public abstract class Fieldsetup {
 			if (vorzeichenx == 1)
 				nextx = nextx * (-1);
 
-		} while (!checkNeighborIndex(node, nextx, nexty, fieldSize));
+		} while (!Fieldhandler.checkNeighborIndex(node, nextx, nexty, fieldSize));
 
-		index = getNeighborfromIndex(nextx, nexty);
+		index = Fieldhandler.getNeighborfromIndex(nextx, nexty);
 
 		if (field[node.getX() + nextx][node.getY() + nexty] != null) {
 			node.getNachbar()[index] = field[node.getX() + nextx][node.getY() + nexty];
