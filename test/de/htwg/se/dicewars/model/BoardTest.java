@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.model;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 
-public class BoardTestClass {
+public class BoardTest {
 
 
 

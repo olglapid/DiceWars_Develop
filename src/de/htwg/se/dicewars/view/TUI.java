@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.view;
 
 
 import de.htwg.se.dicewars.model.Board;

@@ -10,6 +10,7 @@ import de.htwg.se.dicewars.controller.impl.FieldHandler;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Dice;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.view.TUI;
 
 import org.apache.logging.log4j.LogManager;
 

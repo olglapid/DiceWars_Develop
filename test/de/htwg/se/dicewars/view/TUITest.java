@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.view;
 
 import static org.junit.Assert.*;
 
@@ -7,8 +7,9 @@ import org.junit.Test;
 import de.htwg.se.dicewars.BoardSetup.BoardSetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.view.TUI;
 
-public class TUITestClass {
+public class TUITest {
 
 //	@Test
 //	public final void testTUI() {

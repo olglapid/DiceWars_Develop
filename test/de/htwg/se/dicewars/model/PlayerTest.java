@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars;
+package de.htwg.se.dicewars.model;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import de.htwg.se.dicewars.model.Player;
 
-public class PlayerTestClass {
+public class PlayerTest {
 
 	@Test
 	public final void testPlayer() {
