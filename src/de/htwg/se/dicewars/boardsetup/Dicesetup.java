@@ -1,6 +1,5 @@
 package de.htwg.se.dicewars.boardsetup;
 
-import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
 public abstract class Dicesetup {
@@ -14,7 +13,7 @@ public abstract class Dicesetup {
 
 	public static int getDicesRandom(int dices, int value) {
 		int random = 0;
-		if (dices == 0)
+		if (dices <= 0)
 			return 0;
 		do {
 			random = Convertmethods.randomNumber(value);
@@ -22,9 +21,8 @@ public abstract class Dicesetup {
 		return random;
 	}
 
-	public boolean checkDicesAdd(Board board, int x, int y) {
-		Field[][] field = board.getField();
-		if (field[x][y].getNumberOfDices() > 7) {
+	public static boolean checkDicesAdd(Field field) {
+		if (field.getNumberOfDices() > 7) {
 			return true;
 		}
 		return false;

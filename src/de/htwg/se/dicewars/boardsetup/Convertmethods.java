@@ -26,7 +26,7 @@ public abstract class Convertmethods {
 	}
 
 	/* returns the biggest element */
-	public int getMax(int[] list) {
+	public static int getMax(int[] list) {
 		int tmp = 0;
 		for (int i = 0; i < list.length; i++) {
 			if (list[i] > tmp) {
@@ -36,7 +36,7 @@ public abstract class Convertmethods {
 		return tmp;
 	}
 
-	public boolean checkEmptyList(int[] list) {
+	public static boolean checkEmptyList(int[] list) {
 		for (int i = 0; i < list.length; i++) {
 			if (list[i] > 0) {
 				return false;

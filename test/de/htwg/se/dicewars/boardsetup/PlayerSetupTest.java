@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars.BoardSetup;
+package de.htwg.se.dicewars.boardsetup;
 
 import static org.junit.Assert.*;
 
