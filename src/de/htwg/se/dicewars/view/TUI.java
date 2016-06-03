@@ -183,8 +183,7 @@ public class TUI implements TuiInterface {
 		int fieldSize = 0;
 		int numberOfFields = 0;
 		int tmpNbrOfPlayer = 0;
-		
-		TUI tmpConsole = new TUI();
+
 		final String newline = System.getProperty("line.separator");
 		Controller controller = new Controller();
 		
@@ -221,11 +220,11 @@ public class TUI implements TuiInterface {
 		controller.connectPlayerToBoard(listOfPlayer);
 		controller.setfieldSize(fieldSize);
 		
-		tmpConsole.tui(controller.getBoard().getLength(), controller.getBoard());
-		controller.setTUI(tmpConsole);
+		tui(controller.getBoard().getLength(), controller.getBoard());
+		
 		
 	
-		log4j.info(newline + tmpConsole.getConsole());
+		log4j.info(newline + this.console);
 
 	}
 
