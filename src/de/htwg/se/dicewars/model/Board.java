@@ -5,38 +5,14 @@ import de.htwg.se.dicewars.BoardSetup.ConvertMethods;
 public class Board {
 	private Field[][] brd;
 	private int length;
-	private int[] owner;
-	private boolean[] fieldsExists;
 
-	public Board(int fieldSize) {
-		brd = new Field[ConvertMethods.converteFieldSize(fieldSize)][ConvertMethods.converteFieldSize(fieldSize)];
-		length = brd.length;
-		owner = new int[fieldSize];
-		fieldsExists = new boolean[fieldSize];
-		for (int i = 0; i < fieldSize; i++) {
-			owner[i] = -1;
-			fieldsExists[i] = false;
-		}
+	public Board() {
+		brd = null;
+		length = 0;
 	}
 
 	public void setField(Field[][] field) {
 		this.brd = field;
-	}
-
-	public void setOwner(int nbr, int index) {
-		this.owner[index] = nbr;
-	}
-
-	public int getOwner(int index) {
-		return this.owner[index];
-	}
-
-	public void setExField(int index) {
-		this.fieldsExists[index] = true;
-	}
-
-	public boolean getExField(int index) {
-		return this.fieldsExists[index];
 	}
 
 	public void setLength(int length) {

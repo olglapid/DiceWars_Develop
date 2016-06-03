@@ -18,8 +18,9 @@ public abstract class BoardSetup {
 
 		FieldSetup.connectNodes(field, node, numberOfFields, matrixSize);
 		FieldSetup.connectFields(field);
-		Board board = new Board(fieldSize);
+		Board board = new Board();
 		board.setField(field);
+		board.setLength(matrixSize);
 
 		return board;
 	}
@@ -35,6 +36,7 @@ public abstract class BoardSetup {
 				if (field[x][y] == null)
 					continue;
 				index = ConvertMethods.wuerfelnOhneZurueckLegen(listOfFields);
+				System.out.println(index);
 				field[x][y].setOwner(listOfPlayer[index]);
 				DiceSetup.addDice(field[x][y], 1);
 				PlayerSetup.addDicesToPlayer(listOfPlayer, index, 1);
