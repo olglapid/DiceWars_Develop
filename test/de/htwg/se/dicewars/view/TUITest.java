@@ -173,7 +173,7 @@ public class TUITest {
 	@Test
 	public final void testGlobalPrint() {
 		TUI console = new TUI();
-		Board board = new Board(64);
+		Board board = new Board();
 		board = BoardSetup.createField(64, 49);
 		String value2 = "";
 		String tmp = "";
