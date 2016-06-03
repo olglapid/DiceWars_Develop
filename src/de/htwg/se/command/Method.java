@@ -1,6 +1,6 @@
 package de.htwg.se.command;
 
-import de.htwg.se.dicewars.BoardSetup.DiceSetup;
+import de.htwg.se.dicewars.boardsetup.Dicesetup;
 import de.htwg.se.dicewars.model.Field;
 
 public class Method {
@@ -10,7 +10,7 @@ public class Method {
 	private int nbrFields=0;
 
 	public void addDices() {
-		dices = DiceSetup.addDice(field, dices);
+		dices = Dicesetup.addDice(field, dices);
 	}
 
 	public void countFields() {

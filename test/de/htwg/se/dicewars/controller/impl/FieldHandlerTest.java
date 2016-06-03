@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.se.dicewars.BoardSetup.BoardSetup;
-import de.htwg.se.dicewars.BoardSetup.ConvertMethods;
-import de.htwg.se.dicewars.BoardSetup.FieldSetup;
+import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.boardsetup.Fieldsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
@@ -15,7 +15,7 @@ public class FieldHandlerTest {
 	@Test
 	public final void countConnectedFields() {
 		Board board = new Board();
-		board = BoardSetup.createField(9, 7);
+		board = Boardsetup.createField(9, 7);
 		Field field[][] = board.getField();
 		Field dummyfield = new Field();
 		int flds =0;
@@ -31,7 +31,7 @@ public class FieldHandlerTest {
 				}
 			}
 		}
-		flds = FieldHandler.countConnectedFields(board);
+		flds = Fieldhandler.countConnectedFields(board);
 		System.out.println(flds);
 		assertEquals(7, flds);
 	}

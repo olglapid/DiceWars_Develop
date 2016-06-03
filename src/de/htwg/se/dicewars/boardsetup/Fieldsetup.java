@@ -1,8 +1,8 @@
-package de.htwg.se.dicewars.BoardSetup;
+package de.htwg.se.dicewars.boardsetup;
 
 import de.htwg.se.dicewars.model.Field;
 
-public abstract class FieldSetup {
+public abstract class Fieldsetup {
 	/* reserve space for Field */
 	public static Field initSingleField(Field[][] field, int x, int y) {
 		Field node = new Field();
@@ -188,10 +188,10 @@ public abstract class FieldSetup {
 		int index;
 
 		do {
-			nextx = ConvertMethods.randomNumber(2);
-			nexty = ConvertMethods.randomNumber(2);
-			vorzeichenx = ConvertMethods.randomNumber(2);
-			vorzeicheny = ConvertMethods.randomNumber(2);
+			nextx = Convertmethods.randomNumber(2);
+			nexty = Convertmethods.randomNumber(2);
+			vorzeichenx = Convertmethods.randomNumber(2);
+			vorzeicheny = Convertmethods.randomNumber(2);
 			if (vorzeicheny == 1)
 				nexty = nexty * (-1);
 			if (vorzeichenx == 1)
@@ -215,7 +215,7 @@ public abstract class FieldSetup {
 	public static void handleRest(int[] list, int rest) {
 		int index = 0;
 		for (int i = 0; i < rest; i++) {
-			index = ConvertMethods.randomNumber(list.length);
+			index = Convertmethods.randomNumber(list.length);
 			list[index] += 1;
 		}
 	}

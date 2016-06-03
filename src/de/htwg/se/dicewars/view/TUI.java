@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.dicewars.DiceStart;
-import de.htwg.se.dicewars.BoardSetup.ConvertMethods;
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
@@ -210,7 +210,7 @@ public class TUI implements TuiInterface {
 			listOfPlayer[i] = new Player();
 			listOfPlayer[i].setName(eingabe);
 			listOfPlayer[i].setPlayerNr(i);
-			listOfPlayer[i].createField(ConvertMethods.converteFieldSize(fieldSize));
+			listOfPlayer[i].createField(Convertmethods.converteFieldSize(fieldSize));
 
 		}
 		sc.close();

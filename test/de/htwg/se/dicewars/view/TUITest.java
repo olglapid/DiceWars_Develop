@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.se.dicewars.BoardSetup.BoardSetup;
+import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.view.TUI;
@@ -121,7 +121,7 @@ public class TUITest {
 		String value2 = "";
 		String tmp = "";
 
-		board = BoardSetup.createField(64, 32);
+		board = Boardsetup.createField(64, 32);
 		Field[][] field = board.getField();
 		value1 = console.printBox(board, value1, 0, 0);
 		for (int i = 0; i < board.getLength(); i++) {
@@ -174,7 +174,7 @@ public class TUITest {
 	public final void testGlobalPrint() {
 		TUI console = new TUI();
 		Board board = new Board();
-		board = BoardSetup.createField(64, 49);
+		board = Boardsetup.createField(64, 49);
 		String value2 = "";
 		String tmp = "";
 		console.globalPrint(board);

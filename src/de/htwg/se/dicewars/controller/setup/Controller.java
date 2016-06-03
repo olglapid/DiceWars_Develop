@@ -1,20 +1,18 @@
 package de.htwg.se.dicewars.controller.setup;
 
-import de.htwg.se.dicewars.BoardSetup.BoardSetup;
+import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.view.TUI;
 
 public class Controller {
 
-	private TUI console;
 	private Board board;
 	private Player[] playerlist;
 	private int numberOfFields;
 	private int fieldSize;
 
 	public Controller() {
-		console = null;
 		board = null;
 		playerlist = null;
 		numberOfFields = 0;
@@ -27,12 +25,8 @@ public class Controller {
 		return false;
 	}
 
-	public void setfieldSize(int tmpFieldSize){
-		this.fieldSize=tmpFieldSize;
-	}
-	
-	public void setTUI(TUI tmpConsole) {
-		this.console = tmpConsole;
+	public void setfieldSize(int tmpFieldSize) {
+		this.fieldSize = tmpFieldSize;
 	}
 
 	public void setBoard(Board tmpBoard) {
@@ -40,19 +34,18 @@ public class Controller {
 	}
 
 	public void setPlayerlist(Player[] tmpPlayerList) {
-
+		this.playerlist = tmpPlayerList;
 	}
 
 	public void setSinglePlayer(Player player, int index) {
-		if (player != null) {
-			if (checkRange(index)) {
-				this.playerlist[index] = player;
-			}
+		if (player != null && checkRange(index)) {
+			this.playerlist[index] = player;
+
 		}
 	}
-	
-	public void setNumberOfFields(int tmpNumberOfFields){
-		this.numberOfFields=tmpNumberOfFields;
+
+	public void setNumberOfFields(int tmpNumberOfFields) {
+		this.numberOfFields = tmpNumberOfFields;
 	}
 
 	public Board getBoard() {
@@ -69,30 +62,29 @@ public class Controller {
 		return null;
 	}
 
-	public TUI getTUI() {
-		return this.console;
-	}
-	
-	public int getFieldSize(){
+	public int getFieldSize() {
 		return this.fieldSize;
 	}
-	
-	public int getNumberOfFields(){
+
+	public int getNumberOfFields() {
 		return this.numberOfFields;
 	}
 
 	public void createBoard(int fieldSize, int numberOfFields) {
-
-		if (fieldSize < numberOfFields) {
-			fieldSize = numberOfFields;
+		int tmpfieldSize = fieldSize;
+		int tmpnumberOfFields = numberOfFields;
+		if (tmpfieldSize < tmpnumberOfFields) {
+			tmpfieldSize = tmpnumberOfFields;
 		}
 		Board tmpBoard = new Board();
-		tmpBoard = BoardSetup.createField(fieldSize, numberOfFields);
+		tmpBoard = Boardsetup.createField(tmpfieldSize, tmpnumberOfFields);
+		setfieldSize(tmpfieldSize);
+		setNumberOfFields(tmpnumberOfFields);
 		setBoard(tmpBoard);
 	}
 
 	public void connectPlayerToBoard(Player[] listOfPlayer) {
 		if (this.board != null && this.numberOfFields >= 0 && listOfPlayer != null)
-			BoardSetup.playerToField(this.board, listOfPlayer, numberOfFields);
+			Boardsetup.playerToField(this.board, listOfPlayer, numberOfFields);
 	}
 }

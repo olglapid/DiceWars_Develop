@@ -1,8 +1,8 @@
-package de.htwg.se.dicewars.BoardSetup;
+package de.htwg.se.dicewars.boardsetup;
 
 import java.util.Random;
 
-public abstract class ConvertMethods {
+public abstract class Convertmethods {
 	/* returns a random number in range of value */
 	public static int randomNumber(int value) {
 		Random r = new Random();

@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
@@ -20,7 +22,7 @@ public class ConvertMethodsTest {
 			listAdd[i] = 0;
 		}
 		while (index > -1) {
-			index = ConvertMethods.wuerfelnOhneZurueckLegen(list);
+			index = Convertmethods.wuerfelnOhneZurueckLegen(list);
 			if (index > -1) {
 				listAdd[index] += 1;
 			}
@@ -36,14 +38,14 @@ public class ConvertMethodsTest {
 	public final void testFieldNumberToIndex() {
 		Board board = new Board();
 		
-		board = BoardSetup.createField(64, 64);
+		board = Boardsetup.createField(64, 64);
 		int[] index = new int[2];
 		Field[][] field = board.getField();
 
 		for (int j = 0; j < board.getLength(); j++) {
 			for (int i = 0; i < board.getLength(); i++) {
 
-				index = ConvertMethods.fieldNumberToIndex(board.getLength(), field[j][i].getFieldNumber());
+				index = Convertmethods.fieldNumberToIndex(board.getLength(), field[j][i].getFieldNumber());
 				
 				assertEquals(field[j][i].getX(), index[0]);
 				assertEquals(field[j][i].getY(), index[1]);

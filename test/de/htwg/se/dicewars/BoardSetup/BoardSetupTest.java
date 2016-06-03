@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
@@ -16,7 +17,7 @@ public class BoardSetupTest {
 		Player[] listOfPlayer = new Player[5];
 		int fieldSize = 64;
 		int numberOfFields = 43;
-		board = BoardSetup.createField(fieldSize, numberOfFields);
+		board = Boardsetup.createField(fieldSize, numberOfFields);
 		
 		int tmp = 0;
 		int dices = 0;
@@ -28,7 +29,7 @@ public class BoardSetupTest {
 		}
 
 		Field[][] field = board.getField();
-		board = BoardSetup.playerToField(board, listOfPlayer, numberOfFields);
+		board = Boardsetup.playerToField(board, listOfPlayer, numberOfFields);
 		
 		for (int x = 0; x < board.getLength(); x++) {
 			for (int y = 0; y < board.getLength(); y++) {

@@ -6,7 +6,7 @@ import de.htwg.se.command.Method;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
-public abstract class FieldHandler {
+public abstract class Fieldhandler {
 
 	/* returns the largest connected Field */
 	public static int countConnectedFields(Board board) {

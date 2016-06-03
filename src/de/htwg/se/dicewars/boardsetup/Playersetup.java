@@ -1,14 +1,14 @@
-package de.htwg.se.dicewars.BoardSetup;
+package de.htwg.se.dicewars.boardsetup;
 
 
 import de.htwg.se.dicewars.model.Player;
 
-public abstract class PlayerSetup {
+public abstract class Playersetup {
 	/*Returns a random Player form list*/
 	public int getPlayerIndex(int[] playerGet) {
 		int index = 0;
 		do {
-			index = ConvertMethods.randomNumber(playerGet.length);
+			index = Convertmethods.randomNumber(playerGet.length);
 		} while (playerGet[index] == 0);
 		return index;
 	}
@@ -22,27 +22,26 @@ public abstract class PlayerSetup {
 	
 	public void handOutDices(Player player, int length) {
 		int numberOfDices = player.getNumberOfDices();
-		int dices;
 		int ctr = 1;
 		int[] index;
 		while (numberOfDices > 0) {
 			if (ctr > length) {
 				ctr = 1;
 			}
-			if (ConvertMethods.randomNumber(1) == 0) {
+			if (Convertmethods.randomNumber(1) == 0) {
 				ctr++;
 				continue;
 			}
-			index = ConvertMethods.fieldNumberToIndex(length, ctr);
+			index = Convertmethods.fieldNumberToIndex(length, ctr);
 
 			if (player.getFieldFromIndex(index[0], index[1]) == null) {
 				ctr++;
 				continue;
 			}
 			if (numberOfDices > 7) {
-				dices = DiceSetup.getDicesRandom(numberOfDices, 7);
+				Dicesetup.getDicesRandom(numberOfDices, 7);
 			} else {
-				dices = DiceSetup.getDicesRandom(numberOfDices, numberOfDices);
+				Dicesetup.getDicesRandom(numberOfDices, numberOfDices);
 			}
 
 		}

@@ -1,9 +1,9 @@
-package de.htwg.se.dicewars.BoardSetup;
+package de.htwg.se.dicewars.boardsetup;
 
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
-public abstract class DiceSetup {
+public abstract class Dicesetup {
 	public static int addDice(Field field, int amount) {
 		int returnDices = 0;
 		int tmp = field.getNumberOfDices();
@@ -17,7 +17,7 @@ public abstract class DiceSetup {
 		if (dices == 0)
 			return 0;
 		do {
-			random = ConvertMethods.randomNumber(value);
+			random = Convertmethods.randomNumber(value);
 		} while (dices - random < 0);
 		return random;
 	}

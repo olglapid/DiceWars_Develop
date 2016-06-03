@@ -7,7 +7,7 @@ import org.junit.Test;
 import de.htwg.se.command.CountFields;
 import de.htwg.se.command.Invoker;
 import de.htwg.se.command.Method;
-import de.htwg.se.dicewars.BoardSetup.BoardSetup;
+import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
@@ -16,7 +16,7 @@ public class WalktroughTest {
 	@Test
 	public final void walkTroughFieldsTest() {
 		Board board = new Board();
-		board = BoardSetup.createField(64, 64);
+		board = Boardsetup.createField(64, 64);
 		boolean[] visit = new boolean[64];
 		Field[][] field = board.getField();
 		Field tmpField = field[0][0];

@@ -66,7 +66,4 @@ public class Player {
 		return this.numberOfDices;
 	}
 
-//	public int numberOfConnectedFields() {
-//		static boolean[] tmp = new boolean[myFields.length];
-//	}
 }
