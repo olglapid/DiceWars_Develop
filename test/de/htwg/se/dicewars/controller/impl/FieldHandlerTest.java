@@ -14,7 +14,7 @@ public class FieldHandlerTest {
 
 	@Test
 	public final void countConnectedFields() {
-		Board board = new Board(9);
+		Board board = new Board();
 		board = BoardSetup.createField(9, 7);
 		Field field[][] = board.getField();
 		Field dummyfield = new Field();

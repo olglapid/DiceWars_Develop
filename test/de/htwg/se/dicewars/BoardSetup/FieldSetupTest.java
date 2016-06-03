@@ -63,7 +63,7 @@ public class FieldSetupTest {
 
 	@Test
 	public final void testCheckNeighborIndex() {
-		Board field = new Board(9);
+		Board field = new Board();
 		Field node[] = new Field[9];
 		node[0] = new Field();
 		node[1] = new Field();
@@ -187,7 +187,7 @@ public class FieldSetupTest {
 
 	@Test
 	public final void testGetNeighborfromIndex() {
-		Board testField = new Board(3);
+		Board testField = new Board();
 		assertEquals(7, FieldSetup.getNeighborfromIndex(-1, -1));
 		assertEquals(3, FieldSetup.getNeighborfromIndex(-1, 0));
 		assertEquals(2, FieldSetup.getNeighborfromIndex(0, -1));
@@ -203,7 +203,7 @@ public class FieldSetupTest {
 
 	@Test
 	public final void testSetNeigbors() {
-		Board board = new Board(3);
+		Board board = new Board();
 		Field[][] field = new Field[3][3];
 
 		for (int j = 0; j < 3; j++) {

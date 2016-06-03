@@ -15,7 +15,7 @@ public class WalktroughTest {
 
 	@Test
 	public final void walkTroughFieldsTest() {
-		Board board = new Board(64);
+		Board board = new Board();
 		board = BoardSetup.createField(64, 64);
 		boolean[] visit = new boolean[64];
 		Field[][] field = board.getField();

@@ -116,7 +116,7 @@ public class TUITest {
 	@Test
 	public final void testPrintBox() {
 		TUI console = new TUI();
-		Board board = new Board(64);
+		Board board = new Board();
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";

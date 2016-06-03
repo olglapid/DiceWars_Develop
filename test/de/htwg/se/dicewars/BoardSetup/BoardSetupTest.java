@@ -12,7 +12,7 @@ public class BoardSetupTest {
 
 	@Test
 	public final void testplayerToField() {
-		Board board = new Board(64);
+		Board board = new Board();
 		Player[] listOfPlayer = new Player[5];
 		int fieldSize = 64;
 		int numberOfFields = 43;
