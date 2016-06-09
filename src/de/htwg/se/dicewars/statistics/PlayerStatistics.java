@@ -1,6 +1,6 @@
 package de.htwg.se.dicewars.statistics;
 
-import de.htwg.se.dicewars.controller.impl.FieldHandlerTest;
+
 import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
