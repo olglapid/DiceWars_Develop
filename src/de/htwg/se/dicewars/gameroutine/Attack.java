@@ -7,13 +7,31 @@ import de.htwg.se.dicewars.state.Status;
 
 public class Attack {
 	private Status status;
-	
+	private Field field;
+	private Field neighbour;
+	public Attack(){
+		status=Status.New;
+		field=null;
+		neighbour=null;
+	}
+	public void setField(Field field){
+		this.field=field;
+	}
+	public void setNeighbour(Field field){
+		this.neighbour=field;
+	}
 	public void setStatus(Status tmpMessege) {
 		this.status = tmpMessege;
 	}
 
 	public Status getStatus() {
 		return this.status;
+	}
+	public Field getNeighbour(){
+		return this.neighbour;
+	}
+	public Field getField(){
+		return this.field;
 	}
 
 	public void checkAttack(Field field, int fieldSize, int attackX, int attackY) {
@@ -61,7 +79,7 @@ public class Attack {
 		attack = field.getNumberOfDices();
 		defend = tmp.getFieldNumber();
 
-		rtdAttack = Convertmethods.randomNumber(attack * 6);
+		rtdAttack = Convertmethods.randomNumber(attack * 6); //STIMMT NICHT DA 0 RAUS KOMMEN KANN
 		rtdDefend = Convertmethods.randomNumber(defend * 6);
 
 		if (rtdAttack <= rtdDefend) {
@@ -69,6 +87,8 @@ public class Attack {
 		} else {
 			setStatus(Status.Attack_Success);
 		}
+		setField(field);
+		setNeighbour(field.getNachbar()[index]);
 	}
 
 	public void attackroutine(Field field, int fieldSize, int attackX, int attackY) {

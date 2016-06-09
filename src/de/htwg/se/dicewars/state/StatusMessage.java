@@ -18,6 +18,12 @@ public class StatusMessage {
 		 text.put(Status.Valid_Attack, "Attack is valid");
 		 text.put(Status.Attack_Success, "U WOT M8: REKT");
 		 text.put(Status.Attack_Failed, "TOP KEK: U GOT REKT");
+		 text.put(Status.Dice_Error0,"DiceHandler Error: Not enough dices");
+		 text.put(Status.New, "New Object");
+		 text.put(Status.Player_Updated, "Player updated");
+		 text.put(Status.Nothing_To_Update, "Nothing to update");
+		 text.put(Status.Interrupt_routine, "Gameroutine interrupted");
+		 text.put(Status.PlayersTurn_Error, "Wrong order of Player");
 		 
 	 }
 

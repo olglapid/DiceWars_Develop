@@ -29,7 +29,7 @@ public class FieldHandlerTest {
 				}
 			}
 		}
-		flds = Fieldhandler.countConnectedFields(board);
+		flds = Fieldhandler.countConnectedFields(board.getField());
 		System.out.println(flds);
 		assertEquals(7, flds);
 	}

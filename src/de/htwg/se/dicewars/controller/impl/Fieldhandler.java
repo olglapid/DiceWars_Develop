@@ -9,11 +9,22 @@ import de.htwg.se.dicewars.model.Field;
 public abstract class Fieldhandler {
 
 	/* returns the largest connected Field */
-	public static int countConnectedFields(Board board) {
+	public static int countFields(Field[][] field){
+		int amount=0;
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field.length; j++) {
+				if(field[i][j]==null)
+					continue;
+				amount++;
+			}
+		}
+		return amount;
+	}
+	public static int countConnectedFields(Field[][] field) {
 		int numberOfFields = 0;
 		int connectedFields = 0;
 		int tmp = 0;
-		Field[][] field = board.getField();
+		//Field[][] field = board.getField();
 
 		Method method = new Method();
 		method.setDices(5);
@@ -22,11 +33,10 @@ public abstract class Fieldhandler {
 		CountFields countfields = new CountFields(method);
 		Invoker invoker = new Invoker();
 		invoker.setCommand(countfields);
-
-		numberOfFields = board.getLength() * board.getLength();
+		numberOfFields = field.length * field.length;
 		boolean[] visit = new boolean[numberOfFields];
-		for (int x = 0; x < board.getLength(); x++) {
-			for (int y = 0; y < board.getLength(); y++) {
+		for (int x = 0; x < field.length; x++) {
+			for (int y = 0; y <field.length; y++) {
 				if (field[x][y] == null)
 					continue;
 				if (Walktrough.checkVisit(field[x][y], visit))

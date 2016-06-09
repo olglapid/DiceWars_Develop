@@ -1,14 +1,28 @@
 package de.htwg.se.dicewars.model;
 
-public class Dice {
-	private Dice() {
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
 
+/*Noch einzubauen*/
+public class Dice {
+	private int sides;
+
+	public Dice() {
+		sides = 6;
 	}
 
-	public static Player initDiceToField(Player player, int numberOfFields) {
-		player.setNumberOfFields(numberOfFields); // Muss noch angepasst werde,
-												// da unfair
-		return player;
+	public void setSides(int side) {
+		this.sides = side;
+	}
+
+	public int getSides() {
+		return this.sides;
+	}
+
+	public int rollTheDice() {
+		int result;
+		result = Convertmethods.randomNumber(sides);
+		result++;
+		return result;
 	}
 
 }

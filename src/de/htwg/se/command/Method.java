@@ -21,6 +21,7 @@ public class Method {
 		field = tmpField;
 	}
 
+
 	public void setDices(int nbr) {
 		dices = nbr;
 	}

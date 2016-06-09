@@ -1,5 +1,6 @@
 package de.htwg.se.dicewars.controller.impl;
 
+import de.htwg.se.command.Command;
 import de.htwg.se.command.Invoker;
 import de.htwg.se.command.Method;
 import de.htwg.se.dicewars.model.Field;
@@ -33,7 +34,9 @@ public abstract class Walktrough {
 		method.setField(node);
 		
 		visit = visitField(node, visit);
+		
 		invoker.executeMethod();
+		
 		for (int i = 0; i < neighborsList.length; i++) {
 			if (neighborsList[i] == null)
 				continue;
