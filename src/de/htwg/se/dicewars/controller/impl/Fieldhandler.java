@@ -5,6 +5,7 @@ import de.htwg.se.command.Invoker;
 import de.htwg.se.command.Method;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.statistics.Statistics;
 
 public abstract class Fieldhandler {
 
@@ -24,7 +25,7 @@ public abstract class Fieldhandler {
 		int numberOfFields = 0;
 		int connectedFields = 0;
 		int tmp = 0;
-		//Field[][] field = board.getField();
+		Statistics stats=new Statistics();
 
 		Method method = new Method();
 		method.setDices(5);
