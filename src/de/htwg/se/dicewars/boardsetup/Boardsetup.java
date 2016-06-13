@@ -1,5 +1,6 @@
 package de.htwg.se.dicewars.boardsetup;
 
+import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
@@ -45,5 +46,16 @@ public abstract class Boardsetup {
 		}
 		board.setField(field);
 		return board;
+	}
+	public static void spreadDices(Board board, Player[] listOfPlayer, int numberOfFields){
+		Field[][] field;
+		field=listOfPlayer[0].getField();
+		int dicesToAdd=Fieldhandler.countFields(field);
+		listOfPlayer[0].setNumberOfDices(dicesToAdd);
+		for (int i = 1; i < listOfPlayer.length; i++) {
+			field=listOfPlayer[i].getField();
+			listOfPlayer[i].setNumberOfDices(dicesToAdd);
+			
+		}
 	}
 }

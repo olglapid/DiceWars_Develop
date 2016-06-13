@@ -18,11 +18,6 @@ public class Dice {
 		return this.sides;
 	}
 
-	public int rollTheDice() {
-		int result;
-		result = Convertmethods.randomNumber(sides);
-		result++;
-		return result;
-	}
+
 
 }

@@ -12,6 +12,6 @@ public class AddDices implements Command {
 		return this.method;
 	}
 	public void execute(){
-		method.addDices();
+		this.method.addDices();
 	}
 }

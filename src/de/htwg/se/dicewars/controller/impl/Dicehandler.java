@@ -2,7 +2,9 @@ package de.htwg.se.dicewars.controller.impl;
 
 import de.htwg.se.dicewars.gameroutine.Attack;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
+import de.htwg.se.dicewars.statistics.Statistics;
 
 public class Dicehandler {
 	private Status status;
@@ -29,6 +31,10 @@ public class Dicehandler {
 		field.setNumberOfDices(1);
 		if(attack.getStatus()==Status.Attack_Success)
 			neighbour.setNumberOfDices(dices);
+		
+	}
+	public void addDices(Player player){
+		Statistics stats = new Statistics();
 		
 	}
 }

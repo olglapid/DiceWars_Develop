@@ -222,6 +222,7 @@ public class TUI implements TuiInterface {
 		
 		tui(controller.getBoard().getLength(), controller.getBoard());
 		
+		controller.spreadDicesToField(controller.getBoard(), listOfPlayer);
 		
 	
 		log4j.info(newline + this.console);

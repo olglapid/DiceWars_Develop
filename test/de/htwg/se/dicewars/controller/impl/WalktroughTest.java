@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.se.command.CountFields;
-import de.htwg.se.command.Invoker;
-import de.htwg.se.command.Method;
+
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
-import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.statistics.Statistics;
+import de.htwg.se.dicewars.strategy.AddDices;
+import de.htwg.se.dicewars.strategy.Context;
 
 public class WalktroughTest {
 
@@ -22,15 +22,13 @@ public class WalktroughTest {
 		boolean[] visit = new boolean[64];
 		Field[][] field = board.getField();
 		Field tmpField = field[0][0];
-		Method method = new Method();
-		method.setDices(5);
-		method.setField(field[0][0]);
-		CountFields countfields = new CountFields(method);
-		Invoker invoker = new Invoker();
-		invoker.setCommand(countfields);
+		
+		Statistics stats=new Statistics();
+		Context context = new Context(new AddDices());
 
-		assertEquals(tmpField, Walktrough.walkTroughFields(tmpField, visit, invoker, method));
-		assertEquals(null, Walktrough.walkTroughFields(null, visit, invoker, method));
+
+		assertEquals(tmpField, Walktrough.walkTroughFields(tmpField, visit, stats, context));
+		assertEquals(null, Walktrough.walkTroughFields(null, visit, stats, context));
 		for (int x = 0; x < field.length; x++) {
 			for (int y = 0; y < field.length; y++) {
 				if (field[x][y] == null)

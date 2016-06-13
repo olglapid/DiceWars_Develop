@@ -1,5 +1,6 @@
 package de.htwg.se.dicewars.boardsetup;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public abstract class Convertmethods {
@@ -92,4 +93,5 @@ public abstract class Convertmethods {
 		return -1;
 	}
 	/*---------------------------------------------------*/
+
 }

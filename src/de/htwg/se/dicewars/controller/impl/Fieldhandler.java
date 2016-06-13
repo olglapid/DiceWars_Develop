@@ -1,56 +1,56 @@
 package de.htwg.se.dicewars.controller.impl;
 
-import de.htwg.se.command.CountFields;
-import de.htwg.se.command.Invoker;
-import de.htwg.se.command.Method;
-import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
+import de.htwg.se.dicewars.strategy.Context;
+import de.htwg.se.dicewars.strategy.CountFields;
 
 public abstract class Fieldhandler {
 
 	/* returns the largest connected Field */
-	public static int countFields(Field[][] field){
-		int amount=0;
+	public static int countFields(Field[][] field) {
+		int amount = 0;
 		for (int i = 0; i < field.length; i++) {
 			for (int j = 0; j < field.length; j++) {
-				if(field[i][j]==null)
+				if (field[i][j] == null)
 					continue;
 				amount++;
 			}
 		}
 		return amount;
 	}
+
 	public static int countConnectedFields(Field[][] field) {
 		int numberOfFields = 0;
 		int connectedFields = 0;
 		int tmp = 0;
-		Statistics stats=new Statistics();
+		int tmp1 = 0;
+		Statistics stats = new Statistics();
 
-		Method method = new Method();
-		method.setDices(5);
-		method.setField(field[0][0]);
-		connectedFields = method.getNbrFields();
-		CountFields countfields = new CountFields(method);
-		Invoker invoker = new Invoker();
-		invoker.setCommand(countfields);
+		Context context = new Context(new CountFields());
 		numberOfFields = field.length * field.length;
 		boolean[] visit = new boolean[numberOfFields];
 		for (int x = 0; x < field.length; x++) {
-			for (int y = 0; y <field.length; y++) {
+			for (int y = 0; y < field.length; y++) {
 				if (field[x][y] == null)
 					continue;
 				if (Walktrough.checkVisit(field[x][y], visit))
 					continue;
-				Walktrough.walkTroughFields(field[x][y], visit, invoker, method);
-				tmp = method.getNbrFields();
+				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
+
+				tmp = stats.getNumberOfFields();
+				tmp1 = stats.getNumberOfConnectedFields();
+				tmp1++;
+				stats.setNumberOfConnectedFields(tmp1);
+				System.out.println(tmp);
 				if (connectedFields < tmp)
 					connectedFields = tmp;
-				method.resetNbrFields();
+				stats.setNumberOfFields(0);
 
 			}
 
 		}
+		stats.setNbrOfBiggestConnectedField(connectedFields);
 		return connectedFields;
 	}
 

@@ -87,4 +87,7 @@ public class Controller {
 		if (this.board != null && this.numberOfFields >= 0 && listOfPlayer != null)
 			Boardsetup.playerToField(this.board, listOfPlayer, numberOfFields);
 	}
+	public void spreadDicesToField(Board board,Player[] listOfPlayer){
+		Boardsetup.spreadDices(board, listOfPlayer, 0);
+	}
 }
