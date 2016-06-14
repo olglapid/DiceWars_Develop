@@ -7,41 +7,46 @@ import org.junit.Test;
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.controller.impl.Dicehandler;
 import de.htwg.se.dicewars.controller.impl.Playerhandler;
+import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
+import de.htwg.se.dicewars.view.TUI;
 
 public class GameroutineTest {
 
-	@Test public final void getAttackTest(){
+	@Test
+	public final void getAttackTest() {
 		Attack attack = new Attack();
 		Gameroutine gameroutine = new Gameroutine();
 		gameroutine.setAttack(attack);
 		assertEquals(attack, gameroutine.getAttack());
 	}
-	
-	@Test 
-	public final void getPlayerTurnTest(){
+
+	@Test
+	public final void getPlayerTurnTest() {
 		Gameroutine gameroutine = new Gameroutine();
 		gameroutine.setPlayersTurn(0);
 		assertEquals(0, gameroutine.getPlayersTurn());
 	}
-	
-	@Test 
-	public final void getPlayerUpdateTest(){
-		Playerhandler playerHandler=new Playerhandler();
+
+	@Test
+	public final void getPlayerUpdateTest() {
+		Playerhandler playerHandler = new Playerhandler();
 		Gameroutine gameroutine = new Gameroutine();
 		gameroutine.setPlayerUpdate(playerHandler);
 		assertEquals(playerHandler, gameroutine.getPlayerUpdate());
 	}
-	@Test 
-	public final void getDiceUpdateTest(){
+
+	@Test
+	public final void getDiceUpdateTest() {
 		Dicehandler dicehandler = new Dicehandler();
 		Gameroutine gameroutine = new Gameroutine();
 		gameroutine.setDiceUdate(dicehandler);
 		assertEquals(dicehandler, gameroutine.getDiceUpdate());
 	}
+
 	@Test
 	public final void test() {
 		Board board = new Board();
@@ -75,32 +80,72 @@ public class GameroutineTest {
 		field[1][2].setNumberOfDices(1);
 		field[1][0].setOwner(peter);
 		field[1][0].setNumberOfDices(8);
-		
-		gameroutine.routine(hans,field[1][0],field[1][0],3);
-		
+
+		gameroutine.routine(hans, field[1][0], field[1][0], 3);
+
 		assertEquals(Status.Invalid_Owner, gameroutine.getStatus());
-		
-		gameroutine.routine(hans,field[1][1],field[1][0],3);
-		
+
+		gameroutine.routine(hans, field[1][1], field[1][0], 3);
+
 		assertEquals(Status.Failed, gameroutine.getStatus());
-		
+
 		assertEquals(Status.Invalid_Attack_Dices, gameroutine.getAttack().getStatus());
-		
+
 		gameroutine.routine(peter, field[1][0], field[1][1], 3);
 		assertEquals(Status.Success, gameroutine.getStatus());
 		assertEquals(peter, field[1][1].getOwner());
 		assertEquals(7, field[1][1].getNumberOfDices());
 		assertEquals(1, field[1][0].getNumberOfDices());
-		
+
 		field[1][1].setOwner(hans);
 		field[1][1].setNumberOfDices(2);
 		field[1][2].setOwner(hans);
 		field[1][2].setNumberOfDices(1);
 		field[1][0].setOwner(peter);
 		field[1][0].setNumberOfDices(8);
-		
+
 		gameroutine.routine(hans, field[1][1], field[1][0], 3);
 		assertEquals(Status.Success, gameroutine.getStatus());
+
+	}
+
+	@Test
+	public void checkEndOfTurnTest() {
+		Gameroutine gameroutine = new Gameroutine();
+		Controller controller = new Controller();
+		
+		Player hans = new Player();
+		Player peter = new Player();
+		Player[] list = new Player[2];
+
+		hans.setPlayerNr(0);
+		peter.setPlayerNr(1);
+
+		hans.setName("hans");
+		peter.setName("peter");
+
+		hans.createField(3);
+		peter.createField(3);
+
+		list[0] = hans;
+		list[1] = peter;
+
+		controller.createBoard(9, 9);
+		controller.setNumberOfFields(9);
+		controller.connectPlayerToBoard(list);
+		controller.setfieldSize(9);
+
+		gameroutine.checkEndOfTurn(hans);
+
+		assertEquals(Status.End_Turn, gameroutine.getStatus());
+
+		peter.setNumberOfDices(8);
+		peter.initShuffle(null);;
+		peter.update();
+		
+		
+		gameroutine.checkEndOfTurn(peter);
+		assertEquals(Status.Valid, gameroutine.getStatus());
 		
 		
 	}

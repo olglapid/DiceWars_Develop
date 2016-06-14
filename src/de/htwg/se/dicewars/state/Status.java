@@ -20,5 +20,7 @@ public enum Status {
 	Invalid_Owner,
 	Success,
 	Failed,
+	End_Turn,
+	Valid,
 
 }

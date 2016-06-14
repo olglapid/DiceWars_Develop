@@ -2,9 +2,14 @@ package de.htwg.se.dicewars.gameroutine;
 
 import de.htwg.se.dicewars.controller.impl.Dicehandler;
 import de.htwg.se.dicewars.controller.impl.Playerhandler;
+import de.htwg.se.dicewars.controller.impl.Walktrough;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
+import de.htwg.se.dicewars.statistics.Statistics;
+import de.htwg.se.dicewars.strategy.Context;
+import de.htwg.se.dicewars.strategy.CountDices;
+import de.htwg.se.dicewars.strategy.FieldsToAttack;
 
 public class Gameroutine {
 
@@ -15,17 +20,17 @@ public class Gameroutine {
 	private int playersTurn;
 
 	public Gameroutine() {
-		attack=new Attack();
+		attack = new Attack();
 		status = Status.New;
 		playerUpdate = new Playerhandler();
 		diceUpdate = new Dicehandler();
 		playersTurn = -1;
 	}
 
-	public void setAttack(Attack attack){
-		this.attack=attack;
+	public void setAttack(Attack attack) {
+		this.attack = attack;
 	}
-	
+
 	public void setPlayersTurn(int playerNbr) {
 		this.playersTurn = playerNbr;
 	}
@@ -57,9 +62,34 @@ public class Gameroutine {
 	public int getPlayersTurn() {
 		return this.playersTurn;
 	}
-	
-	public Attack getAttack(){
+
+	public Attack getAttack() {
 		return this.attack;
+	}
+
+	public void checkEndOfTurn(Player player) {
+		Field[][] field = player.getField();
+		Statistics stats = new Statistics();
+		Context context = new Context(new FieldsToAttack());
+		int numberOfFields = field.length * field.length;
+		boolean[] visit = new boolean[numberOfFields];
+
+		stats.setPlayer(player);
+
+		for (int x = 0; x < field.length; x++) {
+			for (int y = 0; y < field.length; y++) {
+				if (field[x][y] == null || Walktrough.checkVisit(field[x][y], visit))
+					continue;
+
+				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
+			}
+		}
+
+		status = Status.Valid;
+		if (stats.getNumberOfAttackableFields() == 0) {
+			status = Status.End_Turn;
+		}
+
 	}
 
 	public void routine(Player player, Field agressor, Field defender, int fieldSize) {
@@ -75,9 +105,8 @@ public class Gameroutine {
 		if (attack.getStatus() == Status.Attack_Failed || attack.getStatus() == Status.Attack_Success) {
 			diceUpdate.updateDices(attack);
 			playerUpdate.updatePlayer(attack);
-			status=Status.Success;
+			status = Status.Success;
 		}
-		
 
 	}
 }

@@ -27,6 +27,8 @@ public class StatusMessage {
 		 text.put(Status.Invalid_Owner, "You can't attack from a field you don't own");
 		 text.put(Status.Success, "Everything ok");
 		 text.put(Status.Failed, "Someting went wrong");
+		 text.put(Status.End_Turn, "No fields to attack");
+		 text.put(Status.Valid, " ");
 		 
 	 }
 
