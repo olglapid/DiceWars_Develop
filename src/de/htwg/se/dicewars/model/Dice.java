@@ -1,5 +1,7 @@
 package de.htwg.se.dicewars.model;
 
+import java.util.Random;
+
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 
 /*Noch einzubauen*/
@@ -16,6 +18,11 @@ public class Dice {
 
 	public int getSides() {
 		return this.sides;
+	}
+	
+	public int rollTheDice(){
+		Random r = new Random();
+		return (r.nextInt(6)+1);
 	}
 
 

@@ -179,6 +179,7 @@ public class TUI implements TuiInterface {
 		this.setConsole(endValue);
 	}
 
+	
 	public void readData() {
 		int fieldSize = 0;
 		int numberOfFields = 0;
@@ -186,7 +187,6 @@ public class TUI implements TuiInterface {
 
 		final String newline = System.getProperty("line.separator");
 		Controller controller = new Controller();
-		
 
 		
 		Scanner sc = new Scanner(System.in);
@@ -224,6 +224,7 @@ public class TUI implements TuiInterface {
 		
 		controller.spreadDicesToField(controller.getBoard(), listOfPlayer);
 	
+		
 		log4j.info(newline + this.console);
 
 	}

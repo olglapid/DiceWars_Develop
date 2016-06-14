@@ -72,7 +72,6 @@ public class AttackTest {
 		assertEquals(Status.Invalid_Attack_Neighbour, attack.getStatus());
 		
 		field[1][0].setNumberOfDices(1000000);
-		System.out.println(field[1][0].getNumberOfDices());
 		
 		attack.attackroutine(field[1][0], 2, 1, 1);
 		

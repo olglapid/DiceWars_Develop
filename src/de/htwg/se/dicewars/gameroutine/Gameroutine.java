@@ -15,25 +15,31 @@ public class Gameroutine {
 	private int playersTurn;
 
 	public Gameroutine() {
+		attack=new Attack();
 		status = Status.New;
 		playerUpdate = new Playerhandler();
 		diceUpdate = new Dicehandler();
-		playersTurn=-1;
+		playersTurn = -1;
 	}
 
-	public void setPlayersTurn(int playerNbr){
-		this.playersTurn=playerNbr;
+	public void setAttack(Attack attack){
+		this.attack=attack;
 	}
+	
+	public void setPlayersTurn(int playerNbr) {
+		this.playersTurn = playerNbr;
+	}
+
 	public void setStatus(Status tmpMessege) {
 		this.status = tmpMessege;
 	}
-	
-	public void setPlayerUpdate(Playerhandler playerHandler){
-		this.playerUpdate=playerHandler;
+
+	public void setPlayerUpdate(Playerhandler playerHandler) {
+		this.playerUpdate = playerHandler;
 	}
-	
-	public void setDiceUdate(Dicehandler diceHandler){
-		this.diceUpdate=diceHandler;
+
+	public void setDiceUdate(Dicehandler diceHandler) {
+		this.diceUpdate = diceHandler;
 	}
 
 	public Status getStatus() {
@@ -47,20 +53,30 @@ public class Gameroutine {
 	public Playerhandler getPlayerUpdate() {
 		return this.playerUpdate;
 	}
-	public int getPlayersTurn(){
+
+	public int getPlayersTurn() {
 		return this.playersTurn;
 	}
+	
+	public Attack getAttack(){
+		return this.attack;
+	}
 
-	public void routine(Player player, Field aggresor, Field defender, int fieldSize) {
-		attack.setField(aggresor);
+	public void routine(Player player, Field agressor, Field defender, int fieldSize) {
+		if (agressor.getOwner() != player) {
+			setStatus(Status.Invalid_Owner);
+			return;
+		}
+
+		attack.setField(agressor);
 		attack.setNeighbour(defender);
-		attack.attackroutine(aggresor, fieldSize, defender.getX(), defender.getY());
-		status = attack.getStatus();
-		if(status == Status.Attack_Failed || status == Status.Attack_Success){
+		attack.attackroutine(agressor, fieldSize, defender.getX(), defender.getY());
+		status = Status.Failed;
+		if (attack.getStatus() == Status.Attack_Failed || attack.getStatus() == Status.Attack_Success) {
 			diceUpdate.updateDices(attack);
 			playerUpdate.updatePlayer(attack);
+			status=Status.Success;
 		}
-			
 		
 
 	}

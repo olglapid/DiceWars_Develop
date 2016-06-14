@@ -79,8 +79,8 @@ public class Attack {
 		attack = field.getNumberOfDices();
 		defend = tmp.getFieldNumber();
 
-		rtdAttack = Convertmethods.randomNumber(attack * 6); //STIMMT NICHT DA 0 RAUS KOMMEN KANN
-		rtdDefend = Convertmethods.randomNumber(defend * 6);
+		rtdAttack = field.rollTheDice();
+		rtdDefend = tmp.rollTheDice();
 
 		if (rtdAttack <= rtdDefend) {
 			setStatus(Status.Attack_Failed);

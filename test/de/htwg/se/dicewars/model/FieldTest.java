@@ -80,6 +80,17 @@ public class FieldTest {
 		field.setNumberOfDices(5);
 		assertEquals(5, field.getNumberOfDices());
 	}
+	
+	@Test
+	public final void rollTheDiceTest(){
+		Field field = new Field();
+		field.setNumberOfDices(8);
+		int gamble = field.rollTheDice();
+		assertTrue(0 < gamble && gamble<=(8*6));
+		
+	}
+	
+	
 
 	
 

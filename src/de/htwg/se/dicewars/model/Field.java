@@ -15,7 +15,7 @@ public class Field {
 		fieldNumber = 0;
 		owner = null;
 	}
-
+	
 	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
@@ -75,6 +75,16 @@ public class Field {
 
 	public int getNumberOfDices() {
 		return this.numberOfDices;
+	}
+	public int rollTheDice(){
+		Dice dice = new Dice();
+		int returnValue=0;
+		for (int i = 0; i < numberOfDices; i++) {
+			
+			returnValue+=dice.rollTheDice();
+		}
+		return returnValue;
+		
 	}
 
 }

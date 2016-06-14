@@ -24,6 +24,9 @@ public class StatusMessage {
 		 text.put(Status.Nothing_To_Update, "Nothing to update");
 		 text.put(Status.Interrupt_routine, "Gameroutine interrupted");
 		 text.put(Status.PlayersTurn_Error, "Wrong order of Player");
+		 text.put(Status.Invalid_Owner, "You can't attack from a field you don't own");
+		 text.put(Status.Success, "Everything ok");
+		 text.put(Status.Failed, "Someting went wrong");
 		 
 	 }
 

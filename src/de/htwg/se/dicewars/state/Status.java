@@ -17,5 +17,8 @@ public enum Status {
 	Interrupt_routine,
 	Dice_Error0,
 	PlayersTurn_Error,
+	Invalid_Owner,
+	Success,
+	Failed,
 
 }
