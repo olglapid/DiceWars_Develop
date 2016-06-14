@@ -1,6 +1,5 @@
 package de.htwg.se.dicewars.model;
 
-import de.htwg.se.dicewars.boardsetup.Convertmethods;
 
 public class Board {
 	private Field[][] brd;

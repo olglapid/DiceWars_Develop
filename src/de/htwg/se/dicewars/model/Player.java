@@ -90,10 +90,11 @@ public class Player {
 	}
 
 	public void initShuffle(Field[][] tmp) {
-		if (tmp == null)
-			tmp = myFields;
-		for (int x = 0; x < tmp.length; x++) {
-			for (int y = 0; y < tmp.length; y++) {
+		Field[][] field = tmp;
+		if (field == null)
+			field = myFields;
+		for (int x = 0; x < field.length; x++) {
+			for (int y = 0; y < field.length; y++) {
 				if (myFields[x][y] == null)
 					continue;
 				pushShuffledField(myFields[x][y]);
@@ -111,7 +112,7 @@ public class Player {
 		int tmp=0;
 		Field field;
 
-		if(fieldListshuffled.size() == 0)
+		if(fieldListshuffled.isEmpty())
 			return;
 		for (int i = 0; i < fieldListshuffled.size(); i++) {
 			if (numberOfDices <= 0)

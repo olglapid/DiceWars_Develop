@@ -4,6 +4,7 @@ import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
 
 public class CountDices implements Strategy {
+	@Override
 	public Statistics doOperation(Statistics stats) {
 		Field field = stats.getField();
 		int tmp;
