@@ -6,6 +6,9 @@ import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 
 public abstract class Walktrough {
+	private Walktrough(){
+		
+	}
 
 	public static boolean[] visitField(Field field, boolean[] fields) {
 		Field tmpField = field;
@@ -17,7 +20,7 @@ public abstract class Walktrough {
 	public static boolean checkVisit(Field field, boolean[] fields) {
 		Field tmpField = field;
 		int tmp = tmpField.getFieldNumber();
-		if (fields[tmp - 1] == true)
+		if (fields[tmp - 1])
 			return true;
 		return false;
 	}

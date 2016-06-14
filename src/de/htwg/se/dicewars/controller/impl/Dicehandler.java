@@ -5,10 +5,8 @@ import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
-import de.htwg.se.dicewars.strategy.AddDices;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountDices;
-import de.htwg.se.dicewars.strategy.CountFields;
 
 public class Dicehandler {
 	private Status status;
@@ -25,8 +23,8 @@ public class Dicehandler {
 		return this.status;
 	}
 
-	/*Wenn player = null dann zähle alle und nicht nur die von Player*/
-	public static int countDices(Field[][] field,Player player) {
+	/* Wenn player = null dann zähle alle und nicht nur die von Player */
+	public static int countDices(Field[][] field, Player player) {
 		Statistics stats = new Statistics();
 		Context context = new Context(new CountDices());
 		stats.setPlayer(player);
@@ -36,10 +34,9 @@ public class Dicehandler {
 
 		for (int x = 0; x < field.length; x++) {
 			for (int y = 0; y < field.length; y++) {
-				if (field[x][y] == null)
+				if (field[x][y] == null || Walktrough.checkVisit(field[x][y], visit))
 					continue;
-				if (Walktrough.checkVisit(field[x][y], visit))
-					continue;
+
 				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
 			}
 		}

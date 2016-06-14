@@ -6,7 +6,9 @@ import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 
 public abstract class Boardsetup {
-	
+	private Boardsetup(){
+		
+	}
 	
 	public static Board createField(int fieldSize, int numberOfFields) {
 
@@ -47,7 +49,7 @@ public abstract class Boardsetup {
 		board.setField(field);
 		return board;
 	}
-	public static void spreadDices(Board board, Player[] listOfPlayer, int numberOfFields){
+	public static void spreadDices(Board board, Player[] listOfPlayer){
 		Field[][] field;
 		field=listOfPlayer[0].getField();
 		int dicesToAdd=Fieldhandler.countFields(field);

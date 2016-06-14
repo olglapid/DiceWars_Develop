@@ -1,7 +1,6 @@
 package de.htwg.se.dicewars.statistics;
 
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -73,7 +72,7 @@ public class PlayerStatistics {
 	public int getAmountOfDicesStored(){
 		return this.amountOfDicesStored;
 	}
-	public void Update(){
+	public void update(){
 		Field[][] field=player.getField();
 		int connected=0;
 		int fields=0;

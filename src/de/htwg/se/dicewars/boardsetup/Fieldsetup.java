@@ -4,6 +4,9 @@ import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
 
 public abstract class Fieldsetup {
+	private Fieldsetup(){
+		
+	}
 	/* reserve space for Field */
 	public static Field initSingleField(Field[][] field, int x, int y) {
 		Field node = new Field();

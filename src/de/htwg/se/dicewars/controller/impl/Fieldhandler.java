@@ -6,6 +6,9 @@ import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountFields;
 
 public abstract class Fieldhandler {
+	private Fieldhandler(){
+		
+	}
 
 	/* returns the largest connected Field */
 	public static int countFields(Field[][] field) {
@@ -32,10 +35,9 @@ public abstract class Fieldhandler {
 		boolean[] visit = new boolean[numberOfFields];
 		for (int x = 0; x < field.length; x++) {
 			for (int y = 0; y < field.length; y++) {
-				if (field[x][y] == null)
+				if (field[x][y] == null || Walktrough.checkVisit(field[x][y], visit))
 					continue;
-				if (Walktrough.checkVisit(field[x][y], visit))
-					continue;
+				
 				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
 
 				tmp = stats.getNumberOfFields();

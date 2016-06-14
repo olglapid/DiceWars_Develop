@@ -11,6 +11,8 @@ public class AddDices implements Command {
 	public Method getMethod(){
 		return this.method;
 	}
+	
+	@Override
 	public void execute(){
 		this.method.addDices();
 	}

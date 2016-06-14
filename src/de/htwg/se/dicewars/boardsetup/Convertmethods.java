@@ -1,9 +1,12 @@
 package de.htwg.se.dicewars.boardsetup;
 
-import java.util.LinkedList;
+
 import java.util.Random;
 
 public abstract class Convertmethods {
+	private Convertmethods(){
+		
+	}
 	/* returns a random number in range of value */
 	public static int randomNumber(int value) {
 		Random r = new Random();

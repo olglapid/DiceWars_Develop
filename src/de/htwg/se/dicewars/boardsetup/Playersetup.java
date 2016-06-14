@@ -4,6 +4,9 @@ package de.htwg.se.dicewars.boardsetup;
 import de.htwg.se.dicewars.model.Player;
 
 public abstract class Playersetup {
+	private Playersetup(){
+		
+	}
 	/*Returns a random Player form list*/
 	public int getPlayerIndex(int[] playerGet) {
 		int index = 0;
@@ -28,16 +31,12 @@ public abstract class Playersetup {
 			if (ctr > length) {
 				ctr = 1;
 			}
-			if (Convertmethods.randomNumber(1) == 0) {
-				ctr++;
-				continue;
-			}
 			index = Convertmethods.fieldNumberToIndex(length, ctr);
-
-			if (player.getFieldFromIndex(index[0], index[1]) == null) {
+			if (Convertmethods.randomNumber(1) == 0 || player.getFieldFromIndex(index[0], index[1]) == null) {
 				ctr++;
 				continue;
 			}
+
 			if (numberOfDices > 7) {
 				Dicesetup.getDicesRandom(numberOfDices, 7);
 			} else {

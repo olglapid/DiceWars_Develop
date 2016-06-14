@@ -3,6 +3,9 @@ package de.htwg.se.dicewars.boardsetup;
 import de.htwg.se.dicewars.model.Field;
 
 public abstract class Dicesetup {
+	private Dicesetup(){
+		
+	}
 	public static int addDice(Field field, int amount) {
 		int returnDices = 0;
 		int tmp = field.getNumberOfDices();

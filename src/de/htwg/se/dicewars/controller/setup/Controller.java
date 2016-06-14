@@ -88,6 +88,6 @@ public class Controller {
 			Boardsetup.playerToField(this.board, listOfPlayer, numberOfFields);
 	}
 	public void spreadDicesToField(Board board,Player[] listOfPlayer){
-		Boardsetup.spreadDices(board, listOfPlayer, 0);
+		Boardsetup.spreadDices(board, listOfPlayer);
 	}
 }

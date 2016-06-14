@@ -9,6 +9,7 @@ public class CountFields implements Command {
 	public Method getMethod(){
 		return this.method;
 	}
+	@Override
 	public void execute(){
 		method.countFields();
 	}
