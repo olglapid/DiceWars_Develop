@@ -51,13 +51,17 @@ public class Gameroutine {
 		return this.playersTurn;
 	}
 
-	public void routine(Player player, Field field, int attackX, int attackY) {
-		if(player.getPlayerNr()<getPlayersTurn()){
-			setStatus(Status.PlayersTurn_Error);
-			return;
+	public void routine(Player player, Field aggresor, Field defender, int fieldSize) {
+		attack.setField(aggresor);
+		attack.setNeighbour(defender);
+		attack.attackroutine(aggresor, fieldSize, defender.getX(), defender.getY());
+		status = attack.getStatus();
+		if(status == Status.Attack_Failed || status == Status.Attack_Success){
+			diceUpdate.updateDices(attack);
+			playerUpdate.updatePlayer(attack);
 		}
-//		if(){
-//			
-//		}
+			
+		
+
 	}
 }

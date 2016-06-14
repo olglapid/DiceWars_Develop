@@ -3,6 +3,8 @@ package de.htwg.se.dicewars.model;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
+
 public class Player {
 	private String name;
 	private int numberOfFields;
@@ -10,7 +12,6 @@ public class Player {
 	private int numberOfDices;
 	private Field[][] myFields;
 	private LinkedList<Field> fieldListshuffled;
-	
 
 	public Player() {
 		this.name = null;
@@ -31,7 +32,10 @@ public class Player {
 		}
 		return this.myFields[x][y];
 	}
-
+	public void setField(Field[][] field){
+		this.myFields=field;
+	}
+	
 	public void setFieldFromIndex(Field field) {
 		this.myFields[field.getX()][field.getY()] = field;
 	}
@@ -71,33 +75,65 @@ public class Player {
 	public int getNumberOfDices() {
 		return this.numberOfDices;
 	}
-	
-	public Field popShoffled(){
+
+	public Field popShoffled() {
 		return this.fieldListshuffled.pop();
 	}
-	public void shuffleList(){
+
+	public void shuffleList() {
 		Collections.shuffle(fieldListshuffled);
 	}
-	public void pushShuffledField(Field field){
-		if(field.getNumberOfDices()<8)
+
+	public void pushShuffledField(Field field) {
+		if (field.getNumberOfDices() < 8)
 			this.fieldListshuffled.add(field);
 	}
-	public void updateShuffle(){
-		Field field;
-		boolean[] tmp;
-		int size = this.fieldListshuffled.size();
-		tmp=new boolean[size];
-		for (int i = 0; i < size; i++) {
-			field = this.fieldListshuffled.get(i);
-			if(field.getNumberOfDices()==8)
-				tmp[i]=true;
-		}
-		for (int i = 0; i < tmp.length; i++) {
-			if(tmp[i]==false)
-				continue;
-			this.fieldListshuffled.remove(i);
+
+	public void initShuffle(Field[][] tmp) {
+		if (tmp == null)
+			tmp = myFields;
+		for (int x = 0; x < tmp.length; x++) {
+			for (int y = 0; y < tmp.length; y++) {
+				if (myFields[x][y] == null)
+					continue;
+				pushShuffledField(myFields[x][y]);
+			}
 		}
 	}
-	
+
+	public void updateShuffle() {
+		fieldListshuffled.clear();
+		initShuffle(myFields);
+	}
+
+	public void update() {
+		int random;
+		int tmp=0;
+		Field field;
+
+		if(fieldListshuffled.size() == 0)
+			return;
+		for (int i = 0; i < fieldListshuffled.size(); i++) {
+			if (numberOfDices <= 0)
+				return;
+			field=fieldListshuffled.get(i);
+			tmp=field.getNumberOfDices();
+			if(tmp == 8)
+				continue;
+			if(numberOfDices<8)
+				random = Convertmethods.randomNumber(numberOfDices+1);
+			else {
+				random = Convertmethods.randomNumber(7);
+			}
+			
+			numberOfDices = numberOfDices - random;
+			tmp=field.addNumberOfDices(random);
+			numberOfDices = numberOfDices + tmp;	
+		}
+		updateShuffle();
+		update();
+		
+		
+	}
 
 }

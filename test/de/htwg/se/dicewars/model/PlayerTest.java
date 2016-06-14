@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.impl.Dicehandler;
+import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.view.TUI;
 
 public class PlayerTest {
 
@@ -44,5 +48,57 @@ public class PlayerTest {
 		testPlayer.setNumberOfDices(1);
 		assertEquals(1, testPlayer.getNumberOfDices());
 	}
+	
+	
+	@Test
+	public final void testUpdate() {
+		TUI tui= new TUI();
+		Dicehandler dicehandler = new Dicehandler();
+		Board testboard=new Board();
+		int dices=0;
+		
+		Player player1 = new Player();
+		Player player2 = new Player();
+		Player[] list = new Player[2];
+		Controller controller =  new Controller();
+		
+		list[0]=player1;
+		list[1]=player2;
+		
+		player1.setName("simon");
+		player1.setPlayerNr(0);
+		player1.createField(Convertmethods.converteFieldSize(9));
+		player2.setName("Olga");
+		player2.createField(Convertmethods.converteFieldSize(9));
+		player2.setPlayerNr(1);
+		
+		controller.createBoard(9, 8);
+		controller.setNumberOfFields(8);
+		controller.connectPlayerToBoard(list);
+		controller.setfieldSize(9);		
+		controller.spreadDicesToField(controller.getBoard(), list);
+		testboard.setField(player1.getField());
+		
+		player1.initShuffle(null);
+		player2.initShuffle(null);
+		tui.tui(3, testboard);
+		System.out.println(tui.getConsole());
+		dicehandler.updateDices(player1);
+		tui.tui(3, testboard);
+		System.out.println(tui.getConsole());
+		
+		dices = Dicehandler.countDices(player1.getField(),player1);
+		System.out.println(dices);
+		assertEquals(8, dices);
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
 
 }

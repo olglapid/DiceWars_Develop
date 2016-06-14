@@ -42,7 +42,6 @@ public abstract class Fieldhandler {
 				tmp1 = stats.getNumberOfConnectedFields();
 				tmp1++;
 				stats.setNumberOfConnectedFields(tmp1);
-				System.out.println(tmp);
 				if (connectedFields < tmp)
 					connectedFields = tmp;
 				stats.setNumberOfFields(0);
@@ -50,7 +49,7 @@ public abstract class Fieldhandler {
 			}
 
 		}
-		stats.setNbrOfBiggestConnectedField(connectedFields);
+		stats.setNbrOfBiggestConnectedField(connectedFields);//FÜRN ARSCH
 		return connectedFields;
 	}
 

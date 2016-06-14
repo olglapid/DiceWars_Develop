@@ -55,6 +55,7 @@ public abstract class Boardsetup {
 		for (int i = 1; i < listOfPlayer.length; i++) {
 			field=listOfPlayer[i].getField();
 			listOfPlayer[i].setNumberOfDices(dicesToAdd);
+			listOfPlayer[i].initShuffle(null);
 			
 		}
 	}

@@ -3,7 +3,7 @@ package de.htwg.se.dicewars.controller.setup;
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Player;
-import de.htwg.se.dicewars.view.TUI;
+
 
 public class Controller {
 

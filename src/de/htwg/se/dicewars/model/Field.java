@@ -42,17 +42,19 @@ public class Field {
 
 	public int addNumberOfDices(int dices) {
 		int returnDices = 0;
-		if (this.numberOfDices + dices > 8) {
-			returnDices=dices-(8-this.numberOfDices);
-			dices = 8;
-			
+		int tmp = this.numberOfDices;
+		int set = tmp + dices;
+		if (tmp + dices > 8) {
+			returnDices = tmp + dices - 8;
+			set = 8;
 		}
-		this.numberOfDices = dices;
+		this.numberOfDices = set;
 		return returnDices;
 	}
+
 	public void setNumberOfDices(int dices) {
 		this.numberOfDices = dices;
-		
+
 	}
 
 	public Field[] getNachbar() {
