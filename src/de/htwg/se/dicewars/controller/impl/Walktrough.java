@@ -26,7 +26,8 @@ public abstract class Walktrough {
 	}
 
 	public static Field walkTroughFields(Field node, boolean[] visit, Statistics stats, Context context) {
-
+		boolean[] tmp = visit;
+		
 		if (node == null || node.getNachbar() == null)
 			return node;
 
@@ -36,7 +37,7 @@ public abstract class Walktrough {
 		Field[] neighborsList = node.getNachbar();
 
 		
-		visit = visitField(node, visit);
+		tmp = visitField(node, tmp);
 		
 
 		stats.setField(node);
@@ -45,7 +46,7 @@ public abstract class Walktrough {
 		for (int i = 0; i < neighborsList.length; i++) {
 			if (neighborsList[i] == null)
 				continue;
-			walkTroughFields(neighborsList[i], visit, stats, context);
+			walkTroughFields(neighborsList[i], tmp, stats, context);
 		}
 
 		return node;

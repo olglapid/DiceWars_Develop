@@ -33,6 +33,12 @@ public class DicehandlerTest {
 		assertEquals(expected, result);
 	}
 	@Test
+	public final void getStatusTest(){
+		Dicehandler dicehandler = new Dicehandler();
+		dicehandler.setStatus(Status.Valid);
+		assertEquals(Status.Valid, dicehandler.getStatus());
+	}
+	@Test
 	public final void updateDicesTest() {
 		Dicehandler dicehandler = new Dicehandler();
 		Attack attack = new Attack();

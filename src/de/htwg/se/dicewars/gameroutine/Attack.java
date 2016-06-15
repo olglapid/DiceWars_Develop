@@ -65,7 +65,7 @@ public class Attack {
 
 	}
 
-	public void attack(Field field, int fieldSize, int attackX, int attackY) {
+	public void attack(Field field, int attackX, int attackY) {
 
 		
 		int rtdAttack = 0;
@@ -92,7 +92,7 @@ public class Attack {
 		} else {
 			checkAttack(field, fieldSize, attackX, attackY);
 			if (getStatus() == Status.Valid_Attack) {
-				attack(field, fieldSize, attackX, attackY);
+				attack(field, attackX, attackY);
 			}
 		}
 	}
