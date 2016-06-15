@@ -15,6 +15,7 @@ public class DiceStart {
 
 		TUI startTui = new TUI();
 		startTui.readData();
+		startTui.startGame();
 		
 
 	}

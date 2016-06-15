@@ -97,7 +97,7 @@ public class Statistics {
 		if(board == null){
 			return;
 		}
-		setNumberOfConnectedFields(Fieldhandler.countConnectedFields(board));
+		setNumberOfConnectedFields(Fieldhandler.countConnectedFields(board,player));
 		setNumberOfFields(Fieldhandler.countFields(board));
 		
 	}

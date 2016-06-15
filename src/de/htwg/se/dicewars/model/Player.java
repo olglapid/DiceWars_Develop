@@ -51,13 +51,17 @@ public class Player {
 	public void setNumberOfFields(int numberOfFields) {
 		this.numberOfFields = numberOfFields;
 	}
-
+	
 	public void setPlayerNr(int nbr) {
 		this.playerNr = nbr;
 	}
 
 	public void setNumberOfDices(int nbr) {
 		this.numberOfDices = nbr;
+	}
+	
+	public void addNumberOfDices(int nbr) {
+		this.numberOfDices += nbr;
 	}
 
 	public String getName() {

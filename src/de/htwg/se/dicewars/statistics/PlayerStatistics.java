@@ -76,7 +76,7 @@ public class PlayerStatistics {
 		Field[][] field=player.getField();
 		int connected=0;
 		int fields=0;
-		connected=Fieldhandler.countConnectedFields(field);
+		connected=Fieldhandler.countConnectedFields(field,player);
 		fields=Fieldhandler.countFields(field);
 		setConnectedFields(connected);
 		setAmountOfFields(fields);

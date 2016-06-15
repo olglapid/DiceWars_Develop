@@ -1,6 +1,7 @@
 package de.htwg.se.dicewars.controller.impl;
 
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountFields;
@@ -23,13 +24,16 @@ public abstract class Fieldhandler {
 		return amount;
 	}
 
-	public static int countConnectedFields(Field[][] field) {
+	public static int countConnectedFields(Field[][] field, Player player) {
 		int numberOfFields = 0;
 		int connectedFields = 0;
 		int tmp = 0;
 		int tmp1 = 0;
 		Statistics stats = new Statistics();
 
+		if(player != null){
+			stats.setPlayer(player);
+		}
 		Context context = new Context(new CountFields());
 		numberOfFields = field.length * field.length;
 		boolean[] visit = new boolean[numberOfFields];

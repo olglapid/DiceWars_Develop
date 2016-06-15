@@ -29,6 +29,7 @@ public class StatusMessage {
 		 text.put(Status.Failed, "Someting went wrong");
 		 text.put(Status.End_Turn, "No fields to attack");
 		 text.put(Status.Valid, " ");
+		 text.put(Status.Choose_Aktion, "Führe eine Aktion durch");
 		 
 	 }
 

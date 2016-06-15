@@ -1,6 +1,7 @@
 package de.htwg.se.dicewars.gameroutine;
 
 import de.htwg.se.dicewars.controller.impl.Dicehandler;
+import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.controller.impl.Playerhandler;
 import de.htwg.se.dicewars.controller.impl.Walktrough;
 import de.htwg.se.dicewars.model.Field;
@@ -67,6 +68,18 @@ public class Gameroutine {
 		return this.attack;
 	}
 
+	public void endOFTurn(Player player) {
+		if (status != Status.End_Turn)
+			return;
+
+		int connectedField = Fieldhandler.countConnectedFields(player.getField(), player);
+		int tmp = player.getNumberOfDices();
+		tmp += connectedField;
+		player.setNumberOfDices(connectedField);
+		player.update();
+
+	}
+
 	public void checkEndOfTurn(Player player) {
 		Field[][] field = player.getField();
 		Statistics stats = new Statistics();
@@ -107,6 +120,12 @@ public class Gameroutine {
 			playerUpdate.updatePlayer(attack);
 			status = Status.Success;
 		}
+		
+		if(status == Status.Failed){
+			status = attack.getStatus();
+			return;
+		}
+		status = attack.getStatus();
 
 	}
 }

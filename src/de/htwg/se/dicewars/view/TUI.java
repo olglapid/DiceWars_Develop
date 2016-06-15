@@ -11,14 +11,20 @@ import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.state.Status;
 import interfaces.TuiInterface;
 
 public class TUI implements TuiInterface {
 	private static final Logger log4j = LogManager.getLogger(DiceStart.class.getName());
+	private final String newline = System.getProperty("line.separator");
 	String console;
+	private Controller controller;
+	private int mode1=0;
+	private int mode2=1;
 
 	public TUI() {
 		console = "";
+		controller = new Controller();
 	}
 
 	public void setConsole(String console) {
@@ -92,13 +98,13 @@ public class TUI implements TuiInterface {
 		for (int i = 0; i < fieldSize; i++) {
 
 			if (i % 2 != 0) {
-				tmp += "  " + field(globalField, globalField.getField()[i], fieldSize, 1);
-				tmp += "  " + field(globalField, globalField.getField()[i], fieldSize, 2);
+				tmp += "  " + field(globalField, globalField.getField()[i], fieldSize, mode1);
+				tmp += "  " + field(globalField, globalField.getField()[i], fieldSize, mode2);
 				continue;
 			}
 			tmp += top(fieldSize);
-			tmp += field(globalField, globalField.getField()[i], fieldSize, 1);
-			tmp += field(globalField, globalField.getField()[i], fieldSize, 2);
+			tmp += field(globalField, globalField.getField()[i], fieldSize, mode1);
+			tmp += field(globalField, globalField.getField()[i], fieldSize, mode2);
 			tmp += bot(fieldSize);
 		}
 
@@ -179,30 +185,23 @@ public class TUI implements TuiInterface {
 		this.setConsole(endValue);
 	}
 
-	
 	public void readData() {
 		int fieldSize = 0;
 		int numberOfFields = 0;
 		int tmpNbrOfPlayer = 0;
 
-		final String newline = System.getProperty("line.separator");
-		Controller controller = new Controller();
-
-		
 		Scanner sc = new Scanner(System.in);
 
-		
 		do {
 			log4j.info(newline + " Spielfeldgröße: ");
 			fieldSize = sc.nextInt();
 			log4j.info(newline + " Anzahl Felder: ");
 			numberOfFields = sc.nextInt();
-		} while ( numberOfFields > fieldSize);
-		
-		
+		} while (numberOfFields > fieldSize);
+
 		log4j.info(newline + " Anzahl an spielern: ");
 		tmpNbrOfPlayer = sc.nextInt();
-		
+
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			log4j.info(newline + " Name: ");
@@ -213,19 +212,38 @@ public class TUI implements TuiInterface {
 			listOfPlayer[i].createField(Convertmethods.converteFieldSize(fieldSize));
 
 		}
-		sc.close();
-		
+
 		controller.createBoard(fieldSize, numberOfFields);
 		controller.setNumberOfFields(numberOfFields);
 		controller.connectPlayerToBoard(listOfPlayer);
 		controller.setfieldSize(fieldSize);
-		
-		tui(controller.getBoard().getLength(), controller.getBoard());
-		
+
 		controller.spreadDicesToField(controller.getBoard(), listOfPlayer);
-	
-		
+		controller.setPlayerlist(listOfPlayer);
+		controller.init();
+
+		tui(controller.getBoard().getLength(), controller.getBoard());
+
 		log4j.info(newline + this.console);
+
+	}
+
+	public void startGame() {
+		int attack = 0, defend = 0;
+		Scanner sc = new Scanner(System.in);
+		while (controller.getStatus() != Status.End_Turn) {
+			log4j.info(newline + " Feld Auswählen: ");
+			attack = sc.nextInt();
+			log4j.info(newline + " Feld Angreifen: ");
+			defend = sc.nextInt();
+			controller.setAttack(attack);
+			controller.setDefend(defend);
+			controller.startGame();
+			tui(controller.getBoard().getLength(), controller.getBoard());
+			
+			log4j.info(controller.getStatus());
+			log4j.info(newline + this.console);
+		}
 
 	}
 

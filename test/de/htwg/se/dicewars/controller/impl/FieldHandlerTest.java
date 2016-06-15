@@ -7,6 +7,7 @@ import org.junit.Test;
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.Player;
 
 public class FieldHandlerTest {
 
@@ -17,7 +18,9 @@ public class FieldHandlerTest {
 		Field field[][] = board.getField();
 		Field dummyfield = new Field();
 		int flds = 0;
-		
+		Player player = new Player();
+
+		player.setName("simon");
 
 		for (int i = 0; i < board.getLength(); i++) {
 			for (int j = 0; j < board.getLength(); j++) {
@@ -29,9 +32,30 @@ public class FieldHandlerTest {
 				}
 			}
 		}
-		flds = Fieldhandler.countConnectedFields(board.getField());
-		System.out.println(flds);
+
+		flds = Fieldhandler.countConnectedFields(board.getField(), null);
+
 		assertEquals(7, flds);
+
+		board = Boardsetup.createField(9, 9);
+		field = board.getField();
+
+		field[0][0].setOwner(player);
+		field[0][1].setOwner(player);
+		field[0][2].setOwner(player);
+		field[2][2].setOwner(player);
+
+		player.setField(field);
+
+		flds = Fieldhandler.countConnectedFields(field, player);
+
+		assertEquals(3, flds);
+
+		field[1][2].setOwner(player);
+
+		flds = Fieldhandler.countConnectedFields(field, player);
+
+		assertEquals(5, flds);
 	}
 
 	@Test

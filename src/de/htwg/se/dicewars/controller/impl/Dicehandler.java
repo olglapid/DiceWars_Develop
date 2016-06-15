@@ -23,6 +23,7 @@ public class Dicehandler {
 		return this.status;
 	}
 
+	
 	/* Wenn player = null dann zähle alle und nicht nur die von Player */
 	public static int countDices(Field[][] field, Player player) {
 		Statistics stats = new Statistics();

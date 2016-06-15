@@ -22,5 +22,6 @@ public enum Status {
 	Failed,
 	End_Turn,
 	Valid,
+	Choose_Aktion,
 
 }
