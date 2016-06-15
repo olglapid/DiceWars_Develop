@@ -31,36 +31,40 @@ public class Controller {
 		defend = -1;
 	}
 
-	public int getAttack(){
+	public int getAttack() {
 		return this.attack;
 	}
-	
-	public int getDefend(){
+
+	public int getDefend() {
 		return this.defend;
 	}
-	public void setGameroutine(Gameroutine gameroutine){
-		this.gameroutine=gameroutine;
+
+	public void setGameroutine(Gameroutine gameroutine) {
+		this.gameroutine = gameroutine;
 	}
-	public Gameroutine getGameroutine(){
+
+	public Gameroutine getGameroutine() {
 		return this.gameroutine;
 	}
+
 	public boolean checkRange(int index) {
 		if (index > 0 && index < playerlist.length)
 			return true;
 		return false;
 	}
 
-	public void setAttack(int attack){
-		this.attack=attack;
+	public void setAttack(int attack) {
+		this.attack = attack;
 	}
-	
-	public void setDefend(int defend){
-		this.defend=defend;
+
+	public void setDefend(int defend) {
+		this.defend = defend;
 	}
-	
-	public Status getStatus(){
+
+	public Status getStatus() {
 		return this.status;
 	}
+
 	public void setfieldSize(int tmpFieldSize) {
 		this.fieldSize = tmpFieldSize;
 	}
@@ -127,9 +131,9 @@ public class Controller {
 	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
 		Boardsetup.spreadDices(board, listOfPlayer);
 	}
-	
-	public void init (){
-		int dices = numberOfFields/playerlist.length;
+
+	public void init() {
+		int dices = numberOfFields / playerlist.length;
 		for (int i = 0; i < playerlist.length; i++) {
 			playerlist[i].initShuffle(null);
 			playerlist[i].setNumberOfDices(dices);
@@ -158,7 +162,7 @@ public class Controller {
 		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield, fieldSize);
 		attack = -1;
 		defend = -1;
-		if (gameroutine.getStatus() != Status.Success){
+		if (gameroutine.getStatus() != Status.Success) {
 			status = gameroutine.getStatus();
 			return;
 		}
