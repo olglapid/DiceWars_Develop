@@ -35,12 +35,12 @@ public class Playerhandler {
 		return this.player;
 	}
 	
-	public void updatePlayer(Attack attack){
+	public void updatePlayer(Field field, Field neighbour,Status stat){
 		setStatus(Status.Nothing_To_Update);
-		if (attack.getStatus()==Status.Attack_Success){
-			Field field = attack.getField();
-			Field neighbour = attack.getNeighbour();
-			neighbour.setOwner(field.getOwner());
+		if (stat==Status.Attack_Success){
+			Field fieldtmp = field;
+			Field neighbourtmp = neighbour;
+			neighbourtmp.setOwner(fieldtmp.getOwner());
 			setStatus(Status.Player_Updated);
 		}
 	}

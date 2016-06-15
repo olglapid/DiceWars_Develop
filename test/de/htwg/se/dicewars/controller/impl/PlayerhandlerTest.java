@@ -77,7 +77,7 @@ public class PlayerhandlerTest {
 		attack.attackroutine(field[1][0], 2, 1, 1);
 		
 		Playerhandler playerhandler = new Playerhandler();
-		playerhandler.updatePlayer(attack);
+		playerhandler.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
 		
 		assertEquals(peter, field[1][1].getOwner());
 		assertEquals(Status.Player_Updated, playerhandler.getStatus());
@@ -87,7 +87,7 @@ public class PlayerhandlerTest {
 		field[1][0].setNumberOfDices(1);
 		
 		attack.attackroutine(field[1][0], 2, 1, 1);
-		playerhandler.updatePlayer(attack);
+		playerhandler.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
 		assertEquals(hans, field[1][1].getOwner());
 		assertEquals(Status.Nothing_To_Update, playerhandler.getStatus());
 		

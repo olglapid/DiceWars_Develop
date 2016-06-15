@@ -9,7 +9,7 @@ import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 
 public class PlayerStatistics {
-	private int amountOfFieldAttack;
+	/*private int amountOfFieldAttack;
 	private int ammountOfFields;
 	private int connectedFields;
 	private int amountOfDicesStored;
@@ -81,6 +81,6 @@ public class PlayerStatistics {
 		setConnectedFields(connected);
 		setAmountOfFields(fields);
 		
-	}
+	}*/
 	
 }

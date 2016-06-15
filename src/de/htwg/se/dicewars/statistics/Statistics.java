@@ -94,12 +94,12 @@ public class Statistics {
 		return this.nbrOBConnectedFields;
 	}
 	public void update(){
-		if(board == null){
+		/*if(board == null){
 			return;
 		}
 		setNumberOfConnectedFields(Fieldhandler.countConnectedFields(board,player));
 		setNumberOfFields(Fieldhandler.countFields(board));
-		
+	*/	
 	}
 
 
