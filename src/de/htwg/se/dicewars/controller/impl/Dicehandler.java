@@ -45,17 +45,17 @@ public class Dicehandler {
 
 	}
 
-	public void updateDices(Attack attack) {
-		Field field = attack.getField();
-		Field neighbour = attack.getNeighbour();
-		int dices = field.getNumberOfDices() - 1;
+	public void updateDices(Field field, Field neighbour,Status stat) {
+		Field fieldtmp = field;
+		Field neighbourtmp = neighbour;
+		int dices = fieldtmp.getNumberOfDices() - 1;
 		if (dices <= 0) {
 			setStatus(Status.Dice_Error0);/* Status setzen */
 			return;
 		}
-		field.setNumberOfDices(1);
-		if (attack.getStatus() == Status.Attack_Success)
-			neighbour.setNumberOfDices(dices);
+		fieldtmp.setNumberOfDices(1);
+		if (stat == Status.Attack_Success)
+			neighbourtmp.setNumberOfDices(dices);
 
 	}
 

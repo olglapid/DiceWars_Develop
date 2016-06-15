@@ -116,7 +116,7 @@ public class Gameroutine {
 		attack.attackroutine(agressor, fieldSize, defender.getX(), defender.getY());
 		status = Status.Failed;
 		if (attack.getStatus() == Status.Attack_Failed || attack.getStatus() == Status.Attack_Success) {
-			diceUpdate.updateDices(attack);
+			diceUpdate.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());
 			playerUpdate.updatePlayer(attack);
 			status = Status.Success;
 		}
