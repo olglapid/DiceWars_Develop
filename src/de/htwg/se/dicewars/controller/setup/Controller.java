@@ -31,7 +31,20 @@ public class Controller {
 		defend = -1;
 	}
 
-	private boolean checkRange(int index) {
+	public int getAttack(){
+		return this.attack;
+	}
+	
+	public int getDefend(){
+		return this.defend;
+	}
+	public void setGameroutine(Gameroutine gameroutine){
+		this.gameroutine=gameroutine;
+	}
+	public Gameroutine getGameroutine(){
+		return this.gameroutine;
+	}
+	public boolean checkRange(int index) {
 		if (index > 0 && index < playerlist.length)
 			return true;
 		return false;
@@ -121,7 +134,6 @@ public class Controller {
 			playerlist[i].initShuffle(null);
 			playerlist[i].setNumberOfDices(dices);
 			playerlist[i].update();
-			System.out.println(playerlist[i].getNumberOfDices());
 		}
 	}
 
@@ -138,12 +150,11 @@ public class Controller {
 		int playersTurn = gameroutine.getPlayersTurn();
 		Field[][] field = board.getField();
 
-		int index[] = Convertmethods.fieldNumberToIndex(fieldSize, attack);
+		int[] index = Convertmethods.fieldNumberToIndex(fieldSize, attack);
 		Field attackfield = field[index[0]][index[1]];
 		index = Convertmethods.fieldNumberToIndex(fieldSize, defend);
 		Field defendfield = field[index[0]][index[1]];
 
-		System.out.println(playersTurn);
 		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield, fieldSize);
 		attack = -1;
 		defend = -1;
