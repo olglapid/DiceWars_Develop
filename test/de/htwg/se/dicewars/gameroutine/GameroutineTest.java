@@ -87,12 +87,14 @@ public class GameroutineTest {
 
 		gameroutine.routine(hans, field[1][1], field[1][0], 3);
 
-		assertEquals(Status.Failed, gameroutine.getStatus());
+		
+		assertEquals(Status.Invalid_Attack_Dices, gameroutine.getStatus());
 
 		assertEquals(Status.Invalid_Attack_Dices, gameroutine.getAttack().getStatus());
 
 		gameroutine.routine(peter, field[1][0], field[1][1], 3);
-		assertEquals(Status.Success, gameroutine.getStatus());
+		
+		assertEquals(Status.Attack_Success, gameroutine.getStatus());
 		assertEquals(peter, field[1][1].getOwner());
 		assertEquals(7, field[1][1].getNumberOfDices());
 		assertEquals(1, field[1][0].getNumberOfDices());
@@ -105,7 +107,8 @@ public class GameroutineTest {
 		field[1][0].setNumberOfDices(8);
 
 		gameroutine.routine(hans, field[1][1], field[1][0], 3);
-		assertEquals(Status.Success, gameroutine.getStatus());
+
+		assertEquals(Status.Attack_Failed, gameroutine.getStatus());
 
 	}
 
