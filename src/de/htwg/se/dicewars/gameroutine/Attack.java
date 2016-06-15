@@ -1,6 +1,5 @@
 package de.htwg.se.dicewars.gameroutine;
 
-import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.state.Status;
@@ -68,16 +67,12 @@ public class Attack {
 
 	public void attack(Field field, int fieldSize, int attackX, int attackY) {
 
-		int attack = 0;
-		int defend = 0;
+		
 		int rtdAttack = 0;
 		int rtdDefend = 0;
 
 		int index = Fieldhandler.getNeighborfromIndex(attackX - field.getX(), attackY - field.getY());
 		Field tmp = field.getNachbar()[index];
-
-		attack = field.getNumberOfDices();
-		defend = tmp.getFieldNumber();
 
 		rtdAttack = field.rollTheDice();
 		rtdDefend = tmp.rollTheDice();

@@ -15,7 +15,6 @@ public class FieldSetupTest {
 
 	@Test
 	public final void testSetNeigbors() {
-		Board board = new Board();
 		Field[][] field = new Field[3][3];
 
 		for (int j = 0; j < 3; j++) {

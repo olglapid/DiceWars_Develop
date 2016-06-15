@@ -9,7 +9,6 @@ import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
-import de.htwg.se.dicewars.strategy.CountDices;
 import de.htwg.se.dicewars.strategy.FieldsToAttack;
 
 public class Gameroutine {
@@ -75,10 +74,11 @@ public class Gameroutine {
 		int connectedField = Fieldhandler.countConnectedFields(player.getField(), player);
 		int tmp = player.getNumberOfDices();
 		tmp += connectedField;
-		player.setNumberOfDices(connectedField);
+		player.setNumberOfDices(tmp);
 		player.update();
 
 	}
+	
 
 	public void checkEndOfTurn(Player player) {
 		Field[][] field = player.getField();

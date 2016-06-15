@@ -1,6 +1,6 @@
 package de.htwg.se.dicewars.controller.impl;
 
-import de.htwg.se.dicewars.gameroutine.Attack;
+
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;

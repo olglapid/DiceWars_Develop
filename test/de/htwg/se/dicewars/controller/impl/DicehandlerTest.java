@@ -10,7 +10,6 @@ import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
-import de.htwg.se.dicewars.view.TUI;
 
 public class DicehandlerTest {
 	@Test

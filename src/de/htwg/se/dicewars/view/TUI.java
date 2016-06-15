@@ -191,6 +191,7 @@ public class TUI implements TuiInterface {
 		int tmpNbrOfPlayer = 0;
 
 		Scanner sc = new Scanner(System.in);
+		
 
 		do {
 			log4j.info(newline + " Spielfeldgröße: ");
@@ -244,6 +245,7 @@ public class TUI implements TuiInterface {
 			log4j.info(controller.getStatus());
 			log4j.info(newline + this.console);
 		}
+		sc.close();
 
 	}
 

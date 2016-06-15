@@ -1,12 +1,6 @@
 package de.htwg.se.dicewars.statistics;
 
 
-import java.util.Collections;
-import java.util.LinkedList;
-
-import de.htwg.se.dicewars.controller.impl.Fieldhandler;
-import de.htwg.se.dicewars.model.Field;
-import de.htwg.se.dicewars.model.Player;
 
 public class PlayerStatistics {
 	/*private int amountOfFieldAttack;

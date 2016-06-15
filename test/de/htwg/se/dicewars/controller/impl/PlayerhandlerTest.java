@@ -13,7 +13,7 @@ import de.htwg.se.dicewars.state.Status;
 
 public class PlayerhandlerTest {
 	@Test
-	public final void PlayerhandlerTest() {
+	public final void Playerhandler1Test() {
 		Playerhandler playerhandler = new Playerhandler();
 		assertEquals(null, playerhandler.getPlayer());
 		assertEquals(Status.New, playerhandler.getStatus());

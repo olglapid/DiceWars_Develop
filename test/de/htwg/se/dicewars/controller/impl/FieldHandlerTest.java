@@ -235,7 +235,7 @@ public class FieldHandlerTest {
 
 	@Test
 	public final void testGetNeighborfromIndex() {
-		Board testField = new Board();
+
 		assertEquals(7, Fieldhandler.getNeighborfromIndex(-1, -1));
 		assertEquals(3, Fieldhandler.getNeighborfromIndex(-1, 0));
 		assertEquals(2, Fieldhandler.getNeighborfromIndex(0, -1));
