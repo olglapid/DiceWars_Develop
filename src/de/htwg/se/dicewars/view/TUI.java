@@ -5,7 +5,6 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import de.htwg.se.dicewars.DiceStart;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Board;
@@ -15,7 +14,7 @@ import de.htwg.se.dicewars.state.Status;
 import interfaces.TuiInterface;
 
 public class TUI implements TuiInterface {
-	private static final Logger log4j = LogManager.getLogger(DiceStart.class.getName());
+	private static final Logger log4j = LogManager.getLogger(TUI.class.getName());
 	private final String newline = System.getProperty("line.separator");
 	String console;
 	private Controller controller;
