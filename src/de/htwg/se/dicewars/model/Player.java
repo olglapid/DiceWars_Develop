@@ -2,8 +2,8 @@ package de.htwg.se.dicewars.model;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Random;
 
-import de.htwg.se.dicewars.boardsetup.Convertmethods;
 
 public class Player {
 	private String name;
@@ -112,6 +112,8 @@ public class Player {
 	}
 
 	public void update() {
+		Random r = new Random();
+		
 		int random;
 		int tmp=0;
 		Field field;
@@ -126,9 +128,9 @@ public class Player {
 			if(tmp == 8)
 				continue;
 			if(numberOfDices<8)
-				random = Convertmethods.randomNumber(numberOfDices+1);
+				random = r.nextInt(numberOfDices+1);
 			else {
-				random = Convertmethods.randomNumber(7);
+				random = r.nextInt(7);
 			}
 			
 			numberOfDices = numberOfDices - random;
