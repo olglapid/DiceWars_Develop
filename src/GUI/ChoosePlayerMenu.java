@@ -81,7 +81,7 @@ public class ChoosePlayerMenu extends JPanel implements ActionListener {
 		
 		Border border = BorderFactory.createTitledBorder("Spieleranzahl Auswahl");
 		this.setBorder(border);
-		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(radioPanel);
 		
 		auswahl = new JButton("Auswahl speichern");
