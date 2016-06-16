@@ -276,6 +276,8 @@ public class Button4 extends JButton
   ////////////////////////////////////////////////
   ////////////////////////////////////////////////
   public static void main(String[] args){
+	  
+
     JFrame frame = new JFrame("Nebraska Button Tester");
 
     frame.getContentPane().setLayout(new FlowLayout());

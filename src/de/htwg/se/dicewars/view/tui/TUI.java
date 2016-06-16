@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars.view;
+package de.htwg.se.dicewars.view.tui;
 
 import java.util.Scanner;
 

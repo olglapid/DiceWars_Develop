@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars;
 
 
-import de.htwg.se.dicewars.view.TUI;
+import de.htwg.se.dicewars.view.tui.TUI;
 
 
 
