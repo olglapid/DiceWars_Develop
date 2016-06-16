@@ -7,7 +7,7 @@ import org.junit.Test;
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
-import de.htwg.se.dicewars.view.TUI;
+import de.htwg.se.dicewars.view.tui.TUI;
 
 public class TUITest {
 

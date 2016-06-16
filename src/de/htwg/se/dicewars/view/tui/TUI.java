@@ -5,25 +5,35 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import de.htwg.se.controller.IController;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
-import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.state.Status;
-import interfaces.TuiInterface;
+import de.htwg.se.observer.IObserver;
+import de.htwg.se.observer.Event;
 
-public class TUI implements TuiInterface {
+public class TUI implements IObserver {
 	private static final Logger log4j = LogManager.getLogger(TUI.class.getName());
 	private final String newline = System.getProperty("line.separator");
 	String console;
-	private Controller controller;
-	private int mode1=0;
-	private int mode2=1;
+	private IController controller;
+	private int mode1;
+	private int mode2;
 
-	public TUI() {
+	public TUI(IController controller) {
 		console = "";
-		controller = new Controller();
+		this.controller = controller;
+		mode1=1;
+		mode2=2;
+		
+	}
+	
+	@Override
+	public void update(Event e) {
+		tui();
+		log4j.entry(console);
 	}
 
 	public void setConsole(String console) {
@@ -90,8 +100,9 @@ public class TUI implements TuiInterface {
 		return tmp;
 	}
 
-	public void tui(int fieldSize, Board globalField) {
-
+	public void tui() {
+		Board globalField = controller.getBoard();
+		int fieldSize = globalField.getLength();
 		String tmp = "";
 
 		for (int i = 0; i < fieldSize; i++) {
@@ -110,7 +121,6 @@ public class TUI implements TuiInterface {
 		tmp += "\n";
 		tmp += "----------------------------------------------------------------";
 		this.setConsole(tmp);
-		;
 	}
 
 	public String printBox(Board field, String value, int x, int y) {
@@ -222,7 +232,7 @@ public class TUI implements TuiInterface {
 		controller.setPlayerlist(listOfPlayer);
 		controller.init();
 
-		tui(controller.getBoard().getLength(), controller.getBoard());
+		tui();
 
 		log4j.info(newline + this.console);
 
@@ -239,7 +249,7 @@ public class TUI implements TuiInterface {
 			controller.setAttack(attack);
 			controller.setDefend(defend);
 			controller.startGame();
-			tui(controller.getBoard().getLength(), controller.getBoard());
+			tui();
 			
 			log4j.info(controller.getStatus());
 			log4j.info(newline + this.console);
@@ -247,5 +257,6 @@ public class TUI implements TuiInterface {
 		sc.close();
 
 	}
+
 
 }

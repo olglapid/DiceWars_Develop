@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.controller.impl.Dicehandler;
-import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Player;
-import de.htwg.se.dicewars.view.TUI;
+import de.htwg.se.dicewars.view.tui.TUI;
 
 public class PlayerTest {
 

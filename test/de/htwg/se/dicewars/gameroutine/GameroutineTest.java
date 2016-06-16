@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.controller.impl.Dicehandler;
 import de.htwg.se.dicewars.controller.impl.Playerhandler;
-import de.htwg.se.dicewars.controller.setup.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
