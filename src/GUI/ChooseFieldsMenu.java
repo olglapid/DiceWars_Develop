@@ -11,6 +11,7 @@ public class ChooseFieldsMenu extends JPanel implements ActionListener {
 
 	private JTextField fieldsEingabe;
 	private JButton anwenden;
+	private JButton start;
 	
 	public ChooseFieldsMenu() {
 		
@@ -32,6 +33,9 @@ public class ChooseFieldsMenu extends JPanel implements ActionListener {
 		this.add(anwenden);
 		anwenden.addActionListener(this);
 		
+		start = new JButton("Start");
+		this.add(start);
+		start.addActionListener(this);
 	}
 	
 
