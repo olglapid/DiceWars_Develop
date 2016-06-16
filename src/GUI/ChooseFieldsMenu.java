@@ -25,7 +25,7 @@ public class ChooseFieldsMenu extends JPanel implements ActionListener {
 		
 		Border border = BorderFactory.createTitledBorder("Felderanzahl Auswahl");
 		this.setBorder(border);
-		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(panel);
 		this.add(panel1);
 		anwenden = new JButton("Anwenden");
