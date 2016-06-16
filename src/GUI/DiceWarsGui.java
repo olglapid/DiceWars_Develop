@@ -13,8 +13,8 @@ public class DiceWarsGui extends JFrame {
 		ChooseFieldsMenu fields = new ChooseFieldsMenu();
 		
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(250, 250, 250, 250));
-		mainPanel.setLayout(new GridLayout(0,3)); 
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 		this.setJMenuBar(menu);
 		mainPanel.add(player);
 		mainPanel.add(fields);
