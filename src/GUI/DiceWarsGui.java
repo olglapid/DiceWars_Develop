@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.GridLayout;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -12,7 +14,7 @@ public class DiceWarsGui extends JFrame {
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(250, 250, 250, 250));
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+		mainPanel.setLayout(new GridLayout(0,3)); 
 		this.setJMenuBar(menu);
 		mainPanel.add(player);
 		mainPanel.add(fields);
