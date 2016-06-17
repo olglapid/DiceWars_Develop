@@ -52,7 +52,8 @@ public class PlayerTest {
 	
 	@Test
 	public final void testUpdate() {
-		TUI tui= new TUI();
+		Controller controller = new Controller();
+		TUI tui= new TUI(controller);
 		Dicehandler dicehandler = new Dicehandler();
 		Board testboard=new Board();
 		int dices=0;
@@ -60,7 +61,7 @@ public class PlayerTest {
 		Player player1 = new Player();
 		Player player2 = new Player();
 		Player[] list = new Player[2];
-		Controller controller =  new Controller();
+		
 		
 		list[0]=player1;
 		list[1]=player2;
@@ -81,11 +82,10 @@ public class PlayerTest {
 		
 		player1.initShuffle(null);
 		player2.initShuffle(null);
-		tui.tui(3, testboard);
+
 		System.out.println(tui.getConsole());
 		dicehandler.updateDices(player1);
-		tui.tui(3, testboard);
-		System.out.println(tui.getConsole());
+		
 		
 		dices = Dicehandler.countDices(player1.getField(),player1);
 		System.out.println(dices);

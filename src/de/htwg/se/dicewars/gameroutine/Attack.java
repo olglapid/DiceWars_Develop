@@ -2,9 +2,10 @@ package de.htwg.se.dicewars.gameroutine;
 
 import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 
-public class Attack {
+public class Attack extends Observable{
 	private Status status;
 	private Field field;
 	private Field neighbour;
@@ -67,7 +68,7 @@ public class Attack {
 
 	public void attack(Field field, int attackX, int attackY) {
 
-		
+
 		int rtdAttack = 0;
 		int rtdDefend = 0;
 
@@ -84,6 +85,7 @@ public class Attack {
 		}
 		setField(field);
 		setNeighbour(field.getNachbar()[index]);
+		
 	}
 
 	public void attackroutine(Field field, int fieldSize, int attackX, int attackY) {
@@ -95,5 +97,8 @@ public class Attack {
 				attack(field, attackX, attackY);
 			}
 		}
+		notifyObservers();
+
+
 	}
 }

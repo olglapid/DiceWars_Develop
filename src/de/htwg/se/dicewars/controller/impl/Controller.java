@@ -1,14 +1,14 @@
 package de.htwg.se.dicewars.controller.impl;
 
-import de.htwg.se.controller.IController;
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
-import de.htwg.se.observer.Observable;
 
 public class Controller extends Observable implements IController {
 
@@ -31,6 +31,7 @@ public class Controller extends Observable implements IController {
 		attack = -1;
 		defend = -1;
 	}
+
 
 	@Override
 	public int getAttack() {
@@ -152,7 +153,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
 		Boardsetup.spreadDices(board, listOfPlayer);
-		notifyObservers();
+	
 	}
 
 	@Override
@@ -162,12 +163,15 @@ public class Controller extends Observable implements IController {
 			playerlist[i].initShuffle(null);
 			playerlist[i].setNumberOfDices(dices);
 			playerlist[i].update();
-			notifyObservers();
+
 		}
+		notifyObservers();
+
 	}
 
 	@Override
 	public void startGame() {
+		
 		if (status == Status.New) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();
@@ -190,7 +194,7 @@ public class Controller extends Observable implements IController {
 		defend = -1;
 		if (gameroutine.getStatus() != Status.Success) {
 			status = gameroutine.getStatus();
-			return;
+		
 		}
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
 
@@ -205,6 +209,7 @@ public class Controller extends Observable implements IController {
 			}
 		}
 		notifyObservers();
+
 	}
 
 }

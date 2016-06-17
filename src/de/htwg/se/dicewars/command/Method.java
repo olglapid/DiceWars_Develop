@@ -1,4 +1,4 @@
-package de.htwg.se.command;
+package de.htwg.se.dicewars.command;
 
 import de.htwg.se.dicewars.boardsetup.Dicesetup;
 import de.htwg.se.dicewars.model.Field;

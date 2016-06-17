@@ -1,4 +1,4 @@
-package de.htwg.se.observer;
+package de.htwg.se.dicewars.observer;
 
 import java.util.ArrayList;
 import java.util.List;

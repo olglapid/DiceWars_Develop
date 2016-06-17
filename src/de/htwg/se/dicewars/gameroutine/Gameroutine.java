@@ -6,12 +6,13 @@ import de.htwg.se.dicewars.controller.impl.Playerhandler;
 import de.htwg.se.dicewars.controller.impl.Walktrough;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.FieldsToAttack;
 
-public class Gameroutine {
+public class Gameroutine  extends Observable{
 
 	private Status status;
 	private Attack attack;
@@ -120,6 +121,8 @@ public class Gameroutine {
 			playerUpdate.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
 			status = Status.Success;
 		}
+		
+
 		
 		if(status == Status.Failed){
 			status = attack.getStatus();

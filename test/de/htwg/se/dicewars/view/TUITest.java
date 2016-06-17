@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.view.tui.TUI;
@@ -42,14 +43,17 @@ public class TUITest {
 
 	@Test
 	public final void testSetConsole() {
-		TUI console = new TUI();
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
+	
 		console.setConsole("Test");
 		assertEquals("Test", console.getConsole());
 	}
 
 	@Test
 	public final void testAddConsole() {
-		TUI console = new TUI();
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
 		console.setConsole("Test");
 		console.addConsole("Test");
 		assertEquals("TestTest", console.getConsole());
@@ -81,7 +85,8 @@ public class TUITest {
 	public final void testTop() {
 		String value1 = "";
 		int ctr = 10;
-		TUI console = new TUI();
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
 		console.setConsole(console.top(ctr));
 
 		for (int i = 0; i < ctr; i++) {
@@ -94,8 +99,8 @@ public class TUITest {
 	@Test
 	public final void testBot() {
 		String value1 = "";
-		TUI console = new TUI();
-		;
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
 
 		int ctr = 10;
 		console.setConsole(console.bot(ctr));
@@ -109,13 +114,15 @@ public class TUITest {
 
 	@Test
 	public final void testTui() {
-		TUI console = new TUI();
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
 		assertEquals("", console.getConsole());
 	}
 
 	@Test
 	public final void testPrintBox() {
-		TUI console = new TUI();
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
 		Board board = new Board();
 		String value1 = "";
 		String value2 = "";
@@ -172,7 +179,8 @@ public class TUITest {
 
 	@Test
 	public final void testGlobalPrint() {
-		TUI console = new TUI();
+		Controller controller = new Controller();
+		TUI console= new TUI(controller);
 		Board board = new Board();
 		board = Boardsetup.createField(64, 49);
 		String value2 = "";
