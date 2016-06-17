@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class ChoosePlayerMenu extends JPanel implements ActionListener {
+public class ChoosePlayerPanel extends JPanel implements MouseListener {
 	
 	JRadioButton spieler2;
 	JRadioButton spieler3;
@@ -20,7 +20,7 @@ public class ChoosePlayerMenu extends JPanel implements ActionListener {
 	JRadioButton spieler10;
 	JButton auswahl;
 	
-	public ChoosePlayerMenu() {
+	public ChoosePlayerPanel() {
 		//Buttons definieren
 		spieler2 = new JRadioButton("2 Spieler (min 10 Felder)");
 		spieler2.setSelected(true);
@@ -56,15 +56,15 @@ public class ChoosePlayerMenu extends JPanel implements ActionListener {
 		
 		
 		//ActionListener registrieren
-		spieler2.addActionListener(this);
-		spieler3.addActionListener(this);
-		spieler4.addActionListener(this);
-		spieler5.addActionListener(this);
-		spieler6.addActionListener(this);
-		spieler7.addActionListener(this);
-		spieler8.addActionListener(this);
-		spieler9.addActionListener(this);
-		spieler10.addActionListener(this);
+		spieler2.addMouseListener(this);
+		spieler3.addMouseListener(this);
+		spieler4.addMouseListener(this);
+		spieler5.addMouseListener(this);
+		spieler6.addMouseListener(this);
+		spieler7.addMouseListener(this);
+		spieler8.addMouseListener(this);
+		spieler9.addMouseListener(this);
+		spieler10.addMouseListener(this);
 		
 		
 		//Buttons zu einem Panel zusammenfassen
@@ -86,13 +86,13 @@ public class ChoosePlayerMenu extends JPanel implements ActionListener {
 		
 		auswahl = new JButton("Auswahl speichern");
 		radioPanel.add(auswahl);
-		auswahl.addActionListener(this);
+		auswahl.addMouseListener(this);
 		//this.setVisible(true);
 		//this.setSize(500, 500);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		Object source = e.getSource();
 		if(source == spieler2) {
 			//10-50
@@ -113,6 +113,31 @@ public class ChoosePlayerMenu extends JPanel implements ActionListener {
 		} else if(source == spieler10) {
 			//50-300
 		}
+		
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
