@@ -85,6 +85,7 @@ public class Attack extends Observable{
 		}
 		setField(field);
 		setNeighbour(field.getNachbar()[index]);
+		
 	}
 
 	public void attackroutine(Field field, int fieldSize, int attackX, int attackY) {

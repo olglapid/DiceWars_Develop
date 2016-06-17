@@ -153,7 +153,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
 		Boardsetup.spreadDices(board, listOfPlayer);
-		notifyObservers();
+	
 	}
 
 	@Override
@@ -163,12 +163,15 @@ public class Controller extends Observable implements IController {
 			playerlist[i].initShuffle(null);
 			playerlist[i].setNumberOfDices(dices);
 			playerlist[i].update();
-			notifyObservers();
+
 		}
+		notifyObservers();
+
 	}
 
 	@Override
 	public void startGame() {
+		
 		if (status == Status.New) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();
@@ -191,7 +194,7 @@ public class Controller extends Observable implements IController {
 		defend = -1;
 		if (gameroutine.getStatus() != Status.Success) {
 			status = gameroutine.getStatus();
-			return;
+		
 		}
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
 
@@ -206,6 +209,7 @@ public class Controller extends Observable implements IController {
 			}
 		}
 		notifyObservers();
+
 	}
 
 }

@@ -34,8 +34,9 @@ public class TUI implements IObserver {
 	@Override
 	public void update(Event e) {
 		tui();
-		log4j.info(console);
-		log4j.info("OBSERVER");
+		log4j.info(newline+console);
+		log4j.info(controller.getStatus());
+		log4j.info("OBSI");
 	}
 
 	public void setConsole(String console) {
@@ -233,11 +234,6 @@ public class TUI implements IObserver {
 		controller.spreadDicesToField(controller.getBoard(), listOfPlayer);
 		controller.setPlayerlist(listOfPlayer);
 		controller.init();
-
-		tui();
-
-		log4j.info(newline + this.console);
-
 	}
 
 	
@@ -253,10 +249,7 @@ public class TUI implements IObserver {
 			controller.setAttack(attack);
 			controller.setDefend(defend);
 			controller.startGame();
-			tui();
 			
-			log4j.info(controller.getStatus());
-			log4j.info(newline + this.console);
 		}
 		/*Convertmethods.parser(attack);*/
 		sc.close();
