@@ -1,12 +1,17 @@
 package de.htwg.se.dicewars.boardsetup;
 
-
 import java.util.Random;
 
+import com.sun.webkit.Utilities;
+import com.sun.xml.internal.ws.util.StringUtils;
+
+import de.htwg.se.dicewars.state.Status;
+
 public abstract class Convertmethods {
-	private Convertmethods(){
-		
+	private Convertmethods() {
+
 	}
+
 	/* returns a random number in range of value */
 	public static int randomNumber(int value) {
 		Random r = new Random();
@@ -96,5 +101,31 @@ public abstract class Convertmethods {
 		return -1;
 	}
 	/*---------------------------------------------------*/
+/*
+	public static int[] parser(String eingabe) {
+		int[] ret = new int[3];
+		String[] parts = eingabe.split("\\s+");
+		String befehl = parts[0];
+		int feld1;
+		int feld2;
+		switch (befehl) {
+		case "attack":
+			ret[0]=1;
+			ret[1]=
+			ret[2]=-1;
+			break;
+		case "defend":
+			
+			break;
+		case "end":
+			ret[0]=0;
+			ret[1]=-1;
+			ret[2]=-1;
+		default:
+			break;
+		}
 
+		return ret;
+	}
+*/
 }

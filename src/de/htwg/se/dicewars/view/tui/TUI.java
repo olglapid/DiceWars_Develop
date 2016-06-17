@@ -5,14 +5,14 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import de.htwg.se.controller.IController;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.observer.Event;
+import de.htwg.se.dicewars.observer.IObserver;
 import de.htwg.se.dicewars.state.Status;
-import de.htwg.se.observer.IObserver;
-import de.htwg.se.observer.Event;
 
 public class TUI implements IObserver {
 	private static final Logger log4j = LogManager.getLogger(TUI.class.getName());
@@ -25,6 +25,7 @@ public class TUI implements IObserver {
 	public TUI(IController controller) {
 		console = "";
 		this.controller = controller;
+		controller.addObserver(this);
 		mode1=1;
 		mode2=2;
 		
@@ -33,7 +34,8 @@ public class TUI implements IObserver {
 	@Override
 	public void update(Event e) {
 		tui();
-		log4j.entry(console);
+		log4j.info(console);
+		log4j.info("OBSERVER");
 	}
 
 	public void setConsole(String console) {
@@ -238,8 +240,10 @@ public class TUI implements IObserver {
 
 	}
 
+	
 	public void startGame() {
-		int attack = 0, defend = 0;
+		int attack = 0;
+		int defend = 0;
 		Scanner sc = new Scanner(System.in);
 		while (controller.getStatus() != Status.End_Turn) {
 			log4j.info(newline + " Feld Auswählen: ");
@@ -254,6 +258,7 @@ public class TUI implements IObserver {
 			log4j.info(controller.getStatus());
 			log4j.info(newline + this.console);
 		}
+		/*Convertmethods.parser(attack);*/
 		sc.close();
 
 	}

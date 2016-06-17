@@ -1,4 +1,4 @@
-package de.htwg.se.command;
+package de.htwg.se.dicewars.command;
 
 public class CountFields implements Command {
 	private Method method;

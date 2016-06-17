@@ -1,14 +1,14 @@
 package de.htwg.se.dicewars.controller.impl;
 
-import de.htwg.se.controller.IController;
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
-import de.htwg.se.observer.Observable;
 
 public class Controller extends Observable implements IController {
 
@@ -31,6 +31,7 @@ public class Controller extends Observable implements IController {
 		attack = -1;
 		defend = -1;
 	}
+
 
 	@Override
 	public int getAttack() {
