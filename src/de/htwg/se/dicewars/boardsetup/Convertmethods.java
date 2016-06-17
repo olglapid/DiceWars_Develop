@@ -2,10 +2,6 @@ package de.htwg.se.dicewars.boardsetup;
 
 import java.util.Random;
 
-import com.sun.webkit.Utilities;
-import com.sun.xml.internal.ws.util.StringUtils;
-
-import de.htwg.se.dicewars.state.Status;
 
 public abstract class Convertmethods {
 	private Convertmethods() {
