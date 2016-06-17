@@ -6,7 +6,7 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class Startmenu extends JMenuBar implements ActionListener{
 	
-	JMenuItem rules, exit;
+	JMenuItem rules, game, exit;
 	
 	public Startmenu() {
 		
@@ -23,6 +23,11 @@ public class Startmenu extends JMenuBar implements ActionListener{
 		rules.setMnemonic(KeyEvent.VK_A);
 		rules.addActionListener(this);
 		verwaltung.add(rules);
+		
+		game = new JMenuItem("New Game");
+		game.setMnemonic(KeyEvent.VK_A);
+		game.addActionListener(this);
+		verwaltung.add(game);
 		
 		exit = new JMenuItem("Exit");
 		exit.setMnemonic(KeyEvent.VK_A);
@@ -57,6 +62,10 @@ public class Startmenu extends JMenuBar implements ActionListener{
 							+ "\n Gewinnt derjenige, der alle Gebiete auf der Karte angegriffen hat."
 							+ "\n Erhält der Gewinner alle Punkte gutgeschrieben.");
 					
+		}
+		
+		if(source == game) {
+			
 		}
 		if(source == exit) {
 			int jaOderNein = JOptionPane.showConfirmDialog(exit, "Fenster schliessen?", "Confirm Dialog", JOptionPane.YES_NO_OPTION);
