@@ -7,13 +7,12 @@ import java.awt.event.*;
 import javax.swing.border.*;
 
 @SuppressWarnings("serial")
-public class ChooseFieldsMenu extends JPanel implements ActionListener {
+public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	private JTextField fieldsEingabe;
 	private JButton anwenden;
-	private JButton start;
 	
-	public ChooseFieldsMenu() {
+	public ChooseFieldsPanel() {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0, 1));
@@ -31,16 +30,41 @@ public class ChooseFieldsMenu extends JPanel implements ActionListener {
 		this.add(panel1);
 		anwenden = new JButton("Anwenden");
 		this.add(anwenden);
-		anwenden.addActionListener(this);
-		
-		start = new JButton("Start");
-		this.add(start);
-		start.addActionListener(this);
+		anwenden.addMouseListener(this);
 	}
 	
 
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
