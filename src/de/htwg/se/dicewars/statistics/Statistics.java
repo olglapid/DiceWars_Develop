@@ -10,28 +10,29 @@ public class Statistics {
 	private int dicesToAdd;
 	private int numberOfDices;
 	private int numberOfFields;
-	private int numberOfAttackableFields;
+	private int tmp;
 	private int numberOfConnectedFields;
 	private int nbrOBConnectedFields;
 
 	public Statistics() {
-		nbrOBConnectedFields=0;
+		nbrOBConnectedFields = 0;
 		dicesToAdd = 0;
 		field = null;
-		player=null;
+		player = null;
 		board = null;
 		numberOfDices = 0;
 		numberOfFields = 0;
-		numberOfAttackableFields = 0;
+		tmp = 0;
 		numberOfConnectedFields = 0;
 
-		
 	}
-	public void setNbrOfBiggestConnectedField(int nbr){
-		this.nbrOBConnectedFields=nbr;
+
+	public void setNbrOfBiggestConnectedField(int nbr) {
+		this.nbrOBConnectedFields = nbr;
 	}
-	public void setPlayer(Player player){
-		this.player=player;
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	public void setField(Field field) {
@@ -46,8 +47,8 @@ public class Statistics {
 		this.numberOfFields = nbr;
 	}
 
-	public void setNumberOfAttackableFields(int nbr) {
-		this.numberOfAttackableFields = nbr;
+	public void setTmp(int nbr) {
+		this.tmp = nbr;
 	}
 
 	public void setNumberOfConnectedFields(int nbr) {
@@ -62,8 +63,8 @@ public class Statistics {
 		return this.numberOfFields;
 	}
 
-	public int getNumberOfAttackableFields() {
-		return this.numberOfAttackableFields;
+	public int getTmp() {
+		return this.tmp;
 	}
 
 	public int getNumberOfConnectedFields() {
@@ -73,12 +74,27 @@ public class Statistics {
 	public Field getField() {
 		return this.field;
 	}
-	
-	public Player getPlayer(){
+
+	public Player getPlayer() {
 		return this.player;
 	}
-	
 
+	public void createBoard(int size) {
+		this.board = new Field[size][size];
+	}
 
+	public void setBoard(Field[][] field) {
+		this.board = field;
+	}
+
+	public Field[][] getBoard() {
+		return this.board;
+	}
+
+	public void deleteBoard() {
+		int size = board.length;
+		board = null;
+		createBoard(size);
+	}
 
 }

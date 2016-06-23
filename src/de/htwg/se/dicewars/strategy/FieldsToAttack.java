@@ -10,7 +10,7 @@ public class FieldsToAttack implements Strategy {
 		Player player = stats.getPlayer();
 		Field field = stats.getField();
 		Field[] nachbar = field.getNachbar();
-		int number = stats.getNumberOfAttackableFields();
+		int number = stats.getTmp();
 		if (player != field.getOwner() || field.getNumberOfDices() < 2) {
 			return stats;
 		}
@@ -23,7 +23,7 @@ public class FieldsToAttack implements Strategy {
 			number++;
 		}
 		
-		stats.setNumberOfAttackableFields(number);
+		stats.setTmp(number);
 		return stats;
 	}
 }

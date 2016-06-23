@@ -98,9 +98,8 @@ public class Gameroutine  extends Observable{
 				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
 			}
 		}
-
 		status = Status.Valid;
-		if (stats.getNumberOfAttackableFields() == 0) {
+		if (stats.getTmp() == 0) {
 			status = Status.End_Turn;
 		}
 

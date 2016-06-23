@@ -19,6 +19,9 @@ public class DiceStart {
 
 	public static void main(String[] args) {
 
+		for (int i = 1; i < 49; i++) {
+			System.out.println(i);
+		}
 		
 		Controller controller = new Controller();
 		
@@ -28,5 +31,7 @@ public class DiceStart {
 		
 
 	}
+	
+	
 
 }
