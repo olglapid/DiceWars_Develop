@@ -9,36 +9,28 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class ChoosePlayerPanel extends JPanel implements MouseListener {
 	
-	JRadioButton spieler2;
-	JRadioButton spieler3;
-	JRadioButton spieler4;
-	JRadioButton spieler5;
-	JRadioButton spieler6;
-	JRadioButton spieler7;
-	JRadioButton spieler8;
-	JRadioButton spieler9;
-	JRadioButton spieler10;
+	JRadioButton spieler2, spieler3, spieler4, spieler5, spieler6, spieler7, spieler8, spieler9, spieler10;
 	JButton auswahl;
 	
 	public ChoosePlayerPanel() {
 		//Buttons definieren
-		spieler2 = new JRadioButton("2 Spieler (min 10 Felder)");
+		spieler2 = new JRadioButton("2 Spieler");
 		spieler2.setSelected(true);
-		spieler3 = new JRadioButton("3 Spieler (min 15 Felder)");
+		spieler3 = new JRadioButton("3 Spieler");
 		spieler3.setSelected(true);
-		spieler4 = new JRadioButton("4 Spieler (min 20 Felder)");
+		spieler4 = new JRadioButton("4 Spieler");
 		spieler4.setSelected(true);
-		spieler5 = new JRadioButton("5 Spieler (min 25 Felder)");
+		spieler5 = new JRadioButton("5 Spieler");
 		spieler5.setSelected(true);
-		spieler6 = new JRadioButton("6 Spieler (min 30 Felder)");
+		spieler6 = new JRadioButton("6 Spieler");
 		spieler6.setSelected(true);
-		spieler7 = new JRadioButton("7 Spieler (min 35 Felder)");
+		spieler7 = new JRadioButton("7 Spieler");
 		spieler7.setSelected(true);
-		spieler8 = new JRadioButton("8 Spieler (min 40 Felder)");
+		spieler8 = new JRadioButton("8 Spieler");
 		spieler8.setSelected(true);
-		spieler9 = new JRadioButton("9 Spieler (min 45 Felder)");
+		spieler9 = new JRadioButton("9 Spieler");
 		spieler9.setSelected(true);
-		spieler10 = new JRadioButton("10 Spieler (min 50 Felder)");
+		spieler10 = new JRadioButton("10 Spieler");
 		spieler10.setSelected(true);
 		
 		
@@ -69,6 +61,7 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener {
 		
 		//Buttons zu einem Panel zusammenfassen
 		JPanel radioPanel = new JPanel(new GridLayout(0, 1));
+		radioPanel.setSize(250, 280);
 		radioPanel.add(spieler2);
 		radioPanel.add(spieler3);
 		radioPanel.add(spieler4);
