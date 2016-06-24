@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
 
+import com.sun.javafx.tk.FontMetrics;
+
 public class hexdrawer {
 	static final int SIDES = 6;
 
@@ -37,7 +39,6 @@ public class hexdrawer {
 	public static Polygon drawhexagon(int x, int y, int r, Graphics2D g2, Color color) {
 		Polygon p = hexagon(x, y, r);
 		g2.setColor(color);
-		System.out.println("HIEER");
 		g2.fillPolygon(p);
 		g2.setColor(Color.WHITE);
 		g2.drawPolygon(p);
@@ -46,27 +47,34 @@ public class hexdrawer {
 	}
 	
 	public static void drawchange(int i,int j,Graphics2D g2,int n,int r,Color color){
-		char c ='c';
-		//g2.setColor(color);
+		String c=""+n;
+		int length = c.length();
+		Polygon p = hexagon(i, j, r);
+		if(n==0)
+			c="";
 		if(n>0){
-			g2.fillPolygon(hexagon(i, j, r));
+			g2.fillPolygon(p);
 		g2.setColor(Color.GRAY);
-		c = (char) (n);
+
 		g2.drawPolygon(hexagon(i, j, r));
 		drawhexagon(i, j, r, g2, color);
-		g2.drawString(""+c, i, j);
+		g2.drawString(""+c, i-(r-(length*2))/4, j);
+
 		}
 		else {
 			g2.setColor(Color.RED);
-			g2.fillPolygon(hexagon(i, j, r));
+			g2.fillPolygon(p);
 			g2.setColor(Color.GRAY);
-			c = (char) (n);
-			g2.drawPolygon(hexagon(i, j, r));
+			g2.drawPolygon(p);
 			drawhexagon(i, j, r, g2, Color.GREEN);
-			g2.drawString(""+c, i, j);
+			g2.drawString(""+c, i-(r-(length*2))/4, j);
+
+			
 		}
 		
+		
 	}
+
 	/*public static void drawHex(Graphics g, int length, int r,Polygon[][] poly) {
 		Polygon p;
 		Graphics2D g2 = (Graphics2D)g;

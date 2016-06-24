@@ -94,12 +94,13 @@ public class Graphfield extends JPanel {
 		for (int i = 0; i < poly.length; i++) {
 			for (int j = 0; j < poly.length; j++) {
 				if (poly[i][j].contains(x, y)) {
-					field[i][j]=(int)'X';
+					int nbr = i * poly.length + (j + 1);
+					field[i][j]=nbr;
 					color=Color.GRAY ;
 					
 					
 					System.out.println("Field " + (i * poly.length + (j + 1)));
-					return (i * poly.length + (j + 1));
+					return nbr;
 				}
 			}
 		}

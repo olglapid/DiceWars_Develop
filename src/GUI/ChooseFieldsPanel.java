@@ -46,7 +46,7 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		Object source = e.getSource();
 		if(source == anwenden) {
-			
+		
 		}
 		
 		if(source == start) {

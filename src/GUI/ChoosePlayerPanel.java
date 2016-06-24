@@ -88,7 +88,7 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		Object source = e.getSource();
 		if(source == spieler2) {
-			//10-50
+			int sp2 = 2;
 		} else if(source == spieler3) {
 			//15-60
 		} else if(source == spieler4) {

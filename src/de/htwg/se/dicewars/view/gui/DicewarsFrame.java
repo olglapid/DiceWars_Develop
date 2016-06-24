@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 
 
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import javax.swing.JFrame;
@@ -30,7 +31,7 @@ public class DicewarsFrame extends JFrame {
 	private IController controller;
 	
 	public DicewarsFrame(){
-		
+		//this.controller=controller;
 		initUI();
 		createMenuBar();
 	}

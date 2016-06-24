@@ -4,10 +4,12 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
+import de.htwg.se.dicewars.controller.IController;
+
 @SuppressWarnings("serial")
 public class DiceWarsGui extends JFrame {
-
-	public DiceWarsGui() {
+	IController controller;
+	public DiceWarsGui(IController controller) {
 		
 		FirstLookPanel start = new FirstLookPanel();
 		
@@ -24,7 +26,7 @@ public class DiceWarsGui extends JFrame {
 		this.setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		new DiceWarsGui();
-	}
+//	public static void main(String[] args) {
+//		new DiceWarsGui(controller);
+//	}
 }
