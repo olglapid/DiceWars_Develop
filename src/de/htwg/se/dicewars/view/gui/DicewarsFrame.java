@@ -96,9 +96,7 @@ public class DicewarsFrame extends JFrame {
     }
 	
     private void createField(){
-    	JPanel panel = new JPanel();
     	
-    	Hexfield field = new Hexfield();
     	setSize(DEFAULT_X-1, DEFAULT_Y-1);
         setLocationRelativeTo(null);
     	getContentPane().add(new Graphfield(10, 30));  

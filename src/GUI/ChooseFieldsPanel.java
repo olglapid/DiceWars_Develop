@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 
+import de.htwg.se.dicewars.view.gui.Graphfield;
+
 @SuppressWarnings("serial")
 public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
@@ -60,7 +62,9 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 				frame.setSize(400, 400);
 				frame.setLayout(new GridLayout(1, 0));
 				
-				GameField game = new GameField();
+				Graphfield game = new Graphfield(10,30);
+				
+				frame.add(game);
 				
 				//frame.add(game);
 				frame.pack();
