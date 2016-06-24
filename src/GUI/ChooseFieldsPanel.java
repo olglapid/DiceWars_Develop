@@ -13,6 +13,7 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	private JTextField fieldsEingabe;
 	private JButton anwenden, start;
+	public Integer felderanzahl = 0;
 	
 	public ChooseFieldsPanel() {
 		
@@ -48,7 +49,13 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		Object source = e.getSource();
 		if(source == anwenden) {
-		
+			if(fieldsEingabe.getText().length() == 0) {
+				JOptionPane.showMessageDialog(
+					    fieldsEingabe, "Waehle Anzahl Felder und Anzahl Spieler!",
+					    "Eingabefehler",
+					    JOptionPane.ERROR_MESSAGE);
+			} else 
+				felderanzahl = Integer.valueOf(fieldsEingabe.getText());
 		}
 		
 		if(source == start) {

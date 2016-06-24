@@ -12,9 +12,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import de.htwg.se.dicewars.model.Field;
+
+
 public class Graphfield extends JPanel {
 	Polygon[][] poly;
-	int[][] field;
+	Field[][] field;
 	int size;
 	int radius;
 	Graphics g;
@@ -25,18 +28,15 @@ public class Graphfield extends JPanel {
 		color=Color.BLACK;
 		size = length;
 		poly = new Polygon[length][length];
-		field= new int[length][length];
-		for (int i = 0; i < field.length; i++) {
-			for (int j = 0; j < field.length; j++) {
-				field[i][j]=0;
-			}
-		}
-		field[length-1][length-1]=1;
+		field=null;
 		MyMouseListener m1 = new MyMouseListener();
 		addMouseListener(m1);
 		// Hexdrawer.drawHex(g, length, r, poly);
 	}
 
+	public void setField(Field[][] field){
+		this.field=field;
+	}
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -95,10 +95,7 @@ public class Graphfield extends JPanel {
 			for (int j = 0; j < poly.length; j++) {
 				if (poly[i][j].contains(x, y)) {
 					int nbr = i * poly.length + (j + 1);
-					field[i][j]=nbr;
 					color=Color.GRAY ;
-					
-					
 					System.out.println("Field " + (i * poly.length + (j + 1)));
 					return nbr;
 				}

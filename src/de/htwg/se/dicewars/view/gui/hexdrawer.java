@@ -8,6 +8,8 @@ import java.awt.RenderingHints;
 
 import com.sun.javafx.tk.FontMetrics;
 
+import de.htwg.se.dicewars.model.Field;
+
 public class hexdrawer {
 	static final int SIDES = 6;
 
@@ -46,13 +48,13 @@ public class hexdrawer {
 		return p;
 	}
 	
-	public static void drawchange(int i,int j,Graphics2D g2,int n,int r,Color color){
-		String c=""+n;
+	public static void drawchange(int i,int j,Graphics2D g2,Field field,int r,Color color){
+		String c=""+field.getNumberOfDices();
 		int length = c.length();
 		Polygon p = hexagon(i, j, r);
-		if(n==0)
+		if(field==null)
 			c="";
-		if(n>0){
+		if(field.getNumberOfDices()>0){
 			g2.fillPolygon(p);
 		g2.setColor(Color.GRAY);
 

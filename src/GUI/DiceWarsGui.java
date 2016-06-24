@@ -8,9 +8,10 @@ import de.htwg.se.dicewars.controller.IController;
 
 @SuppressWarnings("serial")
 public class DiceWarsGui extends JFrame {
+	
 	IController controller;
 	public DiceWarsGui(IController controller) {
-		
+		controller.setfieldSize(defaultCloseOperation);
 		FirstLookPanel start = new FirstLookPanel();
 		
 		JPanel mainPanel = new JPanel();
