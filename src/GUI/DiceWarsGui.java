@@ -11,7 +11,6 @@ public class DiceWarsGui extends JFrame {
 	
 	IController controller;
 	public DiceWarsGui(IController controller) {
-		controller.setfieldSize(defaultCloseOperation);
 		FirstLookPanel start = new FirstLookPanel();
 		
 		JPanel mainPanel = new JPanel();

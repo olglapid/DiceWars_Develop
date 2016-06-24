@@ -55,4 +55,6 @@ public interface IController extends IObservable {
 	void init();
 	
 	void startGame();
+
+	void create();
 }

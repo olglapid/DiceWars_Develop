@@ -6,13 +6,18 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
+import de.htwg.se.dicewars.controller.IController;
+import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.observer.Observable;
 @SuppressWarnings("serial")
-public class ChoosePlayerPanel extends JPanel implements MouseListener {
+public class ChoosePlayerPanel extends JPanel implements MouseListener{
 	
 	JRadioButton spieler2, spieler3, spieler4, spieler5, spieler6, spieler7, spieler8, spieler9, spieler10;
 	JButton auswahl;
+	private IController controller;
 	
-	public ChoosePlayerPanel() {
+	public ChoosePlayerPanel(IController controller) {
+		this.controller = controller;
 		//Buttons definieren
 		spieler2 = new JRadioButton("2 Spieler");
 		spieler2.setSelected(true);
@@ -87,7 +92,11 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object source = e.getSource();
-		int anzspieler;
+		if(controller.getFieldSize()==0){
+			System.out.println("ERROR");
+			return;
+		}
+		int anzspieler=2;
 		if(source == spieler2) {
 			anzspieler = 2;
 		} else if(source == spieler3) {
@@ -107,8 +116,21 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener {
 		} else if(source == spieler10) {
 			anzspieler = 10;
 		}
+		fillPLayer(anzspieler);
 		
-		
+	}
+	
+	public void fillPLayer(int anzahlspieler){
+		Player[] playerList = new Player[anzahlspieler];
+		int fieldSize = controller.getFieldSize();;
+		for (int i = 0; i < playerList.length; i++) {
+			playerList[i]=new Player();
+			playerList[i].setPlayerNr(i);
+			playerList[i].createField(fieldSize);
+			
+		}
+		controller.setPlayerlist(playerList);
+		controller.create();
 	}
 
 	@Override

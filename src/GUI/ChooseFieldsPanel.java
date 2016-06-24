@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.view.gui.Graphfield;
 
 @SuppressWarnings("serial")
@@ -14,9 +16,11 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 	private JTextField fieldsEingabe;
 	private JButton anwenden, start;
 	public Integer felderanzahl = 0;
+	private IController controller;
 	
-	public ChooseFieldsPanel() {
+	public ChooseFieldsPanel(IController controller) {
 		
+		this.controller=controller;
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0, 1));
 		panel.setSize(250, 200);
@@ -56,6 +60,11 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 					    JOptionPane.ERROR_MESSAGE);
 			} else 
 				felderanzahl = Integer.valueOf(fieldsEingabe.getText());
+				controller.setNumberOfFields(felderanzahl);
+				controller.setfieldSize(Convertmethods.converteFieldSize(felderanzahl));
+				System.out.println(controller.getFieldSize());
+				System.out.println(controller.getNumberOfFields());
+				
 		}
 		
 		if(source == start) {
@@ -69,9 +78,9 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 				frame.setSize(400, 400);
 				frame.setLayout(new GridLayout(1, 0));
 				
-				Graphfield game = new Graphfield(10,30);
+				//Graphfield game = new Graphfield(10,30);
 				
-				frame.add(game);
+				//frame.add(game);
 				
 				//frame.add(game);
 				frame.pack();

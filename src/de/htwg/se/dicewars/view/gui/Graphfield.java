@@ -23,12 +23,12 @@ public class Graphfield extends JPanel {
 	Graphics g;
 	Color color;
 
-	public Graphfield(int length, int r) {
+	public Graphfield(int length, int r,Field[][] field) {
 		radius = r;
 		color=Color.BLACK;
-		size = length;
-		poly = new Polygon[length][length];
-		field=null;
+		size = field.length;
+		poly = new Polygon[field.length][field.length];
+		this.field = field;
 		MyMouseListener m1 = new MyMouseListener();
 		addMouseListener(m1);
 		// Hexdrawer.drawHex(g, length, r, poly);
@@ -66,17 +66,6 @@ public class Graphfield extends JPanel {
 			xcord = 0;
 		}
 
-	}
-
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		JPanel p = new JPanel();
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		p.setSize(600, 800);
-		f.add(new Graphfield(12, 50));
-		// f.getContentPane().add(p);
-		f.setSize(800, 800);
-		f.setVisible(true);
 	}
 
 	class MyMouseListener extends MouseAdapter {

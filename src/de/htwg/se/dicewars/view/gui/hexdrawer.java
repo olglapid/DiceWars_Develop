@@ -1,12 +1,10 @@
 package de.htwg.se.dicewars.view.gui;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import java.awt.RenderingHints;
 
-import com.sun.javafx.tk.FontMetrics;
+
 
 import de.htwg.se.dicewars.model.Field;
 
@@ -49,12 +47,21 @@ public class hexdrawer {
 	}
 	
 	public static void drawchange(int i,int j,Graphics2D g2,Field field,int r,Color color){
-		String c=""+field.getNumberOfDices();
+		String c="";
+		int numberOfDices=0;
+		if(field!=null){
+			numberOfDices=field.getNumberOfDices();
+			c=""+numberOfDices;	
+		}
+		else {
+			color=Color.GRAY;
+		}
+		
 		int length = c.length();
 		Polygon p = hexagon(i, j, r);
 		if(field==null)
 			c="";
-		if(field.getNumberOfDices()>0){
+		if(numberOfDices>0){
 			g2.fillPolygon(p);
 		g2.setColor(Color.GRAY);
 
@@ -68,7 +75,7 @@ public class hexdrawer {
 			g2.fillPolygon(p);
 			g2.setColor(Color.GRAY);
 			g2.drawPolygon(p);
-			drawhexagon(i, j, r, g2, Color.GREEN);
+			drawhexagon(i, j, r, g2, Color.GRAY);
 			g2.drawString(""+c, i-(r-(length*2))/4, j);
 
 			

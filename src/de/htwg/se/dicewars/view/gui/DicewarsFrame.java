@@ -1,5 +1,7 @@
 package de.htwg.se.dicewars.view.gui;
 
+import de.htwg.se.dicewars.observer.Event;
+import de.htwg.se.dicewars.observer.IObserver;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -21,22 +23,29 @@ import javax.swing.JMenuItem;
 import GUI.ChooseFieldsPanel;
 import GUI.ChoosePlayerPanel;
 import de.htwg.se.dicewars.controller.IController;
+import de.htwg.se.dicewars.controller.impl.Controller;
+import de.htwg.se.dicewars.model.Board;
 
-public class DicewarsFrame extends JFrame {
+public class DicewarsFrame extends JFrame implements IObserver{
 
+	
+	private static final long serialVersionUID = -7155561780790604205L;
 	private static final int DEFAULT_Y = 800;
 	private static final int DEFAULT_X = 800;
+	private static final int RADIUS = 30;
 	private IController controller;
 	JFrame frame = new JFrame("Auswahlfeld");
 
 	
-	ChooseFieldsPanel field = new ChooseFieldsPanel();
-	ChoosePlayerPanel player = new ChoosePlayerPanel();
+	private ChooseFieldsPanel field;
+	private ChoosePlayerPanel player; 
 
-	public DicewarsFrame() {
-		// this.controller=controller;
+	public DicewarsFrame(IController controller) {
+		this.controller=controller;
 		initUI();
 		createMenuBar();
+		field = new ChooseFieldsPanel(controller);
+		player = new ChoosePlayerPanel(controller);
 	}
 
 	private void initUI() {
@@ -106,10 +115,16 @@ public class DicewarsFrame extends JFrame {
 	}
 
 	private void createField() {
-
+		if(controller.getFieldSize()==0){
+			System.out.println("ERROR CONTROLLER FIELDSIZE");
+			return;
+		}
+		Board board = controller.getBoard();
 		setSize(DEFAULT_X - 1, DEFAULT_Y - 1);
 		setLocationRelativeTo(null);
-		getContentPane().add(new Graphfield(controller.getFieldSize(), 30));
+		if(board ==null)
+			System.out.println("WTF");
+		getContentPane().add(new Graphfield(controller.getFieldSize(), RADIUS,board.getField()));
 	}
 
 	private void settings(){
@@ -128,10 +143,17 @@ public class DicewarsFrame extends JFrame {
 
 			@Override
 			public void run() {
-				DicewarsFrame ex = new DicewarsFrame();
+				Controller controller = new Controller();
+				DicewarsFrame ex = new DicewarsFrame(controller);
 				ex.setVisible(true);
 			}
 		});
 
+	}
+
+	@Override
+	public void update(Event e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

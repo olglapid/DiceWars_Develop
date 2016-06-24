@@ -155,6 +155,18 @@ public class Controller extends Observable implements IController {
 		Boardsetup.spreadDices(board, listOfPlayer);
 	
 	}
+	@Override
+	public void create(){
+		createBoard(fieldSize, numberOfFields);
+		setNumberOfFields(numberOfFields);
+		connectPlayerToBoard(playerlist);
+		setfieldSize(fieldSize);
+
+		spreadDicesToField(board, playerlist);
+		setPlayerlist(playerlist);
+		init();
+		System.out.println("FELD GEBAUT");
+	}
 
 	@Override
 	public void init() {
