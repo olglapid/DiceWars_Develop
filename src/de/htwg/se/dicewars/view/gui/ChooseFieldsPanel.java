@@ -1,4 +1,4 @@
-package GUI;
+package de.htwg.se.dicewars.view.gui;
 
 
 import javax.swing.*;
@@ -8,7 +8,6 @@ import javax.swing.border.*;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.view.gui.Graphfield;
 
 @SuppressWarnings("serial")
 public class ChooseFieldsPanel extends JPanel implements MouseListener {

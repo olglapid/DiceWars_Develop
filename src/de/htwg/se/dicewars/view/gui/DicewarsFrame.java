@@ -13,8 +13,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import GUI.ChooseFieldsPanel;
-import GUI.ChoosePlayerPanel;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Board;
 
