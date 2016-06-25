@@ -32,7 +32,6 @@ public class Controller extends Observable implements IController {
 		defend = -1;
 	}
 
-
 	@Override
 	public int getAttack() {
 		return this.attack;
@@ -153,10 +152,11 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
 		Boardsetup.spreadDices(board, listOfPlayer);
-	
+
 	}
+
 	@Override
-	public void create(){
+	public void create() {
 		createBoard(fieldSize, numberOfFields);
 		setNumberOfFields(numberOfFields);
 		connectPlayerToBoard(playerlist);
@@ -182,7 +182,7 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startGame() {
-		
+
 		System.out.println("HEIR");
 		if (status == Status.New) {
 			gameroutine.setPlayersTurn(0);
@@ -206,18 +206,11 @@ public class Controller extends Observable implements IController {
 		defend = -1;
 		if (gameroutine.getStatus() != Status.Success) {
 			status = gameroutine.getStatus();
-		
+
 		}
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
-		System.out.println("CHECKED "+ (gameroutine.getStatus()));
 		if (gameroutine.getStatus() == Status.End_Turn) {
-			System.out.println(Status.End_Turn);
-			int numberOfFields = Fieldhandler.countConnectedFields(playerlist[playersTurn].getField(),
-					playerlist[playersTurn]);
-//			playerlist[playersTurn].addNumberOfDices(numberOfFields);
-//			playerlist[playersTurn].update();
 			gameroutine.endOFTurn(playerlist[playersTurn]);
-			
 
 			if (gameroutine.getPlayersTurn() == playerlist.length - 1) {
 				gameroutine.setPlayersTurn(0);

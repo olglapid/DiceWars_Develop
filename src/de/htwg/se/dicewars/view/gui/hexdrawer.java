@@ -8,8 +8,11 @@ import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Field;
 
 public class hexdrawer {
+	private hexdrawer(){
+		
+	}
 	static final int SIDES = 6;
-	static final Color[] colour ={Color.RED,
+	private static final Color[] colour ={Color.RED,
 			Color.BLUE,
 			Color.GREEN,
 			Color.YELLOW,

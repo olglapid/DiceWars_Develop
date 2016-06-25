@@ -18,14 +18,18 @@ import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
 public class Graphfield extends JPanel {
-	Polygon[][] poly;
-	Field[][] field;
-	int size;
-	int radius;
-	Graphics g;
-	Color color;
-	boolean attack;
-	public IController controller;
+	
+	private Graphfield(){
+		
+	}
+	private Polygon[][] poly;
+	private Field[][] field;
+	private int size;
+	private int radius;
+	private Graphics g;
+	private Color color;
+	private boolean attack;
+	private IController controller;
 
 	public Graphfield(int length, int r, IController controller) {
 		this.controller = controller;
@@ -45,6 +49,7 @@ public class Graphfield extends JPanel {
 		this.field = field;
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -77,12 +82,12 @@ public class Graphfield extends JPanel {
 	}
 
 	class MyMouseListener extends MouseAdapter {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			int x = e.getX();
 			int y = e.getY();
 			int[] index = Convertmethods.fieldNumberToIndex(field.length, getField(x, y));
 			
-				System.out.println(index[0]+" "+index[1]);
 			if(field[index[0]][index[1]]==null){
 				return;
 			}
@@ -95,7 +100,6 @@ public class Graphfield extends JPanel {
 				controller.setDefend(getField(x, y));
 				controller.startGame();
 				attack = false;
-				System.out.println("STARTED");
 				System.out.println(controller.getStatus());
 				repaint();
 				controller.setAttack(0);
@@ -113,7 +117,6 @@ public class Graphfield extends JPanel {
 				if (poly[i][j].contains(x, y)) {
 					int nbr = i * poly.length + (j + 1);
 					color = Color.WHITE;
-					System.out.println("Field " + (i * poly.length + (j + 1)));
 					return nbr;
 				}
 			}
