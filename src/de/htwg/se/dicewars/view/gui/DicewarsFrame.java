@@ -2,13 +2,12 @@ package de.htwg.se.dicewars.view.gui;
 
 import de.htwg.se.dicewars.observer.Event;
 import de.htwg.se.dicewars.observer.IObserver;
-import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.time.chrono.Chronology;
+
 
 import javax.swing.Box;
 import javax.swing.Icon;
@@ -124,9 +123,10 @@ public class DicewarsFrame extends JFrame implements IObserver{
 		setLocationRelativeTo(null);
 		if(board ==null)
 			System.out.println("WTF");
-		getContentPane().add(new Graphfield(controller.getFieldSize(), RADIUS,board.getField()));
+		getContentPane().add(new Graphfield(controller.getFieldSize(), RADIUS, this.controller));
 	}
 
+	
 	private void settings(){
 		frame.setSize(400, 400);
 		frame.setLayout(new GridLayout(1, 0));

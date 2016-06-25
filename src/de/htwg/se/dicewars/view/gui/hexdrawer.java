@@ -4,12 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
-
-
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Field;
 
 public class hexdrawer {
 	static final int SIDES = 6;
+	static final Color[] colour ={Color.RED,
+			Color.BLUE,
+			Color.GREEN,
+			Color.YELLOW,
+			Color.BLACK,
+			Color.ORANGE,
+			Color.PINK,
+			Color.MAGENTA,
+			Color.GRAY,
+			Color.cyan};
 
 	public static Polygon hexagon(int x, int y, int r) {
 		Polygon p = new Polygon();
@@ -46,15 +55,24 @@ public class hexdrawer {
 		return p;
 	}
 	
-	public static void drawchange(int i,int j,Graphics2D g2,Field field,int r,Color color){
+	public static void drawchange(int i,int j,Graphics2D g2,Field field,int r,Color color,IController controller){
 		String c="";
+		Color tmp=Color.WHITE;
 		int numberOfDices=0;
 		if(field!=null){
 			numberOfDices=field.getNumberOfDices();
-			c=""+numberOfDices;	
+			c=""+numberOfDices;
+			tmp=colour[field.getOwner().getPlayerNr()];
+			if(controller.getAttack()==field.getFieldNumber()||controller.getDefend()==field.getFieldNumber()){
+				int red = Math.min(255, (int) (tmp.getRed() * 0.50));
+				int green = Math.min(255, (int) (tmp.getGreen() * 0.50));
+				int blue = Math.min(255, (int) (tmp.getBlue() * 0.50));
+				tmp = new Color(red,green,blue);
+			}
+			
 		}
 		else {
-			color=Color.GRAY;
+			color=Color.WHITE;
 		}
 		
 		int length = c.length();
@@ -63,19 +81,19 @@ public class hexdrawer {
 			c="";
 		if(numberOfDices>0){
 			g2.fillPolygon(p);
-		g2.setColor(Color.GRAY);
+		g2.setColor(tmp);
 
 		g2.drawPolygon(hexagon(i, j, r));
-		drawhexagon(i, j, r, g2, color);
+		drawhexagon(i, j, r, g2, tmp);
 		g2.drawString(""+c, i-(r-(length*2))/4, j);
 
 		}
 		else {
 			g2.setColor(Color.RED);
 			g2.fillPolygon(p);
-			g2.setColor(Color.GRAY);
+			g2.setColor(Color.WHITE);
 			g2.drawPolygon(p);
-			drawhexagon(i, j, r, g2, Color.GRAY);
+			drawhexagon(i, j, r, g2, Color.WHITE);
 			g2.drawString(""+c, i-(r-(length*2))/4, j);
 
 			
@@ -83,30 +101,4 @@ public class hexdrawer {
 		
 		
 	}
-
-	/*public static void drawHex(Graphics g, int length, int r,Polygon[][] poly) {
-		Polygon p;
-		Graphics2D g2 = (Graphics2D)g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		int xcord = 0, ycord = 0;
-		for (int x = 0; x < length; x++) {
-			ycord += r + r-(2*r/SIDES);
-			if (x % 2 != 0)
-				xcord +=r-(r/(2*SIDES));
-
-			for (int y = 0; y < length; y++) {
-
-				xcord += r + r-(r/SIDES);
-				System.out.println(xcord + " " + ycord);
-				p = hexagon(xcord, ycord, r, Color.BLUE);
-				poly[x][y]=p;
-				g2.setColor(Color.BLACK);
-				g2.drawPolygon(p);
-				g2.setColor(Color.WHITE);
-				g2.fillPolygon(p);
-			}
-			xcord = 0;
-		}
-	}
-*/
 }

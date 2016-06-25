@@ -114,6 +114,7 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener{
 		} else if(source == spieler9) {
 			anzspieler = 9;
 		} else if(source == spieler10) {
+			System.out.println("HIER");
 			anzspieler = 10;
 		}
 		fillPLayer(anzspieler);
