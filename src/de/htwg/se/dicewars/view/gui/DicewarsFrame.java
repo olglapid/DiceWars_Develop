@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
-import javax.swing.ImageIcon;
-
 import javax.swing.JFrame;
 
 import javax.swing.JMenu;
