@@ -117,16 +117,6 @@ public class Player {
 
 	public void update() {
 		Random r = new Random();
-		
-		System.out.println("LOLOL");
-		Controller controller = new Controller();
-		TUI tui = new TUI(controller);
-		Board board = new Board();
-		board.setLength(myFields.length);
-		board.setField(myFields);
-		controller.setBoard(board);
-		tui.tui();
-		System.out.println(tui.getConsole());
 		int random;
 		int tmp=0;
 		Field field;
