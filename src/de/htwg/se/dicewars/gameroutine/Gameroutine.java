@@ -80,7 +80,6 @@ public class Gameroutine  extends Observable{
 
 	}
 	
-
 	public void checkEndOfTurn(Player player) {
 		Field[][] field = player.getField();
 		Statistics stats = new Statistics();

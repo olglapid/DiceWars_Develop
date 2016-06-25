@@ -44,14 +44,14 @@ public class FirstLookPanel extends JPanel implements MouseListener {
 			frame.setSize(400, 400);
 			frame.setLayout(new GridLayout(1, 0));
 			
-			ChooseFieldsPanel field = new ChooseFieldsPanel();
-			ChoosePlayerPanel player = new ChoosePlayerPanel();
-			
-			frame.add(player);
-			frame.add(field);
-			
-			frame.pack();
-			frame.setVisible(true);
+//			ChooseFieldsPanel field = new ChooseFieldsPanel();
+//			ChoosePlayerPanel player = new ChoosePlayerPanel();
+//			
+//			frame.add(player);
+//			frame.add(field);
+//			
+//			frame.pack();
+//			frame.setVisible(true);
 		}
 		
 		if(source == rules) {

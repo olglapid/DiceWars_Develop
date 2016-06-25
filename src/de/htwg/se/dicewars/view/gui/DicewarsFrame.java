@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-
 import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -25,9 +24,8 @@ import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.model.Board;
 
-public class DicewarsFrame extends JFrame implements IObserver{
+public class DicewarsFrame extends JFrame{
 
-	
 	private static final long serialVersionUID = -7155561780790604205L;
 	private static final int DEFAULT_Y = 800;
 	private static final int DEFAULT_X = 800;
@@ -35,12 +33,13 @@ public class DicewarsFrame extends JFrame implements IObserver{
 	private IController controller;
 	JFrame frame = new JFrame("Auswahlfeld");
 
-	
 	private ChooseFieldsPanel field;
-	private ChoosePlayerPanel player; 
+	private ChoosePlayerPanel player;
 
 	public DicewarsFrame(IController controller) {
-		this.controller=controller;
+		this.controller = controller;
+		this.controller.setfieldSize(7);
+		this.controller.setNumberOfFields(30);
 		initUI();
 		createMenuBar();
 		field = new ChooseFieldsPanel(controller);
@@ -74,7 +73,7 @@ public class DicewarsFrame extends JFrame implements IObserver{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				settings();
-				
+
 			}
 		});
 		/* EXIT */
@@ -114,46 +113,35 @@ public class DicewarsFrame extends JFrame implements IObserver{
 	}
 
 	private void createField() {
-		if(controller.getFieldSize()==0){
-			System.out.println("ERROR CONTROLLER FIELDSIZE");
+		if (controller.getFieldSize() == 0) {
 			return;
 		}
 		Board board = controller.getBoard();
 		setSize(DEFAULT_X - 1, DEFAULT_Y - 1);
 		setLocationRelativeTo(null);
-		if(board ==null)
+		if (board == null)
 			System.out.println("WTF");
 		getContentPane().add(new Graphfield(controller.getFieldSize(), RADIUS, this.controller));
+		int newSizeX = (2 * RADIUS * board.getLength()) + RADIUS;
+		int newSizeY = 2 * RADIUS * board.getLength() + RADIUS;
+		if (newSizeX > DEFAULT_X && newSizeY > DEFAULT_Y) {
+
+			setSize(newSizeX, newSizeY);
+		}
+
 	}
 
-	
-	private void settings(){
+	private void settings() {
 		frame.setSize(400, 400);
 		frame.setLayout(new GridLayout(1, 0));
-		
+
 		frame.add(player);
 		frame.add(field);
-		
+
 		frame.pack();
 		frame.setVisible(true);
-	
-	}
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Controller controller = new Controller();
-				DicewarsFrame ex = new DicewarsFrame(controller);
-				ex.setVisible(true);
-			}
-		});
 
 	}
 
-	@Override
-	public void update(Event e) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

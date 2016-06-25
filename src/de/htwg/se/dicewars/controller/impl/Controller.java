@@ -165,7 +165,6 @@ public class Controller extends Observable implements IController {
 		spreadDicesToField(board, playerlist);
 		setPlayerlist(playerlist);
 		init();
-		System.out.println("FELD GEBAUT");
 	}
 
 	@Override
@@ -184,6 +183,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startGame() {
 		
+		System.out.println("HEIR");
 		if (status == Status.New) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();
@@ -209,12 +209,15 @@ public class Controller extends Observable implements IController {
 		
 		}
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
-
+		System.out.println("CHECKED "+ (gameroutine.getStatus()));
 		if (gameroutine.getStatus() == Status.End_Turn) {
+			System.out.println(Status.End_Turn);
 			int numberOfFields = Fieldhandler.countConnectedFields(playerlist[playersTurn].getField(),
 					playerlist[playersTurn]);
-			playerlist[playersTurn].addNumberOfDices(numberOfFields);
-			playerlist[playersTurn].update();
+//			playerlist[playersTurn].addNumberOfDices(numberOfFields);
+//			playerlist[playersTurn].update();
+			gameroutine.endOFTurn(playerlist[playersTurn]);
+			
 
 			if (gameroutine.getPlayersTurn() == playerlist.length - 1) {
 				gameroutine.setPlayersTurn(0);

@@ -34,6 +34,7 @@ public class TUI implements IObserver {
 	@Override
 	public void update(Event e) {
 		tui();
+		System.out.println("BITCHES");
 		log4j.info(newline+console);
 		log4j.info(controller.getStatus());
 		log4j.info("OBSI");
@@ -229,7 +230,7 @@ public class TUI implements IObserver {
 		controller.createBoard(fieldSize, numberOfFields);
 		controller.setNumberOfFields(numberOfFields);
 		controller.connectPlayerToBoard(listOfPlayer);
-		controller.setfieldSize(fieldSize);
+		controller.setfieldSize(Convertmethods.converteFieldSize(fieldSize));
 
 		controller.spreadDicesToField(controller.getBoard(), listOfPlayer);
 		controller.setPlayerlist(listOfPlayer);

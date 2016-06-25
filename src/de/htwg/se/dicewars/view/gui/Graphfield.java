@@ -9,11 +9,11 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.controller.impl.Controller;
+
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
@@ -80,7 +80,14 @@ public class Graphfield extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			int x = e.getX();
 			int y = e.getY();
+			int[] index = Convertmethods.fieldNumberToIndex(field.length, getField(x, y));
+			
+				System.out.println(index[0]+" "+index[1]);
+			if(field[index[0]][index[1]]==null){
+				return;
+			}
 			if (attack == false) {
+				
 				controller.setAttack(getField(x, y));
 				attack = true;
 				repaint();
@@ -105,7 +112,7 @@ public class Graphfield extends JPanel {
 			for (int j = 0; j < poly.length; j++) {
 				if (poly[i][j].contains(x, y)) {
 					int nbr = i * poly.length + (j + 1);
-					color = Color.GRAY;
+					color = Color.WHITE;
 					System.out.println("Field " + (i * poly.length + (j + 1)));
 					return nbr;
 				}
