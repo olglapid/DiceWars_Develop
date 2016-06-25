@@ -18,10 +18,11 @@ import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 
 public class Graphfield extends JPanel {
-	
-	private Graphfield(){
-		
+
+	private Graphfield() {
+
 	}
+
 	private Polygon[][] poly;
 	private Field[][] field;
 	private int size;
@@ -31,7 +32,7 @@ public class Graphfield extends JPanel {
 	private boolean attack;
 	private IController controller;
 
-	public Graphfield(int length, int r, IController controller) {
+	public Graphfield(int r, IController controller) {
 		this.controller = controller;
 		Board board = controller.getBoard();
 		this.field = board.getField();
@@ -74,7 +75,7 @@ public class Graphfield extends JPanel {
 				xcord += radius - (radius / (2 * hexdrawer.SIDES));
 			for (int j = 0; j < size; j++) {
 				xcord += radius + radius - (radius / hexdrawer.SIDES);
-				hexdrawer.drawchange(xcord, ycord, g2, field[i][j], radius, color,controller);
+				hexdrawer.drawchange(xcord, ycord, g2, field[i][j], radius, color, controller);
 			}
 			xcord = 0;
 		}
@@ -87,12 +88,12 @@ public class Graphfield extends JPanel {
 			int x = e.getX();
 			int y = e.getY();
 			int[] index = Convertmethods.fieldNumberToIndex(field.length, getField(x, y));
-			
-			if(field[index[0]][index[1]]==null){
+
+			if (field[index[0]][index[1]] == null) {
 				return;
 			}
-			if (attack == false) {
-				
+			if (!attack) {
+
 				controller.setAttack(getField(x, y));
 				attack = true;
 				repaint();
@@ -100,12 +101,10 @@ public class Graphfield extends JPanel {
 				controller.setDefend(getField(x, y));
 				controller.startGame();
 				attack = false;
-				System.out.println(controller.getStatus());
 				repaint();
 				controller.setAttack(0);
 				controller.setDefend(0);
-				
-				
+
 			}
 
 		}

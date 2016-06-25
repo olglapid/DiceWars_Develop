@@ -113,7 +113,7 @@ public class DicewarsFrame extends JFrame{
 		Board board = controller.getBoard();
 		setSize(DEFAULT_X - 1, DEFAULT_Y - 1);
 		setLocationRelativeTo(null);
-		getContentPane().add(new Graphfield(controller.getFieldSize(), RADIUS, this.controller));
+		getContentPane().add(new Graphfield(RADIUS, this.controller));
 		int newSizeX = (2 * RADIUS * board.getLength()) + RADIUS;
 		int newSizeY = 2 * RADIUS * board.getLength() + RADIUS;
 		if (newSizeX > DEFAULT_X && newSizeY > DEFAULT_Y) {
