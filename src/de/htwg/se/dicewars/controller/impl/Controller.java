@@ -167,7 +167,6 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void create() {
 		createBoard(fieldSize, numberOfFields);
-		System.out.println("LÄNGE "+playerlist.length);
 		connectPlayerToBoard(playerlist);
 
 		spreadDicesToField(board, playerlist);

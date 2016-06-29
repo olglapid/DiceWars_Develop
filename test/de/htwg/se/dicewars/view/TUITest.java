@@ -8,38 +8,57 @@ import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.view.tui.TUI;
 
 public class TUITest {
 
-//	@Test
-//	public final void testTUI() {
-//		TUI console = new TUI();
-//		Board field = new Board(64);
-//		field = field.createField(64, 49);
-//		String value1 = "";
-//		String value2 = "";
-//		String tmp = "";
-//
-//		console.tui(field.brd.length, field);
-//		value1 = console.getConsole();
-//		for (int i = 0; i < field.brd.length; i++) {
-//			if (i % 2 != 0) {
-//				tmp += "  " + console.field(field, field.brd[i], field.getLength(),0);
-//				tmp += "  " + console.field(field, field.brd[i], field.getLength(),0);
-//				continue;
-//			}
-//			tmp += console.top(field.getLength());
-//			tmp += console.field(field, field.brd[i], field.getLength(),0);
-//			tmp += console.field(field, field.brd[i], field.getLength(),0);
-//			tmp += console.bot(field.getLength());
-//
-//		}
-//		tmp += "\n";
-//		tmp += "----------------------------------------------------------------";
-//		value2 = tmp;
-//		assertEquals(value2, value1);
-//	}
+	@Test
+	public final void testTUI() {
+		Controller controller = new Controller();
+		TUI console = new TUI(controller);
+		controller.setNumberOfFields(49);
+		controller.setfieldSize(64);
+		
+		Player[] playerList = new Player[2];
+		playerList[0]=new Player();
+		playerList[1]=new Player();
+		playerList[0].setPlayerNr(0);
+		playerList[0].createField(8);
+		playerList[1].setPlayerNr(1);
+		playerList[1].createField(8);
+	
+		controller.setPlayerlist(playerList);
+		controller.create();
+		
+		Board board = controller.getBoard();
+		
+		String value1 = "";
+		String value2 = "";
+		String tmp = "";
+
+		console.tui();
+		value1 = console.getConsole();
+		for (int i = 0; i < board.getLength(); i++) {
+			if (i % 2 != 0) {
+				tmp += "  " + console.field(board, board.getField()[i], board.getLength(),1);
+				tmp += "  " + console.field(board, board.getField()[i], board.getLength(),2);
+				continue;
+			}
+			tmp += console.top(board.getLength());
+			tmp += console.field(board, board.getField()[i], board.getLength(),1);
+			tmp += console.field(board, board.getField()[i], board.getLength(),2);
+			tmp += console.bot(board.getLength());
+
+		}
+		tmp += "\n";
+		tmp += "----------------------------------------------------------------";
+
+	value2 = tmp;
+	System.out.println(value2);
+	System.out.println(value1);
+		assertEquals(value2, value1);
+	}
 
 	@Test
 	public final void testSetConsole() {
