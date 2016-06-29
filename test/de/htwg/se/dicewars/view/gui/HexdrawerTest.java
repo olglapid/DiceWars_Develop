@@ -10,7 +10,7 @@ public class HexdrawerTest {
 
 	@Test
 	public final void hexagonTest() {
-		Polygon poly = hexdrawer.hexagon(100, 100, 50);
+		Polygon poly = Hexdrawer.hexagon(100, 100, 50);
 		assertTrue(poly.contains(100, 100));
 	}
 

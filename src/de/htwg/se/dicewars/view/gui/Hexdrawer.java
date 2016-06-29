@@ -7,10 +7,7 @@ import java.awt.Polygon;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Field;
 
-public class hexdrawer {
-	private hexdrawer(){
-		
-	}
+public class Hexdrawer {
 	static final int SIDES = 6;
 	private static final Color[] colour ={Color.RED,
 			Color.BLUE,
@@ -22,6 +19,11 @@ public class hexdrawer {
 			Color.MAGENTA,
 			Color.GRAY,
 			Color.cyan};
+	
+	private Hexdrawer(){
+		
+	}
+	
 
 	public static Polygon hexagon(int x, int y, int r) {
 		Polygon p = new Polygon();

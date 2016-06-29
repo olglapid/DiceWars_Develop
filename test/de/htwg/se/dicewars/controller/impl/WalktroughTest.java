@@ -9,8 +9,8 @@ import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
-import de.htwg.se.dicewars.strategy.AddDices;
 import de.htwg.se.dicewars.strategy.Context;
+import de.htwg.se.dicewars.strategy.CountDices;
 
 public class WalktroughTest {
 
@@ -24,7 +24,7 @@ public class WalktroughTest {
 		Field tmpField = field[0][0];
 		
 		Statistics stats=new Statistics();
-		Context context = new Context(new AddDices());
+		Context context = new Context(new CountDices());
 
 
 		assertEquals(tmpField, Walktrough.walkTroughFields(tmpField, visit, stats, context));

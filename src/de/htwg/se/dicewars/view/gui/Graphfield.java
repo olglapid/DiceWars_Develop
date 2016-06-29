@@ -1,7 +1,6 @@
 package de.htwg.se.dicewars.view.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -116,24 +115,24 @@ public class Graphfield extends JPanel {
 		super.paintComponent(g2);
 		int xcord = 0, ycord = 0;
 		for (int i = 0; i < size; i++) {
-			ycord += radius + radius - (2 * radius / hexdrawer.SIDES);
+			ycord += radius + radius - (2 * radius / Hexdrawer.SIDES);
 			if (i % 2 != 0)
-				xcord += radius - (radius / (2 * hexdrawer.SIDES));
+				xcord += radius - (radius / (2 * Hexdrawer.SIDES));
 			for (int j = 0; j < size; j++) {
-				xcord += radius + radius - (radius / hexdrawer.SIDES);
-				poly[i][j] = hexdrawer.drawhexagon(xcord, ycord, radius, g2, Color.PINK);
+				xcord += radius + radius - (radius / Hexdrawer.SIDES);
+				poly[i][j] = Hexdrawer.drawhexagon(xcord, ycord, radius, g2, Color.PINK);
 			}
 			xcord = 0;
 		}
 		xcord = 0;
 		ycord = 0;
 		for (int i = 0; i < size; i++) {
-			ycord += radius + radius - (2 * radius / hexdrawer.SIDES);
+			ycord += radius + radius - (2 * radius / Hexdrawer.SIDES);
 			if (i % 2 != 0)
-				xcord += radius - (radius / (2 * hexdrawer.SIDES));
+				xcord += radius - (radius / (2 * Hexdrawer.SIDES));
 			for (int j = 0; j < size; j++) {
-				xcord += radius + radius - (radius / hexdrawer.SIDES);
-				hexdrawer.drawchange(xcord, ycord, g2, field[i][j], radius, color, controller);
+				xcord += radius + radius - (radius / Hexdrawer.SIDES);
+				Hexdrawer.drawchange(xcord, ycord, g2, field[i][j], radius, color, controller);
 			}
 			xcord = 0;
 		}

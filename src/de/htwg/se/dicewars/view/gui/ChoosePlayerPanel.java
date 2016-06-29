@@ -73,7 +73,7 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener{
 	
 	public void fillPLayer(){
 		Player[] playerList = new Player[anzspieler];
-		int fieldSize = controller.getFieldSize();;
+		int fieldSize = controller.getFieldSize();
 		for (int i = 0; i < playerList.length; i++) {
 			playerList[i]=new Player();
 			playerList[i].setPlayerNr(i);
