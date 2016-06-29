@@ -19,9 +19,10 @@ import de.htwg.se.dicewars.model.Field;
 
 public class Graphfield extends JPanel {
 
-	private Graphfield() {
-
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1395240609585095479L;
 
 	private Polygon[][] poly;
 	private Field[][] field;
@@ -41,17 +42,26 @@ public class Graphfield extends JPanel {
 		color = Color.BLACK;
 		size = field.length;
 		poly = new Polygon[field.length][field.length];
-
+		System.out.println("POLY "+poly.length);
 		MyMouseListener m1 = new MyMouseListener();
 		addMouseListener(m1);
 	}
 
 	public void setField(Field[][] field) {
 		this.field = field;
+		newPoly();
+		repaint();
+		
+	}
+	public void newPoly(){
+		this.poly = null;
+		this.poly = new Polygon[field.length][field.length];
+		
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
+		
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 20));

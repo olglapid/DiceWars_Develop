@@ -14,6 +14,8 @@ public interface IController extends IObservable {
 
 	int getDefend();
 
+	void reset();
+	
 	void setGameroutine(Gameroutine gameroutine);
 
 	Gameroutine getGameroutine();

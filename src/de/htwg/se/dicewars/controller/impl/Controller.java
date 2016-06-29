@@ -32,6 +32,16 @@ public class Controller extends Observable implements IController {
 		defend = -1;
 	}
 
+	public void reset(){
+		this.board = null;
+		this.playerlist = null;
+		this.numberOfFields = 0;
+		this.fieldSize = 0;
+		this.status = Status.New;
+		this.gameroutine = new Gameroutine();
+		this.attack = -1;
+		this.defend = -1;
+	}
 	@Override
 	public int getAttack() {
 		return this.attack;
@@ -158,12 +168,11 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void create() {
 		createBoard(fieldSize, numberOfFields);
-		setNumberOfFields(numberOfFields);
+		System.out.println("LÄNGE "+playerlist.length);
 		connectPlayerToBoard(playerlist);
-		setfieldSize(fieldSize);
 
 		spreadDicesToField(board, playerlist);
-		setPlayerlist(playerlist);
+		
 		init();
 	}
 

@@ -12,9 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Board;
+import de.htwg.se.dicewars.model.Field;
 
 public class DicewarsFrame extends JFrame{
 
@@ -23,6 +26,7 @@ public class DicewarsFrame extends JFrame{
 	private static final int DEFAULT_X = 800;
 	private static final int RADIUS = 30;
 	private IController controller;
+	private boolean trig;
 	JFrame frame = new JFrame("Auswahlfeld");
 
 	private ChooseFieldsPanel field;
@@ -36,6 +40,7 @@ public class DicewarsFrame extends JFrame{
 		createMenuBar();
 		field = new ChooseFieldsPanel(controller);
 		player = new ChoosePlayerPanel(controller);
+		trig = false;
 	}
 
 	private void initUI() {
@@ -103,19 +108,44 @@ public class DicewarsFrame extends JFrame{
 	}
 
 	private void createField() {
-		if (controller.getFieldSize() == 0) {
+	
+		if (controller.getFieldSize() == 0||controller.getPlayerlist()==null) {
+			System.out.println("RETURN");
 			return;
 		}
+		
+		if(trig){
+			controller.reset();
+			System.out.println("REPAINT");
+			controller.setNumberOfFields(field.getAnzFelder());
+			controller.setfieldSize(Convertmethods.converteFieldSize(field.getAnzFelder()));
+			player.fillPLayer();
+			
+			getContentPane().removeAll();
+			
+			
+		}
+		System.out.println(controller.getFieldSize());
+		System.out.println(controller.getNumberOfFields());
+		System.out.println(controller.getPlayerlist());
+		controller.create();
 		Board board = controller.getBoard();
 		setSize(DEFAULT_X - 1, DEFAULT_Y - 1);
 		setLocationRelativeTo(null);
+			
+	
 		getContentPane().add(new Graphfield(RADIUS, this.controller));
+		getContentPane().invalidate();
+		getContentPane().validate();
+		
+		trig=true;
 		int newSizeX = (2 * RADIUS * board.getLength()) + RADIUS;
 		int newSizeY = 2 * RADIUS * board.getLength() + RADIUS;
 		if (newSizeX > DEFAULT_X && newSizeY > DEFAULT_Y) {
 
 			setSize(newSizeX, newSizeY);
 		}
+		
 
 	}
 

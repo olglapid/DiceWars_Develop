@@ -14,7 +14,7 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	private JTextField fieldsEingabe;
 	private JButton anwenden, start;
-	public Integer felderanzahl = 0;
+	public Integer felderanzahl = 20;
 	private IController controller;
 	
 	public ChooseFieldsPanel(IController controller) {
@@ -61,8 +61,7 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 				felderanzahl = Integer.valueOf(fieldsEingabe.getText());
 				controller.setNumberOfFields(felderanzahl);
 				controller.setfieldSize(Convertmethods.converteFieldSize(felderanzahl));
-				System.out.println(controller.getFieldSize());
-				System.out.println(controller.getNumberOfFields());
+				
 				
 		}
 		
@@ -89,6 +88,9 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 		}
 	}
 
+	public int getAnzFelder(){
+		return this.felderanzahl;
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
