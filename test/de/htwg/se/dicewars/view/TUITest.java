@@ -14,6 +14,7 @@ import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.view.tui.TUI;
 
 public class TUITest {
@@ -226,10 +227,22 @@ public class TUITest {
 		System.setIn(new ByteArrayInputStream(felder.getBytes()));
 		console.readData();
 		System.setIn(inp);
+		
 		assertEquals(3, controller.getBoard().getLength());
 		assertNotNull(controller.getPlayerlist());
 		assertEquals(9, controller.getNumberOfFields());
 
+		
+		felder = "1" + System.getProperty("line.separator") + "2"  + System.getProperty("line.separator") + "0";
+		
+		inp = System.in;
+		System.setIn(new ByteArrayInputStream(felder.getBytes()));
+		
+		console.startGame();
+		
+		assertNotEquals(Status.New, controller.getStatus());
+		
+		
 
 	}
 

@@ -239,14 +239,17 @@ public class TUI implements IObserver {
 		int attack = 0;
 		int defend = 0;
 		Scanner sc = new Scanner(System.in);
-		while (controller.getStatus() != Status.EndTurn) {
+		while (controller.getStatus() != Status.EndTurn ) {
 			log4j.info(newline + " Feld Auswählen: ");
 			attack = sc.nextInt();
+			if(attack==0)
+				break;
 			log4j.info(newline + " Feld Angreifen: ");
 			defend = sc.nextInt();
 			controller.setAttack(attack);
 			controller.setDefend(defend);
 			controller.startGame();
+			
 
 		}
 		sc.close();
