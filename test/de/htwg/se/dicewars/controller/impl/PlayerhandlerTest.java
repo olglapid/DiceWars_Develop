@@ -25,11 +25,11 @@ public class PlayerhandlerTest {
 	public final void getPlayerTest() {
 		Player player = new Player();
 		Playerhandler playerhandler = new Playerhandler();
-		
+
 		playerhandler.setPlayer(player);
-		
+
 		assertEquals(player, playerhandler.getPlayer());
-		
+
 	}
 
 	@Test
@@ -62,38 +62,42 @@ public class PlayerhandlerTest {
 
 		hans.setName("hans");
 		peter.setName("peter");
-		
+
 		field[1][1].setOwner(hans);
 		field[1][1].setNumberOfDices(1);
 		field[1][2].setOwner(hans);
 		field[1][2].setNumberOfDices(1);
 		field[1][0].setOwner(peter);
 		field[1][0].setNumberOfDices(8);
-		
+
 		field[1][0].setNumberOfDices(1000000);
-		
+
 		Attack attack = new Attack();
-		
+
 		attack.attackroutine(field[1][0], 2, 1, 1);
-		
+
 		Playerhandler playerhandler = new Playerhandler();
-		playerhandler.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
-		
+		playerhandler.updatePlayer(attack.getField(), attack.getNeighbour(), attack.getStatus());
+
 		assertEquals(peter, field[1][1].getOwner());
 		assertEquals(Status.PlayerUpdated, playerhandler.getStatus());
-		
+
 		field[1][1].setOwner(hans);
-		
+
 		field[1][0].setNumberOfDices(1);
-		
+
 		attack.attackroutine(field[1][0], 2, 1, 1);
-		playerhandler.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
+		playerhandler.updatePlayer(attack.getField(), attack.getNeighbour(), attack.getStatus());
 		assertEquals(hans, field[1][1].getOwner());
 		assertEquals(Status.NothingToUpdate, playerhandler.getStatus());
-		
-		
-		
-		
-		
+
 	}
+	
+//	@Test
+//	public final void startGameTest(){
+//		Controller controller = new Controller();
+//		Board board = new Board();
+//		board = Boardsetup.createField(9, 9);
+//		
+//	}
 }

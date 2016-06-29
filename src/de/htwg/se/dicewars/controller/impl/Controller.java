@@ -190,7 +190,6 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startGame() {
 
-		System.out.println("HEIR");
 		if (status == Status.New) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();

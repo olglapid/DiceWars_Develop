@@ -26,15 +26,15 @@ public class TUI implements IObserver {
 		console = "";
 		this.controller = controller;
 		controller.addObserver(this);
-		mode1=1;
-		mode2=2;
-		
+		mode1 = 1;
+		mode2 = 2;
+
 	}
-	
+
 	@Override
 	public void update(Event e) {
 		tui();
-		log4j.info(newline+console);
+		log4j.info(newline + console);
 		log4j.info(controller.getStatus());
 		log4j.info("OBSI");
 	}
@@ -203,7 +203,6 @@ public class TUI implements IObserver {
 		int tmpNbrOfPlayer = 0;
 
 		Scanner sc = new Scanner(System.in);
-		
 
 		do {
 			log4j.info(newline + " Spielfeldgröße: ");
@@ -236,7 +235,6 @@ public class TUI implements IObserver {
 		controller.init();
 	}
 
-	
 	public void startGame() {
 		int attack = 0;
 		int defend = 0;
@@ -249,11 +247,10 @@ public class TUI implements IObserver {
 			controller.setAttack(attack);
 			controller.setDefend(defend);
 			controller.startGame();
-			
+
 		}
 		sc.close();
 
 	}
-
 
 }

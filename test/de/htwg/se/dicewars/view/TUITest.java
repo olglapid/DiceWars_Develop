@@ -2,6 +2,11 @@ package de.htwg.se.dicewars.view;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
@@ -19,20 +24,20 @@ public class TUITest {
 		TUI console = new TUI(controller);
 		controller.setNumberOfFields(49);
 		controller.setfieldSize(64);
-		
+
 		Player[] playerList = new Player[2];
-		playerList[0]=new Player();
-		playerList[1]=new Player();
+		playerList[0] = new Player();
+		playerList[1] = new Player();
 		playerList[0].setPlayerNr(0);
 		playerList[0].createField(8);
 		playerList[1].setPlayerNr(1);
 		playerList[1].createField(8);
-	
+
 		controller.setPlayerlist(playerList);
 		controller.create();
-		
+
 		Board board = controller.getBoard();
-		
+
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";
@@ -41,30 +46,30 @@ public class TUITest {
 		value1 = console.getConsole();
 		for (int i = 0; i < board.getLength(); i++) {
 			if (i % 2 != 0) {
-				tmp += "  " + console.field(board, board.getField()[i], board.getLength(),1);
-				tmp += "  " + console.field(board, board.getField()[i], board.getLength(),2);
+				tmp += "  " + console.field(board, board.getField()[i], board.getLength(), 1);
+				tmp += "  " + console.field(board, board.getField()[i], board.getLength(), 2);
 				continue;
 			}
 			tmp += console.top(board.getLength());
-			tmp += console.field(board, board.getField()[i], board.getLength(),1);
-			tmp += console.field(board, board.getField()[i], board.getLength(),2);
+			tmp += console.field(board, board.getField()[i], board.getLength(), 1);
+			tmp += console.field(board, board.getField()[i], board.getLength(), 2);
 			tmp += console.bot(board.getLength());
 
 		}
 		tmp += "\n";
 		tmp += "----------------------------------------------------------------";
 
-	value2 = tmp;
-	System.out.println(value2);
-	System.out.println(value1);
+		value2 = tmp;
+		System.out.println(value2);
+		System.out.println(value1);
 		assertEquals(value2, value1);
 	}
 
 	@Test
 	public final void testSetConsole() {
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
-	
+		TUI console = new TUI(controller);
+
 		console.setConsole("Test");
 		assertEquals("Test", console.getConsole());
 	}
@@ -72,7 +77,7 @@ public class TUITest {
 	@Test
 	public final void testAddConsole() {
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
+		TUI console = new TUI(controller);
 		console.setConsole("Test");
 		console.addConsole("Test");
 		assertEquals("TestTest", console.getConsole());
@@ -81,23 +86,17 @@ public class TUITest {
 	@Test
 	public final void testField() {
 		/*
-		Field[][] field = Board.createField(64, 49);
-		String value1 = "";
-		String value2 = "";
-		String tmp = "";
-		value1 = TUI.field(field, field[0], field.length);
-
-		
-		for(int i=0;i<field.length;i++){
-			if(field[0][i]!=null)
-				tmp += field[0][i].getFieldNumber();
-			value2=TUI.format(value2, tmp);
-			tmp="";
-		}
-		value2+="\n";
-
-		assertEquals(value2, value1);
-		*/
+		 * Field[][] field = Board.createField(64, 49); String value1 = "";
+		 * String value2 = ""; String tmp = ""; value1 = TUI.field(field,
+		 * field[0], field.length);
+		 * 
+		 * 
+		 * for(int i=0;i<field.length;i++){ if(field[0][i]!=null) tmp +=
+		 * field[0][i].getFieldNumber(); value2=TUI.format(value2, tmp); tmp="";
+		 * } value2+="\n";
+		 * 
+		 * assertEquals(value2, value1);
+		 */
 	}
 
 	@Test
@@ -105,7 +104,7 @@ public class TUITest {
 		String value1 = "";
 		int ctr = 10;
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
+		TUI console = new TUI(controller);
 		console.setConsole(console.top(ctr));
 
 		for (int i = 0; i < ctr; i++) {
@@ -119,7 +118,7 @@ public class TUITest {
 	public final void testBot() {
 		String value1 = "";
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
+		TUI console = new TUI(controller);
 
 		int ctr = 10;
 		console.setConsole(console.bot(ctr));
@@ -134,14 +133,14 @@ public class TUITest {
 	@Test
 	public final void testTui() {
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
+		TUI console = new TUI(controller);
 		assertEquals("", console.getConsole());
 	}
 
 	@Test
 	public final void testPrintBox() {
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
+		TUI console = new TUI(controller);
 		Board board = new Board();
 		String value1 = "";
 		String value2 = "";
@@ -199,7 +198,7 @@ public class TUITest {
 	@Test
 	public final void testGlobalPrint() {
 		Controller controller = new Controller();
-		TUI console= new TUI(controller);
+		TUI console = new TUI(controller);
 		Board board = new Board();
 		board = Boardsetup.createField(64, 49);
 		String value2 = "";
@@ -214,6 +213,24 @@ public class TUITest {
 			value2 += "\n";
 		}
 		assertEquals(value2, console.getConsole());
+	}
+
+	@Test
+	public final void readDataTest() {
+		Controller controller = new Controller();
+		TUI console = new TUI(controller);
+		String felder = "9" + System.getProperty("line.separator") + "9" + System.getProperty("line.separator") + "2"
+				+ System.getProperty("line.separator") + "a" + System.getProperty("line.separator") + "b";
+
+		InputStream inp = System.in;
+		System.setIn(new ByteArrayInputStream(felder.getBytes()));
+		console.readData();
+		System.setIn(inp);
+		assertEquals(3, controller.getBoard().getLength());
+		assertNotNull(controller.getPlayerlist());
+		assertEquals(9, controller.getNumberOfFields());
+
+
 	}
 
 }
