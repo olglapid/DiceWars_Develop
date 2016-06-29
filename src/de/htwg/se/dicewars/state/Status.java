@@ -5,7 +5,7 @@ package de.htwg.se.dicewars.state;
  */
 public enum Status {
 
-	validAttack , 
+	VALIDATTACK , 
 	InvalidAttackNeighbour , 
 	InvalidAttackDices , 
 	InvalidAttackOwner , 

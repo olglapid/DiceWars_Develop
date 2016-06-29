@@ -15,7 +15,7 @@ public class StatusMessage {
 		 text.put(Status.InvalidAttackOwner ,"You can't attack: don't attack yourself");
 		 text.put(Status.InvalidAttackDices, "You can't attack: not enough dices");
 		 text.put(Status.InvalidAttackField, "You can't attack: no valid Field");
-		 text.put(Status.validAttack, "Attack is valid");
+		 text.put(Status.VALIDATTACK, "Attack is valid");
 		 text.put(Status.AttackSuccess, "U WOT M8: REKT");
 		 text.put(Status.AttackFailed, "TOP KEK: U GOT REKT");
 		 text.put(Status.DiceError0,"DiceHandler Error: Not enough dices");
