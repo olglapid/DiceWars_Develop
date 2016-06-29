@@ -1,6 +1,7 @@
 package de.htwg.se.dicewars.view.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -45,11 +46,34 @@ public class Graphfield extends JPanel {
 		addMouseListener(m1);
 	}
 
+	public void setPoly(Polygon[][] poly){
+		this.poly=poly;
+	}
+	
+	public void setSize(int size){
+		this.size=size;
+	}
+	public void setRadius(int radius){
+		this.radius=radius;
+	}
+	
+	public void setColor(Color color){
+		this.color=color;
+	}
+	
+	public void setAttack(boolean attack){
+		this.attack = attack;
+	}
+	
 	public void setField(Field[][] field) {
 		this.field = field;
 		newPoly();
 		repaint();
 		
+	}
+	
+	public void setController(IController controller){
+		this.controller = controller;
 	}
 	public void newPoly(){
 		this.poly = null;
@@ -57,6 +81,32 @@ public class Graphfield extends JPanel {
 		
 	}
 
+	public Field[][] getField(){
+		return this.field;
+	}
+	
+	public IController getController(){
+		return this.controller;
+	}
+	public boolean getAttack(){
+		return this.attack;
+	}
+	public Polygon[][] getPoly(){
+		return this.poly;
+	}
+
+	public int getRadius(){
+		return this.radius;
+	}
+	
+	public int getSiz(){
+		return this.size;
+	}
+	
+	public Color getColor(){
+		return this.color;
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		
