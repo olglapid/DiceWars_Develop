@@ -49,14 +49,14 @@ public class DicehandlerTest {
 		field2.setNumberOfDices(1);
 		attack.setField(field1);
 		attack.setNeighbour(field2);
-		attack.setStatus(Status.Attack_Success);
+		attack.setStatus(Status.AttackSuccess);
 		
 		dicehandler.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());
 		
 		assertEquals(1, field1.getNumberOfDices());
 		assertEquals(7, field2.getNumberOfDices());
 		
-		attack.setStatus(Status.Attack_Failed);
+		attack.setStatus(Status.AttackFailed);
 		dicehandler.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());
 		
 		assertEquals(1, field1.getNumberOfDices());

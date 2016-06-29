@@ -50,11 +50,11 @@ public class Dicehandler {
 		Field neighbourtmp = neighbour;
 		int dices = fieldtmp.getNumberOfDices() - 1;
 		if (dices <= 0) {
-			setStatus(Status.Dice_Error0);/* Status setzen */
+			setStatus(Status.DiceError0);/* Status setzen */
 			return;
 		}
 		fieldtmp.setNumberOfDices(1);
-		if (stat == Status.Attack_Success)
+		if (stat == Status.AttackSuccess)
 			neighbourtmp.setNumberOfDices(dices);
 
 	}

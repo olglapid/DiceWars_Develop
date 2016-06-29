@@ -69,7 +69,7 @@ public class Gameroutine  extends Observable{
 	}
 
 	public void endOFTurn(Player player) {
-		if (status != Status.End_Turn)
+		if (status != Status.EndTurn)
 			return;
 
 		int connectedField = Fieldhandler.countConnectedFields(player.getField(), player);
@@ -99,14 +99,14 @@ public class Gameroutine  extends Observable{
 		}
 		status = Status.Valid;
 		if (stats.getTmp() == 0) {
-			status = Status.End_Turn;
+			status = Status.EndTurn;
 		}
 
 	}
 
 	public void routine(Player player, Field agressor, Field defender, int fieldSize) {
 		if (agressor.getOwner() != player) {
-			setStatus(Status.Invalid_Owner);
+			setStatus(Status.InvalidOwner);
 			return;
 		}
 
@@ -114,7 +114,7 @@ public class Gameroutine  extends Observable{
 		attack.setNeighbour(defender);
 		attack.attackroutine(agressor, fieldSize, defender.getX(), defender.getY());
 		status = Status.Failed;
-		if (attack.getStatus() == Status.Attack_Failed || attack.getStatus() == Status.Attack_Success) {
+		if (attack.getStatus() == Status.AttackFailed || attack.getStatus() == Status.AttackSuccess) {
 			diceUpdate.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());
 			playerUpdate.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
 			status = Status.Success;

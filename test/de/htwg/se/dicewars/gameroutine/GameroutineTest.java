@@ -83,18 +83,18 @@ public class GameroutineTest {
 
 		gameroutine.routine(hans, field[1][0], field[1][0], 3);
 
-		assertEquals(Status.Invalid_Owner, gameroutine.getStatus());
+		assertEquals(Status.InvalidOwner, gameroutine.getStatus());
 
 		gameroutine.routine(hans, field[1][1], field[1][0], 3);
 
 		
-		assertEquals(Status.Invalid_Attack_Dices, gameroutine.getStatus());
+		assertEquals(Status.InvalidAttackDices, gameroutine.getStatus());
 
-		assertEquals(Status.Invalid_Attack_Dices, gameroutine.getAttack().getStatus());
+		assertEquals(Status.InvalidAttackDices, gameroutine.getAttack().getStatus());
 
 		gameroutine.routine(peter, field[1][0], field[1][1], 3);
 		
-		assertEquals(Status.Attack_Success, gameroutine.getStatus());
+		assertEquals(Status.AttackSuccess, gameroutine.getStatus());
 		assertEquals(peter, field[1][1].getOwner());
 		assertEquals(7, field[1][1].getNumberOfDices());
 		assertEquals(1, field[1][0].getNumberOfDices());
@@ -108,7 +108,7 @@ public class GameroutineTest {
 
 		gameroutine.routine(hans, field[1][1], field[1][0], 3);
 
-		assertEquals(Status.Attack_Failed, gameroutine.getStatus());
+		assertEquals(Status.AttackFailed, gameroutine.getStatus());
 
 	}
 
@@ -140,7 +140,7 @@ public class GameroutineTest {
 
 		gameroutine.checkEndOfTurn(hans);
 
-		assertEquals(Status.End_Turn, gameroutine.getStatus());
+		assertEquals(Status.EndTurn, gameroutine.getStatus());
 
 		peter.setNumberOfDices(8);
 		peter.initShuffle(null);;

@@ -35,8 +35,8 @@ public class PlayerhandlerTest {
 	@Test
 	public final void getStatusTest() {
 		Playerhandler playerhandler = new Playerhandler();
-		playerhandler.setStatus(Status.Nothing_To_Update);
-		assertEquals(Status.Nothing_To_Update, playerhandler.getStatus());
+		playerhandler.setStatus(Status.NothingToUpdate);
+		assertEquals(Status.NothingToUpdate, playerhandler.getStatus());
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class PlayerhandlerTest {
 		playerhandler.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
 		
 		assertEquals(peter, field[1][1].getOwner());
-		assertEquals(Status.Player_Updated, playerhandler.getStatus());
+		assertEquals(Status.PlayerUpdated, playerhandler.getStatus());
 		
 		field[1][1].setOwner(hans);
 		
@@ -89,7 +89,7 @@ public class PlayerhandlerTest {
 		attack.attackroutine(field[1][0], 2, 1, 1);
 		playerhandler.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
 		assertEquals(hans, field[1][1].getOwner());
-		assertEquals(Status.Nothing_To_Update, playerhandler.getStatus());
+		assertEquals(Status.NothingToUpdate, playerhandler.getStatus());
 		
 		
 		

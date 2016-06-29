@@ -198,7 +198,7 @@ public class Controller extends Observable implements IController {
 		}
 
 		if (attack < 0 || defend < 0) {
-			status = Status.Choose_Aktion;
+			status = Status.ChooseAktion;
 			return;
 		}
 		int playersTurn = gameroutine.getPlayersTurn();
@@ -217,7 +217,7 @@ public class Controller extends Observable implements IController {
 
 		}
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
-		if (gameroutine.getStatus() == Status.End_Turn) {
+		if (gameroutine.getStatus() == Status.EndTurn) {
 			gameroutine.endOFTurn(playerlist[playersTurn]);
 
 			if (gameroutine.getPlayersTurn() == playerlist.length - 1) {
