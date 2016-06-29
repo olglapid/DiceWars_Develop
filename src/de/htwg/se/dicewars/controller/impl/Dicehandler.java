@@ -12,7 +12,7 @@ public class Dicehandler {
 	private Status status;
 
 	public Dicehandler() {
-		status = Status.New;
+		status = Status.NEW;
 	}
 
 	public void setStatus(Status tmpMessege) {
@@ -50,11 +50,11 @@ public class Dicehandler {
 		Field neighbourtmp = neighbour;
 		int dices = fieldtmp.getNumberOfDices() - 1;
 		if (dices <= 0) {
-			setStatus(Status.DiceError0);/* Status setzen */
+			setStatus(Status.DICEERROR);/* Status setzen */
 			return;
 		}
 		fieldtmp.setNumberOfDices(1);
-		if (stat == Status.AttackSuccess)
+		if (stat == Status.ATTACKSUCCESS)
 			neighbourtmp.setNumberOfDices(dices);
 
 	}

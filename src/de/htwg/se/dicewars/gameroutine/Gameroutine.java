@@ -22,7 +22,7 @@ public class Gameroutine  extends Observable{
 
 	public Gameroutine() {
 		attack = new Attack();
-		status = Status.New;
+		status = Status.NEW;
 		playerUpdate = new Playerhandler();
 		diceUpdate = new Dicehandler();
 		playersTurn = -1;
@@ -69,7 +69,7 @@ public class Gameroutine  extends Observable{
 	}
 
 	public void endOFTurn(Player player) {
-		if (status != Status.EndTurn)
+		if (status != Status.ENDTURN)
 			return;
 
 		int connectedField = Fieldhandler.countConnectedFields(player.getField(), player);
@@ -97,32 +97,32 @@ public class Gameroutine  extends Observable{
 				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
 			}
 		}
-		status = Status.Valid;
+		status = Status.VALID;
 		if (stats.getTmp() == 0) {
-			status = Status.EndTurn;
+			status = Status.ENDTURN;
 		}
 
 	}
 
 	public void routine(Player player, Field agressor, Field defender, int fieldSize) {
 		if (agressor.getOwner() != player) {
-			setStatus(Status.InvalidOwner);
+			setStatus(Status.INVALIDOWNER);
 			return;
 		}
 
 		attack.setField(agressor);
 		attack.setNeighbour(defender);
 		attack.attackroutine(agressor, fieldSize, defender.getX(), defender.getY());
-		status = Status.Failed;
-		if (attack.getStatus() == Status.AttackFailed || attack.getStatus() == Status.AttackSuccess) {
+		status = Status.FAILED;
+		if (attack.getStatus() == Status.ATTACKFAILED || attack.getStatus() == Status.ATTACKSUCCESS) {
 			diceUpdate.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());
 			playerUpdate.updatePlayer(attack.getField(),attack.getNeighbour(),attack.getStatus());
-			status = Status.Success;
+			status = Status.SUCCESS;
 		}
 		
 
 		
-		if(status == Status.Failed){
+		if(status == Status.FAILED){
 			status = attack.getStatus();
 			return;
 		}

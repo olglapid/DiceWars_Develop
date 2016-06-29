@@ -240,7 +240,7 @@ public class TUITest {
 		
 		console.startGame();
 		
-		assertNotEquals(Status.New, controller.getStatus());
+		assertNotEquals(Status.NEW, controller.getStatus());
 		
 		
 

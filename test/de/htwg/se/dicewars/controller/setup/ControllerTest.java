@@ -23,7 +23,7 @@ public class ControllerTest {
 		assertArrayEquals(null, controller.getPlayerlist());
 		assertEquals(0, controller.getFieldSize());
 		assertEquals(0, controller.getNumberOfFields());
-		assertEquals(Status.New, controller.getStatus());
+		assertEquals(Status.NEW, controller.getStatus());
 		assertTrue(null != controller.getGameroutine());
 		assertEquals(-1, controller.getAttack());
 		assertEquals(-1, controller.getDefend());
@@ -245,6 +245,6 @@ public class ControllerTest {
 		assertEquals(0, controller.getNumberOfFields());
 		assertEquals(-1, controller.getAttack());
 		assertEquals(-1, controller.getDefend());
-		assertEquals(Status.New, controller.getStatus());
+		assertEquals(Status.NEW, controller.getStatus());
 	}
 }

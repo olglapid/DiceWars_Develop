@@ -10,7 +10,7 @@ public class Attack extends Observable{
 	private Field field;
 	private Field neighbour;
 	public Attack(){
-		status=Status.New;
+		status=Status.NEW;
 		field=null;
 		neighbour=null;
 	}
@@ -41,24 +41,24 @@ public class Attack extends Observable{
 		int index = Fieldhandler.getNeighborfromIndex(x, y);
 
 		if (index == -1) {
-			setStatus(Status.InvalidAttackNeighbour);
+			setStatus(Status.INVALIDATTACKNEIGHBOR);
 			return;
 		}
 
 		Field tmp = field.getNachbar()[index];
 		
 		if (tmp == null) {
-			setStatus(Status.InvalidAttackField);
+			setStatus(Status.INVALIDATTACKFIELD);
 			return;
 		}
 
 		if (field.getOwner() == tmp.getOwner()) {
-			setStatus(Status.InvalidAttackOwner);
+			setStatus(Status.INVALIDATTACKOWNER);
 			return;
 		}
 
 		if (field.getNumberOfDices() <= 1) {
-			setStatus(Status.InvalidAttackDices);
+			setStatus(Status.INVALIDATTACKDICES);
 			return;
 		}
 
@@ -79,9 +79,9 @@ public class Attack extends Observable{
 		rtdDefend = tmp.rollTheDice();
 
 		if (rtdAttack <= rtdDefend) {
-			setStatus(Status.AttackFailed);
+			setStatus(Status.ATTACKFAILED);
 		} else {
-			setStatus(Status.AttackSuccess);
+			setStatus(Status.ATTACKSUCCESS);
 		}
 		setField(field);
 		setNeighbour(field.getNachbar()[index]);
@@ -90,7 +90,7 @@ public class Attack extends Observable{
 
 	public void attackroutine(Field field, int fieldSize, int attackX, int attackY) {
 		if (field == null) {
-			setStatus(Status.InvalidAttackField);
+			setStatus(Status.INVALIDATTACKFIELD);
 		} else {
 			checkAttack(field, attackX, attackY);
 			if (getStatus() == Status.VALIDATTACK) {

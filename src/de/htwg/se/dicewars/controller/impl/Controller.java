@@ -25,7 +25,7 @@ public class Controller extends Observable implements IController {
 		playerlist = null;
 		numberOfFields = 0;
 		fieldSize = 0;
-		status = Status.New;
+		status = Status.NEW;
 		gameroutine = new Gameroutine();
 		attack = -1;
 		defend = -1;
@@ -36,7 +36,7 @@ public class Controller extends Observable implements IController {
 		this.playerlist = null;
 		this.numberOfFields = 0;
 		this.fieldSize = 0;
-		this.status = Status.New;
+		this.status = Status.NEW;
 		this.gameroutine = new Gameroutine();
 		this.attack = -1;
 		this.defend = -1;
@@ -190,13 +190,13 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startGame() {
 
-		if (status == Status.New) {
+		if (status == Status.NEW) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();
 		}
 
 		if (attack < 0 || defend < 0) {
-			status = Status.ChooseAktion;
+			status = Status.CHOOSEAKTION;
 			return;
 		}
 		int playersTurn = gameroutine.getPlayersTurn();
@@ -210,12 +210,12 @@ public class Controller extends Observable implements IController {
 		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield, fieldSize);
 		attack = -1;
 		defend = -1;
-		if (gameroutine.getStatus() != Status.Success) {
+		if (gameroutine.getStatus() != Status.SUCCESS) {
 			status = gameroutine.getStatus();
 
 		}
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
-		if (gameroutine.getStatus() == Status.EndTurn) {
+		if (gameroutine.getStatus() == Status.ENDTURN) {
 			gameroutine.endOFTurn(playerlist[playersTurn]);
 
 			if (gameroutine.getPlayersTurn() == playerlist.length - 1) {
