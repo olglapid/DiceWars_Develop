@@ -62,7 +62,7 @@ public class Attack extends Observable{
 			return;
 		}
 
-		setStatus(Status.ValidAttack);
+		setStatus(Status.validAttack);
 
 	}
 
@@ -93,7 +93,7 @@ public class Attack extends Observable{
 			setStatus(Status.InvalidAttackField);
 		} else {
 			checkAttack(field, attackX, attackY);
-			if (getStatus() == Status.ValidAttack) {
+			if (getStatus() == Status.validAttack) {
 				attack(field, attackX, attackY);
 			}
 		}
