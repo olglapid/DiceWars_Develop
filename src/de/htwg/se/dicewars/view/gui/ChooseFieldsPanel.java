@@ -14,7 +14,7 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	private JTextField fieldsEingabe;
 	private JButton anwenden, start;
-	public Integer felderanzahl = 20;
+	private Integer felderanzahl = 20;
 	private IController controller;
 	
 	public ChooseFieldsPanel(IController controller) {
@@ -49,7 +49,6 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		Object source = e.getSource();
 		if(source == anwenden) {
 			if(fieldsEingabe.getText().length() == 0) {
@@ -75,12 +74,7 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 				JFrame frame = new JFrame("Spielfeld");
 				frame.setSize(400, 400);
 				frame.setLayout(new GridLayout(1, 0));
-				
-				//Graphfield game = new Graphfield(10,30);
-				
-				//frame.add(game);
-				
-				//frame.add(game);
+	
 				frame.pack();
 				frame.setVisible(true);
 			}
@@ -94,27 +88,35 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+		/**** 
+		 * 
+		 */
 	}
 
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
+		/**** 
+		 * 
+		 */
 		
 	}
 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		/**** 
+		 * 
+		 */
 		
 	}
 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
+		/**** 
+		 * 
+		 */
 		
 	}
 }

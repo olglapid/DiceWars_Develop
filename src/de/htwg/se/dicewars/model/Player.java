@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
-import de.htwg.se.dicewars.controller.impl.Controller;
-import de.htwg.se.dicewars.view.tui.TUI;
 
 
 public class Player {

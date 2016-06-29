@@ -49,7 +49,7 @@ public abstract class Boardsetup {
 		board.setField(field);
 		return board;
 	}
-	public static void spreadDices(Board board, Player[] listOfPlayer){
+	public static void spreadDices(Player[] listOfPlayer){
 		Field[][] field;
 		field=listOfPlayer[0].getField();
 		int dicesToAdd=Fieldhandler.countFields(field);

@@ -12,12 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.model.Board;
-import de.htwg.se.dicewars.model.Field;
+
 
 public class DicewarsFrame extends JFrame{
 
@@ -125,9 +125,6 @@ public class DicewarsFrame extends JFrame{
 			
 			
 		}
-		System.out.println(controller.getFieldSize());
-		System.out.println(controller.getNumberOfFields());
-		System.out.println(controller.getPlayerlist());
 		controller.create();
 		Board board = controller.getBoard();
 		setSize(DEFAULT_X - 1, DEFAULT_Y - 1);

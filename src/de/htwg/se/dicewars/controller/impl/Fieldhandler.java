@@ -55,7 +55,6 @@ public abstract class Fieldhandler {
 			}
 
 		}
-		stats.setNbrOfBiggestConnectedField(connectedFields);//FÜRN ARSCH
 		return connectedFields;
 	}
 

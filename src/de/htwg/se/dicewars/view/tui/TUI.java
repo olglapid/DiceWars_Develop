@@ -34,7 +34,6 @@ public class TUI implements IObserver {
 	@Override
 	public void update(Event e) {
 		tui();
-		System.out.println("BITCHES");
 		log4j.info(newline+console);
 		log4j.info(controller.getStatus());
 		log4j.info("OBSI");
@@ -252,7 +251,6 @@ public class TUI implements IObserver {
 			controller.startGame();
 			
 		}
-		/*Convertmethods.parser(attack);*/
 		sc.close();
 
 	}

@@ -7,16 +7,14 @@ public class Statistics {
 	private Field[][] board;
 	private Field field;
 	private Player player;
-	private int dicesToAdd;
 	private int numberOfDices;
 	private int numberOfFields;
 	private int tmp;
 	private int numberOfConnectedFields;
-	private int nbrOBConnectedFields;
+
 
 	public Statistics() {
-		nbrOBConnectedFields = 0;
-		dicesToAdd = 0;
+
 		field = null;
 		player = null;
 		board = null;
@@ -27,9 +25,6 @@ public class Statistics {
 
 	}
 
-	public void setNbrOfBiggestConnectedField(int nbr) {
-		this.nbrOBConnectedFields = nbr;
-	}
 
 	public void setPlayer(Player player) {
 		this.player = player;

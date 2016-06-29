@@ -28,7 +28,6 @@ public class Graphfield extends JPanel {
 	private Field[][] field;
 	private int size;
 	private int radius;
-	private Graphics g;
 	private Color color;
 	private boolean attack;
 	private IController controller;
@@ -42,7 +41,6 @@ public class Graphfield extends JPanel {
 		color = Color.BLACK;
 		size = field.length;
 		poly = new Polygon[field.length][field.length];
-		System.out.println("POLY "+poly.length);
 		MyMouseListener m1 = new MyMouseListener();
 		addMouseListener(m1);
 	}

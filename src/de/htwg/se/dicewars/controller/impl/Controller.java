@@ -161,7 +161,7 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
-		Boardsetup.spreadDices(board, listOfPlayer);
+		Boardsetup.spreadDices(listOfPlayer);
 
 	}
 

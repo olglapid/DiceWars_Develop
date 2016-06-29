@@ -34,7 +34,7 @@ public class Attack extends Observable{
 		return this.field;
 	}
 
-	public void checkAttack(Field field, int fieldSize, int attackX, int attackY) {
+	public void checkAttack(Field field, int attackX, int attackY) {
 
 		int x = attackX - field.getX();
 		int y = attackY - field.getY();
@@ -92,7 +92,7 @@ public class Attack extends Observable{
 		if (field == null) {
 			setStatus(Status.Invalid_Attack_Field);
 		} else {
-			checkAttack(field, fieldSize, attackX, attackY);
+			checkAttack(field, attackX, attackY);
 			if (getStatus() == Status.Valid_Attack) {
 				attack(field, attackX, attackY);
 			}
