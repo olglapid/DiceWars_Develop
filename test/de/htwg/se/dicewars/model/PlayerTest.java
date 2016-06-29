@@ -49,6 +49,26 @@ public class PlayerTest {
 		assertEquals(1, testPlayer.getNumberOfDices());
 	}
 	
+	@Test
+	public final void setGetTest(){
+		Player player = new Player();
+		player.setNumberOfFields(10);
+		
+		Field[][] field = new Field[3][3];
+		field[0][0] = new Field();
+		player.setField(field);
+		assertNotNull(player.getFieldFromIndex(0, 0));
+		assertNull(player.getFieldFromIndex(-1,0));
+		assertNull(player.getFieldFromIndex(0,-1));
+		assertNull(player.getFieldFromIndex(-1,-1));
+
+		player.addNumberOfDices(3);
+		assertEquals(3, player.getNumberOfDices());
+		player.initShuffle(field);
+		assertNotNull(player.popShoffled());
+		
+		
+	}
 	
 	@Test
 	public final void testUpdate() {

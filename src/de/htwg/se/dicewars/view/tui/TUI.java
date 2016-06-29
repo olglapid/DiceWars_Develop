@@ -15,7 +15,7 @@ import de.htwg.se.dicewars.observer.IObserver;
 import de.htwg.se.dicewars.state.Status;
 
 public class TUI implements IObserver {
-	private static final Logger logger = LogManager.getLogger(TUI.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(TUI.class.getName());
 	private final String newline = System.getProperty("line.separator");
 	String console;
 	private IController controller;
@@ -34,9 +34,9 @@ public class TUI implements IObserver {
 	@Override
 	public void update(Event e) {
 		tui();
-		logger.info(newline + console);
-		logger.info(controller.getStatus());
-		logger.info("OBSI");
+		LOGGER.info(newline + console);
+		LOGGER.info(controller.getStatus());
+		LOGGER.info("OBSI");
 	}
 
 	public void setConsole(String console) {
@@ -205,18 +205,18 @@ public class TUI implements IObserver {
 		Scanner sc = new Scanner(System.in);
 
 		do {
-			logger.info(newline + " Spielfeldgröße: ");
+			LOGGER.info(newline + " Spielfeldgröße: ");
 			fieldSize = sc.nextInt();
-			logger.info(newline + " Anzahl Felder: ");
+			LOGGER.info(newline + " Anzahl Felder: ");
 			numberOfFields = sc.nextInt();
 		} while (numberOfFields > fieldSize);
 
-		logger.info(newline + " Anzahl an spielern: ");
+		LOGGER.info(newline + " Anzahl an spielern: ");
 		tmpNbrOfPlayer = sc.nextInt();
 
 		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
 		for (int i = 0; i < listOfPlayer.length; i++) {
-			logger.info(newline + " Name: ");
+			LOGGER.info(newline + " Name: ");
 			String eingabe = sc.next();
 			listOfPlayer[i] = new Player();
 			listOfPlayer[i].setName(eingabe);
@@ -240,11 +240,11 @@ public class TUI implements IObserver {
 		int defend = 0;
 		Scanner sc = new Scanner(System.in);
 		while (controller.getStatus() != Status.ENDTURN ) {
-			logger.info(newline + " Feld Auswählen: ");
+			LOGGER.info(newline + " Feld Auswählen: ");
 			attack = sc.nextInt();
 			if(attack==0)
 				break;
-			logger.info(newline + " Feld Angreifen: ");
+			LOGGER.info(newline + " Feld Angreifen: ");
 			defend = sc.nextInt();
 			controller.setAttack(attack);
 			controller.setDefend(defend);

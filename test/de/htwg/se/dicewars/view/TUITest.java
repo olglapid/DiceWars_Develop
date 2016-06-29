@@ -233,7 +233,7 @@ public class TUITest {
 		assertEquals(9, controller.getNumberOfFields());
 
 		
-		felder = "1" + System.getProperty("line.separator") + "2"  + System.getProperty("line.separator") + "0";
+		felder = "-1" + System.getProperty("line.separator") + "-1"  + System.getProperty("line.separator") + "0";
 		
 		inp = System.in;
 		System.setIn(new ByteArrayInputStream(felder.getBytes()));

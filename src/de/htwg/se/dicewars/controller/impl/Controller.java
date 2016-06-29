@@ -31,6 +31,7 @@ public class Controller extends Observable implements IController {
 		defend = -1;
 	}
 
+	@Override
 	public void reset(){
 		this.board = null;
 		this.playerlist = null;
