@@ -110,13 +110,11 @@ public class DicewarsFrame extends JFrame{
 	private void createField() {
 	
 		if (controller.getFieldSize() == 0||controller.getPlayerlist()==null) {
-			System.out.println("RETURN");
 			return;
 		}
 		
 		if(trig){
 			controller.reset();
-			System.out.println("REPAINT");
 			controller.setNumberOfFields(field.getAnzFelder());
 			controller.setfieldSize(Convertmethods.converteFieldSize(field.getAnzFelder()));
 			player.fillPLayer();

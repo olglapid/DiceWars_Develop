@@ -234,7 +234,17 @@ public class ControllerTest {
 	}
 	
 	@Test
-	public final void startGameTest(){
-		
+	public final void resetTest(){
+		Controller controller = new Controller();
+		controller.createBoard(9, 8);
+		controller.reset();
+		assertNull(controller.getPlayerlist());
+		assertNull(controller.getBoard());
+		assertNotNull(controller.getGameroutine());
+		assertEquals(0, controller.getFieldSize());
+		assertEquals(0, controller.getNumberOfFields());
+		assertEquals(-1, controller.getAttack());
+		assertEquals(-1, controller.getDefend());
+		assertEquals(Status.New, controller.getStatus());
 	}
 }
