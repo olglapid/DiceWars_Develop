@@ -46,44 +46,41 @@ public class AttackTest {
 		field[1][0].setNumberOfDices(8);
 		/*-----------------------*/
 		Attack attack = new Attack();
-		
-		attack.attackroutine(field[2][2], 2, 2, 1);
 
-		assertEquals(Status.INVALIDATTACKFIELD, attack.getStatus());
-		
-		attack.attackroutine(field[2][1], 2, 2, 2);
+		attack.attackroutine(field[2][2], 2, 1);
 
 		assertEquals(Status.INVALIDATTACKFIELD, attack.getStatus());
 
-		attack.attackroutine(field[1][1], 2, 1, 0);
+		attack.attackroutine(field[2][1], 2, 2);
+
+		assertEquals(Status.INVALIDATTACKFIELD, attack.getStatus());
+
+		attack.attackroutine(field[1][1], 1, 0);
 
 		assertEquals(Status.INVALIDATTACKDICES, attack.getStatus());
 
-		attack.attackroutine(field[1][1], 2, 1, 2);
+		attack.attackroutine(field[1][1], 1, 2);
 
 		assertEquals(Status.INVALIDATTACKOWNER, attack.getStatus());
 
-		attack.attackroutine(field[1][1], 2, 1, 2);
+		attack.attackroutine(field[1][1], 1, 2);
 
 		assertEquals(Status.INVALIDATTACKOWNER, attack.getStatus());
 
-		attack.attackroutine(field[1][0], 2, 1, 2);
+		attack.attackroutine(field[1][0], 1, 2);
 
 		assertEquals(Status.INVALIDATTACKNEIGHBOR, attack.getStatus());
-		
+
 		field[1][0].setNumberOfDices(1000000);
-		
-		attack.attackroutine(field[1][0], 2, 1, 1);
-		
+
+		attack.attackroutine(field[1][0], 1, 1);
+
 		assertEquals(Status.ATTACKSUCCESS, attack.getStatus());
-		
+
 		field[1][1].setNumberOfDices(2);
-		attack.attackroutine(field[1][1], 2, 1, 0);
-		
+		attack.attackroutine(field[1][1], 1, 0);
+
 		assertEquals(Status.ATTACKFAILED, attack.getStatus());
-		
-		
-		
 
 	}
 

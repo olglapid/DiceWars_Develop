@@ -107,7 +107,6 @@ public class TUI implements IObserver {
 		Board globalField = controller.getBoard();
 		int fieldSize = globalField.getLength();
 		String tmp = "";
-		System.out.println(fieldSize);
 		for (int i = 0; i < fieldSize; i++) {
 
 			if (i % 2 != 0) {

@@ -4,8 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
+
 
 import org.junit.Test;
 

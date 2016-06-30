@@ -112,7 +112,7 @@ public class Gameroutine  extends Observable{
 
 		attack.setField(agressor);
 		attack.setNeighbour(defender);
-		attack.attackroutine(agressor, fieldSize, defender.getX(), defender.getY());
+		attack.attackroutine(agressor, defender.getX(), defender.getY());
 		status = Status.FAILED;
 		if (attack.getStatus() == Status.ATTACKFAILED || attack.getStatus() == Status.ATTACKSUCCESS) {
 			diceUpdate.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());

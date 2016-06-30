@@ -88,7 +88,7 @@ public class Attack extends Observable{
 		
 	}
 
-	public void attackroutine(Field field, int fieldSize, int attackX, int attackY) {
+	public void attackroutine(Field field, int attackX, int attackY) {
 		if (field == null) {
 			setStatus(Status.INVALIDATTACKFIELD);
 		} else {
