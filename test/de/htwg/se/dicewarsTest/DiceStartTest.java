@@ -22,6 +22,8 @@ public class DiceStartTest {
 	public final void testGetInstance() {
 		DiceStart game=DiceStart.getInstance();
 		assertNotNull(game);
+		assertNotNull(game.getDicewarsFrame());
+		assertNull(game.getController());
 
 		
 	}
