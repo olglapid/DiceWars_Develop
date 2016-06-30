@@ -1,6 +1,7 @@
 package de.htwg.se.dicewars.controller.impl;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
 import de.htwg.se.dicewars.model.Board;
@@ -206,9 +207,9 @@ public class Controller extends Observable implements IController {
 		int playersTurn = gameroutine.getPlayersTurn();
 		Field[][] field = board.getField();
 
-		int[] index = fieldNumberToIndex(fieldSize, attack);
+		int[] index = Convertmethods.fieldNumberToIndex(fieldSize, attack);
 		Field attackfield = field[index[0]][index[1]];
-		index = fieldNumberToIndex(fieldSize, defend);
+		index = Convertmethods.fieldNumberToIndex(fieldSize, defend);
 		Field defendfield = field[index[0]][index[1]];
 
 		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield, fieldSize);
@@ -230,14 +231,6 @@ public class Controller extends Observable implements IController {
 
 	}
 	
-	public static int[] fieldNumberToIndex(int fieldSize, int fieldNumber) {
-		int tmpFieldNumber = fieldNumber - 1;
-		int[] index = new int[2];
 
-		index[1] = tmpFieldNumber % fieldSize;
-		index[0] = tmpFieldNumber / fieldSize;
-
-		return index;
-	}
 
 }
