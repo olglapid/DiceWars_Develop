@@ -1,7 +1,5 @@
 package de.htwg.se.dicewars.gameroutine;
 
-import de.htwg.se.dicewars.controller.impl.Dicehandler;
-import de.htwg.se.dicewars.controller.impl.Playerhandler;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
 import de.htwg.se.dicewars.observer.Observable;
@@ -9,7 +7,9 @@ import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.FieldsToAttack;
+import de.htwg.se.dicewars.util.Dicehandler;
 import de.htwg.se.dicewars.util.Fieldhandler;
+import de.htwg.se.dicewars.util.Playerhandler;
 import de.htwg.se.dicewars.util.Walktrough;
 
 public class Gameroutine  extends Observable{

@@ -9,6 +9,7 @@ import de.htwg.se.dicewars.gameroutine.Attack;
 import de.htwg.se.dicewars.model.Field;
 
 import de.htwg.se.dicewars.state.Status;
+import de.htwg.se.dicewars.util.Dicehandler;
 
 public class DicehandlerTest {
 	@Test

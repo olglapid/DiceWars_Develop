@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars.controller.impl;
+package de.htwg.se.dicewars.util;
 
 
 import de.htwg.se.dicewars.model.Field;
@@ -7,7 +7,6 @@ import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountDices;
-import de.htwg.se.dicewars.util.Walktrough;
 
 public class Dicehandler {
 	private Status status;
