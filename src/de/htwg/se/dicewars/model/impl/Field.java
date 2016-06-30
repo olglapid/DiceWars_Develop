@@ -19,30 +19,37 @@ public class Field implements IField{
 		owner = null;
 	}
 	
+	@Override
 	public void setOwner(IPlayer owner) {
 		this.owner = owner;
 	}
 
+	@Override
 	public IPlayer getOwner() {
 		return this.owner;
 	}
 
+	@Override
 	public void setNachbar(IField[] nachbar) {
 		this.nachbar = nachbar;
 	}
 
+	@Override
 	public void setX(int x) {
 		this.x = x;
 	}
 
+	@Override
 	public void setY(int y) {
 		this.y = y;
 	}
 
+	@Override
 	public void setFieldNumber(int fieldNumber) {
 		this.fieldNumber = fieldNumber;
 	}
 
+	@Override
 	public int addNumberOfDices(int dices) {
 		int returnDices = 0;
 		int tmp = this.numberOfDices;
@@ -55,30 +62,38 @@ public class Field implements IField{
 		return returnDices;
 	}
 
+	@Override
 	public void setNumberOfDices(int dices) {
 		this.numberOfDices = dices;
 
 	}
 
+	@Override
 	public IField[] getNachbar() {
 		return this.nachbar;
 	}
 
+	@Override
 	public int getX() {
 		return this.x;
 	}
 
+	@Override
 	public int getY() {
 		return this.y;
 	}
 
+	@Override
 	public int getFieldNumber() {
 		return this.fieldNumber;
 	}
 
+	@Override
 	public int getNumberOfDices() {
 		return this.numberOfDices;
 	}
+	
+	@Override
 	public int rollTheDice(){
 		Dice dice = new Dice();
 		int returnValue=0;
