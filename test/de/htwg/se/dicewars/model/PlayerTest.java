@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.impl.Controller;
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.util.Dicehandler;
 import de.htwg.se.dicewars.view.tui.TUI;
 

@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.Board;
+import de.htwg.se.dicewars.model.impl.Board;
 
 
 public class DicewarsFrame extends JFrame{

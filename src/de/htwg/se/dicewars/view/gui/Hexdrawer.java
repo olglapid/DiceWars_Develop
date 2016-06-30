@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.impl.Field;
 
 public class Hexdrawer {
 	static final int SIDES = 6;

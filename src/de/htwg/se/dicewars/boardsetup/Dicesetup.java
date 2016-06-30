@@ -1,6 +1,6 @@
 package de.htwg.se.dicewars.boardsetup;
 
-import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.impl.Field;
 
 public abstract class Dicesetup {
 	private Dicesetup(){

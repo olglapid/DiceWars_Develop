@@ -4,9 +4,9 @@ import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
-import de.htwg.se.dicewars.model.Board;
-import de.htwg.se.dicewars.model.Field;
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 

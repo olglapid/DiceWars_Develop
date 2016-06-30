@@ -6,8 +6,8 @@ import org.junit.Test;
 
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
-import de.htwg.se.dicewars.model.Board;
-import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountDices;

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.impl.Field;
 
 public class DiceSetupTest {
 

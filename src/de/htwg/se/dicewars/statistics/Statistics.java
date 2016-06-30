@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars.statistics;
 
-import de.htwg.se.dicewars.model.Field;
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.impl.Player;
 
 public class Statistics {
 	private Field[][] board;

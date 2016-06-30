@@ -13,9 +13,8 @@ import javax.swing.JPanel;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-
-import de.htwg.se.dicewars.model.Board;
-import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.impl.Field;
 
 public class Graphfield extends JPanel {
 

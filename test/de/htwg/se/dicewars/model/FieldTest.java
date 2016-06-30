@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.impl.Player;
+
 public class FieldTest {
 	@Test
 	public final void Field() {

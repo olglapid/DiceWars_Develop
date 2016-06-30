@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars.model;
+package de.htwg.se.dicewars.model.impl;
 
 
 public class Board {

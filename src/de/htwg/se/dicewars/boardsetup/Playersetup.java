@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars.boardsetup;
 
 
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Player;
 
 public abstract class Playersetup {
 	private Playersetup(){

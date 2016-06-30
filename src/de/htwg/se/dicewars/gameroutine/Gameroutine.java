@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars.gameroutine;
 
-import de.htwg.se.dicewars.model.Field;
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;

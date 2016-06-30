@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Player;
 
 public class ChoosePlayerPanel extends JPanel implements MouseListener{
 	

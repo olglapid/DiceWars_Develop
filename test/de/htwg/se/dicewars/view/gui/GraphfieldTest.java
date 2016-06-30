@@ -11,8 +11,8 @@ import org.junit.Test;
 import com.google.inject.Injector;
 
 import de.htwg.se.dicewars.controller.impl.Controller;
-import de.htwg.se.dicewars.model.Board;
-import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.impl.Field;
 
 public class GraphfieldTest {
 

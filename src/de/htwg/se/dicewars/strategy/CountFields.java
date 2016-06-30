@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars.strategy;
 
-import de.htwg.se.dicewars.model.Field;
-import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.statistics.Statistics;
 
 public class CountFields implements Strategy {
