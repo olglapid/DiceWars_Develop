@@ -61,6 +61,7 @@ public class Hexdrawer {
 	}
 	
 	public static void drawchange(int i,int j,Graphics2D g2,IField field,int r,Color color,IController controller){
+		Color setColor = color;
 		String c="";
 		Color tmp=Color.WHITE;
 		int numberOfDices=0;
@@ -77,7 +78,7 @@ public class Hexdrawer {
 			
 		}
 		else {
-			color=Color.WHITE;
+			setColor=Color.WHITE;
 		}
 		
 		int length = c.length();

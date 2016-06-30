@@ -62,6 +62,7 @@ public class Player implements IPlayer {
 		this.numberOfFields = numberOfFields;
 	}
 
+	@Override
 	public void setPlayerNr(int nbr) {
 		this.playerNr = nbr;
 	}
@@ -76,6 +77,7 @@ public class Player implements IPlayer {
 		this.numberOfDices += nbr;
 	}
 
+	@Override
 	public String getName() {
 		return this.name;
 	}

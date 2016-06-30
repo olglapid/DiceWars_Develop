@@ -85,18 +85,18 @@ public class GameroutineTest {
 		field[1][0].setOwner(peter);
 		field[1][0].setNumberOfDices(8);
 
-		gameroutine.routine(hans, field[1][0], field[1][0], 3);
+		gameroutine.routine(hans, field[1][0], field[1][0]);
 
 		assertEquals(Status.INVALIDOWNER, gameroutine.getStatus());
 
-		gameroutine.routine(hans, field[1][1], field[1][0], 3);
+		gameroutine.routine(hans, field[1][1], field[1][0]);
 
 		
 		assertEquals(Status.INVALIDATTACKDICES, gameroutine.getStatus());
 
 		assertEquals(Status.INVALIDATTACKDICES, gameroutine.getAttack().getStatus());
 
-		gameroutine.routine(peter, field[1][0], field[1][1], 3);
+		gameroutine.routine(peter, field[1][0], field[1][1]);
 		
 		assertEquals(Status.ATTACKSUCCESS, gameroutine.getStatus());
 		assertEquals(peter, field[1][1].getOwner());
@@ -110,7 +110,7 @@ public class GameroutineTest {
 		field[1][0].setOwner(peter);
 		field[1][0].setNumberOfDices(8);
 
-		gameroutine.routine(hans, field[1][1], field[1][0], 3);
+		gameroutine.routine(hans, field[1][1], field[1][0]);
 
 		assertEquals(Status.ATTACKFAILED, gameroutine.getStatus());
 

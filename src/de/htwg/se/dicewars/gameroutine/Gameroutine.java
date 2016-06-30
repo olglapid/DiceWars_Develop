@@ -105,7 +105,7 @@ public class Gameroutine  extends Observable{
 
 	}
 
-	public void routine(IPlayer playerlist, IField attackfield, IField defendfield, int fieldSize) {
+	public void routine(IPlayer playerlist, IField attackfield, IField defendfield) {
 		if (attackfield.getOwner() != playerlist) {
 			setStatus(Status.INVALIDOWNER);
 			return;

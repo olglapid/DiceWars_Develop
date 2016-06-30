@@ -212,7 +212,7 @@ public class Controller extends Observable implements IController {
 		index = Convertmethods.fieldNumberToIndex(fieldSize, defend);
 		IField defendfield = field[index[0]][index[1]];
 
-		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield, fieldSize);
+		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield);
 		attack = -1;
 		defend = -1;
 		if (gameroutine.getStatus() != Status.SUCCESS) {
@@ -222,7 +222,6 @@ public class Controller extends Observable implements IController {
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
 		if (gameroutine.getStatus() == Status.ENDTURN) {
 			gameroutine.endOFTurn(playerlist[playersTurn]);
-			System.out.println("ENDEND");
 			if (gameroutine.getPlayersTurn() == playerlist.length) {
 				gameroutine.setPlayersTurn(0);
 			}
