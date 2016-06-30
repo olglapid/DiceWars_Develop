@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.state.Status;
 
@@ -15,14 +17,14 @@ public class AttackTest {
 	@Test
 	public final void attacktest() {
 		Boardsetup boardsetup = new Boardsetup();
-		Board board = new Board();
-		Field[][] field;
-		Field[] tmpNeighbour;
+		IBoard board = new Board();
+		IField[][] field;
+		IField[] tmpNeighbour;
 		board = boardsetup.createField(9, 9);
 		field = board.getField();
 
-		Player hans = new Player();
-		Player peter = new Player();
+		IPlayer hans = new Player();
+		IPlayer peter = new Player();
 
 		hans.setPlayerNr(1);
 		peter.setPlayerNr(2);

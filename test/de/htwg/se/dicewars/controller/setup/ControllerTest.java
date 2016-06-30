@@ -4,11 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.se.dicewars.boardsetup.Boardsetup;
+
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.util.Dicehandler;
@@ -18,7 +21,7 @@ public class ControllerTest {
 
 	@Test
 	public final void ControllerTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		assertEquals(null, controller.getBoard());
 		assertArrayEquals(null, controller.getPlayerlist());
 		assertEquals(0, controller.getFieldSize());
@@ -32,7 +35,7 @@ public class ControllerTest {
 
 	@Test
 	public final void getGameroutineTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		Gameroutine gameroutine = new Gameroutine();
 		controller.setGameroutine(gameroutine);
 		assertEquals(gameroutine, controller.getGameroutine());
@@ -40,28 +43,28 @@ public class ControllerTest {
 
 	@Test
 	public final void getDefendTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.setDefend(0);
 		assertEquals(0, controller.getDefend());
 	}
 
 	@Test
 	public final void getAttackTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.setAttack(0);
 		assertEquals(0, controller.getAttack());
 	}
 
 	@Test
 	public final void getFieldSize() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.setfieldSize(0);
 		assertEquals(0, controller.getFieldSize());
 	}
 
 	@Test
 	public final void getNumberOfFieldsTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.setNumberOfFields(0);
 		;
 		assertEquals(0, controller.getNumberOfFields());
@@ -69,16 +72,16 @@ public class ControllerTest {
 
 	@Test
 	public final void getPlayerlistTest() {
-		Controller controller = new Controller();
-		Player[] playerlist = new Player[2];
+		IController controller = new Controller();
+		IPlayer[] playerlist = new Player[2];
 		controller.setPlayerlist(playerlist);
 		assertArrayEquals(playerlist, controller.getPlayerlist());
 	}
 
 	@Test
 	public final void getBoardTest() {
-		Controller controller = new Controller();
-		Board board = new Board();
+		IController controller = new Controller();
+		IBoard board = new Board();
 		controller.setBoard(board);
 
 		assertEquals(board, controller.getBoard());
@@ -86,10 +89,10 @@ public class ControllerTest {
 
 	@Test
 	public final void getSinglePlayerTest() {
-		Controller controller = new Controller();
-		Player[] playerlist = new Player[2];
-		Player player1 = new Player();
-		Player player2 = new Player();
+		IController controller = new Controller();
+		IPlayer[] playerlist = new Player[2];
+		IPlayer player1 = new Player();
+		IPlayer player2 = new Player();
 		playerlist[0] = player1;
 		playerlist[1] = player2;
 
@@ -105,10 +108,10 @@ public class ControllerTest {
 
 	@Test
 	public final void createBoardTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.createBoard(8, 9);
-		Board board = controller.getBoard();
-		Field[][] field = board.getField();
+		IBoard board = controller.getBoard();
+		IField[][] field = board.getField();
 
 		assertEquals(9, Fieldhandler.countFields(field));
 
@@ -121,11 +124,11 @@ public class ControllerTest {
 
 	@Test
 	public final void connectPlayerToBoardTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.createBoard(9, 8);
-		Player[] playerlist = new Player[2];
-		Player player1 = new Player();
-		Player player2 = new Player();
+		IPlayer[] playerlist = new Player[2];
+		IPlayer player1 = new Player();
+		IPlayer player2 = new Player();
 		player1.createField(9);
 		player2.createField(9);
 		player1.setPlayerNr(0);
@@ -138,8 +141,8 @@ public class ControllerTest {
 
 		controller.connectPlayerToBoard(playerlist);
 
-		Board board = controller.getBoard();
-		Field[][] field = board.getField();
+		IBoard board = controller.getBoard();
+		IField[][] field = board.getField();
 
 		for (int x = 0; x < board.getLength(); x++) {
 			for (int y = 0; y < board.getLength(); y++) {
@@ -161,11 +164,11 @@ public class ControllerTest {
 	
 	@Test
 	public final void spreadDicesToFieldTest(){
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.createBoard(9, 8);
-		Player[] playerlist = new Player[2];
-		Player player1 = new Player();
-		Player player2 = new Player();
+		IPlayer[] playerlist = new Player[2];
+		IPlayer player1 = new Player();
+		IPlayer player2 = new Player();
 		player1.createField(9);
 		player2.createField(9);
 		player1.setPlayerNr(0);
@@ -177,8 +180,8 @@ public class ControllerTest {
 
 		controller.connectPlayerToBoard(playerlist);
 
-		Board board = controller.getBoard();
-		Field[][] field = board.getField();
+		IBoard board = controller.getBoard();
+		IField[][] field = board.getField();
 		
 		controller.spreadDicesToField(board, playerlist);
 		
@@ -200,11 +203,11 @@ public class ControllerTest {
 	
 	@Test
 	public final void initTest(){
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.createBoard(9, 8);
-		Player[] playerlist = new Player[2];
-		Player player1 = new Player();
-		Player player2 = new Player();
+		IPlayer[] playerlist = new Player[2];
+		IPlayer player1 = new Player();
+		IPlayer player2 = new Player();
 		player1.createField(9);
 		player2.createField(9);
 		player1.setPlayerNr(0);
@@ -212,12 +215,11 @@ public class ControllerTest {
 		playerlist[0] = player1;
 		playerlist[1] = player2;
 
-		int dices = 0;
 
 		controller.connectPlayerToBoard(playerlist);
 
-		Board board = controller.getBoard();
-		Field[][] field = board.getField();
+		IBoard board = controller.getBoard();
+		IField[][] field = board.getField();
 		
 		controller.setPlayerlist(playerlist);
 		controller.setNumberOfFields(8);
@@ -235,7 +237,7 @@ public class ControllerTest {
 	
 	@Test
 	public final void resetTest(){
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		controller.createBoard(9, 8);
 		controller.reset();
 		assertNull(controller.getPlayerlist());

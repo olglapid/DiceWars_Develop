@@ -1,8 +1,10 @@
 package de.htwg.se.dicewars.model.impl;
 
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 
-public class Board {
-	private Field[][] brd;
+public class Board implements IBoard {
+	private IField[][] brd;
 	private int length;
 
 	public Board() {
@@ -10,7 +12,7 @@ public class Board {
 		length = 0;
 	}
 
-	public void setField(Field[][] field) {
+	public void setField(IField[][] field) {
 		this.brd = field;
 	}
 
@@ -22,7 +24,7 @@ public class Board {
 		return this.length;
 	}
 
-	public Field[][] getField() {
+	public IField[][] getField() {
 		return this.brd;
 	}
 

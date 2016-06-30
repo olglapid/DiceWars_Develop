@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
 
 public class BoardSetupTest {
@@ -14,8 +16,8 @@ public class BoardSetupTest {
 	@Test
 	public final void testplayerToField() {
 		Boardsetup boardsetup = new Boardsetup();
-		Board board = new Board();
-		Player[] listOfPlayer = new Player[5];
+		IBoard board = new Board();
+		IPlayer[] listOfPlayer = new Player[5];
 		int fieldSize = 64;
 		int numberOfFields = 43;
 		board = boardsetup.createField(fieldSize, numberOfFields);
@@ -29,7 +31,7 @@ public class BoardSetupTest {
 			listOfPlayer[i].createField(8);
 		}
 
-		Field[][] field = board.getField();
+		IField[][] field = board.getField();
 		board = boardsetup.playerToField(board, listOfPlayer, numberOfFields);
 		
 		for (int x = 0; x < board.getLength(); x++) {

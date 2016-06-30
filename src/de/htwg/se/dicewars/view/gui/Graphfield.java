@@ -13,8 +13,9 @@ import javax.swing.JPanel;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+
 
 public class Graphfield extends JPanel {
 
@@ -24,7 +25,7 @@ public class Graphfield extends JPanel {
 	private static final long serialVersionUID = -1395240609585095479L;
 
 	private Polygon[][] poly;
-	private Field[][] field;
+	private IField[][] field;
 	private int size;
 	private int radius;
 	private Color color;
@@ -33,7 +34,7 @@ public class Graphfield extends JPanel {
 
 	public Graphfield(int r, IController controller) {
 		this.controller = controller;
-		Board board = controller.getBoard();
+		IBoard board = controller.getBoard();
 		this.field = board.getField();
 		attack = false;
 		radius = r;
@@ -63,8 +64,8 @@ public class Graphfield extends JPanel {
 		this.attack = attack;
 	}
 	
-	public void setField(Field[][] field) {
-		this.field = field;
+	public void setField(IField[][] field2) {
+		this.field = field2;
 		newPoly();
 		repaint();
 		
@@ -79,7 +80,7 @@ public class Graphfield extends JPanel {
 		
 	}
 
-	public Field[][] getField(){
+	public IField[][] getField(){
 		return this.field;
 	}
 	

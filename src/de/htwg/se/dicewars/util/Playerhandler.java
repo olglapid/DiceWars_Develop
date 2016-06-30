@@ -1,22 +1,22 @@
 package de.htwg.se.dicewars.util;
 
 
-import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.state.Status;
 
 public class Playerhandler {
 
 	private Status status;
-	private Player player;
+	private IPlayer player;
 	private int amountOfPlayer;
 	public Playerhandler() {
 		status=Status.NEW;
 		player = null;
 		amountOfPlayer=0;
 	}
-	public void setPlayer(Player player){
-		this.player=player;
+	public void setPlayer(IPlayer player2){
+		this.player=player2;
 	}
 	public void setAmountOfPlayer(int nbr){
 		this.amountOfPlayer=nbr;
@@ -31,15 +31,15 @@ public class Playerhandler {
 	public int getAmountOfPlayer(){
 		return this.amountOfPlayer;
 	}
-	public Player getPlayer(){
+	public IPlayer getPlayer(){
 		return this.player;
 	}
 	
-	public void updatePlayer(Field field, Field neighbour,Status stat){
+	public void updatePlayer(IField iField, IField iField2,Status stat){
 		setStatus(Status.NOTHINGTOUPDATE);
 		if (stat==Status.ATTACKSUCCESS){
-			Field fieldtmp = field;
-			Field neighbourtmp = neighbour;
+			IField fieldtmp = iField;
+			IField neighbourtmp = iField2;
 			neighbourtmp.setOwner(fieldtmp.getOwner());
 			setStatus(Status.PLAYERUPDATE);
 		}

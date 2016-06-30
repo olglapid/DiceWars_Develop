@@ -5,9 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.controller.impl.Controller;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.util.Dicehandler;
@@ -50,15 +53,15 @@ public class GameroutineTest {
 	@Test
 	public final void test() {
 		Boardsetup boardsetup = new Boardsetup();
-		Board board = new Board();
-		Field[][] field;
-		Field[] tmpNeighbour;
+		IBoard board = new Board();
+		IField[][] field;
+		IField[] tmpNeighbour;
 		board = boardsetup.createField(9, 9);
 		field = board.getField();
 		Gameroutine gameroutine = new Gameroutine();
 
-		Player hans = new Player();
-		Player peter = new Player();
+		IPlayer hans = new Player();
+		IPlayer peter = new Player();
 
 		hans.setPlayerNr(1);
 		peter.setPlayerNr(2);
@@ -116,11 +119,11 @@ public class GameroutineTest {
 	@Test
 	public void checkEndOfTurnTest() {
 		Gameroutine gameroutine = new Gameroutine();
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		
-		Player hans = new Player();
-		Player peter = new Player();
-		Player[] list = new Player[2];
+		IPlayer hans = new Player();
+		IPlayer peter = new Player();
+		IPlayer[] list = new Player[2];
 
 		hans.setPlayerNr(0);
 		peter.setPlayerNr(1);

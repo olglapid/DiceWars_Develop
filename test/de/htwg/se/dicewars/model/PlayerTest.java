@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.controller.impl.Controller;
 import de.htwg.se.dicewars.model.impl.Board;
 import de.htwg.se.dicewars.model.impl.Field;
@@ -74,15 +75,15 @@ public class PlayerTest {
 	
 	@Test
 	public final void testUpdate() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI tui= new TUI(controller);
 		Dicehandler dicehandler = new Dicehandler();
-		Board testboard=new Board();
+		IBoard testboard=new Board();
 		int dices=0;
 		
-		Player player1 = new Player();
-		Player player2 = new Player();
-		Player[] list = new Player[2];
+		IPlayer player1 = new Player();
+		IPlayer player2 = new Player();
+		IPlayer[] list = new Player[2];
 		
 		
 		list[0]=player1;

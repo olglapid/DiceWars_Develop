@@ -6,8 +6,10 @@ import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.gameroutine.Attack;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.util.Playerhandler;
@@ -24,7 +26,7 @@ public class PlayerhandlerTest {
 
 	@Test
 	public final void getPlayerTest() {
-		Player player = new Player();
+		IPlayer player = new Player();
 		Playerhandler playerhandler = new Playerhandler();
 
 		playerhandler.setPlayer(player);
@@ -50,14 +52,14 @@ public class PlayerhandlerTest {
 	@Test
 	public final void updatePlayerTest() {
 		Boardsetup boardsetup = new Boardsetup();
-		Board board = new Board();
-		Field[][] field;
+		IBoard board = new Board();
+		IField[][] field;
 
 		board = boardsetup.createField(9, 9);
 		field = board.getField();
 
-		Player hans = new Player();
-		Player peter = new Player();
+		IPlayer hans = new Player();
+		IPlayer peter = new Player();
 
 		hans.setPlayerNr(1);
 		peter.setPlayerNr(2);

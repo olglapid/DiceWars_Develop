@@ -2,7 +2,9 @@ package de.htwg.se.dicewars.model.impl;
 
 import java.util.Random;
 
-public class Dice {
+import de.htwg.se.dicewars.model.IDice;
+
+public class Dice implements IDice{
 	private int sides;
 
 	public Dice() {

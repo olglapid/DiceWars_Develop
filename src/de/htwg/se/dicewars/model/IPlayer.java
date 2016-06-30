@@ -1,6 +1,5 @@
 package de.htwg.se.dicewars.model;
 
-import de.htwg.se.dicewars.model.impl.Field;
 
 public interface IPlayer {
 
@@ -16,25 +15,25 @@ public interface IPlayer {
 	 * @param y
 	 * @return
 	 */
-	public Field getFieldFromIndex(int x, int y);
+	public IField getFieldFromIndex(int x, int y);
 	
 	/**
 	 * Sets a array of Fields
 	 * @param field
 	 */
-	public void setField(Field[][] field);
+	public void setField(IField[][] field);
 	
 	/**
 	 * Sets a Array of Fields
 	 * @param field
 	 */
-	public void setFieldFromIndex(Field field);
+	public void setFieldFromIndex(IField field);
 	
 	/**
 	 * Returns the array of fields a player owns
 	 * @return
 	 */
-	public Field[][] getField();
+	public IField[][] getField();
 	
 	/**
 	 * sets the name of a player
@@ -96,7 +95,7 @@ public interface IPlayer {
 	 * returns a random Field a player owns
 	 * @return
 	 */
-	public Field popShoffled();
+	public IField popShoffled();
 	
 	/**
 	 * Shuffles the list of Fields
@@ -107,13 +106,13 @@ public interface IPlayer {
 	 * adds a field to the list
 	 * @param field
 	 */
-	public void pushShuffledField(Field field);
+	public void pushShuffledField(IField field);
 	
 	/**
 	 * creates a stack of fields
 	 * @param tmp
 	 */
-	public void initShuffle(Field[][] tmp);
+	public void initShuffle(IField[][] tmp);
 	
 	/**
 	 * delets Field a player lost in battle

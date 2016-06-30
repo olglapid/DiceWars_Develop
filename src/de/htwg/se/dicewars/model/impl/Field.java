@@ -1,12 +1,15 @@
 package de.htwg.se.dicewars.model.impl;
 
-public class Field {
-	private Field[] nachbar = null;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
+
+public class Field implements IField{
+	private IField[] nachbar = null;
 	private int x;
 	private int y;
 	private int fieldNumber;
 	private int numberOfDices;
-	private Player owner;
+	private IPlayer owner;
 
 	public Field() {
 		x = 0;
@@ -16,15 +19,15 @@ public class Field {
 		owner = null;
 	}
 	
-	public void setOwner(Player owner) {
+	public void setOwner(IPlayer owner) {
 		this.owner = owner;
 	}
 
-	public Player getOwner() {
+	public IPlayer getOwner() {
 		return this.owner;
 	}
 
-	public void setNachbar(Field[] nachbar) {
+	public void setNachbar(IField[] nachbar) {
 		this.nachbar = nachbar;
 	}
 
@@ -57,7 +60,7 @@ public class Field {
 
 	}
 
-	public Field[] getNachbar() {
+	public IField[] getNachbar() {
 		return this.nachbar;
 	}
 
@@ -86,5 +89,6 @@ public class Field {
 		return returnValue;
 		
 	}
+
 
 }

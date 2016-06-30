@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
 import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
@@ -15,12 +18,12 @@ public class FieldHandlerTest {
 	@Test
 	public final void countConnectedFields() {
 		Boardsetup boardsetup = new Boardsetup();
-		Board board = new Board();
+		IBoard board = new Board();
 		board = boardsetup.createField(9, 7);
-		Field field[][] = board.getField();
-		Field dummyfield = new Field();
+		IField field[][] = board.getField();
+		IField dummyfield = new Field();
 		int flds = 0;
-		Player player = new Player();
+		IPlayer player = new Player();
 
 		player.setName("simon");
 
@@ -62,7 +65,7 @@ public class FieldHandlerTest {
 
 	@Test
 	public final void testCheckx() {
-		Field node[] = new Field[3];
+		IField node[] = new Field[3];
 		node[0] = new Field();
 		node[1] = new Field();
 		node[2] = new Field();
@@ -88,7 +91,7 @@ public class FieldHandlerTest {
 
 	@Test
 	public final void testChecky() {
-		Field node[] = new Field[3];
+		IField node[] = new Field[3];
 		node[0] = new Field();
 		node[1] = new Field();
 		node[2] = new Field();
@@ -114,7 +117,7 @@ public class FieldHandlerTest {
 
 	@Test
 	public final void testCheckNeighborIndex() {
-		Field node[] = new Field[9];
+		IField node[] = new Field[9];
 		node[0] = new Field();
 		node[1] = new Field();
 		node[2] = new Field();

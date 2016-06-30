@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars.gameroutine;
 
-import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
@@ -68,7 +68,7 @@ public class Gameroutine  extends Observable{
 		return this.attack;
 	}
 
-	public void endOFTurn(Player player) {
+	public void endOFTurn(IPlayer player) {
 		if (status != Status.ENDTURN)
 			return;
 
@@ -80,8 +80,8 @@ public class Gameroutine  extends Observable{
 
 	}
 	
-	public void checkEndOfTurn(Player player) {
-		Field[][] field = player.getField();
+	public void checkEndOfTurn(IPlayer player) {
+		IField[][] field = player.getField();
 		Statistics stats = new Statistics();
 		Context context = new Context(new FieldsToAttack());
 		int numberOfFields = field.length * field.length;
@@ -104,15 +104,15 @@ public class Gameroutine  extends Observable{
 
 	}
 
-	public void routine(Player player, Field agressor, Field defender, int fieldSize) {
-		if (agressor.getOwner() != player) {
+	public void routine(IPlayer playerlist, IField attackfield, IField defendfield, int fieldSize) {
+		if (attackfield.getOwner() != playerlist) {
 			setStatus(Status.INVALIDOWNER);
 			return;
 		}
 
-		attack.setField(agressor);
-		attack.setNeighbour(defender);
-		attack.attackroutine(agressor, defender.getX(), defender.getY());
+		attack.setField(attackfield);
+		attack.setNeighbour(defendfield);
+		attack.attackroutine(attackfield, defendfield.getX(), defendfield.getY());
 		status = Status.FAILED;
 		if (attack.getStatus() == Status.ATTACKFAILED || attack.getStatus() == Status.ATTACKSUCCESS) {
 			diceUpdate.updateDices(attack.getField(),attack.getNeighbour(),attack.getStatus());

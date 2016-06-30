@@ -1,12 +1,13 @@
 package de.htwg.se.dicewars.boardsetup;
 
-import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.IField;
+
 
 public abstract class Dicesetup {
 	private Dicesetup(){
 		
 	}
-	public static int addDice(Field field, int amount) {
+	public static int addDice(IField field, int amount) {
 		int returnDices = 0;
 		int tmp = field.getNumberOfDices();
 		tmp += amount;
@@ -24,7 +25,7 @@ public abstract class Dicesetup {
 		return random;
 	}
 
-	public static boolean checkDicesAdd(Field field) {
+	public static boolean checkDicesAdd(IField field) {
 		if (field.getNumberOfDices() > 7) {
 			return true;
 		}

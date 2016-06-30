@@ -1,8 +1,8 @@
 package de.htwg.se.dicewars.util;
 
 
-import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
@@ -25,29 +25,29 @@ public class Dicehandler {
 
 	
 	/* Wenn player = null dann zähle alle und nicht nur die von Player */
-	public static int countDices(Field[][] field, Player player) {
+	public static int countDices(IField[][] iFields, IPlayer player1) {
 		Statistics stats = new Statistics();
 		Context context = new Context(new CountDices());
-		stats.setPlayer(player);
+		stats.setPlayer(player1);
 
-		int numberOfFields = field.length * field.length;
+		int numberOfFields = iFields.length * iFields.length;
 		boolean[] visit = new boolean[numberOfFields];
 
-		for (int x = 0; x < field.length; x++) {
-			for (int y = 0; y < field.length; y++) {
-				if (field[x][y] == null || Walktrough.checkVisit(field[x][y], visit))
+		for (int x = 0; x < iFields.length; x++) {
+			for (int y = 0; y < iFields.length; y++) {
+				if (iFields[x][y] == null || Walktrough.checkVisit(iFields[x][y], visit))
 					continue;
 
-				Walktrough.walkTroughFields(field[x][y], visit, stats, context);
+				Walktrough.walkTroughFields(iFields[x][y], visit, stats, context);
 			}
 		}
 		return stats.getNumberOfDices();
 
 	}
 
-	public void updateDices(Field field, Field neighbour,Status stat) {
-		Field fieldtmp = field;
-		Field neighbourtmp = neighbour;
+	public void updateDices(IField iField, IField iField2,Status stat) {
+		IField fieldtmp = iField;
+		IField neighbourtmp = iField2;
 		int dices = fieldtmp.getNumberOfDices() - 1;
 		if (dices <= 0) {
 			setStatus(Status.DICEERROR);/* Status setzen */
@@ -59,9 +59,9 @@ public class Dicehandler {
 
 	}
 
-	public void updateDices(Player player) {
-		player.shuffleList();
-		player.update();
+	public void updateDices(IPlayer player1) {
+		player1.shuffleList();
+		player1.update();
 
 	}
 }

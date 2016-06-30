@@ -1,7 +1,5 @@
 package de.htwg.se.dicewars.model;
 
-import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
 
 public interface IField {
 
@@ -9,18 +7,18 @@ public interface IField {
 	 * Set the Owner of a Field
 	 * @param owner
 	 */
-	public void setOwner(Player owner);
+	public void setOwner(IPlayer owner);
 	
 	/**
 	 * Get the Owner of a Field
 	 */
-	public Player getOwner();
+	public IPlayer getOwner();
 	
 	/**
 	 * Set the neighbourhood of a Field
-	 * @param nachbar
+	 * @param tmp
 	 */
-	public void setNachbar(Field[] nachbar);
+	public void setNachbar(IField[] tmp);
 	
 	/**
 	 * Set coordinate x of a Field
@@ -60,7 +58,7 @@ public interface IField {
 	 * @return
 	 */
 	
-	public Field[] getNachbar();
+	public IField[] getNachbar();
 	
 	/**
 	 * Returns x coordinate

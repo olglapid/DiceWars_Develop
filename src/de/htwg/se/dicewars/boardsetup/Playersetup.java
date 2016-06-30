@@ -1,7 +1,8 @@
 package de.htwg.se.dicewars.boardsetup;
 
 
-import de.htwg.se.dicewars.model.impl.Player;
+import de.htwg.se.dicewars.model.IPlayer;
+
 
 public abstract class Playersetup {
 	private Playersetup(){
@@ -9,7 +10,7 @@ public abstract class Playersetup {
 	}
 
 	
-	public static void addDicesToPlayer(Player[] listOfPlayer, int index, int amount) {
+	public static void addDicesToPlayer(IPlayer[] listOfPlayer, int index, int amount) {
 		int tmp = 0;
 		tmp = listOfPlayer[index].getNumberOfDices();
 		tmp += amount;

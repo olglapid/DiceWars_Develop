@@ -7,8 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.observer.Event;
 import de.htwg.se.dicewars.observer.IObserver;
@@ -51,26 +52,26 @@ public class TUI implements IObserver {
 		return this.console;
 	}
 
-	public String field(Board globalField, Field[] row, int ctr, int trigger) {
+	public String field(IBoard globalField, IField[] iFields, int ctr, int trigger) {
 		int tmpCtr = ctr;
 		String tmp = "";
 		String value;
 		if (tmpCtr > 0) {
 			tmpCtr--;
 
-			if (row[row.length - tmpCtr - 1] == null)
+			if (iFields[iFields.length - tmpCtr - 1] == null)
 				value = "";
 			else {
 				if (trigger == 0) {
-					value = String.valueOf(row[row.length - tmpCtr - 1].getFieldNumber());
+					value = String.valueOf(iFields[iFields.length - tmpCtr - 1].getFieldNumber());
 				} else if (trigger == 1) {
-					value = String.valueOf(row[row.length - tmpCtr - 1].getOwner().getPlayerNr());
+					value = String.valueOf(iFields[iFields.length - tmpCtr - 1].getOwner().getPlayerNr());
 				} else {
-					value = String.valueOf(row[row.length - tmpCtr - 1].getNumberOfDices());
+					value = String.valueOf(iFields[iFields.length - tmpCtr - 1].getNumberOfDices());
 				}
 			}
 
-			tmp = format(tmp, value) + field(globalField, row, tmpCtr, trigger);
+			tmp = format(tmp, value) + field(globalField, iFields, tmpCtr, trigger);
 
 		} else {
 			tmp = tmp + "\n";
@@ -104,7 +105,7 @@ public class TUI implements IObserver {
 	}
 
 	public void tui() {
-		Board globalField = controller.getBoard();
+		IBoard globalField = controller.getBoard();
 		int fieldSize = globalField.getLength();
 		String tmp = "";
 		for (int i = 0; i < fieldSize; i++) {
@@ -125,9 +126,9 @@ public class TUI implements IObserver {
 		this.setConsole(tmp);
 	}
 
-	public String printBox(Board field, String value, int x, int y) {
+	public String printBox(IBoard field, String value, int x, int y) {
 		String value1 = "";
-		Field[][] tmpField = field.getField();
+		IField[][] tmpField = field.getField();
 
 		if (y >= tmpField.length) {
 			return value;
@@ -159,9 +160,9 @@ public class TUI implements IObserver {
 		return tmpValue;
 	}
 
-	public String printBoxNeighbors(Board field, String value, int x, int y, int ctr) {
+	public String printBoxNeighbors(IBoard field, String value, int x, int y, int ctr) {
 		String tmp = value;
-		Field[][] tmpField = field.getField();
+		IField[][] tmpField = field.getField();
 		int tmpCtr = ctr;
 		if (tmpCtr >= 8)
 			return tmp;
@@ -183,7 +184,7 @@ public class TUI implements IObserver {
 
 	}
 
-	public void globalPrint(Board field) {
+	public void globalPrint(IBoard field) {
 		String value = "";
 		String endValue = "";
 		for (int j = 0; j < field.getLength(); j++) {
@@ -213,7 +214,7 @@ public class TUI implements IObserver {
 		LOGGER.info(newline + " Anzahl an spielern: ");
 		tmpNbrOfPlayer = sc.nextInt();
 
-		Player[] listOfPlayer = new Player[tmpNbrOfPlayer];
+		IPlayer[] listOfPlayer = new Player[tmpNbrOfPlayer];
 		for (int i = 0; i < listOfPlayer.length; i++) {
 			LOGGER.info(newline + " Name: ");
 			String eingabe = sc.next();

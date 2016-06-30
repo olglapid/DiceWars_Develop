@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.IField;
 
 public class Hexdrawer {
 	static final int SIDES = 6;
@@ -60,7 +60,7 @@ public class Hexdrawer {
 		return p;
 	}
 	
-	public static void drawchange(int i,int j,Graphics2D g2,Field field,int r,Color color,IController controller){
+	public static void drawchange(int i,int j,Graphics2D g2,IField field,int r,Color color,IController controller){
 		String c="";
 		Color tmp=Color.WHITE;
 		int numberOfDices=0;

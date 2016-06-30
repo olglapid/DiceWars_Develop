@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 
 import de.htwg.se.dicewars.controller.IController;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Player;
 
 public class ChoosePlayerPanel extends JPanel implements MouseListener{
@@ -72,7 +73,7 @@ public class ChoosePlayerPanel extends JPanel implements MouseListener{
 	}
 	
 	public void fillPLayer(){
-		Player[] playerList = new Player[anzspieler];
+		IPlayer[] playerList = new Player[anzspieler];
 		int fieldSize = controller.getFieldSize();
 		for (int i = 0; i < playerList.length; i++) {
 			playerList[i]=new Player();

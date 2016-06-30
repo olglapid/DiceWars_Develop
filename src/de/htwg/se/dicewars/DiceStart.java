@@ -13,7 +13,7 @@ public class DiceStart {
 	private static DicewarsFrame diceframe;
 
 	private DiceStart() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 
 		tui = new TUI(controller);
 		diceframe = new DicewarsFrame(controller);

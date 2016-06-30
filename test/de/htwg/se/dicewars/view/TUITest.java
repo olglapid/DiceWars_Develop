@@ -9,9 +9,11 @@ import java.io.InputStream;
 import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.controller.impl.Controller;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.view.tui.TUI;
@@ -20,7 +22,7 @@ public class TUITest {
 
 	@Test
 	public final void testTUI() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
 		controller.setNumberOfFields(49);
 		controller.setfieldSize(64);
@@ -36,7 +38,7 @@ public class TUITest {
 		controller.setPlayerlist(playerList);
 		controller.create();
 
-		Board board = controller.getBoard();
+		IBoard board = controller.getBoard();
 
 		String value1 = "";
 		String value2 = "";
@@ -67,7 +69,7 @@ public class TUITest {
 
 	@Test
 	public final void testSetConsole() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
 
 		console.setConsole("Test");
@@ -76,7 +78,7 @@ public class TUITest {
 
 	@Test
 	public final void testAddConsole() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
 		console.setConsole("Test");
 		console.addConsole("Test");
@@ -132,7 +134,7 @@ public class TUITest {
 
 	@Test
 	public final void testTui() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
 		assertEquals("", console.getConsole());
 	}
@@ -140,15 +142,15 @@ public class TUITest {
 	@Test
 	public final void testPrintBox() {
 		Boardsetup boardsetup = new Boardsetup();
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
-		Board board = new Board();
+		IBoard board = new Board();
 		String value1 = "";
 		String value2 = "";
 		String tmp = "";
 
 		board = boardsetup.createField(64, 32);
-		Field[][] field = board.getField();
+		IField[][] field = board.getField();
 		value1 = console.printBox(board, value1, 0, 0);
 		for (int i = 0; i < board.getLength(); i++) {
 			tmp = "";
@@ -199,9 +201,9 @@ public class TUITest {
 	@Test
 	public final void testGlobalPrint() {
 		Boardsetup boardsetup = new Boardsetup();
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
-		Board board = new Board();
+		IBoard board = new Board();
 		board = boardsetup.createField(64, 49);
 		String value2 = "";
 		String tmp = "";
@@ -219,7 +221,7 @@ public class TUITest {
 
 	@Test
 	public final void readDataTest() {
-		Controller controller = new Controller();
+		IController controller = new Controller();
 		TUI console = new TUI(controller);
 		String felder = "9" + System.getProperty("line.separator") + "9" + System.getProperty("line.separator") + "2"
 				+ System.getProperty("line.separator") + "a" + System.getProperty("line.separator") + "b";

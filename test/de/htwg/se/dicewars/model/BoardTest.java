@@ -13,21 +13,21 @@ public class BoardTest {
 
 	@Test
 	public void Board(){
-		Board brd= new Board();
+		IBoard brd= new Board();
 		assertNotNull(brd);
 	
 	}
 	@Test
 	public void setFieldTest() {
-		Board brd= new Board();
-		Field[][] testField = new Field[3][3];
+		IBoard brd= new Board();
+		IField[][] testField = new Field[3][3];
 		brd.setField(testField);
 		assertEquals(testField, brd.getField());
 		
 	}
 	@Test
 	public void setLengthTest() {
-		Board brd= new Board();
+		IBoard brd= new Board();
 		brd.setLength(3);
 		assertEquals(3, brd.getLength());
 	}

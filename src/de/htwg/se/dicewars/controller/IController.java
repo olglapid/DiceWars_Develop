@@ -1,8 +1,8 @@
 package de.htwg.se.dicewars.controller;
 
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
-import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Player;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.observer.IObservable;
 import de.htwg.se.dicewars.state.Status;
 
@@ -30,19 +30,19 @@ public interface IController extends IObservable {
 
 	void setfieldSize(int tmpFieldSize);
 
-	void setBoard(Board tmpBoard);
+	void setBoard(IBoard tmpBoard);
 
-	void setPlayerlist(Player[] tmpPlayerList);
+	void setPlayerlist(IPlayer[] tmpPlayerList);
 
-	void setSinglePlayer(Player player, int index);
+	void setSinglePlayer(IPlayer player, int index);
 
 	void setNumberOfFields(int tmpNumberOfFields);
 
-	Board getBoard();
+	IBoard getBoard();
 
-	Player[] getPlayerlist();
+	IPlayer[] getPlayerlist();
 
-	Player getSinglePlayer(int index);
+	IPlayer getSinglePlayer(int index);
 
 	int getFieldSize();
 
@@ -50,13 +50,14 @@ public interface IController extends IObservable {
 
 	void createBoard(int fieldSize, int numberOfFields);
 
-	void connectPlayerToBoard(Player[] listOfPlayer);
+	void connectPlayerToBoard(IPlayer[] listOfPlayer);
 
-	void spreadDicesToField(Board board, Player[] listOfPlayer);
+	void spreadDicesToField(IBoard board, IPlayer[] listOfPlayer);
 	
 	void init();
 	
 	void startGame();
 
 	void create();
+
 }

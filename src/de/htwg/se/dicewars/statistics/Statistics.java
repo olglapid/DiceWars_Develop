@@ -1,12 +1,13 @@
 package de.htwg.se.dicewars.statistics;
 
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
 
 public class Statistics {
-	private Field[][] board;
-	private Field field;
-	private Player player;
+	private IField[][] board;
+	private IField field;
+	private IPlayer player;
 	private int numberOfDices;
 	private int numberOfFields;
 	private int tmp;
@@ -26,12 +27,12 @@ public class Statistics {
 	}
 
 
-	public void setPlayer(Player player) {
-		this.player = player;
+	public void setPlayer(IPlayer player2) {
+		this.player = player2;
 	}
 
-	public void setField(Field field) {
-		this.field = field;
+	public void setField(IField field2) {
+		this.field = field2;
 	}
 
 	public void setNumberOfDices(int nbr) {
@@ -66,11 +67,11 @@ public class Statistics {
 		return this.numberOfConnectedFields;
 	}
 
-	public Field getField() {
+	public IField getField() {
 		return this.field;
 	}
 
-	public Player getPlayer() {
+	public IPlayer getPlayer() {
 		return this.player;
 	}
 
@@ -78,11 +79,11 @@ public class Statistics {
 		this.board = new Field[size][size];
 	}
 
-	public void setBoard(Field[][] field) {
+	public void setBoard(IField[][] field) {
 		this.board = field;
 	}
 
-	public Field[][] getBoard() {
+	public IField[][] getBoard() {
 		return this.board;
 	}
 

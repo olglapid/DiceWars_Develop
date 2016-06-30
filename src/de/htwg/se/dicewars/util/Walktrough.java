@@ -1,6 +1,7 @@
 package de.htwg.se.dicewars.util;
 
 
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
@@ -10,37 +11,37 @@ public abstract class Walktrough {
 		
 	}
 
-	public static boolean[] visitField(Field field, boolean[] fields) {
-		Field tmpField = field;
+	public static boolean[] visitField(IField field, boolean[] fields) {
+		IField tmpField = field;
 		int tmp = tmpField.getFieldNumber();
 		fields[tmp - 1] = true;
 		return fields;
 	}
 
-	public static boolean checkVisit(Field field, boolean[] fields) {
-		Field tmpField = field;
+	public static boolean checkVisit(IField field, boolean[] fields) {
+		IField tmpField = field;
 		int tmp = tmpField.getFieldNumber();
 		if (fields[tmp - 1])
 			return true;
 		return false;
 	}
 
-	public static Field walkTroughFields(Field node, boolean[] visit, Statistics stats, Context context) {
+	public static IField walkTroughFields(IField field, boolean[] visit, Statistics stats, Context context) {
 		boolean[] tmp = visit;
 		
-		if (node == null || node.getNachbar() == null)
-			return node;
+		if (field == null || field.getNachbar() == null)
+			return field;
 
-		if (checkVisit(node, visit))
-			return node;
+		if (checkVisit(field, visit))
+			return field;
 		
-		Field[] neighborsList = node.getNachbar();
+		IField[] neighborsList = field.getNachbar();
 
 		
-		tmp = visitField(node, tmp);
+		tmp = visitField(field, tmp);
 		
 
-		stats.setField(node);
+		stats.setField(field);
 		context.executeStrategy(stats);
 		
 		for (int i = 0; i < neighborsList.length; i++) {
@@ -49,7 +50,7 @@ public abstract class Walktrough {
 			walkTroughFields(neighborsList[i], tmp, stats, context);
 		}
 
-		return node;
+		return field;
 
 	}
 }

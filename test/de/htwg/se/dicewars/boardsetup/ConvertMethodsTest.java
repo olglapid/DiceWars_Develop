@@ -6,8 +6,10 @@ import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
+
 
 public class ConvertMethodsTest {
 
@@ -36,12 +38,12 @@ public class ConvertMethodsTest {
 
 	@Test
 	public final void testFieldNumberToIndex() {
-		Board board = new Board();
+		IBoard board = new Board();
 		Boardsetup boardsetup = new Boardsetup();
 
 		board = boardsetup.createField(64, 64);
 		int[] index = new int[2];
-		Field[][] field = board.getField();
+		IField[][] field = board.getField();
 
 		for (int j = 0; j < board.getLength(); j++) {
 			for (int i = 0; i < board.getLength(); i++) {

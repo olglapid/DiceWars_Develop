@@ -4,6 +4,9 @@ import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.gameroutine.Gameroutine;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
 import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.model.impl.Player;
@@ -12,8 +15,8 @@ import de.htwg.se.dicewars.state.Status;
 
 public class Controller extends Observable implements IController {
 
-	private Board board;
-	private Player[] playerlist;
+	private IBoard board;
+	private IPlayer[] playerlist;
 	private int numberOfFields;
 	private int fieldSize;
 	private Gameroutine gameroutine;
@@ -93,17 +96,17 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public void setBoard(Board tmpBoard) {
+	public void setBoard(IBoard tmpBoard) {
 		this.board = tmpBoard;
 	}
 
 	@Override
-	public void setPlayerlist(Player[] tmpPlayerList) {
+	public void setPlayerlist(IPlayer[] tmpPlayerList) {
 		this.playerlist = tmpPlayerList;
 	}
 
 	@Override
-	public void setSinglePlayer(Player player, int index) {
+	public void setSinglePlayer(IPlayer player, int index) {
 		if (player != null && checkRange(index)) {
 			this.playerlist[index] = player;
 
@@ -116,17 +119,17 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public Board getBoard() {
+	public IBoard getBoard() {
 		return this.board;
 	}
 
 	@Override
-	public Player[] getPlayerlist() {
+	public IPlayer[] getPlayerlist() {
 		return this.playerlist;
 	}
 
 	@Override
-	public Player getSinglePlayer(int index) {
+	public IPlayer getSinglePlayer(int index) {
 		if (checkRange(index))
 			return this.playerlist[index];
 		return null;
@@ -150,7 +153,7 @@ public class Controller extends Observable implements IController {
 		if (tmpfieldSize < tmpnumberOfFields) {
 			tmpfieldSize = tmpnumberOfFields;
 		}
-		Board tmpBoard = new Board();
+		IBoard tmpBoard = new Board();
 		tmpBoard = boardsetup.createField(tmpfieldSize, tmpnumberOfFields);
 		setfieldSize(tmpfieldSize);
 		setNumberOfFields(tmpnumberOfFields);
@@ -158,13 +161,13 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public void connectPlayerToBoard(Player[] listOfPlayer) {
+	public void connectPlayerToBoard(IPlayer[] listOfPlayer) {
 		if (this.board != null && this.numberOfFields >= 0 && listOfPlayer != null)
 			boardsetup.playerToField(this.board, listOfPlayer, numberOfFields);
 	}
 
 	@Override
-	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
+	public void spreadDicesToField(IBoard board2, IPlayer[] listOfPlayer) {
 		boardsetup.spreadDices(listOfPlayer);
 
 	}
@@ -205,12 +208,12 @@ public class Controller extends Observable implements IController {
 			return;
 		}
 		int playersTurn = gameroutine.getPlayersTurn();
-		Field[][] field = board.getField();
+		IField[][] field = board.getField();
 
 		int[] index = Convertmethods.fieldNumberToIndex(fieldSize, attack);
-		Field attackfield = field[index[0]][index[1]];
+		IField attackfield = field[index[0]][index[1]];
 		index = Convertmethods.fieldNumberToIndex(fieldSize, defend);
-		Field defendfield = field[index[0]][index[1]];
+		IField defendfield = field[index[0]][index[1]];
 
 		gameroutine.routine(playerlist[playersTurn], attackfield, defendfield, fieldSize);
 		attack = -1;
@@ -230,6 +233,7 @@ public class Controller extends Observable implements IController {
 		notifyObservers();
 
 	}
+
 	
 
 

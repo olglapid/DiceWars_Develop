@@ -1,24 +1,24 @@
 package de.htwg.se.dicewars.gameroutine;
 
-import de.htwg.se.dicewars.model.impl.Field;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 import de.htwg.se.dicewars.util.Fieldhandler;
 
 public class Attack extends Observable{
 	private Status status;
-	private Field field;
-	private Field neighbour;
+	private IField field;
+	private IField neighbour;
 	public Attack(){
 		status=Status.NEW;
 		field=null;
 		neighbour=null;
 	}
-	public void setField(Field field){
-		this.field=field;
+	public void setField(IField attackfield){
+		this.field=attackfield;
 	}
-	public void setNeighbour(Field field){
-		this.neighbour=field;
+	public void setNeighbour(IField defendfield){
+		this.neighbour=defendfield;
 	}
 	public void setStatus(Status tmpMessege) {
 		this.status = tmpMessege;
@@ -27,14 +27,14 @@ public class Attack extends Observable{
 	public Status getStatus() {
 		return this.status;
 	}
-	public Field getNeighbour(){
+	public IField getNeighbour(){
 		return this.neighbour;
 	}
-	public Field getField(){
+	public IField getField(){
 		return this.field;
 	}
 
-	public void checkAttack(Field field, int attackX, int attackY) {
+	public void checkAttack(IField field, int attackX, int attackY) {
 
 		int x = attackX - field.getX();
 		int y = attackY - field.getY();
@@ -45,7 +45,7 @@ public class Attack extends Observable{
 			return;
 		}
 
-		Field tmp = field.getNachbar()[index];
+		IField tmp = field.getNachbar()[index];
 		
 		if (tmp == null) {
 			setStatus(Status.INVALIDATTACKFIELD);
@@ -66,14 +66,14 @@ public class Attack extends Observable{
 
 	}
 
-	public void attack(Field field, int attackX, int attackY) {
+	public void attack(IField field, int attackX, int attackY) {
 
 
 		int rtdAttack = 0;
 		int rtdDefend = 0;
 
 		int index = Fieldhandler.getNeighborfromIndex(attackX - field.getX(), attackY - field.getY());
-		Field tmp = field.getNachbar()[index];
+		IField tmp = field.getNachbar()[index];
 
 		rtdAttack = field.rollTheDice();
 		rtdDefend = tmp.rollTheDice();
@@ -88,7 +88,7 @@ public class Attack extends Observable{
 		
 	}
 
-	public void attackroutine(Field field, int attackX, int attackY) {
+	public void attackroutine(IField field, int attackX, int attackY) {
 		if (field == null) {
 			setStatus(Status.INVALIDATTACKFIELD);
 		} else {

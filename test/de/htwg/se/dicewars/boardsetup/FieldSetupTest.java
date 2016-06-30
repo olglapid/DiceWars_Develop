@@ -6,7 +6,8 @@ import org.junit.Test;
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.boardsetup.Fieldsetup;
-import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Field;
 
 public class FieldSetupTest {
@@ -15,7 +16,7 @@ public class FieldSetupTest {
 
 	@Test
 	public final void testSetNeigbors() {
-		Field[][] field = new Field[3][3];
+		IField[][] field = new Field[3][3];
 
 		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < 3; i++) {
@@ -113,8 +114,8 @@ public class FieldSetupTest {
 	public final void testSetFieldNumber() {
 		Boardsetup boardsetup = new Boardsetup();
 		int ctr = 1;
-		Board board = boardsetup.createField(16, 9);
-		Field[][] field = board.getField();
+		IBoard board = boardsetup.createField(16, 9);
+		IField[][] field = board.getField();
 		for (int j = 0; j < board.getLength(); j++) {
 			for (int i = 0; i < board.getLength(); i++) {
 				Fieldsetup.setFieldNumber(field, j, i);

@@ -1,5 +1,6 @@
 package de.htwg.se.dicewars.boardsetup;
 
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.util.Fieldhandler;
 
@@ -8,8 +9,8 @@ public abstract class Fieldsetup {
 		
 	}
 	/* reserve space for Field */
-	public static Field initSingleField(Field[][] field, int x, int y) {
-		Field node = new Field();
+	public static IField initSingleField(IField[][] field, int x, int y) {
+		IField node = new Field();
 		node.setY(y);
 		node.setX(x);
 		field[x][y] = node;
@@ -19,21 +20,21 @@ public abstract class Fieldsetup {
 
 	}
 
-	public static Field[][] fieldInList(Field[][] field, Field p) {
+	public static IField[][] fieldInList(IField[][] field, IField p) {
 		field[p.getX()][p.getY()] = p;
 		return field;
 	}
 
 	/* mallocs neighbors array */
-	public static Field mallocNodes(Field node) {
-		Field[] tmp = new Field[8];
+	public static IField mallocNodes(IField node) {
+		IField[] tmp = new IField[8];
 		node.setNachbar(tmp);
 		setNeighborsNull(node);
 		return node;
 	}
 
-	public static void setNeighborsNull(Field node) {
-		Field[] tmp = new Field[8];
+	public static void setNeighborsNull(IField node) {
+		IField[] tmp = new IField[8];
 
 		for (int i = 0; i < node.getNachbar().length; i++) {
 			tmp[i] = null;
@@ -41,7 +42,7 @@ public abstract class Fieldsetup {
 		node.setNachbar(tmp);
 	}
 
-	public static Field[][] connectFields(Field[][] field) {
+	public static IField[][] connectFields(IField[][] field) {
 		for (int i = 0; i < field.length; i++) {
 			for (int j = 0; j < field.length; j++) {
 				if (field[j][i] == null)
@@ -53,14 +54,14 @@ public abstract class Fieldsetup {
 		return field;
 	}
 
-	public static void setFieldNumber(Field[][] field, int x, int y) {
+	public static void setFieldNumber(IField[][] field, int x, int y) {
 		if (field[x][y] != null)
 			field[x][y].setFieldNumber((x * field.length) + y + 1);
 	}
 
 	
 	/* -------------------------------------------------- */
-	public static Field setNeigbors(Field[][] fieldTmp, int a, int b) {
+	public static IField setNeigbors(IField[][] fieldTmp, int a, int b) {
 		int value;
 		for (int j = -1; j <= 1; j++) {
 			for (int i = -1; i <= 1; i++) {
@@ -79,7 +80,7 @@ public abstract class Fieldsetup {
 
 
 	
-	public static Field connectNodes(Field[][] field, Field node, int numberOfFields, int fieldSize) {
+	public static IField connectNodes(IField[][] field, IField node, int numberOfFields, int fieldSize) {
 		if (numberOfFields == 1)
 			return node;
 		int nextx;

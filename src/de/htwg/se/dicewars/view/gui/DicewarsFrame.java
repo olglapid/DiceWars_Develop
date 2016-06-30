@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
-import de.htwg.se.dicewars.model.impl.Board;
+import de.htwg.se.dicewars.model.IBoard;
 
 
 public class DicewarsFrame extends JFrame{
@@ -124,7 +124,7 @@ public class DicewarsFrame extends JFrame{
 			
 		}
 		controller.create();
-		Board board = controller.getBoard();
+		IBoard board = controller.getBoard();
 		setSize(DEFAULT_X - 1, DEFAULT_Y - 1);
 		setLocationRelativeTo(null);
 			

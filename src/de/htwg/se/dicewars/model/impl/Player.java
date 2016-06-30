@@ -4,15 +4,18 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 
 
-public class Player {
+
+public class Player implements IPlayer{
 	private String name;
 	private int numberOfFields;
 	private int playerNr;
 	private int numberOfDices;
-	private Field[][] myFields;
-	private LinkedList<Field> fieldListshuffled;
+	private IField[][] myFields;
+	private LinkedList<IField> fieldListshuffled;
 
 	public Player() {
 		this.name = null;
@@ -20,28 +23,28 @@ public class Player {
 		this.numberOfFields = 0;
 		this.numberOfDices = 0;
 		this.myFields = new Field[0][0];
-		this.fieldListshuffled = new LinkedList<Field>();
+		this.fieldListshuffled = new LinkedList<IField>();
 	}
 
 	public void createField(int size) {
 		this.myFields = new Field[size][size];
 	}
 
-	public Field getFieldFromIndex(int x, int y) {
+	public IField getFieldFromIndex(int x, int y) {
 		if (x > this.myFields.length || y > this.myFields.length || x < 0 || y < 0) {
 			return null;
 		}
 		return this.myFields[x][y];
 	}
-	public void setField(Field[][] field){
+	public void setField(IField[][] field){
 		this.myFields=field;
 	}
 	
-	public void setFieldFromIndex(Field field) {
+	public void setFieldFromIndex(IField field) {
 		this.myFields[field.getX()][field.getY()] = field;
 	}
 
-	public Field[][] getField() {
+	public IField[][] getField() {
 		return this.myFields;
 	}
 
@@ -81,7 +84,7 @@ public class Player {
 		return this.numberOfDices;
 	}
 
-	public Field popShoffled() {
+	public IField popShoffled() {
 		return this.fieldListshuffled.pop();
 	}
 
@@ -89,13 +92,13 @@ public class Player {
 		Collections.shuffle(fieldListshuffled);
 	}
 
-	public void pushShuffledField(Field field) {
+	public void pushShuffledField(IField field) {
 		if (field.getNumberOfDices() < 8)
 			this.fieldListshuffled.add(field);
 	}
 
-	public void initShuffle(Field[][] tmp) {
-		Field[][] field = tmp;
+	public void initShuffle(IField[][] tmp) {
+		IField[][] field = tmp;
 		if (field == null)
 			field = myFields;
 		for (int x = 0; x < field.length; x++) {
@@ -117,7 +120,7 @@ public class Player {
 		Random r = new Random();
 		int random;
 		int tmp=0;
-		Field field;
+		IField field;
 
 		if(fieldListshuffled.isEmpty())
 			return;

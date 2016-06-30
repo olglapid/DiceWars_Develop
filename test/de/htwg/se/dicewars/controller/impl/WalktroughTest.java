@@ -6,8 +6,9 @@ import org.junit.Test;
 
 
 import de.htwg.se.dicewars.boardsetup.Boardsetup;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountDices;
@@ -18,12 +19,12 @@ public class WalktroughTest {
 	@Test
 	public final void walkTroughFieldsTest() {
 		Boardsetup boardsetup = new Boardsetup();
-		Board board = new Board();
+		IBoard board = new Board();
 		int index = 0;
 		board = boardsetup.createField(64, 64);
 		boolean[] visit = new boolean[64];
-		Field[][] field = board.getField();
-		Field tmpField = field[0][0];
+		IField[][] field = board.getField();
+		IField tmpField = field[0][0];
 		
 		Statistics stats=new Statistics();
 		Context context = new Context(new CountDices());

@@ -1,6 +1,5 @@
 package de.htwg.se.dicewars.model;
 
-import de.htwg.se.dicewars.model.impl.Field;
 
 public interface IBoard {
 
@@ -8,7 +7,7 @@ public interface IBoard {
 	 * Sets an array of Fields
 	 * @param field
 	 */
-	public void setField(Field[][] field);
+	public void setField(IField[][] field);
 	
 	/**
 	 * sets the length
@@ -26,6 +25,6 @@ public interface IBoard {
 	 * returns the Field
 	 * @return
 	 */
-	public Field[][] getField();
+	public IField[][] getField();
 	
 }

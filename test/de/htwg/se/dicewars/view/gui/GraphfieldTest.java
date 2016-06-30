@@ -10,7 +10,10 @@ import org.junit.Test;
 
 import com.google.inject.Injector;
 
+import de.htwg.se.dicewars.controller.IController;
 import de.htwg.se.dicewars.controller.impl.Controller;
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Board;
 import de.htwg.se.dicewars.model.impl.Field;
 
@@ -18,9 +21,9 @@ public class GraphfieldTest {
 
 	@Test
 	public final void GraphfieldTest() {
-		Board board = new Board();
-		Field[][] field = new Field[8][8];
-		Controller controller = new Controller(); 
+		IBoard board = new Board();
+		IField[][] field = new Field[8][8];
+		IController controller = new Controller(); 
 		board.setField(field);
 		controller.setBoard(board);
 		Graphfield graph = new Graphfield(10, controller);
@@ -37,9 +40,9 @@ public class GraphfieldTest {
 	
 	@Test
 	public final void setgetTest(){
-		Board board = new Board();
-		Field[][] field = new Field[8][8];
-		Controller controller = new Controller(); 
+		IBoard board = new Board();
+		IField[][] field = new Field[8][8];
+		IController controller = new Controller(); 
 		board.setField(field);
 		controller.setBoard(board);
 		Graphfield graph = new Graphfield(10, controller);

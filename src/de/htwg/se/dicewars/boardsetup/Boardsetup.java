@@ -1,8 +1,10 @@
 package de.htwg.se.dicewars.boardsetup;
 
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
 import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.util.Fieldhandler;
 
 public class Boardsetup {
@@ -10,11 +12,11 @@ public class Boardsetup {
 		
 	}
 	
-	public Board createField(int fieldSize, int numberOfFields) {
+	public IBoard createField(int fieldSize, int numberOfFields) {
 
-		Field node = new Field();
+		IField node = new Field();
 		int matrixSize = Convertmethods.converteFieldSize(fieldSize);
-		Field[][] field = new Field[matrixSize][matrixSize];
+		IField[][] field = new Field[matrixSize][matrixSize];
 
 		node = Fieldsetup.initSingleField(field, Convertmethods.randomNumber(matrixSize), Convertmethods.randomNumber(matrixSize));
 		node = Fieldsetup.mallocNodes(node);
@@ -28,8 +30,8 @@ public class Boardsetup {
 		return board;
 	}
 	
-	public Board playerToField(Board board, Player[] listOfPlayer, int numberOfFields) {
-		Field[][] field=board.getField();
+	public IBoard playerToField(IBoard board, IPlayer[] listOfPlayer, int numberOfFields) {
+		IField[][] field=board.getField();
 		int[] listOfFields = new int[listOfPlayer.length];
 		int index = 0;
 		Fieldsetup.handOutFields(listOfFields, numberOfFields);
@@ -49,8 +51,8 @@ public class Boardsetup {
 		board.setField(field);
 		return board;
 	}
-	public void spreadDices(Player[] listOfPlayer){
-		Field[][] field;
+	public void spreadDices(IPlayer[] listOfPlayer){
+		IField[][] field;
 		field=listOfPlayer[0].getField();
 		int dicesToAdd=Fieldhandler.countFields(field);
 		listOfPlayer[0].setNumberOfDices(dicesToAdd);

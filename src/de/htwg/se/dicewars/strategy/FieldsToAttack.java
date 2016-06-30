@@ -1,15 +1,16 @@
 package de.htwg.se.dicewars.strategy;
 
-import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
+import de.htwg.se.dicewars.model.IField;
+import de.htwg.se.dicewars.model.IPlayer;
+
 import de.htwg.se.dicewars.statistics.Statistics;
 
 public class FieldsToAttack implements Strategy {
 	@Override
 	public Statistics doOperation(Statistics stats) {
-		Player player = stats.getPlayer();
-		Field field = stats.getField();
-		Field[] nachbar = field.getNachbar();
+		IPlayer player = stats.getPlayer();
+		IField field = stats.getField();
+		IField[] nachbar = field.getNachbar();
 		int number = stats.getTmp();
 		if (player != field.getOwner() || field.getNumberOfDices() < 2) {
 			return stats;
