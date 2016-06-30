@@ -8,8 +8,6 @@ import de.htwg.se.dicewars.model.IBoard;
 import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.IPlayer;
 import de.htwg.se.dicewars.model.impl.Board;
-import de.htwg.se.dicewars.model.impl.Field;
-import de.htwg.se.dicewars.model.impl.Player;
 import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
 
@@ -44,7 +42,6 @@ public class Controller extends Observable implements IController {
 		this.numberOfFields = 0;
 		this.fieldSize = 0;
 		this.status = Status.NEW;
-		this.gameroutine = new Gameroutine();
 		this.attack = -1;
 		this.defend = -1;
 	}
@@ -198,6 +195,7 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startGame() {
 
+		System.out.println(" TURN "+gameroutine.getPlayersTurn());
 		if (status == Status.NEW) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();
@@ -225,8 +223,8 @@ public class Controller extends Observable implements IController {
 		gameroutine.checkEndOfTurn(playerlist[playersTurn]);
 		if (gameroutine.getStatus() == Status.ENDTURN) {
 			gameroutine.endOFTurn(playerlist[playersTurn]);
-
-			if (gameroutine.getPlayersTurn() == playerlist.length - 1) {
+			System.out.println("ENDEND");
+			if (gameroutine.getPlayersTurn() == playerlist.length) {
 				gameroutine.setPlayersTurn(0);
 			}
 		}
@@ -235,6 +233,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	
+
 
 
 }

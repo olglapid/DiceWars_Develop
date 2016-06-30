@@ -25,7 +25,7 @@ public class Gameroutine  extends Observable{
 		status = Status.NEW;
 		playerUpdate = new Playerhandler();
 		diceUpdate = new Dicehandler();
-		playersTurn = -1;
+		playersTurn = 0;
 	}
 
 	public void setAttack(Attack attack) {
@@ -71,10 +71,12 @@ public class Gameroutine  extends Observable{
 	public void endOFTurn(IPlayer player) {
 		if (status != Status.ENDTURN)
 			return;
-
+		
 		int connectedField = Fieldhandler.countConnectedFields(player.getField(), player);
 		int tmp = player.getNumberOfDices();
 		tmp += connectedField;
+		playersTurn++;
+		System.out.println("WAAARUM");
 		player.setNumberOfDices(tmp);
 		player.update();
 

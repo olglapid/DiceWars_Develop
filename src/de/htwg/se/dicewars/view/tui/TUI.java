@@ -240,6 +240,7 @@ public class TUI implements IObserver {
 		int defend = 0;
 		Scanner sc = new Scanner(System.in);
 		while (controller.getStatus() != Status.ENDTURN ) {
+			LOGGER.info("Spieler "+controller.getGameroutine().getPlayersTurn() + " ist an der Reihe");
 			LOGGER.info(newline + " Feld Auswählen: ");
 			attack = sc.nextInt();
 			if(attack==0)
