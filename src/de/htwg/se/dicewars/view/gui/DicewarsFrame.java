@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+import javax.swing.JOptionPane;
 
 import de.htwg.se.dicewars.boardsetup.Convertmethods;
 import de.htwg.se.dicewars.controller.IController;
@@ -68,7 +68,6 @@ public class DicewarsFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				settings();
-
 			}
 		});
 		
@@ -81,14 +80,41 @@ public class DicewarsFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				createField();
-
 			}
 		});
 
 		JMenu helpMenu = new JMenu("Help");
+		options.setMnemonic(KeyEvent.VK_O);
+
+		JMenuItem verwaltung = new JMenuItem("Rules");
+		verwaltung.setMnemonic(KeyEvent.VK_0);
+		verwaltung.setToolTipText("Rules");
+		verwaltung.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,
+					    "In diesem Spiel kann man die Tische für 2 – 10 Spieler erstellen.\n"
+					    + "Nachdem, dass man Anzahl Spieler und Anzahl Felder bestätigt hat, wird die Karte generiert.\n"
+					    + "Karte des Spiels wird zufällig generiert, aber alle Spieler fallen unter maximal gleichen Bedingungen für die Anzahl der Gebiete und die Anzahl der Würfel.\n"
+					    + "Verteilung der Würfel nach den Gebieten erfolgt zufällig.\n"
+					    + "Um das Zug zu erfolgen, müssen Sie Ihr Gebiet, mit dem Sie das Gebiet des Gegners angriffen möchten, markieren lassen und müssen Sie zeigen, welches Gebiet Sie angriffen möchten.\n"
+					    + "Aber Ihr Gebiet soll an das Gebiet des Gegners grenzen und auf Ihrem Gebiet soll mehr als 1 Würfel sein.\n"
+					    + "Nach Ihrer Auswahl werden alle Würfel, die auf Ihrem Gebiet und auf dem Gebiet des Gegners stehen, gewürfelt und das Ergebnis wird gerechnet.\n"
+					    + "Wenn das Ergebnis bei Ihnen höher liegt, geht der Würfelturm in Feindgebiet, aber lässt seinen Würfel auf dem Gebiet, von dem Angriff war, stehen.\n"
+					    + "Wenn das Würfelergebnis bei Ihrem Gegner höher liegt, bleibt Würfelturm des Gegners weiter stehen und auf Ihrem Gebiet bleibt nur einen Würfel stehen.\n"
+					    + "Falls die Würfelergebnisse gleich sind, verlieren Sie die Schlacht und auf Ihrem Gebiet bleibt nur einen Würfel stehen.\n"
+					    + "Der Würfelturm des Gegners bleibt weiter stehen.\n"
+					    + "Gewinnt derjenige, der alle Gebiete auf der Karte angegriffen hat.",
+					    "Rules",
+					    JOptionPane.PLAIN_MESSAGE);
+			}
+		});
+		
 
 		file.add(newMenuItem);
 		options.add(einstellungen);
+		helpMenu.add(verwaltung);
 		menubar.add(file);
 		menubar.add(options);
 		menubar.add(Box.createHorizontalGlue());

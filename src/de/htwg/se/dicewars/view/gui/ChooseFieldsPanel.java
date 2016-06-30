@@ -13,7 +13,7 @@ import de.htwg.se.dicewars.controller.IController;
 public class ChooseFieldsPanel extends JPanel implements MouseListener {
 
 	private JTextField fieldsEingabe;
-	private JButton anwenden, start;
+	private JButton anwenden;
 	private Integer felderanzahl = 20;
 	private IController controller;
 	
@@ -39,10 +39,6 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 		anwenden = new JButton("Anwenden");
 		panel1.add(anwenden);
 		anwenden.addMouseListener(this);
-		
-		start = new JButton("Start");
-		panel1.add(start);
-		start.addMouseListener(this);
 	}
 	
 
@@ -53,32 +49,13 @@ public class ChooseFieldsPanel extends JPanel implements MouseListener {
 		if(source == anwenden) {
 			if(fieldsEingabe.getText().length() == 0) {
 				JOptionPane.showMessageDialog(
-					    fieldsEingabe, "Waehle Anzahl Felder und Anzahl Spieler!",
+					    fieldsEingabe, "Waehle Anzahl Felder!",
 					    "Eingabefehler",
 					    JOptionPane.ERROR_MESSAGE);
 			} else 
 				felderanzahl = Integer.valueOf(fieldsEingabe.getText());
 				controller.setNumberOfFields(felderanzahl);
-				controller.setfieldSize(Convertmethods.converteFieldSize(felderanzahl));
-				
-				
-		}
-		
-		if(source == start) {
-			if(fieldsEingabe.getText().length() == 0) {
-				JOptionPane.showMessageDialog(
-					    fieldsEingabe, "Waehle Anzahl Felder und Anzahl Spieler!",
-					    "Eingabefehler",
-					    JOptionPane.ERROR_MESSAGE);
-			} else {
-				JFrame frame = new JFrame("Spielfeld");
-				frame.setSize(400, 400);
-				frame.setLayout(new GridLayout(1, 0));
-	
-				frame.pack();
-				frame.setVisible(true);
-			}
-			
+				controller.setfieldSize(Convertmethods.converteFieldSize(felderanzahl));		
 		}
 	}
 
