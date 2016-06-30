@@ -1,9 +1,11 @@
-package de.htwg.se.dicewars.model;
+package de.htwg.se.dicewars.model.impl;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.htwg.se.dicewars.model.IBoard;
+import de.htwg.se.dicewars.model.IField;
 import de.htwg.se.dicewars.model.impl.Board;
 import de.htwg.se.dicewars.model.impl.Field;
 

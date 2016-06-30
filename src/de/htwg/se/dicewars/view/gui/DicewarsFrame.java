@@ -71,16 +71,7 @@ public class DicewarsFrame extends JFrame{
 
 			}
 		});
-		/* EXIT */
-		JMenuItem eMenuItem = new JMenuItem("Exit");
-		eMenuItem.setMnemonic(KeyEvent.VK_E);
-		eMenuItem.setToolTipText("Exit application");
-		eMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				System.exit(0);
-			}
-		});
+		
 
 		/* NEW */
 		JMenuItem newMenuItem = new JMenuItem("New");
@@ -97,7 +88,6 @@ public class DicewarsFrame extends JFrame{
 		JMenu helpMenu = new JMenu("Help");
 
 		file.add(newMenuItem);
-		file.add(eMenuItem);
 		options.add(einstellungen);
 		menubar.add(file);
 		menubar.add(options);
