@@ -111,8 +111,9 @@ public class FieldSetupTest {
 
 	@Test
 	public final void testSetFieldNumber() {
+		Boardsetup boardsetup = new Boardsetup();
 		int ctr = 1;
-		Board board = Boardsetup.createField(16, 9);
+		Board board = boardsetup.createField(16, 9);
 		Field[][] field = board.getField();
 		for (int j = 0; j < board.getLength(); j++) {
 			for (int i = 0; i < board.getLength(); i++) {

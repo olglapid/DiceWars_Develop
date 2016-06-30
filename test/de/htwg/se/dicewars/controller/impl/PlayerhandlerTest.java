@@ -48,10 +48,11 @@ public class PlayerhandlerTest {
 
 	@Test
 	public final void updatePlayerTest() {
+		Boardsetup boardsetup = new Boardsetup();
 		Board board = new Board();
 		Field[][] field;
 
-		board = Boardsetup.createField(9, 9);
+		board = boardsetup.createField(9, 9);
 		field = board.getField();
 
 		Player hans = new Player();

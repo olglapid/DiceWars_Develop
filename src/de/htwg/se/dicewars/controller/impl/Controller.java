@@ -19,6 +19,7 @@ public class Controller extends Observable implements IController {
 	private Status status;
 	private int attack;
 	private int defend;
+	private Boardsetup boardsetup;
 
 	public Controller() {
 		board = null;
@@ -29,6 +30,7 @@ public class Controller extends Observable implements IController {
 		gameroutine = new Gameroutine();
 		attack = -1;
 		defend = -1;
+		boardsetup  = new Boardsetup();
 	}
 
 	@Override
@@ -141,13 +143,14 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void createBoard(int fieldSize, int numberOfFields) {
+		
 		int tmpfieldSize = fieldSize;
 		int tmpnumberOfFields = numberOfFields;
 		if (tmpfieldSize < tmpnumberOfFields) {
 			tmpfieldSize = tmpnumberOfFields;
 		}
 		Board tmpBoard = new Board();
-		tmpBoard = Boardsetup.createField(tmpfieldSize, tmpnumberOfFields);
+		tmpBoard = boardsetup.createField(tmpfieldSize, tmpnumberOfFields);
 		setfieldSize(tmpfieldSize);
 		setNumberOfFields(tmpnumberOfFields);
 		setBoard(tmpBoard);
@@ -156,12 +159,12 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void connectPlayerToBoard(Player[] listOfPlayer) {
 		if (this.board != null && this.numberOfFields >= 0 && listOfPlayer != null)
-			Boardsetup.playerToField(this.board, listOfPlayer, numberOfFields);
+			boardsetup.playerToField(this.board, listOfPlayer, numberOfFields);
 	}
 
 	@Override
 	public void spreadDicesToField(Board board, Player[] listOfPlayer) {
-		Boardsetup.spreadDices(listOfPlayer);
+		boardsetup.spreadDices(listOfPlayer);
 
 	}
 

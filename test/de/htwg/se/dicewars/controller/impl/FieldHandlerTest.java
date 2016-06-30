@@ -8,13 +8,15 @@ import de.htwg.se.dicewars.boardsetup.Boardsetup;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.util.Fieldhandler;
 
 public class FieldHandlerTest {
 
 	@Test
 	public final void countConnectedFields() {
+		Boardsetup boardsetup = new Boardsetup();
 		Board board = new Board();
-		board = Boardsetup.createField(9, 7);
+		board = boardsetup.createField(9, 7);
 		Field field[][] = board.getField();
 		Field dummyfield = new Field();
 		int flds = 0;
@@ -37,7 +39,7 @@ public class FieldHandlerTest {
 
 		assertEquals(7, flds);
 
-		board = Boardsetup.createField(9, 9);
+		board = boardsetup.createField(9, 9);
 		field = board.getField();
 
 		field[0][0].setOwner(player);

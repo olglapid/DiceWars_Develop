@@ -11,14 +11,16 @@ import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.statistics.Statistics;
 import de.htwg.se.dicewars.strategy.Context;
 import de.htwg.se.dicewars.strategy.CountDices;
+import de.htwg.se.dicewars.util.Walktrough;
 
 public class WalktroughTest {
 
 	@Test
 	public final void walkTroughFieldsTest() {
+		Boardsetup boardsetup = new Boardsetup();
 		Board board = new Board();
 		int index = 0;
-		board = Boardsetup.createField(64, 64);
+		board = boardsetup.createField(64, 64);
 		boolean[] visit = new boolean[64];
 		Field[][] field = board.getField();
 		Field tmpField = field[0][0];

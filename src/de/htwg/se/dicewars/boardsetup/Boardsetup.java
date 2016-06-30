@@ -1,16 +1,16 @@
 package de.htwg.se.dicewars.boardsetup;
 
-import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Board;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;
+import de.htwg.se.dicewars.util.Fieldhandler;
 
-public abstract class Boardsetup {
-	private Boardsetup(){
+public class Boardsetup {
+	public Boardsetup(){
 		
 	}
 	
-	public static Board createField(int fieldSize, int numberOfFields) {
+	public Board createField(int fieldSize, int numberOfFields) {
 
 		Field node = new Field();
 		int matrixSize = Convertmethods.converteFieldSize(fieldSize);
@@ -28,7 +28,7 @@ public abstract class Boardsetup {
 		return board;
 	}
 	
-	public static Board playerToField(Board board, Player[] listOfPlayer, int numberOfFields) {
+	public Board playerToField(Board board, Player[] listOfPlayer, int numberOfFields) {
 		Field[][] field=board.getField();
 		int[] listOfFields = new int[listOfPlayer.length];
 		int index = 0;
@@ -49,7 +49,7 @@ public abstract class Boardsetup {
 		board.setField(field);
 		return board;
 	}
-	public static void spreadDices(Player[] listOfPlayer){
+	public void spreadDices(Player[] listOfPlayer){
 		Field[][] field;
 		field=listOfPlayer[0].getField();
 		int dicesToAdd=Fieldhandler.countFields(field);

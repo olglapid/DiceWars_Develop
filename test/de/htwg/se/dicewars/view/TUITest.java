@@ -139,6 +139,7 @@ public class TUITest {
 
 	@Test
 	public final void testPrintBox() {
+		Boardsetup boardsetup = new Boardsetup();
 		Controller controller = new Controller();
 		TUI console = new TUI(controller);
 		Board board = new Board();
@@ -146,7 +147,7 @@ public class TUITest {
 		String value2 = "";
 		String tmp = "";
 
-		board = Boardsetup.createField(64, 32);
+		board = boardsetup.createField(64, 32);
 		Field[][] field = board.getField();
 		value1 = console.printBox(board, value1, 0, 0);
 		for (int i = 0; i < board.getLength(); i++) {
@@ -197,10 +198,11 @@ public class TUITest {
 
 	@Test
 	public final void testGlobalPrint() {
+		Boardsetup boardsetup = new Boardsetup();
 		Controller controller = new Controller();
 		TUI console = new TUI(controller);
 		Board board = new Board();
-		board = Boardsetup.createField(64, 49);
+		board = boardsetup.createField(64, 49);
 		String value2 = "";
 		String tmp = "";
 		console.globalPrint(board);

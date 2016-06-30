@@ -14,10 +14,11 @@ public class AttackTest {
 
 	@Test
 	public final void attacktest() {
+		Boardsetup boardsetup = new Boardsetup();
 		Board board = new Board();
 		Field[][] field;
 		Field[] tmpNeighbour;
-		board = Boardsetup.createField(9, 9);
+		board = boardsetup.createField(9, 9);
 		field = board.getField();
 
 		Player hans = new Player();

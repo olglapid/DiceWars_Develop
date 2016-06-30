@@ -1,7 +1,7 @@
 package de.htwg.se.dicewars.boardsetup;
 
-import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
+import de.htwg.se.dicewars.util.Fieldhandler;
 
 public abstract class Fieldsetup {
 	private Fieldsetup(){

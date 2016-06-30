@@ -1,4 +1,4 @@
-package de.htwg.se.dicewars.controller.impl;
+package de.htwg.se.dicewars.util;
 
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.model.Player;

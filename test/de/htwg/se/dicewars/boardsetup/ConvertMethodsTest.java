@@ -37,8 +37,9 @@ public class ConvertMethodsTest {
 	@Test
 	public final void testFieldNumberToIndex() {
 		Board board = new Board();
+		Boardsetup boardsetup = new Boardsetup();
 
-		board = Boardsetup.createField(64, 64);
+		board = boardsetup.createField(64, 64);
 		int[] index = new int[2];
 		Field[][] field = board.getField();
 

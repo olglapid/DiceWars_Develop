@@ -13,11 +13,12 @@ public class BoardSetupTest {
 
 	@Test
 	public final void testplayerToField() {
+		Boardsetup boardsetup = new Boardsetup();
 		Board board = new Board();
 		Player[] listOfPlayer = new Player[5];
 		int fieldSize = 64;
 		int numberOfFields = 43;
-		board = Boardsetup.createField(fieldSize, numberOfFields);
+		board = boardsetup.createField(fieldSize, numberOfFields);
 		
 		int tmp = 0;
 		int dices = 0;
@@ -29,7 +30,7 @@ public class BoardSetupTest {
 		}
 
 		Field[][] field = board.getField();
-		board = Boardsetup.playerToField(board, listOfPlayer, numberOfFields);
+		board = boardsetup.playerToField(board, listOfPlayer, numberOfFields);
 		
 		for (int x = 0; x < board.getLength(); x++) {
 			for (int y = 0; y < board.getLength(); y++) {

@@ -1,9 +1,9 @@
 package de.htwg.se.dicewars.gameroutine;
 
-import de.htwg.se.dicewars.controller.impl.Fieldhandler;
 import de.htwg.se.dicewars.model.Field;
 import de.htwg.se.dicewars.observer.Observable;
 import de.htwg.se.dicewars.state.Status;
+import de.htwg.se.dicewars.util.Fieldhandler;
 
 public class Attack extends Observable{
 	private Status status;

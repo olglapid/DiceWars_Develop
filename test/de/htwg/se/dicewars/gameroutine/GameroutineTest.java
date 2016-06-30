@@ -49,10 +49,11 @@ public class GameroutineTest {
 
 	@Test
 	public final void test() {
+		Boardsetup boardsetup = new Boardsetup();
 		Board board = new Board();
 		Field[][] field;
 		Field[] tmpNeighbour;
-		board = Boardsetup.createField(9, 9);
+		board = boardsetup.createField(9, 9);
 		field = board.getField();
 		Gameroutine gameroutine = new Gameroutine();
 
