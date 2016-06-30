@@ -16,8 +16,8 @@ public class StatusMessage {
 		 text.put(Status.INVALIDATTACKDICES, "You can't attack: not enough dices");
 		 text.put(Status.INVALIDATTACKFIELD, "You can't attack: no valid Field");
 		 text.put(Status.VALIDATTACK, "Attack is valid");
-		 text.put(Status.ATTACKSUCCESS, "U WOT M8: REKT");
-		 text.put(Status.ATTACKFAILED, "TOP KEK: U GOT REKT");
+		 text.put(Status.ATTACKSUCCESS, "Attack success");
+		 text.put(Status.ATTACKFAILED, "Attack failed");
 		 text.put(Status.DICEERROR,"DiceHandler Error: Not enough dices");
 		 text.put(Status.NEW, "New Object");
 		 text.put(Status.PLAYERUPDATE, "Player updated");

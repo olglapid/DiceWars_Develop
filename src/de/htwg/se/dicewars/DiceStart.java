@@ -39,6 +39,7 @@ public class DiceStart {
 
 	public static void main(String[] args) {
 
+		/*Singleton*/
 		DiceStart game = DiceStart.getInstance();
 		
 

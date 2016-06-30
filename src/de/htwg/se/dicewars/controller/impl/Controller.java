@@ -195,7 +195,6 @@ public class Controller extends Observable implements IController {
 	@Override
 	public void startGame() {
 
-		System.out.println(" TURN "+gameroutine.getPlayersTurn());
 		if (status == Status.NEW) {
 			gameroutine.setPlayersTurn(0);
 			fieldSize = board.getLength();

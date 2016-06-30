@@ -76,7 +76,6 @@ public class Gameroutine  extends Observable{
 		int tmp = player.getNumberOfDices();
 		tmp += connectedField;
 		playersTurn++;
-		System.out.println("WAAARUM");
 		player.setNumberOfDices(tmp);
 		player.update();
 
